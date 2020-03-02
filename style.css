@@ -115,6 +115,11 @@ div {
 
 }
 
+.item#black {	background-image: url('svg/black.svg'); }
+.item#white {	background-image: url('svg/white.svg'); }
+.item#red {	background-image: url('svg/red.svg'); }
+.item#yellow {	background-image: url('svg/yellow.svg'); }
+.item#blue {	background-image: url('svg/blue.svg'); }
 
 .item#circle {	background-image: url('svg/circle.svg'); }
 .item#square {	background-image: url('svg/square.svg'); }

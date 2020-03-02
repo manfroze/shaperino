@@ -70,17 +70,17 @@ var current = {
 
 	main: {
 		shape: "circle",
-		color: color.black,
+		color: "black",
 	}, 
 	charge: {
 		position: "top",
 		shape: "rhombus",
-		color: color.red,
+		color: "red",
 	},
 
 	split: {
 		shape: "circle",
-		color: color.blue,
+		color: "blue",
 	} 
 
 }
@@ -191,11 +191,11 @@ function drawGeometry() {
 	function drawShape(kind) {
 
 		if (current[kind].shape == "square") {
-			square(size[kind], center.normal[kind][0], center.normal[kind][1], current[kind].color)
+			square(size[kind], center.normal[kind][0], center.normal[kind][1], color[current[kind].color])
 		} else if (current[kind].shape == "circle") {
-			circle(size[kind], center.normal[kind][0], center.normal[kind][1], current[kind].color)
+			circle(size[kind], center.normal[kind][0], center.normal[kind][1], color[current[kind].color])
 		} else if (current[kind].shape == "rhombus") {
-			rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], current[kind].color)
+			rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], color[current[kind].color])
 		}
 
 	}
@@ -235,11 +235,11 @@ function drawGeometry() {
 		var selectedColor = $(this).attr("id");
 
 		if (e.shiftKey) {
-			current.charge.color = color[selectedColor];
+			current.charge.color = selectedColor;
 		} else if (e.altKey) {
-			current.split.color = color[selectedColor];
+			current.split.color = selectedColor;
 		} else {
-			current.main.color = color[selectedColor]; }
+			current.main.color = selectedColor; }
 			generate();
 
 		});
@@ -264,7 +264,7 @@ function drawGeometry() {
 
 
 
-	var components = []
+	var chargeComponents = []
 
 	var comp = {
 
@@ -296,7 +296,9 @@ function drawGeometry() {
 		$(".label").html('');
 
 		$("#" + current.main.shape).addClass('selected');
+		$("#" + current.main.color).addClass('selected');
 		$("#" + current.main.shape + " .label").append('MAIN');
+		$("#" + current.main.color + " .label").append('MAIN');
 
 		if (current.mode == "charge") {
 
@@ -304,8 +306,8 @@ function drawGeometry() {
 
 			if (current.charge.position == "topright" || current.charge.position == "topleft" || current.charge.position == "bottomright" || current.charge.position == "bottomleft"){
 
-				components = comp.charge[current.charge.position];
-				$(".charge#" + components.join(", .charge#")).addClass('bordered');
+				chargeComponents = comp.charge[current.charge.position];
+				$(".charge#" + chargeComponents.join(", .charge#")).addClass('bordered');
 
 			}
 
@@ -318,8 +320,10 @@ function drawGeometry() {
 			$("#" + current.split.shape).addClass('selected');
 			$("#" + current.split.shape + " .label").append('SPLIT');
 
-			components = comp.split[current.charge.position];
-			$(".charge#" + components.join(", .charge#")).addClass('bordered');
+			chargeComponents = comp.split[current.charge.position];
+			$(".charge#" + chargeComponents.join(", .charge#")).addClass('bordered');
+
+			$("#" + current.split.color + " .label").append('SPLIT');
 
 		}
 
@@ -327,6 +331,10 @@ function drawGeometry() {
 			
 			$("#" + current.charge.shape).addClass('selected');
 			$("#" + current.charge.shape + " .label").append('CHARGE');
+
+			$("#" + current.charge.color).addClass('selected');
+			$("#" + current.split.color).addClass('selected');
+			$("#" + current.charge.color + " .label").append('CHARGE');
 
 		}
 

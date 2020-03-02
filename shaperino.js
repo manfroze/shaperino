@@ -323,6 +323,7 @@ function drawGeometry() {
 			chargeComponents = comp.split[current.charge.position];
 			$(".charge#" + chargeComponents.join(", .charge#")).addClass('bordered');
 
+			$("#" + current.split.color).addClass('selected');
 			$("#" + current.split.color + " .label").append('SPLIT');
 
 		}
@@ -333,7 +334,6 @@ function drawGeometry() {
 			$("#" + current.charge.shape + " .label").append('CHARGE');
 
 			$("#" + current.charge.color).addClass('selected');
-			$("#" + current.split.color).addClass('selected');
 			$("#" + current.charge.color + " .label").append('CHARGE');
 
 		}

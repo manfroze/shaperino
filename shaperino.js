@@ -1,44 +1,43 @@
 // ABSOLUTE VARIABLES //
 
-		var cloneIndex = 0;
+var cloneIndex = 0;
 
-		var canvasSize = 500;
-		var middle = canvasSize/2;
+var canvasSize = 500;
+var middle = canvasSize/2;
 
-		var size = {
-			main: 400,
-			small: 220,
-			mirror: 220
-		}
+var size = {
+	main: 400,
+	charge: 220,
+	split: 220
+}
 
-		var rhombusSizeDiff = {
-			main: 50,
-			small: 50,
-			mirror: 50
-		}
+var rhombusSizeDiff = {
+	main: 50,
+	charge: 50,
+	split: 50
+}
 
 		// RELATIVE VARIABLES //
 
 		var geo = {
 			main: {},
-			small: {},
-			mirror: {},
+			charge: {},
+			split: {},
 		}
 
 		var centerPoints = {
 			normal: {
-				small: {
-					zero: size.small/2,
+				charge: {
+					zero: size.charge/2,
 					middle: middle,
-					full: canvasSize - size.small/2
+					full: canvasSize - size.charge/2
 				}
 			},
 			rhombus: {
-
-				small: {
-					zero: (size.small-rhombusSizeDiff.small)/2 + 43,
+				charge: {
+					zero: (size.charge-rhombusSizeDiff.charge)/2 + 43,
 					middle: middle,
-					full: canvasSize - ((size.small-rhombusSizeDiff.small)/2 + 43)
+					full: canvasSize - ((size.charge-rhombusSizeDiff.charge)/2 + 43)
 				}
 			}
 		}
@@ -46,24 +45,52 @@
 		var center = {
 			normal: {
 				main: [middle, middle],
-				small: [],
-				mirror: []
+				charge: [],
+				split: []
 			},
 			rhombus: {
 				main: [middle, middle],
-				small: [],
-				mirror: []
+				charge: [],
+				split: []
 			}
 		}
 
 		// LISTS //
 
+		var color = {
+
+			black: "#333333",
+			white: "#FFFFFF",
+			red: "#FF4329",
+			yellow: "#FFD600",
+			blue: "#0085FF",
+		}
+
+		var current = {
+
+			main: {
+				shape: "circle",
+				color: color.black,
+			}, 
+			charge: {
+				position: "top",
+				shape: "rhombus",
+				color: color.red,
+			},
+			split: {
+				shape: "circle",
+				color: color.blue
+			} 
+
+		}
+
 		var truth = [true, false]
-		var colorList = ["#333333", "#002A97", "#0084FF", "#009006", "#400072", "#47E24D", "#545454", "#883BEB", "#956F4C", "#95CCFF", "#9F9F9F", "#A61E00", "#C7F16E", "#CDB329", "#DADADA", "#E64EFF", "#FF603D", "#FF9A3D", "#FFAEB3", "#FFC38C", "#FFD600", "#FFEE97", "#FFFFFF"]
-		var shapeList = ["square", "circle", "rhombus"];
 
 
-		var smallChargeTypeList = ["corner", "side"]
+		var shapeList = ["circle", "square", "rhombus"];
+
+
+		var chargeTypeList = ["corner", "side"]
 
 		var positionList = {
 			x: ["left", "right"],
@@ -73,86 +100,58 @@
 
 		function generate() {
 
-			shuffle(shapeList);
-			shuffle(colorList);
-
-			while (colorList[0] == "#FFFFFF") {
-				console.log(colorList);
-				shuffle(colorList);
-			}
-
-			shape = {
-				main: shapeList[0],
-				small: shapeList[2],
-				mirror: shapeList[1]
-			}
-
-			color = {
-				main: colorList[0],
-				small: colorList[2],
-				mirror: colorList[1],
-			}
+			clear();
 
 			position = {
-				cornerX: rand(positionList.x),
-				cornerY: rand(positionList.y),
-				side: rand(positionList.xy),
+
+				side: current.charge.position,
 			}
 
 
-        // SET SMALL CHARGE PRESENCE //
+        // SET CHARGES TYPE//
 
-
-        geo.small.draw = rand(truth)
-
-
-        // SET SMALL CHARGES TYPE//
-
-        if (geo.small.draw == true) {
-        	geo.small.type = rand(smallChargeTypeList)
+        if (geo.charge.draw == true) {
+        	geo.charge.type = "side"
         } else {
-        	geo.small.type = "none";
+			geo.charge.type = "side"
         }
 
-        // SET MIRROR SMALL CHARGE PRESENCE //
-
-        	geo.mirror.draw = rand(truth)
 
 
-        // SET SMALL CHARGES positionList //
+        // SET CHARGES positionList //
 
-        if (geo.small.type == "corner") {
+        if (geo.charge.type == "corner") {
         	if (position.cornerX == "left") {
-        		center.normal.small[0] = centerPoints.normal.small.zero;
+        		center.normal.charge[0] = centerPoints.normal.charge.zero;
         	}
         	if (position.cornerY == "top") {
-        		center.normal.small[1] = centerPoints.normal.small.zero
+        		center.normal.charge[1] = centerPoints.normal.charge.zero
         	}
         	if (position.cornerX == "right") {
-        		center.normal.small[0] = centerPoints.normal.small.full
+        		center.normal.charge[0] = centerPoints.normal.charge.full
         	}
         	if (position.cornerY == "bottom") {
-        		center.normal.small[1] = centerPoints.normal.small.full
+        		center.normal.charge[1] = centerPoints.normal.charge.full
         	}
         }
 
-        if (geo.small.type == "side") {
+        if (geo.charge.type == "side") {
         	if (position.side == "left") {
-        		center.normal.small[0] = centerPoints.normal.small.zero
-        		center.normal.small[1] = centerPoints.normal.small.middle
+        		center.normal.charge[0] = centerPoints.normal.charge.zero
+        		center.normal.charge[1] = centerPoints.normal.charge.middle
         	}
         	if (position.side == "top") {
-        		center.normal.small[0] = centerPoints.normal.small.middle
-        		center.normal.small[1] = centerPoints.normal.small.zero
+        		center.normal.charge[0] = centerPoints.normal.charge.middle
+        		center.normal.charge[1] = centerPoints.normal.charge.zero
 
         	}
         	if (position.side == "right") {
-        		center.normal.small[0] = centerPoints.normal.small.full
-        		center.normal.small[1]  = centerPoints.normal.small.middle
+        		center.normal.charge[0] = centerPoints.normal.charge.full
+        		center.normal.charge[1]  = centerPoints.normal.charge.middle
         	}
         	if (position.side == "bottom") {
-        		center.normal.small[0] = centerPoints.normal.small.middle
-        		center.normal.small[1] = centerPoints.normal.small.full
+        		center.normal.charge[0] = centerPoints.normal.charge.middle
+        		center.normal.charge[1] = centerPoints.normal.charge.full
         	}
         }
 
@@ -160,24 +159,24 @@
 
         for (var i = 0; i < 2; i++) {
 
-        	if (center.normal.small[i] == centerPoints.normal.small.zero) {
-        		center.normal.mirror[i] = centerPoints.normal.small.full;
-        		center.rhombus.small[i] = centerPoints.rhombus.small.zero;
-        		center.rhombus.mirror[i] = centerPoints.rhombus.small.full
-        	} else if (center.normal.small[i] == centerPoints.normal.small.full) {
-        		center.normal.mirror[i] = centerPoints.normal.small.zero;
-        		center.rhombus.small[i] = centerPoints.rhombus.small.full;
-        		center.rhombus.mirror[i] = centerPoints.rhombus.small.zero
-        	} else if (center.normal.small[i] == centerPoints.normal.small.middle) {
-        		center.normal.mirror[i] = centerPoints.normal.small.middle;
-        		center.rhombus.small[i] = centerPoints.rhombus.small.middle;
-        		center.rhombus.mirror[i] = centerPoints.rhombus.small.middle
+        	if (center.normal.charge[i] == centerPoints.normal.charge.zero) {
+        		center.normal.split[i] = centerPoints.normal.charge.full;
+        		center.rhombus.charge[i] = centerPoints.rhombus.charge.zero;
+        		center.rhombus.split[i] = centerPoints.rhombus.charge.full
+        	} else if (center.normal.charge[i] == centerPoints.normal.charge.full) {
+        		center.normal.split[i] = centerPoints.normal.charge.zero;
+        		center.rhombus.charge[i] = centerPoints.rhombus.charge.full;
+        		center.rhombus.split[i] = centerPoints.rhombus.charge.zero
+        	} else if (center.normal.charge[i] == centerPoints.normal.charge.middle) {
+        		center.normal.split[i] = centerPoints.normal.charge.middle;
+        		center.rhombus.charge[i] = centerPoints.rhombus.charge.middle;
+        		center.rhombus.split[i] = centerPoints.rhombus.charge.middle
         	}
         }
 
-		drawGeometry();
+        drawGeometry();
 
-	}
+    }
 
 
 	// DRAW FUNCTION //
@@ -191,17 +190,10 @@
 
 		drawShape("main");
 
-		// SMALL CHARGE //
+		// CHARGE //
 
-		if (geo.small.draw == true) {
-			drawShape("small");
-		}
+		drawShape("charge");
 
-		// MIRROR SMALL CHARGE //
-
-		if (geo.mirror.draw == true) {
-			drawShape("mirror");
-		} 
 
 	}
 
@@ -225,24 +217,24 @@
 
 	function drawShape(kind) {
 
-		if (shape[kind] == "square") {
-			square(size[kind], center.normal[kind][0], center.normal[kind][1], color[kind])
-		} else if (shape[kind] == "circle") {
-			circle(size[kind], center.normal[kind][0], center.normal[kind][1], color[kind])
-		} else if (shape[kind] == "rhombus") {
-			rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], color[kind])
+		if (current[kind].shape == "square") {
+			square(size[kind], center.normal[kind][0], center.normal[kind][1], current[kind].color)
+		} else if (current[kind].shape == "circle") {
+			circle(size[kind], center.normal[kind][0], center.normal[kind][1], current[kind].color)
+		} else if (current[kind].shape == "rhombus") {
+			rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], current[kind].color)
 		}
 
 	}
 
-	// SHUFFLE FUNCTION //
 
-	function shuffle(a) {
-		for (let i = a.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[a[i], a[j]] = [a[j], a[i]];
-		}
-		return a;
+	generate();
+
+	//document.onclick = function() {clear(); generate();};
+
+	function clear(){
+		document.getElementById("drawing").innerHTML = "";
+
 	}
 
 	function rand(name) {
@@ -252,11 +244,35 @@
 		} 
 	}
 
-	generate();
 
-	function clear(){
-		document.getElementById("drawing").innerHTML = "";
+	$( ".item.shape" ).click(function(e) {
 
-	}
+		var selectedShape = $(this).attr("id");
 
-	document.onclick = function() {clear(); generate();};
+		if (e.shiftKey) {
+			current.charge.shape = selectedShape;
+		} else {
+		current.main.shape = selectedShape; }
+		generate();
+
+	});
+
+	$( ".item.color" ).click(function(e) {
+
+		var selectedColor = $(this).attr("id");
+
+		if (e.shiftKey) {
+			current.charge.color = color[selectedColor];
+		} else {
+		current.main.color = color[selectedColor]; }
+		generate();
+
+	});
+
+	$( ".item.position" ).click(function(e) {
+
+		var selectedPosition = $(this).attr("id");
+		current.charge.position = selectedPosition;
+		generate();
+
+	});

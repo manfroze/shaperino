@@ -1,7 +1,7 @@
 
 body {
 	background-color: #DDD;
-	font-family: 'Josefin Sans';
+	font-family: 'Montserrat';
 	color: #333;
 
 }
@@ -112,6 +112,7 @@ div {
 .item.bordered {
 
 	box-shadow:0px 0px 0px 2px #FFF inset;
+	//color:  #fff;
 
 }
 

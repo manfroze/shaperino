@@ -72,6 +72,8 @@ var shapes = ["circle", "square", "rhombus"];
 var current = {
 
 	mode: "plain",
+	chargeType: "side",
+	colorType: "primary",
 
 	main: {
 		shape: "circle",
@@ -93,6 +95,7 @@ var current = {
 var truth = [true, false]
 
 function generate() {
+
 
 	clear();
 
@@ -154,6 +157,8 @@ for (var i = 0; i < 2; i++) {
 drawGeometry();
 updateSelectors();
 
+console.log(current.colorType);
+
 }
 
 // DRAW FUNCTION //
@@ -213,127 +218,174 @@ function drawGeometry() {
 
 	}
 
-	function setMode(mode){
+	function set(thing, mode){
 
-		current.mode = mode;
+		current[thing] = mode;
 
 	}
 
-	function buttonMod(e, kind){
+	function setCurrent(mode, kind, selected){
 
-		var selected = $(e.target).attr("id");
+		current[mode][kind] = selected;
+
+	}
+
+	function chargeModifier(e, kind){
+
+		var target = $(e.target).attr("id");
 
 		if (e.shiftKey) {
-			current.charge[kind] = selected;
+			setCurrent("charge", kind, target);
 		} else if (e.altKey) {
-			current.split[kind] = selected;
+			setCurrent("split", kind, target);
 		} else {
-			current.main[kind] = selected; }
-
+			setCurrent("main", kind, target);
 		}
 
-		$( ".item.shape" ).click(function(e) {
-			buttonMod(e, "shape");
-			generate();
-		});
+	}
 
-		$( ".item.color" ).click(function(e) {
-			buttonMod(e, "color");
-			generate();
-		});
+	// CLICKS //
 
-		$( ".item.charge" ).click(function(e) {
-			var selectedPosition = $(e.target).attr("id");
-			current.charge.position = selectedPosition;
-			setMode("charge");
-			generate();
-		});
+	$( ".item.shape" ).click(function(e) {
+		chargeModifier(e, "shape");
+		generate();
+	});
 
-		$( ".item.split" ).click(function(e) {
-			var selectedPosition = $(e.target).attr("id");
-			current.charge.position = selectedPosition;
-			setMode("split");
-			generate();
-		});
+	$( ".item.primary" ).click(function(e) {
+		chargeModifier(e, "color");
+		set("colorType", "primary");
+		generate();
+	});
+
+	$( ".item.secondary" ).click(function(e) {
+		chargeModifier(e, "color");
+		set("colorType", "secondary");
+		generate();
+	});
 
 
-		var comp = {
+	$( ".item.split" ).click(function(e) {
+		var target = $(e.target).attr("id");
+		setCurrent("charge", "position", target);
+		set("mode", "split");
+		generate();
+	});
 
-			charge: {
-				topleft: ["top", "left"],
-				topright: ["top", "right"],
-				bottomleft: ["bottom", "left"],
-				bottomright: ["bottom", "right"],
-			},
+	$( ".item.side" ).click(function(e) {
+		var target = $(e.target).attr("id");
+		setCurrent("charge", "position", target);
+		set("mode", "charge");
+		set("chargeType", "side");
+		generate();
+	});
 
-			split: {
-				top: ["top", "bottom"],
-				left: ["left", "right"],
-				topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
-				topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+	$( ".item.corner" ).click(function(e) {
+		var target = $(e.target).attr("id");
+		setCurrent("charge", "position", target);
+		set("mode", "charge");
+		set("chargeType", "corner");
+		generate();
+	});
+
+
+
+
+	// //
+
+	var comp = {
+
+		charge: {
+			topleft: ["top", "left"],
+			topright: ["top", "right"],
+			bottomleft: ["bottom", "left"],
+			bottomright: ["bottom", "right"],
+		},
+
+		split: {
+			top: ["top", "bottom"],
+			left: ["left", "right"],
+			topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
+			topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+		},
+
+		color: {
+
+			orange: ["red", "yellow"],
+			green: ["yellow", "blue"],
+			violet: ["blue", "red"],
+			grey: ["white", "black"],
+
+		}
+	}
+
+
+	function select(mode, kind, selector){
+
+		$("." + selector + "#" + current[mode][kind]).addClass('selected');
+		$("#" + current[mode][kind] + " .label").append(mode);
+
+	}
+
+	function border(type, mode, kind, selector){
+
+		components = comp[type][current[mode][kind]];
+
+		$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
+
+		$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").html("comp");
+
+	}
+
+	function clearSelectors(){
+
+		$("*").removeClass('selected');
+		$("*").removeClass('bordered');
+		$(".label").html('');
+
+	}
+
+	function updateSelectors(){
+
+		clearSelectors();
+
+		select("main", "shape", "shape");
+		select("main", "color", "color");
+
+
+		if (current.colorType == "secondary") {
+			border("color", "main", "color", "color");
+		}
+
+
+		if (current.mode == "charge") {
+
+			select("charge", "position", "charge");
+
+			if (current.chargeType == "corner"){
+
+				border("charge", "charge", "position", "charge");
+
 			}
-		}
-
-
-		function select(mode, kind, selector){
-
-			$("." + selector + "#" + current[mode][kind]).addClass('selected');
-			$("#" + current[mode][kind] + " .label").append(mode);
 
 		}
 
-		function border(mode){
+		if (current.mode == "split") {
 
-			components = comp[mode][current.charge.position];
-			$(".charge#" + components.join(", .charge#")).addClass('bordered');
+			select("charge", "position", "split");
+			select("split", "shape", "shape");
+			select("split", "color", "color");
 
-		}
-
-		function clearSelectors(){
-
-			$("*").removeClass('selected');
-			$("*").removeClass('bordered');
-			$(".label").html('');
+			border("split", "charge", "position", "charge");
 
 		}
 
-		function updateSelectors(){
+		if (current.mode == "charge" || current.mode == "split") {
 
-			clearSelectors();
-
-			select("main", "shape", "shape");
-			select("main", "color", "color");
-
-
-			if (current.mode == "charge") {
-
-				select("charge", "position", "charge");
-
-				if (current.charge.position == "topright" || current.charge.position == "topleft" || current.charge.position == "bottomright" || current.charge.position == "bottomleft"){
-					
-					border("charge");
-
-				}
-
-			}
-
-			if (current.mode == "split") {
-
-				select("charge", "position", "split");
-				select("split", "shape", "shape");
-				select("split", "color", "color");
-
-				border("split");
-
-			}
-
-			if (current.mode == "charge" || current.mode == "split") {
-
-				select("charge", "shape", "shape");
-				select("charge", "color", "shape");
-
-			}
-
+			select("charge", "shape", "shape");
+			select("charge", "color", "color");
 
 		}
+
+
+	}
 

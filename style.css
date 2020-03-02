@@ -101,6 +101,8 @@ div {
 	background-size: 80%;
 	background-position: center;
 
+	position: relative;
+
 }
 
 .item.main {
@@ -127,6 +129,20 @@ div {
 	//color:  #fff;
 
 }
+
+.label {
+
+	//width: 20px;
+	height: 20px;
+
+	//background-color: #ff0000;
+	position: absolute;
+
+	top: 5px;
+	right: 5px;
+
+}
+
 
 .item#black {	background-image: url('svg/black.svg'); }
 .item#white {	background-image: url('svg/white.svg'); }

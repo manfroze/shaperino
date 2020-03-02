@@ -91,7 +91,6 @@ var current = {
 
 	mode: "plain",
 	chargeType: "side",
-	colorType: "primary",
 
 	main: {
 		shape: "circle",
@@ -328,6 +327,12 @@ function drawGeometry() {
 
 		color: {
 
+			red: ["red", "yellow"],
+			black:["red", "yellow"],
+			yellow: ["red", "yellow"],
+			white: ["red", "yellow"],
+			blue: ["red", "yellow"],
+
 			orange: ["red", "yellow"],
 			green: ["yellow", "blue"],
 			violet: ["blue", "red"],
@@ -356,10 +361,10 @@ function drawGeometry() {
 	}
 
 
-	function select(mode, kind, selector){
+	function select(mode, kind, selector, label){
 
 		$("." + selector + "#" + current[mode][kind]).addClass('selected');
-		$("#" + current[mode][kind] + " .label").append(mode);
+		$("#" + current[mode][kind] + " .label").append(label);
 
 	}
 
@@ -369,7 +374,7 @@ function drawGeometry() {
 
 		$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
 
-		$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").html("comp");
+		//$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append("");
 
 	}
 
@@ -385,21 +390,21 @@ function drawGeometry() {
 
 		clearSelectors();
 
-		select("main", "shape", "shape");
-		select("main", "color", "color");
+		select("main", "shape", "shape", "M");
+		select("main", "color", "color", "M");
 
 
-		if (current.colorType == "secondary") {
+		if (current.colorType == "secondary" || current.colorType == "primary") {
 			border("color", "main", "color", "color");
+			border("color", "charge", "color", "color");
+			border("color", "split", "color", "color");
 		}
 
 
 		if (current.mode == "charge") {
 
 			select("charge", "position", "charge");
-
 			if (current.chargeType == "corner"){
-
 				border("charge", "charge", "position", "charge");
 
 			}
@@ -409,8 +414,8 @@ function drawGeometry() {
 		if (current.mode == "split") {
 
 			select("charge", "position", "split");
-			select("split", "shape", "shape");
-			select("split", "color", "color");
+			select("split", "shape", "shape", "S");
+			select("split", "color", "color", "S");
 
 			border("split", "charge", "position", "charge");
 
@@ -418,8 +423,8 @@ function drawGeometry() {
 
 		if (current.mode == "charge" || current.mode == "split") {
 
-			select("charge", "shape", "shape");
-			select("charge", "color", "color");
+			select("charge", "shape", "shape", "C");
+			select("charge", "color", "color", "C");
 
 		}
 

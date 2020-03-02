@@ -6,7 +6,7 @@ body {
 
 }
 div {
-
+	//border:  1px solid #ff0000;
 	box-sizing: border-box;
 
 }
@@ -62,8 +62,16 @@ div {
 
 	font-weight: bold;
 	text-align: center;
+
 	font-size: 25px;
 	margin-bottom: 25px;
+
+}
+
+.title.sub {
+
+	font-size: 15px;
+	margin-bottom: 15px;
 
 }
 
@@ -73,6 +81,10 @@ div {
 	flex-wrap: wrap;
 	justify-content: center;
 
+}
+
+.section {
+	margin-top: 60px;
 }
 
 .item {
@@ -126,6 +138,22 @@ div {
 .item#green {	background-image: url('svg/green.svg'); }
 .item#violet {	background-image: url('svg/violet.svg'); }
 
+.item#darkred {	background-image: url('svg/darkred.svg'); }
+.item#darkyellow {	background-image: url('svg/darkyellow.svg'); }
+.item#darkblue {	background-image: url('svg/darkblue.svg'); }
+.item#darkgrey {	background-image: url('svg/darkgrey.svg'); }
+.item#darkorange {	background-image: url('svg/darkorange.svg'); }
+.item#darkgreen {	background-image: url('svg/darkgreen.svg'); }
+.item#darkviolet {	background-image: url('svg/darkviolet.svg'); }
+
+.item#lightred {	background-image: url('svg/lightred.svg'); }
+.item#lightyellow {	background-image: url('svg/lightyellow.svg'); }
+.item#lightblue {	background-image: url('svg/lightblue.svg'); }
+.item#lightgrey {	background-image: url('svg/lightgrey.svg'); }
+.item#lightorange {	background-image: url('svg/lightorange.svg'); }
+.item#lightgreen {	background-image: url('svg/lightgreen.svg'); }
+.item#lightviolet {	background-image: url('svg/lightviolet.svg'); }
+
 .item#circle {	background-image: url('svg/circle.svg'); }
 .item#square {	background-image: url('svg/square.svg'); }
 .item#rhombus {	background-image: url('svg/rhombus.svg'); }
@@ -146,6 +174,3 @@ div {
 .item.split#topleft {	background-image: url('svg/topleft-split.svg'); }
 .item.split#topright {	background-image: url('svg/topright-split.svg'); }
 
-.section {
-	margin-top: 60px;
-}

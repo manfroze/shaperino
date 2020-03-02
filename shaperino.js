@@ -62,7 +62,25 @@ var color = {
 	orange: "#FF9A3D",
 	green: "#47E24D",
 	violet: "#883BEB",
-	grey: "#9F9F9F"
+	grey: "#9F9F9F",
+
+	darkred: "#944433",
+	darkyellow: "#D1BB48",
+	darkblue: "#2C4178",
+
+	lightred: "#FFADAD",
+	lightyellow: "#FDFF97",
+	lightblue: "#7CC0FF",
+
+	darkorange: "#8C7158",
+	darkgreen: "#239F28",
+	darkviolet: "#400072",
+	darkgrey: "#545454",
+
+	lightorange: "#FFBF5F",
+	lightgreen: "#C8FF54",
+	lightviolet: "#E64EFF",
+	lightgrey: "#DADADA",
 
 }
 
@@ -314,6 +332,25 @@ function drawGeometry() {
 			green: ["yellow", "blue"],
 			violet: ["blue", "red"],
 			grey: ["white", "black"],
+
+			darkred: ["red", "black"],
+			darkyellow: ["yellow", "black"],
+			darkblue: ["blue", "black"],
+
+			lightred: ["red", "white"],
+			lightyellow: ["yellow", "white"],
+			lightblue: ["blue", "white"],
+
+			darkorange: ["red", "yellow", "black"],
+			darkgreen: ["yellow", "blue", "black"],
+			darkviolet: ["blue", "red", "black"],
+			darkgrey: ["white", "black", "black"],
+
+			lightorange: ["red", "yellow", "white"],
+			lightgreen: ["yellow", "blue", "white"],
+			lightviolet: ["blue", "red", "white"],
+			lightgrey: ["white", "black", "white"],
+
 
 		}
 	}

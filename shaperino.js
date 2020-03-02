@@ -17,186 +17,154 @@ var rhombusSizeDiff = {
 	split: 50
 }
 
-		// RELATIVE VARIABLES //
+// RELATIVE VARIABLES //
 
-		var geo = {
-			main: {},
-			charge: {},
-			split: {},
+var centerPoints = {
+	normal: {
+		charge: {
+			zero: size.charge/2,
+			middle: middle,
+			full: canvasSize - size.charge/2
 		}
-
-		var centerPoints = {
-			normal: {
-				charge: {
-					zero: size.charge/2,
-					middle: middle,
-					full: canvasSize - size.charge/2
-				}
-			},
-			rhombus: {
-				charge: {
-					zero: (size.charge-rhombusSizeDiff.charge)/2 + 43,
-					middle: middle,
-					full: canvasSize - ((size.charge-rhombusSizeDiff.charge)/2 + 43)
-				}
-			}
+	},
+	rhombus: {
+		charge: {
+			zero: (size.charge-rhombusSizeDiff.charge)/2 + 43,
+			middle: middle,
+			full: canvasSize - ((size.charge-rhombusSizeDiff.charge)/2 + 43)
 		}
+	}
+}
 
-		var center = {
-			normal: {
-				main: [middle, middle],
-				charge: [],
-				split: []
-			},
-			rhombus: {
-				main: [middle, middle],
-				charge: [],
-				split: []
-			}
-		}
+var center = {
+	normal: {
+		main: [middle, middle],
+		charge: [],
+		split: []
+	},
+	rhombus: {
+		main: [middle, middle],
+		charge: [],
+		split: []
+	}
+}
 
-		// LISTS //
+// LISTS //
 
-		var color = {
+var color = {
 
-			black: "#333333",
-			white: "#FFFFFF",
-			red: "#FF4329",
-			yellow: "#FFD600",
-			blue: "#0085FF",
-		}
+	black: "#333333",
+	white: "#FFFFFF",
+	red: "#FF4329",
+	yellow: "#FFD600",
+	blue: "#0085FF",
 
-		var current = {
+}
 
-			main: {
-				shape: "circle",
-				color: color.black,
-			}, 
-			charge: {
-				position: "top",
-				shape: "rhombus",
-				color: color.red,
-			},
-			split: {
-				shape: "circle",
-				color: color.blue
-			} 
-
-		}
-
-		var truth = [true, false]
+var shapes = ["circle", "square", "rhombus"];
 
 
-		var shapeList = ["circle", "square", "rhombus"];
+var current = {
+
+	main: {
+		shape: "circle",
+		color: color.black,
+	}, 
+	charge: {
+		position: "top",
+		shape: "rhombus",
+		color: color.red,
+	},
+	split: {
+		enabled: false,
+		shape: "circle",
+		color: color.blue,
+	} 
+
+}
+
+var truth = [true, false]
+
+function generate() {
+
+	clear();
+
+// SET CHARGES POSITION //
+
+	if (current.charge.position == "left") {
+		center.normal.charge[0] = centerPoints.normal.charge.zero
+		center.normal.charge[1] = centerPoints.normal.charge.middle
+	}
+	if (current.charge.position == "top") {
+		center.normal.charge[0] = centerPoints.normal.charge.middle
+		center.normal.charge[1] = centerPoints.normal.charge.zero
+	}
+	if (current.charge.position == "right") {
+		center.normal.charge[0] = centerPoints.normal.charge.full
+		center.normal.charge[1]  = centerPoints.normal.charge.middle
+	}
+	if (current.charge.position == "bottom") {
+		center.normal.charge[0] = centerPoints.normal.charge.middle
+		center.normal.charge[1] = centerPoints.normal.charge.full
+	}
+	if (current.charge.position == "topleft") {
+		center.normal.charge[0] = centerPoints.normal.charge.zero
+		center.normal.charge[1] = centerPoints.normal.charge.zero
+	}
+	if (current.charge.position == "topright") {
+		center.normal.charge[0] = centerPoints.normal.charge.full
+		center.normal.charge[1] = centerPoints.normal.charge.zero
+	}
+	if (current.charge.position == "bottomright") {
+		center.normal.charge[0] = centerPoints.normal.charge.full
+		center.normal.charge[1] = centerPoints.normal.charge.full
+	}
+	if (current.charge.position == "bottomleft") {
+		center.normal.charge[0] = centerPoints.normal.charge.zero
+		center.normal.charge[1] = centerPoints.normal.charge.full
+	}
 
 
-		var chargeTypeList = ["corner", "side"]
+// ASSIGN OTHER POSITION //
 
-		var positionList = {
-			x: ["left", "right"],
-			y: ["top", "bottom"],
-			xy: ["left", "right", "top", "bottom"]
-		}
+for (var i = 0; i < 2; i++) {
 
-		function generate() {
+	if (center.normal.charge[i] == centerPoints.normal.charge.zero) {
+		center.normal.split[i] = centerPoints.normal.charge.full;
+		center.rhombus.charge[i] = centerPoints.rhombus.charge.zero;
+		center.rhombus.split[i] = centerPoints.rhombus.charge.full
+	} else if (center.normal.charge[i] == centerPoints.normal.charge.full) {
+		center.normal.split[i] = centerPoints.normal.charge.zero;
+		center.rhombus.charge[i] = centerPoints.rhombus.charge.full;
+		center.rhombus.split[i] = centerPoints.rhombus.charge.zero
+	} else if (center.normal.charge[i] == centerPoints.normal.charge.middle) {
+		center.normal.split[i] = centerPoints.normal.charge.middle;
+		center.rhombus.charge[i] = centerPoints.rhombus.charge.middle;
+		center.rhombus.split[i] = centerPoints.rhombus.charge.middle
+	}
+}
 
-			clear();
+drawGeometry();
 
-			position = {
+}
 
-				side: current.charge.position,
-			}
+// DRAW FUNCTION //
 
+function drawGeometry() {
 
-        // SET CHARGES TYPE//
-
-        if (geo.charge.draw == true) {
-        	geo.charge.type = "side"
-        } else {
-			geo.charge.type = "side"
-        }
-
-
-
-        // SET CHARGES positionList //
-
-        if (geo.charge.type == "corner") {
-        	if (position.cornerX == "left") {
-        		center.normal.charge[0] = centerPoints.normal.charge.zero;
-        	}
-        	if (position.cornerY == "top") {
-        		center.normal.charge[1] = centerPoints.normal.charge.zero
-        	}
-        	if (position.cornerX == "right") {
-        		center.normal.charge[0] = centerPoints.normal.charge.full
-        	}
-        	if (position.cornerY == "bottom") {
-        		center.normal.charge[1] = centerPoints.normal.charge.full
-        	}
-        }
-
-        if (geo.charge.type == "side") {
-        	if (position.side == "left") {
-        		center.normal.charge[0] = centerPoints.normal.charge.zero
-        		center.normal.charge[1] = centerPoints.normal.charge.middle
-        	}
-        	if (position.side == "top") {
-        		center.normal.charge[0] = centerPoints.normal.charge.middle
-        		center.normal.charge[1] = centerPoints.normal.charge.zero
-
-        	}
-        	if (position.side == "right") {
-        		center.normal.charge[0] = centerPoints.normal.charge.full
-        		center.normal.charge[1]  = centerPoints.normal.charge.middle
-        	}
-        	if (position.side == "bottom") {
-        		center.normal.charge[0] = centerPoints.normal.charge.middle
-        		center.normal.charge[1] = centerPoints.normal.charge.full
-        	}
-        }
-
-        // ASSIGN OTHER positionList //
-
-        for (var i = 0; i < 2; i++) {
-
-        	if (center.normal.charge[i] == centerPoints.normal.charge.zero) {
-        		center.normal.split[i] = centerPoints.normal.charge.full;
-        		center.rhombus.charge[i] = centerPoints.rhombus.charge.zero;
-        		center.rhombus.split[i] = centerPoints.rhombus.charge.full
-        	} else if (center.normal.charge[i] == centerPoints.normal.charge.full) {
-        		center.normal.split[i] = centerPoints.normal.charge.zero;
-        		center.rhombus.charge[i] = centerPoints.rhombus.charge.full;
-        		center.rhombus.split[i] = centerPoints.rhombus.charge.zero
-        	} else if (center.normal.charge[i] == centerPoints.normal.charge.middle) {
-        		center.normal.split[i] = centerPoints.normal.charge.middle;
-        		center.rhombus.charge[i] = centerPoints.rhombus.charge.middle;
-        		center.rhombus.split[i] = centerPoints.rhombus.charge.middle
-        	}
-        }
-
-        drawGeometry();
-
-    }
-
-
-	// DRAW FUNCTION //
-
-	function drawGeometry() {
-
-		draw = SVG('drawing').size(500, 500);
-		geometry = draw.group();
-
-		// MAIN SHAPE //
+	draw = SVG('drawing').size(500, 500);
+	geometry = draw.group();
 
 		drawShape("main");
 
-		// CHARGE //
-
 		drawShape("charge");
 
+	if (current.split.enabled == true) {
 
+		drawShape("split");
 	}
 
+	}
 
 	// SINGLE SHAPE FUNCTIONS //
 
@@ -230,8 +198,6 @@ var rhombusSizeDiff = {
 
 	generate();
 
-	//document.onclick = function() {clear(); generate();};
-
 	function clear(){
 		document.getElementById("drawing").innerHTML = "";
 
@@ -251,11 +217,13 @@ var rhombusSizeDiff = {
 
 		if (e.shiftKey) {
 			current.charge.shape = selectedShape;
+		} else if (e.altKey) {
+			current.split.shape = selectedShape;
 		} else {
-		current.main.shape = selectedShape; }
-		generate();
+			current.main.shape = selectedShape; }
+			generate();
 
-	});
+		});
 
 	$( ".item.color" ).click(function(e) {
 
@@ -263,16 +231,32 @@ var rhombusSizeDiff = {
 
 		if (e.shiftKey) {
 			current.charge.color = color[selectedColor];
+		} else if (e.altKey) {
+			current.split.color = color[selectedColor];
 		} else {
-		current.main.color = color[selectedColor]; }
-		generate();
+			current.main.color = color[selectedColor]; }
+			generate();
 
-	});
+		});
 
 	$( ".item.position" ).click(function(e) {
 
 		var selectedPosition = $(this).attr("id");
 		current.charge.position = selectedPosition;
+		current.split.enabled = false;
 		generate();
 
 	});
+
+	$( ".item.split" ).click(function(e) {
+
+		var selectedPosition = $(this).attr("id");
+		current.charge.position = selectedPosition;
+		current.split.enabled = true;
+		generate();
+
+	});
+
+
+
+

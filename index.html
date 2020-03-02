@@ -4,6 +4,7 @@
 	<title>SHAPERINO</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.0/svg.js" integrity="sha256-3QT42ZZOdRfHJnrJHoR+H4mAs5j8hEbHpoLSV4QYD4U=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
 
@@ -11,29 +12,38 @@
 
 <body>
 
-
 	<div id="container">
-
-
 
 		<div id="leftColumn">
 
 			<div id="shape" class="section">
 				<div class="title">SHAPE</div>
 				<div class="container">
-					<div id= "circle" class="item shape">CIRCLE</div>
-					<div id="square" class="item shape">SQUARE</div>
-					<div id="rhombus" class="item shape">RHOMBUS</div>
+					<div id= "circle" class="item shape"></div>
+					<div id="square" class="item shape"></div>
+					<div id="rhombus" class="item shape"></div>
 				</div>
 			</div>
 
 		<div id="charge" class="section">
 				<div class="title">CHARGE</div>
 				<div class="container">
-					<div id="top" class="item position">TOP</div>
-					<div id="right" class="item position">RIGHT</div>
-					<div id="bottom" class="item position">BOTTOM</div>
-					<div id="left" class="item position">LEFT</div>
+
+					<div id="top" class="item main position"></div>
+					<div id="right" class="item main position"></div>
+					<div id="bottom" class="item main position"></div>
+					<div id="left" class="item main position"></div>
+
+					<div id="topleft" class="item small position"></div>
+					<div id="topright" class="item small position"></div>
+					<div id="bottomright" class="item small position"></div>
+					<div id="bottomleft" class="item small position"></div>
+
+					<div id="top" class="item small split"></div>
+					<div id="left" class="item small split"></div>
+					<div id="topleft" class="item small split"></div>
+					<div id="topright" class="item small split"></div>
+
 
 				</div>
 			</div>

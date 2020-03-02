@@ -59,6 +59,11 @@ var color = {
 	yellow: "#FFD600",
 	blue: "#0085FF",
 
+	orange: "#FF9A3D",
+	green: "#47E24D",
+	violet: "#883BEB",
+	grey: "#9F9F9F"
+
 }
 
 var shapes = ["circle", "square", "rhombus"];
@@ -208,136 +213,127 @@ function drawGeometry() {
 
 	}
 
-	function rand(name) {
-		if (name instanceof Array == true) {
-			var randomNumber = Math.floor(Math.random() * name.length);
-			return name[randomNumber];
-		} 
+	function setMode(mode){
+
+		current.mode = mode;
+
 	}
 
+	function buttonMod(e, kind){
 
-	$( ".item.shape" ).click(function(e) {
-
-		var selectedShape = $(this).attr("id");
-
-		if (e.shiftKey) {
-			current.charge.shape = selectedShape;
-		} else if (e.altKey) {
-			current.split.shape = selectedShape;
-		} else {
-			current.main.shape = selectedShape; }
-			generate();
-
-		});
-
-	$( ".item.color" ).click(function(e) {
-
-		var selectedColor = $(this).attr("id");
+		var selected = $(e.target).attr("id");
 
 		if (e.shiftKey) {
-			current.charge.color = selectedColor;
+			current.charge[kind] = selected;
 		} else if (e.altKey) {
-			current.split.color = selectedColor;
+			current.split[kind] = selected;
 		} else {
-			current.main.color = selectedColor; }
-			generate();
-
-		});
-
-	$( ".item.charge" ).click(function(e) {
-
-		var selectedPosition = $(this).attr("id");
-		current.charge.position = selectedPosition;
-		current.mode = "charge";
-		generate();
-
-	});
-
-	$( ".item.split" ).click(function(e) {
-
-		var selectedPosition = $(this).attr("id");
-		current.charge.position = selectedPosition;
-		current.mode = "split";
-		generate();
-
-	});
-
-
-
-	var chargeComponents = []
-
-	var comp = {
-
-		charge: {
-
-			topleft: ["top", "left"],
-			topright: ["top", "right"],
-			bottomleft: ["bottom", "left"],
-			bottomright: ["bottom", "right"],
-
-		},
-
-		split: {
-
-			top: ["top", "bottom"],
-			left: ["left", "right"],
-			topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
-			topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+			current.main[kind] = selected; }
 
 		}
 
-	}
+		$( ".item.shape" ).click(function(e) {
+			buttonMod(e, "shape");
+			generate();
+		});
+
+		$( ".item.color" ).click(function(e) {
+			buttonMod(e, "color");
+			generate();
+		});
+
+		$( ".item.charge" ).click(function(e) {
+			var selectedPosition = $(e.target).attr("id");
+			current.charge.position = selectedPosition;
+			setMode("charge");
+			generate();
+		});
+
+		$( ".item.split" ).click(function(e) {
+			var selectedPosition = $(e.target).attr("id");
+			current.charge.position = selectedPosition;
+			setMode("split");
+			generate();
+		});
 
 
-	function updateSelectors(){
+		var comp = {
 
-		$("*").removeClass('selected');
-		$("*").removeClass('bordered');
-		$(".label").html('');
+			charge: {
+				topleft: ["top", "left"],
+				topright: ["top", "right"],
+				bottomleft: ["bottom", "left"],
+				bottomright: ["bottom", "right"],
+			},
 
-		$("#" + current.main.shape).addClass('selected');
-		$("#" + current.main.color).addClass('selected');
-		$("#" + current.main.shape + " .label").append('MAIN');
-		$("#" + current.main.color + " .label").append('MAIN');
+			split: {
+				top: ["top", "bottom"],
+				left: ["left", "right"],
+				topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
+				topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+			}
+		}
 
-		if (current.mode == "charge") {
 
-			$(".charge#" + current.charge.position).addClass('selected');
+		function select(mode, kind, selector){
 
-			if (current.charge.position == "topright" || current.charge.position == "topleft" || current.charge.position == "bottomright" || current.charge.position == "bottomleft"){
+			$("." + selector + "#" + current[mode][kind]).addClass('selected');
+			$("#" + current[mode][kind] + " .label").append(mode);
 
-				chargeComponents = comp.charge[current.charge.position];
-				$(".charge#" + chargeComponents.join(", .charge#")).addClass('bordered');
+		}
+
+		function border(mode){
+
+			components = comp[mode][current.charge.position];
+			$(".charge#" + components.join(", .charge#")).addClass('bordered');
+
+		}
+
+		function clearSelectors(){
+
+			$("*").removeClass('selected');
+			$("*").removeClass('bordered');
+			$(".label").html('');
+
+		}
+
+		function updateSelectors(){
+
+			clearSelectors();
+
+			select("main", "shape", "shape");
+			select("main", "color", "color");
+
+
+			if (current.mode == "charge") {
+
+				select("charge", "position", "charge");
+
+				if (current.charge.position == "topright" || current.charge.position == "topleft" || current.charge.position == "bottomright" || current.charge.position == "bottomleft"){
+					
+					border("charge");
+
+				}
 
 			}
 
-		}
+			if (current.mode == "split") {
 
-		if (current.mode == "split") {
+				select("charge", "position", "split");
+				select("split", "shape", "shape");
+				select("split", "color", "color");
 
-			$(".split#" + current.charge.position).addClass('selected');
+				border("split");
 
-			$("#" + current.split.shape).addClass('selected');
-			$("#" + current.split.shape + " .label").append('SPLIT');
+			}
 
-			chargeComponents = comp.split[current.charge.position];
-			$(".charge#" + chargeComponents.join(", .charge#")).addClass('bordered');
+			if (current.mode == "charge" || current.mode == "split") {
 
-			$("#" + current.split.color).addClass('selected');
-			$("#" + current.split.color + " .label").append('SPLIT');
+				select("charge", "shape", "shape");
+				select("charge", "color", "shape");
 
-		}
+			}
 
-		if (current.mode == "charge" || current.mode == "split") {
-			
-			$("#" + current.charge.shape).addClass('selected');
-			$("#" + current.charge.shape + " .label").append('CHARGE');
-
-			$("#" + current.charge.color).addClass('selected');
-			$("#" + current.charge.color + " .label").append('CHARGE');
 
 		}
-
-
-	}
 

@@ -1,18 +1,18 @@
 
 body {
-	background-color: #EEEEEE;
+	background-color: #DDD;
 	font-family: 'Josefin Sans';
+	color: #333;
+
+}
+div {
+
+	box-sizing: border-box;
 
 }
 
 ::selection {
 	background: transparent;
-}
-
-div {
-
-	//border: 1px solid #ff0000;
-
 }
 
 #container {
@@ -77,10 +77,10 @@ div {
 
 .item {
 
+	box-sizing: border-box;
 	height: 80px;
 	width: 80px;
 	padding: 5px;
-	background-color: #fff;
 	margin-bottom: 10px;
 	margin-right:  10px;
 	cursor: pointer;
@@ -91,20 +91,45 @@ div {
 
 }
 
+.item.main {
+
+	height: 120px;
+
+}
+
+.item:hover {
+
+	background-color: #ccc;
+
+}
+
+.item.selected {
+
+	background-color: #fff;
+
+}
+
+.item.bordered {
+
+	box-shadow:0px 0px 0px 2px #FFF inset;
+
+}
+
+
 .item#circle {	background-image: url('svg/circle.svg'); }
 .item#square {	background-image: url('svg/square.svg'); }
 .item#rhombus {	background-image: url('svg/rhombus.svg'); }
 
 
-.item#top {	background-image: url('svg/top.svg'); }
-.item#right {	background-image: url('svg/right.svg'); }
-.item#bottom {	background-image: url('svg/bottom.svg'); }
-.item#left {	background-image: url('svg/left.svg'); }
+.item.charge#top { background-image: url('svg/top.svg'); }
+.item.charge#right { background-image: url('svg/right.svg'); }
+.item.charge#bottom { background-image: url('svg/bottom.svg'); }
+.item.charge#left {	background-image: url('svg/left.svg'); }
 
-.item#topleft {	background-image: url('svg/topleft.svg'); }
-.item#topright {	background-image: url('svg/topright.svg'); }
-.item#bottomleft {	background-image: url('svg/bottomleft.svg'); }
-.item#bottomright {	background-image: url('svg/bottomright.svg'); }
+.item.charge#topleft {	background-image: url('svg/topleft.svg'); }
+.item.charge#topright {	background-image: url('svg/topright.svg'); }
+.item.charge#bottomleft {	background-image: url('svg/bottomleft.svg'); }
+.item.charge#bottomright {	background-image: url('svg/bottomright.svg'); }
 
 .item.split#top {	background-image: url('svg/top-split.svg'); }
 .item.split#left {	background-image: url('svg/left-split.svg'); }

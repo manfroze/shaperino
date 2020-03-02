@@ -66,6 +66,8 @@ var shapes = ["circle", "square", "rhombus"];
 
 var current = {
 
+	mode: "plain",
+
 	main: {
 		shape: "circle",
 		color: color.black,
@@ -75,8 +77,8 @@ var current = {
 		shape: "rhombus",
 		color: color.red,
 	},
+
 	split: {
-		enabled: false,
 		shape: "circle",
 		color: color.blue,
 	} 
@@ -91,38 +93,38 @@ function generate() {
 
 // SET CHARGES POSITION //
 
-	if (current.charge.position == "left") {
-		center.normal.charge[0] = centerPoints.normal.charge.zero
-		center.normal.charge[1] = centerPoints.normal.charge.middle
-	}
-	if (current.charge.position == "top") {
-		center.normal.charge[0] = centerPoints.normal.charge.middle
-		center.normal.charge[1] = centerPoints.normal.charge.zero
-	}
-	if (current.charge.position == "right") {
-		center.normal.charge[0] = centerPoints.normal.charge.full
-		center.normal.charge[1]  = centerPoints.normal.charge.middle
-	}
-	if (current.charge.position == "bottom") {
-		center.normal.charge[0] = centerPoints.normal.charge.middle
-		center.normal.charge[1] = centerPoints.normal.charge.full
-	}
-	if (current.charge.position == "topleft") {
-		center.normal.charge[0] = centerPoints.normal.charge.zero
-		center.normal.charge[1] = centerPoints.normal.charge.zero
-	}
-	if (current.charge.position == "topright") {
-		center.normal.charge[0] = centerPoints.normal.charge.full
-		center.normal.charge[1] = centerPoints.normal.charge.zero
-	}
-	if (current.charge.position == "bottomright") {
-		center.normal.charge[0] = centerPoints.normal.charge.full
-		center.normal.charge[1] = centerPoints.normal.charge.full
-	}
-	if (current.charge.position == "bottomleft") {
-		center.normal.charge[0] = centerPoints.normal.charge.zero
-		center.normal.charge[1] = centerPoints.normal.charge.full
-	}
+if (current.charge.position == "left") {
+	center.normal.charge[0] = centerPoints.normal.charge.zero
+	center.normal.charge[1] = centerPoints.normal.charge.middle
+}
+if (current.charge.position == "top") {
+	center.normal.charge[0] = centerPoints.normal.charge.middle
+	center.normal.charge[1] = centerPoints.normal.charge.zero
+}
+if (current.charge.position == "right") {
+	center.normal.charge[0] = centerPoints.normal.charge.full
+	center.normal.charge[1]  = centerPoints.normal.charge.middle
+}
+if (current.charge.position == "bottom") {
+	center.normal.charge[0] = centerPoints.normal.charge.middle
+	center.normal.charge[1] = centerPoints.normal.charge.full
+}
+if (current.charge.position == "topleft") {
+	center.normal.charge[0] = centerPoints.normal.charge.zero
+	center.normal.charge[1] = centerPoints.normal.charge.zero
+}
+if (current.charge.position == "topright") {
+	center.normal.charge[0] = centerPoints.normal.charge.full
+	center.normal.charge[1] = centerPoints.normal.charge.zero
+}
+if (current.charge.position == "bottomright") {
+	center.normal.charge[0] = centerPoints.normal.charge.full
+	center.normal.charge[1] = centerPoints.normal.charge.full
+}
+if (current.charge.position == "bottomleft") {
+	center.normal.charge[0] = centerPoints.normal.charge.zero
+	center.normal.charge[1] = centerPoints.normal.charge.full
+}
 
 
 // ASSIGN OTHER POSITION //
@@ -145,6 +147,7 @@ for (var i = 0; i < 2; i++) {
 }
 
 drawGeometry();
+updateSelectors();
 
 }
 
@@ -155,16 +158,18 @@ function drawGeometry() {
 	draw = SVG('drawing').size(500, 500);
 	geometry = draw.group();
 
-		drawShape("main");
+	drawShape("main");
 
+	if (current.mode == "charge") {
 		drawShape("charge");
+	}
 
-	if (current.split.enabled == true) {
-
+	if (current.mode == "split") {
+		drawShape("charge");
 		drawShape("split");
 	}
 
-	}
+}
 
 	// SINGLE SHAPE FUNCTIONS //
 
@@ -239,11 +244,11 @@ function drawGeometry() {
 
 		});
 
-	$( ".item.position" ).click(function(e) {
+	$( ".item.charge" ).click(function(e) {
 
 		var selectedPosition = $(this).attr("id");
 		current.charge.position = selectedPosition;
-		current.split.enabled = false;
+		current.mode = "charge";
 		generate();
 
 	});
@@ -252,11 +257,79 @@ function drawGeometry() {
 
 		var selectedPosition = $(this).attr("id");
 		current.charge.position = selectedPosition;
-		current.split.enabled = true;
+		current.mode = "split";
 		generate();
 
 	});
 
 
 
+	var components = []
+
+	var comp = {
+
+		charge: {
+
+			topleft: ["top", "left"],
+			topright: ["top", "right"],
+			bottomleft: ["bottom", "left"],
+			bottomright: ["bottom", "right"],
+
+		},
+
+		split: {
+
+			top: ["top", "bottom"],
+			left: ["left", "right"],
+			topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
+			topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+
+		}
+
+	}
+
+
+	function updateSelectors(){
+
+		$("*").removeClass('selected');
+		$("*").removeClass('bordered');
+		$(".label").html('');
+
+		$("#" + current.main.shape).addClass('selected');
+		$("#" + current.main.shape + " .label").append('MAIN');
+
+		if (current.mode == "charge") {
+
+			$(".charge#" + current.charge.position).addClass('selected');
+
+			if (current.charge.position == "topright" || current.charge.position == "topleft" || current.charge.position == "bottomright" || current.charge.position == "bottomleft"){
+
+				components = comp.charge[current.charge.position];
+				$(".charge#" + components.join(", .charge#")).addClass('bordered');
+
+			}
+
+		}
+
+		if (current.mode == "split") {
+
+			$(".split#" + current.charge.position).addClass('selected');
+
+			$("#" + current.split.shape).addClass('selected');
+			$("#" + current.split.shape + " .label").append('SPLIT');
+
+			components = comp.split[current.charge.position];
+			$(".charge#" + components.join(", .charge#")).addClass('bordered');
+
+		}
+
+		if (current.mode == "charge" || current.mode == "split") {
+			
+			$("#" + current.charge.shape).addClass('selected');
+			$("#" + current.charge.shape + " .label").append('CHARGE');
+
+		}
+
+
+	}
 

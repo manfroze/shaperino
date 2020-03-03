@@ -292,9 +292,11 @@ function drawGeometry() {
 
 	}
 
-	function chargeModifier(e, kind, target){
+	function modifier(e, kind, target){
 
-		var target = $(e.target).attr("id");
+		if (!target) {
+			target = $(e.target).attr("id");
+		}
 
 		if (e.shiftKey) {
 			setCurrent("charge", kind, target);
@@ -309,33 +311,20 @@ function drawGeometry() {
 	// CLICKS //
 
 	$( ".item.shape" ).click(function(e) {
-		chargeModifier(e, "shape");
+		modifier(e, "shape");
 	});
 
 	$( ".item.color" ).click(function(e) {
-		chargeModifier(e, "color");
+		modifier(e, "color");
 	});
 
 	$( ".item.primary" ).click(function(e) {
-		if (e.shiftKey) {
-			setCurrent("charge", "colorType", "primary");
-		} else if (e.altKey) {
-			setCurrent("split", "colorType", "primary");
-		} else {
-			setCurrent("main", "colorType", "primary");
-		}
+		modifier(e, "colorType", "primary");
 	});
 
 	$( ".item.secondary" ).click(function(e) {
-		if (e.shiftKey) {
-			setCurrent("charge", "colorType", "secondary");
-		} else if (e.altKey) {
-			setCurrent("split", "colorType", "secondary");
-		} else {
-			setCurrent("main", "colorType", "secondary");
-		}
+		modifier(e, "colorType", "secondary");
 	});
-
 
 	$( ".item.charge" ).click(function(e) {
 		var target = $(e.target).attr("id");
@@ -343,7 +332,6 @@ function drawGeometry() {
 		setCurrent("charge", "status", "enabled");
 		setCurrent("split", "status", "disabled");
 	});
-
 
 	$( ".item.split" ).click(function(e) {
 		var target = $(e.target).attr("id");
@@ -364,9 +352,7 @@ function drawGeometry() {
 		generate();
 	});
 
-
 	// //
-
 
 	function highlight(mode, kind, selector, label){
 		$("." + selector + "#" + current[mode][kind]).addClass('selected');
@@ -376,12 +362,9 @@ function drawGeometry() {
 	function highlightComp(type, mode, kind, selector, label){
 
 		if (comp[type][current[mode][kind]] != ""){
-
 			components = comp[type][current[mode][kind]];
-
 			$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
 			$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
-
 		}
 	}
 

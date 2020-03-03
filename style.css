@@ -103,7 +103,7 @@ div {
 	box-sizing: border-box;
 	padding: 5px;
 	margin-bottom: 10px;
-	margin-right:  10px;
+	margin-right: 10px;
 	cursor: pointer;
 	text-align: center;
 	background-repeat: no-repeat;
@@ -116,15 +116,15 @@ div {
 
 .item.main {
 
-	height: 120px;
-	width: 80px;
+	height: 100px;
+	width: 70px;
 
 }
 
 .item.small {
 
-	height: 65px;
-	width: 65px;
+	height: 60px;
+	width: 60px;
 
 }
 
@@ -138,8 +138,6 @@ div {
 
 	box-shadow:0px 0px 0px 2px #999 inset;
 	background-color: #E4E4E4;
-
-	//color:  #fff;
 
 }
 
@@ -164,7 +162,6 @@ div {
 	position: absolute;
 	top: 5px;
 	right: 8px;
-
 	font-size: 12px;
 
 }
@@ -179,49 +176,48 @@ div {
 
 }
 
-.item#black {	background-image: url('svg/black.svg'); }
-.item#white {	background-image: url('svg/white.svg'); }
+.item#black { background-image: url('svg/black.svg'); }
+.item#white { background-image: url('svg/white.svg'); }
 .item#red {	background-image: url('svg/red.svg'); }
-.item#yellow {	background-image: url('svg/yellow.svg'); }
-.item#blue {	background-image: url('svg/blue.svg'); }
-.item#grey {	background-image: url('svg/grey.svg'); }
-.item#orange {	background-image: url('svg/orange.svg'); }
-.item#green {	background-image: url('svg/green.svg'); }
-.item#violet {	background-image: url('svg/violet.svg'); }
+.item#yellow { background-image: url('svg/yellow.svg'); }
+.item#blue { background-image: url('svg/blue.svg'); }
+.item#grey { background-image: url('svg/grey.svg'); }
+.item#orange { background-image: url('svg/orange.svg'); }
+.item#green { background-image: url('svg/green.svg'); }
+.item#violet { background-image: url('svg/violet.svg'); }
 
-.item#darkred {	background-image: url('svg/darkred.svg'); }
-.item#darkyellow {	background-image: url('svg/darkyellow.svg'); }
-.item#darkblue {	background-image: url('svg/darkblue.svg'); }
-.item#darkgrey {	background-image: url('svg/darkgrey.svg'); }
-.item#darkorange {	background-image: url('svg/darkorange.svg'); }
-.item#darkgreen {	background-image: url('svg/darkgreen.svg'); }
-.item#darkviolet {	background-image: url('svg/darkviolet.svg'); }
+.item#darkred { background-image: url('svg/darkred.svg'); }
+.item#darkyellow { background-image: url('svg/darkyellow.svg'); }
+.item#darkblue { background-image: url('svg/darkblue.svg'); }
+.item#darkgrey { background-image: url('svg/darkgrey.svg'); }
+.item#darkorange { background-image: url('svg/darkorange.svg'); }
+.item#darkgreen { background-image: url('svg/darkgreen.svg'); }
+.item#darkviolet { background-image: url('svg/darkviolet.svg'); }
 
-.item#lightred {	background-image: url('svg/lightred.svg'); }
-.item#lightyellow {	background-image: url('svg/lightyellow.svg'); }
-.item#lightblue {	background-image: url('svg/lightblue.svg'); }
-.item#lightgrey {	background-image: url('svg/lightgrey.svg'); }
-.item#lightorange {	background-image: url('svg/lightorange.svg'); }
-.item#lightgreen {	background-image: url('svg/lightgreen.svg'); }
-.item#lightviolet {	background-image: url('svg/lightviolet.svg'); }
+.item#lightred { background-image: url('svg/lightred.svg'); }
+.item#lightyellow { background-image: url('svg/lightyellow.svg'); }
+.item#lightblue { background-image: url('svg/lightblue.svg'); }
+.item#lightgrey { background-image: url('svg/lightgrey.svg'); }
+.item#lightorange { background-image: url('svg/lightorange.svg'); }
+.item#lightgreen { background-image: url('svg/lightgreen.svg'); }
+.item#lightviolet { background-image: url('svg/lightviolet.svg'); }
 
-.item#circle {	background-image: url('svg/circle.svg'); }
-.item#square {	background-image: url('svg/square.svg'); }
+.item#circle { background-image: url('svg/circle.svg'); }
+.item#square { background-image: url('svg/square.svg'); }
 .item#rhombus {	background-image: url('svg/rhombus.svg'); }
-
 
 .item.charge#top { background-image: url('svg/top.svg'); }
 .item.charge#right { background-image: url('svg/right.svg'); }
 .item.charge#bottom { background-image: url('svg/bottom.svg'); }
 .item.charge#left {	background-image: url('svg/left.svg'); }
 
-.item.charge#topleft {	background-image: url('svg/topleft.svg'); }
-.item.charge#topright {	background-image: url('svg/topright.svg'); }
-.item.charge#bottomleft {	background-image: url('svg/bottomleft.svg'); }
-.item.charge#bottomright {	background-image: url('svg/bottomright.svg'); }
+.item.charge#topleft { background-image: url('svg/topleft.svg'); }
+.item.charge#topright { background-image: url('svg/topright.svg'); }
+.item.charge#bottomleft { background-image: url('svg/bottomleft.svg'); }
+.item.charge#bottomright { background-image: url('svg/bottomright.svg'); }
 
-.item.split#top {	background-image: url('svg/top-split.svg'); }
-.item.split#left {	background-image: url('svg/left-split.svg'); }
-.item.split#topleft {	background-image: url('svg/topleft-split.svg'); }
-.item.split#topright {	background-image: url('svg/topright-split.svg'); }
+.item.split#top { background-image: url('svg/top-split.svg'); }
+.item.split#left { background-image: url('svg/left-split.svg'); }
+.item.split#topleft { background-image: url('svg/topleft-split.svg'); }
+.item.split#topright { background-image: url('svg/topright-split.svg'); }
 

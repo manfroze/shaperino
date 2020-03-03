@@ -173,8 +173,8 @@ div {
 
 	font-weight: bold;
 	position: absolute;
-	bottom: 0px;
-	//left: 50%;
+	bottom: 5px;
+	right: 8px;
 	font-size: 15px;
 
 }

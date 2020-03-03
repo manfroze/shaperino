@@ -92,6 +92,7 @@ var current = {
 	main: {
 		shape: "circle",
 		color: "black",
+		colorType: "primary",
 	}, 
 	charge: {
 		status: "disabled",
@@ -99,12 +100,14 @@ var current = {
 		position: "top",
 		shape: "rhombus",
 		color: "red",
+		colorType: "primary",
 	},
 
 	split: {
 		status: "disabled",
 		shape: "circle",
 		color: "blue",
+		colorType: "primary",
 	} 
 
 }
@@ -121,17 +124,11 @@ var comp = {
 	split: {
 		top: ["top", "bottom"],
 		left: ["left", "right"],
-		topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
-		topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+		topleft: ["top", "left", "bottom", "right"],
+		topright: ["top", "left", "bottom", "right"],
 	},
 
 	color: {
-
-		red: [""],
-		black:[""],
-		yellow: [""],
-		white: [""],
-		blue: [""],
 
 		orange: ["red", "yellow"],
 		green: ["yellow", "blue"],
@@ -295,7 +292,7 @@ function drawGeometry() {
 
 	}
 
-	function chargeModifier(e, kind){
+	function chargeModifier(e, kind, target){
 
 		var target = $(e.target).attr("id");
 
@@ -313,17 +310,38 @@ function drawGeometry() {
 
 	$( ".item.shape" ).click(function(e) {
 		chargeModifier(e, "shape");
-		generate();
+	});
+
+	$( ".item.color" ).click(function(e) {
+		chargeModifier(e, "color");
 	});
 
 	$( ".item.primary" ).click(function(e) {
-		chargeModifier(e, "color");
-		generate();
+		if (e.shiftKey) {
+			setCurrent("charge", "colorType", "primary");
+		} else if (e.altKey) {
+			setCurrent("split", "colorType", "primary");
+		} else {
+			setCurrent("main", "colorType", "primary");
+		}
 	});
 
 	$( ".item.secondary" ).click(function(e) {
-		chargeModifier(e, "color");
-		generate();
+		if (e.shiftKey) {
+			setCurrent("charge", "colorType", "secondary");
+		} else if (e.altKey) {
+			setCurrent("split", "colorType", "secondary");
+		} else {
+			setCurrent("main", "colorType", "secondary");
+		}
+	});
+
+
+	$( ".item.charge" ).click(function(e) {
+		var target = $(e.target).attr("id");
+		setCurrent("charge", "position", target);
+		setCurrent("charge", "status", "enabled");
+		setCurrent("split", "status", "disabled");
 	});
 
 
@@ -332,29 +350,19 @@ function drawGeometry() {
 		setCurrent("charge", "position", target);
 		setCurrent("split", "status", "enabled");
 		setCurrent("charge", "status", "enabled");
-		generate();
 	});
 
-
 	$( ".item.side" ).click(function(e) {
-		var target = $(e.target).attr("id");
-		setCurrent("charge", "position", target);
-		setCurrent("charge", "status", "enabled");
-		setCurrent("split", "status", "disabled");
 		setCurrent("charge", "type", "side");
-		generate();
 	});
 
 	$( ".item.corner" ).click(function(e) {
-		var target = $(e.target).attr("id");
-		setCurrent("charge", "position", target);
-		setCurrent("charge", "status", "enabled");
-		setCurrent("split", "status", "disabled");
 		setCurrent("charge", "type", "corner");
-		generate();
 	});
 
-
+	$( ".item" ).click(function(e) {
+		generate();
+	});
 
 
 	// //
@@ -391,8 +399,9 @@ function drawGeometry() {
 
 		highlight("main", "shape", "shape", "M");
 		highlight("main", "color", "color", "M");
-
-		highlightComp("color", "main", "color", "color", "m");
+		if (current.main.colorType == "secondary") {
+			highlightComp("color", "main", "color", "color", "m");
+		}
 
 		if (current.charge.status == "enabled" && current.split.status == "disabled") {
 
@@ -410,7 +419,9 @@ function drawGeometry() {
 			highlight("charge", "shape", "shape", "C");
 			highlight("charge", "color", "color", "C");
 
-			highlightComp("color", "charge", "color", "color", "c");
+			if (current.charge.colorType == "secondary") {
+				highlightComp("color", "charge", "color", "color", "c");
+			}
 
 		}
 
@@ -420,8 +431,10 @@ function drawGeometry() {
 			highlight("split", "shape", "shape", "S");
 			highlight("split", "color", "color", "S");
 			highlightComp("split", "charge", "position", "charge");
-			highlightComp("color", "split", "color", "color", "s");
 
+			if (current.split.colorType == "secondary") {
+				highlightComp("color", "split", "color", "color", "s");
+			}
 		}
 
 	}
@@ -450,15 +463,15 @@ function drawGeometry() {
 		shape: {
 			main: 7,
 			charge: 3,
-			split: 1,
+			split: 2,
 		},
 
-		charge: 5,
+		charge: 10,
 
 		color: {
-			main: 4,
-			charge: 2,
-			split: 1,
+			main: 8,
+			charge: 4,
+			split: 2,
 		},
 
 	}
@@ -509,8 +522,8 @@ function drawGeometry() {
 		// COLOR COMP //
 
 		$.each(comp.color[current.main.color], function(index, value){
-				counter[value] +=power.color.main*mult;
-			});
+			counter[value] +=power.color.main*mult;
+		});
 
 		if (current.charge.status == "enabled") {
 			$.each(comp.color[current.charge.color], function(index, value){

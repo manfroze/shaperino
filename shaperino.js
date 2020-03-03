@@ -80,7 +80,7 @@ var color = {
 	lightorange: "#FFBF5F",
 	lightgreen: "#C8FF54",
 	lightviolet: "#E64EFF",
-	lightgrey: "#DADADA",
+	lightgrey: "#F6F6F6",
 
 }
 
@@ -327,11 +327,11 @@ function drawGeometry() {
 
 		color: {
 
-			red: ["red", "yellow"],
-			black:["red", "yellow"],
-			yellow: ["red", "yellow"],
-			white: ["red", "yellow"],
-			blue: ["red", "yellow"],
+			red: ["red"],
+			black:["black"],
+			yellow: ["yellow"],
+			white: ["white"],
+			blue: ["blue"],
 
 			orange: ["red", "yellow"],
 			green: ["yellow", "blue"],

@@ -471,16 +471,32 @@ function drawGeometry() {
 
 	$( "#drawing" ).click(function(e) {
 
+		// SHAPE //
+
 		counter[current.main.shape] +=power.shape.main;
 		if (current.charge.status == "enabled") {counter[current.charge.shape] +=power.shape.charge;}
 		if (current.split.status == "enabled") {counter[current.split.shape] +=power.shape.split;}
 
+		// CHARGE //
+
 		if (current.charge.status == "enabled") {counter[current.charge.position] +=power.charge;}
+
+		// COLOR //
 
 		counter[current.main.color] +=power.color.main;
 		if (current.charge.status == "enabled") {counter[current.charge.color] +=power.color.charge;}
 		if (current.split.status == "enabled") {counter[current.split.color] +=power.color.split;}
 
+
+		// CORNER COMP //
+
+		if (current.charge.type == "corner") {
+			$.each(comp.charge[current.charge.position], function(index, value){
+				counter[value] +=power.charge;
+			});
+		}
+
+		// SPLIT COMP //
 
 		if (current.split.status == "enabled") {
 			$.each(comp.split[current.charge.position], function(index, value){
@@ -488,9 +504,23 @@ function drawGeometry() {
 			});
 		}
 
+		// COLOR COMP //
+
 		$.each(comp.color[current.main.color], function(index, value){
 				counter[value] +=power.color.main;
 			});
+
+		if (current.charge.status == "enabled") {
+			$.each(comp.color[current.charge.color], function(index, value){
+				counter[value] +=power.color.charge;
+			});
+		}
+
+		if (current.split.status == "enabled") {
+			$.each(comp.color[current.split.color], function(index, value){
+				counter[value] +=power.color.split;
+			});
+		}
 
 
 		updateCounters();

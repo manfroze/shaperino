@@ -445,33 +445,54 @@ function drawGeometry() {
 
 	}
 
-	function updateCounters(){
+	power = {
 
-		$("#" + current.main.shape + " .counter").html(counter[current.main.shape]);
-		$("#" + current.charge.shape + " .counter").html(counter[current.charge.shape]);
-		$("#" + current.split.shape + " .counter").html(counter[current.split.shape]);
+		shape: {
+			main: 7,
+			charge: 3,
+			split: 1,
+		},
 
-		$("#" + current.charge.position + " .counter").html(counter[current.charge.position]);
+		charge: 5,
 
-		$("#" + current.main.color + " .counter").html(counter[current.main.color]);
-		$("#" + current.charge.color + " .counter").html(counter[current.charge.color]);
-		$("#" + current.split.color + " .counter").html(counter[current.split.color]);
+		color: {
+			main: 4,
+			charge: 2,
+			split: 1,
+		},
 
+	}
+
+	function updateCounters(){	
+		$.each(counter, function(index){
+			$("#" + index + " .counter").html(counter[index]);
+		});
 	}
 
 	$( "#drawing" ).click(function(e) {
 
-		counter[current.main.shape] +=10;
-		if (current.charge.status == "enabled") {counter[current.charge.shape] +=5;}
-		if (current.split.status == "enabled") {counter[current.split.shape] +=1;}
+		counter[current.main.shape] +=power.shape.main;
+		if (current.charge.status == "enabled") {counter[current.charge.shape] +=power.shape.charge;}
+		if (current.split.status == "enabled") {counter[current.split.shape] +=power.shape.split;}
 
-		if (current.charge.status == "enabled") {counter[current.charge.position] +=10;}
+		if (current.charge.status == "enabled") {counter[current.charge.position] +=power.charge;}
 
-		counter[current.main.color] +=10;
-		if (current.charge.status == "enabled") {counter[current.charge.color] +=5;}
-		if (current.split.status == "enabled") {counter[current.split.color] +=1;}
+		counter[current.main.color] +=power.color.main;
+		if (current.charge.status == "enabled") {counter[current.charge.color] +=power.color.charge;}
+		if (current.split.status == "enabled") {counter[current.split.color] +=power.color.split;}
 
-		console.log(counter);
+
+		if (current.split.status == "enabled") {
+			$.each(comp.split[current.charge.position], function(index, value){
+				counter[value] +=power.charge;
+			});
+		}
+
+		$.each(comp.color[current.main.color], function(index, value){
+				counter[value] +=power.color.main;
+			});
+
+
 		updateCounters();
 
 	});

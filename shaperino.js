@@ -75,12 +75,10 @@ var color = {
 	darkorange: "#8C7158",
 	darkgreen: "#239F28",
 	darkviolet: "#400072",
-	darkgrey: "#545454",
 
 	lightorange: "#FFBF5F",
 	lightgreen: "#C8FF54",
 	lightviolet: "#E64EFF",
-	lightgrey: "#F6F6F6",
 
 }
 
@@ -98,15 +96,15 @@ var current = {
 		status: "disabled",
 		type: "side",
 		position: "top",
-		shape: "rhombus",
-		color: "red",
+		shape: "square",
+		color: "black",
 		colorType: "primary",
 	},
 
 	split: {
 		status: "disabled",
-		shape: "circle",
-		color: "blue",
+		shape: "rhombus",
+		color: "black",
 		colorType: "primary",
 	} 
 
@@ -280,24 +278,14 @@ function drawGeometry() {
 
 	}
 
-	function set(thing, mode){
-
-		current[thing] = mode;
-
-	}
-
 	function setCurrent(mode, kind, selected){
-
 		current[mode][kind] = selected;
-
 	}
 
 	function modifier(e, kind, target){
-
 		if (!target) {
-			target = $(e.target).attr("id");
+			target = $(e.currentTarget).attr("id");
 		}
-
 		if (e.shiftKey) {
 			setCurrent("charge", kind, target);
 		} else if (e.altKey) {
@@ -305,7 +293,6 @@ function drawGeometry() {
 		} else {
 			setCurrent("main", kind, target);
 		}
-
 	}
 
 	// CLICKS //
@@ -327,14 +314,14 @@ function drawGeometry() {
 	});
 
 	$( ".item.charge" ).click(function(e) {
-		var target = $(e.target).attr("id");
+		var target = $(e.currentTarget).attr("id");
 		setCurrent("charge", "position", target);
 		setCurrent("charge", "status", "enabled");
 		setCurrent("split", "status", "disabled");
 	});
 
 	$( ".item.split" ).click(function(e) {
-		var target = $(e.target).attr("id");
+		var target = $(e.currentTarget).attr("id");
 		setCurrent("charge", "position", target);
 		setCurrent("split", "status", "enabled");
 		setCurrent("charge", "status", "enabled");
@@ -424,8 +411,8 @@ function drawGeometry() {
 
 	counter = {
 
-		square: 0,
 		circle: 0,
+		square: 0,
 		rhombus: 0,
 
 		top: 0,
@@ -444,17 +431,17 @@ function drawGeometry() {
 	power = {
 
 		shape: {
-			main: 7,
-			charge: 3,
-			split: 2,
+			main: 1,
+			charge: 0.5,
+			split: 0.1,
 		},
 
-		charge: 10,
+		charge: 1,
 
 		color: {
-			main: 8,
-			charge: 4,
-			split: 2,
+			main: 1,
+			charge: 0.4,
+			split: 0.2,
 		},
 
 	}
@@ -463,7 +450,7 @@ function drawGeometry() {
 
 	function updateCounters(){	
 		$.each(counter, function(index){
-			$("#" + index + " .counter").html(counter[index]);
+			$("#" + index + " .counter").html(Math.floor(counter[index]));
 		});
 	}
 

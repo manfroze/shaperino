@@ -196,6 +196,26 @@ var comp = {
 	mult = 0.5;
 
 
+ var currentPowerCounter = {
+
+		circle: 0,
+		square: 0,
+		rhombus: 0,
+
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+
+		black: 0,
+		white: 0,
+		red: 0,
+		yellow: 0,
+		blue: 0,
+
+	}
+
+
 function generate() {
 
 
@@ -396,8 +416,18 @@ function drawGeometry() {
 	}
 
 
-	function updatePowerCounters(kind, mode){
-		$("#" + current[mode][kind] + " .power").html(power[kind][mode]);
+
+
+
+	function updatePowerCounters(mode, kind){
+
+
+		currentPowerCounter[current[mode][kind]] += power[kind][mode];
+
+		$("#" + current[mode][kind] + " .power").html(currentPowerCounter[current[mode][kind]]);
+
+		console.log(currentPowerCounter);
+
 	}
 
 	function clearSelectors(){
@@ -412,7 +442,7 @@ function drawGeometry() {
 
 		clearSelectors();
 
-		updatePowerCounters("shape", "main");
+		updatePowerCounters("main", "shape");
 
 		highlight("main", "shape", "shape", "M");
 		highlight("main", "color", "color", "M");
@@ -433,7 +463,7 @@ function drawGeometry() {
 
 		if (current.charge.status == "enabled") {
 
-			updatePowerCounters("shape", "charge");
+			//updatePowerCounters("shape", "charge");
 
 			highlight("charge", "shape", "shape", "C");
 			highlight("charge", "color", "color", "C");
@@ -446,7 +476,7 @@ function drawGeometry() {
 
 		if (current.split.status == "enabled") {
 
-			updatePowerCounters("shape", "split");
+			//updatePowerCounters("shape", "split");
 
 			highlight("charge", "position", "split");
 			highlight("split", "shape", "shape", "S");

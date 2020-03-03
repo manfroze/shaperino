@@ -19,7 +19,7 @@ div {
 #container {
 
 	display: flex;
-	padding:  40px;
+	padding:  30px;
 
 }
 
@@ -27,7 +27,6 @@ div {
 
 	flex-grow: 1;
 	padding: 10px;
-
 	width:  512px;
 
 } 
@@ -70,7 +69,7 @@ div {
 
 	font-weight: bold;
 	text-align: center;
-	font-size: 25px;
+	font-size: 22px;
 	margin-bottom: 20px;
 
 }
@@ -189,7 +188,7 @@ div {
 
 .selected .power {
 
-	display: inline-block;
+	//display: inline-block;
 
 }
 

@@ -463,6 +463,8 @@ function drawGeometry() {
 
 	}
 
+	mult = 0.5;
+
 	function updateCounters(){	
 		$.each(counter, function(index){
 			$("#" + index + " .counter").html(counter[index]);
@@ -492,7 +494,7 @@ function drawGeometry() {
 
 		if (current.charge.type == "corner") {
 			$.each(comp.charge[current.charge.position], function(index, value){
-				counter[value] +=power.charge;
+				counter[value] +=power.charge*mult;
 			});
 		}
 
@@ -500,25 +502,25 @@ function drawGeometry() {
 
 		if (current.split.status == "enabled") {
 			$.each(comp.split[current.charge.position], function(index, value){
-				counter[value] +=power.charge;
+				counter[value] +=power.charge*mult;
 			});
 		}
 
 		// COLOR COMP //
 
 		$.each(comp.color[current.main.color], function(index, value){
-				counter[value] +=power.color.main;
+				counter[value] +=power.color.main*mult;
 			});
 
 		if (current.charge.status == "enabled") {
 			$.each(comp.color[current.charge.color], function(index, value){
-				counter[value] +=power.color.charge;
+				counter[value] +=power.color.charge*mult;
 			});
 		}
 
 		if (current.split.status == "enabled") {
 			$.each(comp.color[current.split.color], function(index, value){
-				counter[value] +=power.color.split;
+				counter[value] +=power.color.split*mult;
 			});
 		}
 

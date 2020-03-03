@@ -70,9 +70,8 @@ div {
 
 	font-weight: bold;
 	text-align: center;
-
 	font-size: 25px;
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 
 }
 
@@ -92,14 +91,16 @@ div {
 }
 
 .section {
-	margin-top: 60px;
+	margin-top: 50px;
+}
+
+.subsection {
+	margin-top: 5px;
 }
 
 .item {
 
 	box-sizing: border-box;
-	height: 80px;
-	width: 80px;
 	padding: 5px;
 	margin-bottom: 10px;
 	margin-right:  10px;
@@ -108,9 +109,7 @@ div {
 	background-repeat: no-repeat;
 	background-size: 80%;
 	background-position: center;
-
 	position: relative;
-
 	border-radius: 3px;
 
 }
@@ -118,6 +117,14 @@ div {
 .item.main {
 
 	height: 120px;
+	width: 80px;
+
+}
+
+.item.small {
+
+	height: 65px;
+	width: 65px;
 
 }
 
@@ -157,6 +164,18 @@ div {
 	position: absolute;
 	top: 5px;
 	right: 8px;
+
+	font-size: 12px;
+
+}
+
+.counter {
+
+	font-weight: bold;
+	position: absolute;
+	bottom: 0px;
+	//left: 50%;
+	font-size: 15px;
 
 }
 

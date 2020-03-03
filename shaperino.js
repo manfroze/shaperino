@@ -89,24 +89,75 @@ var shapes = ["circle", "square", "rhombus"];
 
 var current = {
 
-	mode: "plain",
-	chargeType: "side",
-
 	main: {
 		shape: "circle",
 		color: "black",
 	}, 
 	charge: {
+		status: "disabled",
+		type: "side",
 		position: "top",
 		shape: "rhombus",
 		color: "red",
 	},
 
 	split: {
+		status: "disabled",
 		shape: "circle",
 		color: "blue",
 	} 
 
+}
+
+var comp = {
+
+	charge: {
+		topleft: ["top", "left"],
+		topright: ["top", "right"],
+		bottomleft: ["bottom", "left"],
+		bottomright: ["bottom", "right"],
+	},
+
+	split: {
+		top: ["top", "bottom"],
+		left: ["left", "right"],
+		topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
+		topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
+	},
+
+	color: {
+
+		red: [""],
+		black:[""],
+		yellow: [""],
+		white: [""],
+		blue: [""],
+
+		orange: ["red", "yellow"],
+		green: ["yellow", "blue"],
+		violet: ["blue", "red"],
+		grey: ["white", "black"],
+
+		darkred: ["red", "black"],
+		darkyellow: ["yellow", "black"],
+		darkblue: ["blue", "black"],
+
+		lightred: ["red", "white"],
+		lightyellow: ["yellow", "white"],
+		lightblue: ["blue", "white"],
+
+		darkorange: ["red", "yellow", "black"],
+		darkgreen: ["yellow", "blue", "black"],
+		darkviolet: ["blue", "red", "black"],
+		darkgrey: ["white", "black", "black"],
+
+		lightorange: ["red", "yellow", "white"],
+		lightgreen: ["yellow", "blue", "white"],
+		lightviolet: ["blue", "red", "white"],
+		lightgrey: ["white", "black", "white"],
+
+
+	}
 }
 
 var truth = [true, false]
@@ -174,8 +225,6 @@ for (var i = 0; i < 2; i++) {
 drawGeometry();
 updateSelectors();
 
-console.log(current.colorType);
-
 }
 
 // DRAW FUNCTION //
@@ -187,12 +236,11 @@ function drawGeometry() {
 
 	drawShape("main");
 
-	if (current.mode == "charge") {
+	if (current.charge.status == "enabled") {
 		drawShape("charge");
 	}
 
-	if (current.mode == "split") {
-		drawShape("charge");
+	if (current.split.status == "enabled") {
 		drawShape("split");
 	}
 
@@ -270,13 +318,11 @@ function drawGeometry() {
 
 	$( ".item.primary" ).click(function(e) {
 		chargeModifier(e, "color");
-		set("colorType", "primary");
 		generate();
 	});
 
 	$( ".item.secondary" ).click(function(e) {
 		chargeModifier(e, "color");
-		set("colorType", "secondary");
 		generate();
 	});
 
@@ -284,23 +330,27 @@ function drawGeometry() {
 	$( ".item.split" ).click(function(e) {
 		var target = $(e.target).attr("id");
 		setCurrent("charge", "position", target);
-		set("mode", "split");
+		setCurrent("split", "status", "enabled");
+		setCurrent("charge", "status", "enabled");
 		generate();
 	});
+
 
 	$( ".item.side" ).click(function(e) {
 		var target = $(e.target).attr("id");
 		setCurrent("charge", "position", target);
-		set("mode", "charge");
-		set("chargeType", "side");
+		setCurrent("charge", "status", "enabled");
+		setCurrent("split", "status", "disabled");
+		setCurrent("charge", "type", "side");
 		generate();
 	});
 
 	$( ".item.corner" ).click(function(e) {
 		var target = $(e.target).attr("id");
 		setCurrent("charge", "position", target);
-		set("mode", "charge");
-		set("chargeType", "corner");
+		setCurrent("charge", "status", "enabled");
+		setCurrent("split", "status", "disabled");
+		setCurrent("charge", "type", "corner");
 		generate();
 	});
 
@@ -309,73 +359,22 @@ function drawGeometry() {
 
 	// //
 
-	var comp = {
 
-		charge: {
-			topleft: ["top", "left"],
-			topright: ["top", "right"],
-			bottomleft: ["bottom", "left"],
-			bottomright: ["bottom", "right"],
-		},
-
-		split: {
-			top: ["top", "bottom"],
-			left: ["left", "right"],
-			topleft: ["topleft", "bottomright", "top", "left", "bottom", "right"],
-			topright: ["topright", "bottomleft", "top", "left", "bottom", "right"],
-		},
-
-		color: {
-
-			red: ["red"],
-			black:["black"],
-			yellow: ["yellow"],
-			white: ["white"],
-			blue: ["blue"],
-
-			orange: ["red", "yellow"],
-			green: ["yellow", "blue"],
-			violet: ["blue", "red"],
-			grey: ["white", "black"],
-
-			darkred: ["red", "black"],
-			darkyellow: ["yellow", "black"],
-			darkblue: ["blue", "black"],
-
-			lightred: ["red", "white"],
-			lightyellow: ["yellow", "white"],
-			lightblue: ["blue", "white"],
-
-			darkorange: ["red", "yellow", "black"],
-			darkgreen: ["yellow", "blue", "black"],
-			darkviolet: ["blue", "red", "black"],
-			darkgrey: ["white", "black", "black"],
-
-			lightorange: ["red", "yellow", "white"],
-			lightgreen: ["yellow", "blue", "white"],
-			lightviolet: ["blue", "red", "white"],
-			lightgrey: ["white", "black", "white"],
-
-
-		}
-	}
-
-
-	function select(mode, kind, selector, label){
-
+	function highlight(mode, kind, selector, label){
 		$("." + selector + "#" + current[mode][kind]).addClass('selected');
 		$("#" + current[mode][kind] + " .label").append(label);
-
 	}
 
-	function border(type, mode, kind, selector){
+	function highlightComp(type, mode, kind, selector, label){
 
-		components = comp[type][current[mode][kind]];
+		if (comp[type][current[mode][kind]] != ""){
 
-		$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
+			components = comp[type][current[mode][kind]];
 
-		//$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append("");
+			$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
+			$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
 
+		}
 	}
 
 	function clearSelectors(){
@@ -390,44 +389,89 @@ function drawGeometry() {
 
 		clearSelectors();
 
-		select("main", "shape", "shape", "M");
-		select("main", "color", "color", "M");
+		highlight("main", "shape", "shape", "M");
+		highlight("main", "color", "color", "M");
 
+		highlightComp("color", "main", "color", "color", "m");
 
-		if (current.colorType == "secondary" || current.colorType == "primary") {
-			border("color", "main", "color", "color");
-			border("color", "charge", "color", "color");
-			border("color", "split", "color", "color");
-		}
+		if (current.charge.status == "enabled" && current.split.status == "disabled") {
 
+			highlight("charge", "position", "charge");
 
-		if (current.mode == "charge") {
-
-			select("charge", "position", "charge");
-			if (current.chargeType == "corner"){
-				border("charge", "charge", "position", "charge");
-
+			if (current.charge.type == "corner"){
+				highlightComp("charge", "charge", "position", "charge");
 			}
 
 		}
 
-		if (current.mode == "split") {
 
-			select("charge", "position", "split");
-			select("split", "shape", "shape", "S");
-			select("split", "color", "color", "S");
+		if (current.charge.status == "enabled") {
 
-			border("split", "charge", "position", "charge");
+			highlight("charge", "shape", "shape", "C");
+			highlight("charge", "color", "color", "C");
 
-		}
-
-		if (current.mode == "charge" || current.mode == "split") {
-
-			select("charge", "shape", "shape", "C");
-			select("charge", "color", "color", "C");
+			highlightComp("color", "charge", "color", "color", "c");
 
 		}
 
+		if (current.split.status == "enabled") {
+
+			highlight("charge", "position", "split");
+			highlight("split", "shape", "shape", "S");
+			highlight("split", "color", "color", "S");
+			highlightComp("split", "charge", "position", "charge");
+			highlightComp("color", "split", "color", "color", "s");
+
+		}
 
 	}
 
+	counter = {
+
+		square: 0,
+		circle: 0,
+		rhombus: 0,
+
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+
+		black: 0,
+		white: 0,
+		red: 0,
+		yellow: 0,
+		blue: 0,
+
+	}
+
+	function updateCounters(){
+
+		$("#" + current.main.shape + " .counter").html(counter[current.main.shape]);
+		$("#" + current.charge.shape + " .counter").html(counter[current.charge.shape]);
+		$("#" + current.split.shape + " .counter").html(counter[current.split.shape]);
+
+		$("#" + current.charge.position + " .counter").html(counter[current.charge.position]);
+
+		$("#" + current.main.color + " .counter").html(counter[current.main.color]);
+		$("#" + current.charge.color + " .counter").html(counter[current.charge.color]);
+		$("#" + current.split.color + " .counter").html(counter[current.split.color]);
+
+	}
+
+	$( "#drawing" ).click(function(e) {
+
+		counter[current.main.shape] +=10;
+		if (current.charge.status == "enabled") {counter[current.charge.shape] +=5;}
+		if (current.split.status == "enabled") {counter[current.split.shape] +=1;}
+
+		if (current.charge.status == "enabled") {counter[current.charge.position] +=10;}
+
+		counter[current.main.color] +=10;
+		if (current.charge.status == "enabled") {counter[current.charge.color] +=5;}
+		if (current.split.status == "enabled") {counter[current.split.color] +=1;}
+
+		console.log(counter);
+		updateCounters();
+
+	});

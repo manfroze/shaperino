@@ -82,7 +82,8 @@ var color = {
 
 }
 
-var shapes = ["circle", "square", "rhombus"];
+var shape = ["circle", "square", "rhombus"];
+var mode = ["main", "charge", "split"];
 
 
 var current = {
@@ -155,7 +156,45 @@ var comp = {
 	}
 }
 
-var truth = [true, false]
+	counter = {
+
+		circle: 0,
+		square: 0,
+		rhombus: 0,
+
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+
+		black: 0,
+		white: 0,
+		red: 0,
+		yellow: 0,
+		blue: 0,
+
+	}
+
+	power = {
+
+		shape: {
+			main: 1,
+			charge: 0.5,
+			split: 0.1,
+		},
+
+		charge: 1,
+
+		color: {
+			main: 1,
+			charge: 0.4,
+			split: 0.2,
+		},
+
+	}
+
+	mult = 0.5;
+
 
 function generate() {
 
@@ -283,6 +322,7 @@ function drawGeometry() {
 	}
 
 	function modifier(e, kind, target){
+
 		if (!target) {
 			target = $(e.currentTarget).attr("id");
 		}
@@ -355,6 +395,11 @@ function drawGeometry() {
 		}
 	}
 
+
+	function updatePowerCounters(kind, mode){
+		$("#" + current[mode][kind] + " .power").html(power[kind][mode]);
+	}
+
 	function clearSelectors(){
 
 		$("*").removeClass('selected');
@@ -366,6 +411,8 @@ function drawGeometry() {
 	function updateSelectors(){
 
 		clearSelectors();
+
+		updatePowerCounters("shape", "main");
 
 		highlight("main", "shape", "shape", "M");
 		highlight("main", "color", "color", "M");
@@ -386,6 +433,8 @@ function drawGeometry() {
 
 		if (current.charge.status == "enabled") {
 
+			updatePowerCounters("shape", "charge");
+
 			highlight("charge", "shape", "shape", "C");
 			highlight("charge", "color", "color", "C");
 
@@ -397,6 +446,8 @@ function drawGeometry() {
 
 		if (current.split.status == "enabled") {
 
+			updatePowerCounters("shape", "split");
+
 			highlight("charge", "position", "split");
 			highlight("split", "shape", "shape", "S");
 			highlight("split", "color", "color", "S");
@@ -407,52 +458,16 @@ function drawGeometry() {
 			}
 		}
 
-	}
-
-	counter = {
-
-		circle: 0,
-		square: 0,
-		rhombus: 0,
-
-		top: 0,
-		left: 0,
-		right: 0,
-		bottom: 0,
-
-		black: 0,
-		white: 0,
-		red: 0,
-		yellow: 0,
-		blue: 0,
+		$
 
 	}
-
-	power = {
-
-		shape: {
-			main: 1,
-			charge: 0.5,
-			split: 0.1,
-		},
-
-		charge: 1,
-
-		color: {
-			main: 1,
-			charge: 0.4,
-			split: 0.2,
-		},
-
-	}
-
-	mult = 0.5;
 
 	function updateCounters(){	
 		$.each(counter, function(index){
 			$("#" + index + " .counter").html(Math.floor(counter[index]));
 		});
 	}
+
 
 	$( "#drawing" ).click(function(e) {
 
@@ -506,7 +521,6 @@ function drawGeometry() {
 				counter[value] +=power.color.split*mult;
 			});
 		}
-
 
 		updateCounters();
 

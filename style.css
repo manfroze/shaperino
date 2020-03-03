@@ -114,7 +114,7 @@ div {
 
 }
 
-.item.main {
+.item.card {
 
 	height: 100px;
 	width: 70px;
@@ -147,12 +147,13 @@ div {
 
 }
 
-.main .label {
+.card .label {
 
 	height: 20px;
 	position: absolute;
 	top: 5px;
 	left: 8px;
+	font-size: 15px;
 
 }
 
@@ -175,6 +176,23 @@ div {
 	font-size: 15px;
 
 }
+
+.power {
+
+	display: none;
+	position: absolute;
+	top: 5px;
+	right: 8px;
+	font-size: 15px;
+
+}
+
+.selected .power {
+
+	display: inline-block;
+
+}
+
 
 .item#black { background-image: url('svg/black.svg'); }
 .item#white { background-image: url('svg/white.svg'); }

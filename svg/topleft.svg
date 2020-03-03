@@ -1,5 +1,5 @@
 <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle r="17" transform="matrix(1.39071e-07 -1 -1 -1.39071e-07 22 22)" fill="#333333"/>
-<rect x="11" y="69" width="58" height="58" transform="rotate(-90 11 69)" stroke="#333333" stroke-width="2"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M10 41.3354L10 44.1638L10.1313 44.2952L11.5455 42.8809L12 42.4265L12 39.598L10.1313 41.4667L10 41.3354ZM39.598 12L41.598 10.0001L44.4264 10.0001L43.1433 11.2832L42.4264 12.0001L39.598 12Z" fill="#333333"/>
+<circle r="17" transform="matrix(1.39071e-07 -1 -1 -1.39071e-07 22 22)" fill="#222222"/>
+<rect x="11" y="69" width="58" height="58" transform="rotate(-90 11 69)" stroke="#222222" stroke-width="2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10 41.3354L10 44.1638L10.1313 44.2952L11.5455 42.8809L12 42.4265L12 39.598L10.1313 41.4667L10 41.3354ZM39.598 12L41.598 10.0001L44.4264 10.0001L43.1433 11.2832L42.4264 12.0001L39.598 12Z" fill="#222222"/>
 </svg>

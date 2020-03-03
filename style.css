@@ -2,14 +2,13 @@
 body {
 	background-color: #DDD;
 	font-family: 'Montserrat';
-	color: #333;
+	color: #222;
 	text-align: center;
 
 }
 div {
 	//border:  1px solid #ff0000;
 	box-sizing: border-box;
-
 }
 
 ::selection {
@@ -17,10 +16,8 @@ div {
 }
 
 #container {
-
 	display: flex;
 	padding:  30px;
-
 }
 
 #leftColumn, #rightColumn {
@@ -45,11 +42,10 @@ div {
 	font-weight: 900;
 	font-size: 30px;
 	display: inline-block;
-	background-color: #333;
+	background-color: #222;
 	color:  #FFF;
 
 }
-
 
 #drawing {
 

@@ -1,5 +1,4 @@
 <html>
-
 <head>
 	<title>SHAPERINO</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.0/svg.js" integrity="sha256-3QT42ZZOdRfHJnrJHoR+H4mAs5j8hEbHpoLSV4QYD4U=" crossorigin="anonymous"></script>
@@ -7,152 +6,39 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-
 	<div id="container">
-
 		<div id="leftColumn">
-
 			<div id="shape" class="section">
-				<div class="title">SHAPE</div>
-				<div class="container">
-					<div id="circle" class="item card shape"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="square" class="item card shape"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="rhombus" class="item card shape"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-				</div>
 			</div>
-
 			<div id="charge" class="section">
-
-				<div class="title">CHARGE</div>
-
-				<div class="container">
-					<div id="top" class="item card charge side"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="right" class="item card charge side"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="bottom" class="item card charge side"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="left" class="item card charge side"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-				</div>
-
-				<div id="corner" class="subsection">
-					<div class="title sub">CORNER</div>
-					<div class="container">
-						<div id="topleft" class="item small charge corner"></div>
-						<div id="topright" class="item small charge corner"></div>
-						<div id="bottomright" class="item small charge corner"></div>
-						<div id="bottomleft" class="item small charge corner"></div>
-					</div>
-				</div>
-
-				<div id="split" class="subsection">
-					<div class="title sub">SPLIT</div>
-					<div class="container">
-						<div id="topbottom" class="item small split"></div>
-						<div id="leftright" class="item small split"></div>
-						<div id="topleftbottomright" class="item small split"></div>
-						<div id="toprightbottomleft" class="item small split"></div>
-					</div>
-				</div>
-
-
 			</div>
-
-
-
 		</div>
-
 		<div id="centerColumn">
-
 			<div id="title">SHAPERINO</div>
-			<div id="drawing" class="section"></div>
-
+			<div id="shaperino" class="section"></div>
 			<div id="upgrades" class="section">
-				<!--<div class="title">UPGRADES</div>-->
+				<div class="title">UPGRADES</div>
 				<div class="container">
-
 				</div>
 			</div>
-
 		</div>
-
 		<div id="rightColumn">
 			<div id="color" class="section">
-
-				<div class="title">COLOR</div>
-				<div class="container">
-					<div id="black" class="item card color primary"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="white" class="item card color primary"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="red" class="item card color primary"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="yellow" class="item card color primary"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-					<div id="blue" class="item card color primary"><div class="label"></div><div class="power"></div><div class="counter">0</div></div>
-				</div>
-
-				<div id="secondary" class="subsection">
-					<div class="title sub">SECONDARY</div>
-					<div class="container">
-						<div id="green" class="item small color secondary"><div class="label"></div></div>
-						<div id="orange" class="item small color secondary"><div class="label"></div></div>
-						<div id="violet" class="item small color secondary"><div class="label"></div></div>
-						<div id="grey" class="item small color secondary"><div class="label"></div></div>
-					</div>
-				</div>
-
-				<div class="container">
-					<div id="dark" class="subsection">
-						<div class="title sub">DARK</div>
-						<div class="container">
-							<div id="darkred" class="item small color secondary"><div class="label"></div></div>
-							<div id="darkyellow" class="item small color secondary"><div class="label"></div></div>
-							<div id="darkblue" class="item small color secondary"><div class="label"></div></div>
-
-						</div>
-					</div>
-					<div id="light" class="subsection">
-						<div class="title sub">LIGHT</div>
-						<div class="container">
-							<div id="lightred" class="item small color secondary"><div class="label"></div></div>
-							<div id="lightyellow" class="item small color secondary"><div class="label"></div></div>
-							<div id="lightblue" class="item small color secondary"><div class="label"></div></div>
-
-						</div>
-					</div>
-				</div>
-				<div class="container">
-					<div id="secondary-dark" class="subsection">
-						<div class="title sub">SECONDARY DARK</div>
-						<div class="container">
-							<div id="darkgreen" class="item small color secondary"><div class="label"></div></div>
-							<div id="darkorange" class="item small color secondary"><div class="label"></div></div>
-							<div id="darkviolet" class="item small color secondary"><div class="label"></div></div>
-
-						</div>
-					</div>
-					<div id="secondary-light" class="subsection">
-						<div class="title sub">SECONDARY LIGHT</div>
-						<div class="container">
-							<div id="lightgreen" class="item small color secondary"><div class="label"></div></div>
-							<div id="lightorange" class="item small color secondary"><div class="label"></div></div>
-							<div id="lightviolet" class="item small color secondary"><div class="label"></div></div>
-
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
-
-
-
 	</div>
 
-	<script type="text/javascript" src="geometry.js"></script>
-	<script type="text/javascript" src="game.js"></script>
-	<script type="text/javascript" src="shapebuilder.js"></script>
+	<script type="text/javascript" src="lib/QTransform.js"></script>
+	<script type="text/javascript" src="lib/jquery.html5storage.min.js"></script>
 
-
-
+	<script type="text/javascript" src="js/page.js"></script>
+	<script type="text/javascript" src="js/geometry.js"></script>
+	<script type="text/javascript" src="js/game.js"></script>
+	<script type="text/javascript" src="js/shapebuilder.js"></script>
+	<script type="text/javascript" src="js/animate.js"></script>
+	<script type="text/javascript" src="js/click.js"></script>
 
 </body>
 </html>

@@ -71,7 +71,7 @@ function draw() {
 	clearCanvas();
 	chargePosition();
 
-	geometry = SVG('drawing').size(500, 500).group();
+	geometry = SVG('shaperino').size(500, 500).group();
 
 	drawShape("main");
 	if (current.charge.status == "enabled") {
@@ -128,5 +128,5 @@ function chargePosition(){
 // CLEAR //
 
 function clearCanvas(){
-	document.getElementById("drawing").innerHTML = "";
+	document.getElementById("shaperino").innerHTML = "";
 }

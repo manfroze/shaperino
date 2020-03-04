@@ -22,10 +22,6 @@ var color = {
 	lightviolet: "#E64EFF",
 }
 
-var shape = ["circle", "square", "rhombus"];
-var mode = ["main", "charge", "split"];
-
-
 var current = {
 	main: {
 		shape: "circle",
@@ -120,7 +116,6 @@ function highlight(mode, kind, label){
 function highlightComp(type, mode, kind, label){
 	if (comp[type][current[mode][kind]] != ""){
 		components = comp[type][current[mode][kind]];
-
 		$("#" + components.join(", #")).addClass('bordered');
 		$("#" + components.join(" .label , #")+ " .label").append(label);
 	}
@@ -146,7 +141,6 @@ function updateSelectors(){
 			highlightComp("charge", "charge", "position");
 		}
 	}
-
 	if (current.charge.status == "enabled") {
 			//updatePowerCounters("shape", "charge");
 			highlight("charge", "shape", "C");
@@ -155,7 +149,6 @@ function updateSelectors(){
 				highlightComp("color", "charge", "color", "c");
 			}
 		}
-
 		if (current.split.status == "enabled") {
 			//updatePowerCounters("shape", "split");
 			highlight("split", "position");
@@ -167,56 +160,6 @@ function updateSelectors(){
 			}
 		}
 	}
-
-// CLICKS //
-
-$(document).on( "click", ".item.shape", function(e) {
-	modifier(e, "shape");
-});
-
-$(document).on( "click", ".item.color", function(e) {
-	modifier(e, "color");
-});
-
-$(document).on( "click", ".item.primary", function(e) {
-	modifier(e, "colorType", "primary");
-});
-
-$(document).on( "click", ".item.secondary", function(e) {
-	modifier(e, "colorType", "secondary");
-});
-
-$(document).on( "click", ".item.charge", function(e) {
-	var target = $(e.currentTarget).attr("id");
-	setCurrent("charge", "position", target);
-	setCurrent("charge", "status", "enabled");
-	setCurrent("split", "status", "disabled");
-});
-
-
-
-
-$(document).on( "click", ".item.split", function(e) {
-	var target = $(e.currentTarget).attr("id");
-	setCurrent("split", "position", target);
-	setCurrent("charge", "position", split[target]);
-	setCurrent("split", "status", "enabled");
-	setCurrent("charge", "status", "enabled");
-});
-
-$(document).on( "click", ".item.side", function(e) {
-	setCurrent("charge", "type", "side");
-});
-
-$(document).on( "click", ".item.corner", function(e) {
-	setCurrent("charge", "type", "corner");
-});
-
-$(document).on( "click", ".item", function(e) {
-	draw();
-	updateSelectors();
-});
-
 
 draw();
 updateSelectors();

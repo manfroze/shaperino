@@ -1,4 +1,4 @@
-classes = {
+var classes = {
 	"shape": ["shape"],
 	"side": ["side", "charge"],
 	"corner": ["corner", "charge"],
@@ -11,7 +11,7 @@ classes = {
 	"secondarydark": ["color", "secondary"],
 }
 
-items = {
+var items = {
 	circle: {
 		sec: "shape",
 		subsec: "shape",
@@ -157,14 +157,50 @@ items = {
 		card: "small",
 		locked: "locked"
 	},
+	lightred: {
+		sec: "color",
+		subsec: "light",
+		card: "card",
+		locked: "locked"
+	},
+	lightblue: {
+		sec: "color",
+		subsec: "light",
+		card: "card",
+		locked: "locked"
+	},
+	lightyellow: {
+		sec: "color",
+		subsec: "light",
+		card: "card",
+		locked: "locked"
+	},
+	darkred: {
+		sec: "color",
+		subsec: "dark",
+		card: "card",
+		locked: "locked"
+	},
+	darkblue: {
+		sec: "color",
+		subsec: "dark",
+		card: "card",
+		locked: "locked"
+	},
+	darkyellow: {
+		sec: "color",
+		subsec: "dark",
+		card: "card",
+		locked: "locked"
+	},
 }
 
-sectionUnlock = {
+var sectionUnlock = {
 	shape: "locked",
 	charge: "locked",
 	color: "locked"
 }
-subSectionUnlock = {
+var subSectionUnlock = {
 	shape: "locked",
 	side: "locked",
 	corner: "locked",
@@ -173,11 +209,9 @@ subSectionUnlock = {
 	secondary: "locked",
 }
 
-
-
-labelDiv = '<div class="label"></div>';
-powerDiv = '<div class="power"></div>';
-counterDiv = '<div class="counter">0</div>';
+var labelDiv = '<div class="label"></div>';
+var powerDiv = '<div class="power"></div>';
+var counterDiv = '<div class="counter">0</div>';
 
 function addItem(item){
 	if (sectionUnlock[items[item].sec] == "locked") {
@@ -199,6 +233,16 @@ function addItem(item){
 		$('#' + items[item].subsec + ' > .container').append('<div id="' + item + '" class="item ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' );
 	}
 }
+
+function addAll(){
+	$.each(items, function(item) {
+		addItem(item);
+	});
+}
+
+$(document).on( "click", "#title", function(e) {
+	addAll();
+});
 
 addItem("circle");
 addItem("black");

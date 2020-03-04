@@ -47,18 +47,16 @@ div {
 
 }
 
-#drawing {
-
+#shaperino {
 	margin: 60px auto;
 	cursor: pointer;
 	transition: transform .5s ease;
 	width:  500px;
 	text-align: center;
-
 }
 
-#drawing:hover {
-  transform: scale(1.04);
+#shaperino:hover {
+  //transform: scale(1.04);
 }
 
 .title {

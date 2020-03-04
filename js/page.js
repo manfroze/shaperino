@@ -24,7 +24,7 @@ struct = {
 		},
 		"split": {
 			title: "split",
-			items:	["top", "left", "topleft", "topright"],
+			items:	["topbottom", "leftright", "topleftbottomright", "toprightbottomleft"],
 			classes: ["split"],
 			card: ["small"],
 		}
@@ -57,13 +57,13 @@ struct = {
 		},
 		"secondarylight": {
 			title: "secondary light",
-			items: ["lightgreen", "lightorange", "lightviolet", "lightgrey"],
+			items: ["lightgreen", "lightorange", "lightviolet"],
 			classes: ["color", "secondary"],
 			card: ["small"],
 		},
 		"secondarydark": {
 			title: "secondary dark",
-			items: ["darkgreen", "darkorange", "darkviolet", "darkgrey"],
+			items: ["darkgreen", "darkorange", "darkviolet"],
 			classes: ["color", "secondary"],
 			card: ["small"],
 		},
@@ -73,6 +73,7 @@ struct = {
 label = '<div class="label"></div>';
 power = '<div class="power"></div>';
 counter = '<div class="counter">0</div>'
+
 
 $.each(struct, function(section, secVal) {
 	$("#" + section + "").append('<div class="title">' + section.toUpperCase() + '</div>' );

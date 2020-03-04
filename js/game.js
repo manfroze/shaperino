@@ -31,9 +31,7 @@ var power = {
 
 var mult = 0.5;
 
-
 var currentPowerCounter = {
-
 	circle: 0,
 	square: 0,
 	rhombus: 0,
@@ -46,7 +44,6 @@ var currentPowerCounter = {
 	red: 0,
 	yellow: 0,
 	blue: 0,
-
 }
 
 var itemPrice = {
@@ -216,9 +213,7 @@ if (current.split.status == "enabled") {
 		counter[value] +=power.color.split*mult;
 	});
 }
-
 updateCounters();
-
 }
 
 function priceUnlock(){
@@ -232,5 +227,7 @@ function loop(){
 		priceUnlock();
 	}, 300);
 } 
+
+
 
 loop();

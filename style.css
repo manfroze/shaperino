@@ -4,7 +4,6 @@ body {
 	font-family: 'Montserrat';
 	color: #222;
 	text-align: center;
-
 }
 div {
 	//border:  1px solid #ff0000;
@@ -21,22 +20,17 @@ div {
 }
 
 #leftColumn, #rightColumn {
-
 	flex-grow: 1;
 	padding: 10px;
 	width:  512px;
-
 } 
 
 #centerColumn {
-
 	flex-grow: 2;
 	text-align: center;
-
 }
 
 #title {
-
 	text-align: center;
 	padding:  10px 15px;
 	font-weight: 900;
@@ -44,7 +38,7 @@ div {
 	display: inline-block;
 	background-color: #222;
 	color:  #FFF;
-
+	border-radius: 3px;
 }
 
 #shaperino {
@@ -69,24 +63,18 @@ div {
 }
 
 .title.sub {
-
 	font-size: 15px;
 	margin-bottom: 15px;
-
 }
 
 .section > .subsection > .title.sub:first-of-type {
-
 //display: none;
-
 }
 
 .container {
-
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-
 }
 
 .section {
@@ -98,7 +86,6 @@ div {
 }
 
 .item {
-
 	box-sizing: border-box;
 	padding: 5px;
 	margin-bottom: 10px;
@@ -110,86 +97,65 @@ div {
 	background-position: center;
 	position: relative;
 	border-radius: 3px;
-
 }
 
 .item.card {
-
 	height: 100px;
 	width: 70px;
-
 }
 
 .item.small {
-
 	height: 60px;
 	width: 60px;
-
 }
 
 .item:hover {
-
 	background-color: #ccc;
-
 }
 
 .item.bordered {
-
 	box-shadow:0px 0px 0px 2px #999 inset;
 	background-color: #E4E4E4;
-
 }
 
 .item.selected {
-
 	background-color: #fff;
-
 }
 
 .card .label {
-
 	height: 20px;
 	position: absolute;
 	top: 5px;
 	left: 8px;
 	font-size: 15px;
-
 }
 
 .small .label {
-
 	height: 20px;
 	position: absolute;
 	top: 5px;
 	right: 8px;
 	font-size: 12px;
-
 }
 
 .counter {
-
 	font-weight: bold;
 	position: absolute;
 	bottom: 5px;
 	right: 8px;
 	font-size: 15px;
-
 }
 
 .power {
-
 	display: none;
 	position: absolute;
 	top: 5px;
 	right: 8px;
 	font-size: 15px;
-
 }
 
 .selected .power {
-
 	//display: inline-block;
-
 }
 
 #top { order:  1; }

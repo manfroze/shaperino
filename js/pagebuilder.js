@@ -160,37 +160,73 @@ var items = {
 	lightred: {
 		sec: "color",
 		subsec: "light",
-		card: "card",
+		card: "small",
 		locked: "locked"
 	},
 	lightblue: {
 		sec: "color",
 		subsec: "light",
-		card: "card",
+		card: "small",
 		locked: "locked"
 	},
 	lightyellow: {
 		sec: "color",
 		subsec: "light",
-		card: "card",
+		card: "small",
 		locked: "locked"
 	},
 	darkred: {
 		sec: "color",
 		subsec: "dark",
-		card: "card",
+		card: "small",
 		locked: "locked"
 	},
 	darkblue: {
 		sec: "color",
 		subsec: "dark",
-		card: "card",
+		card: "small",
 		locked: "locked"
 	},
 	darkyellow: {
 		sec: "color",
 		subsec: "dark",
-		card: "card",
+		card: "small",
+		locked: "locked"
+	},
+	lightgreen: {
+		sec: "color",
+		subsec: "secondarylight",
+		card: "small",
+		locked: "locked"
+	},
+	lightorange: {
+		sec: "color",
+		subsec: "secondarylight",
+		card: "small",
+		locked: "locked"
+	},
+	lightviolet: {
+		sec: "color",
+		subsec: "secondarylight",
+		card: "small",
+		locked: "locked"
+	},
+	darkgreen: {
+		sec: "color",
+		subsec: "secondarydark",
+		card: "small",
+		locked: "locked"
+	},
+	darkorange: {
+		sec: "color",
+		subsec: "secondarydark",
+		card: "small",
+		locked: "locked"
+	},
+	darkviolet: {
+		sec: "color",
+		subsec: "secondarydark",
+		card: "small",
 		locked: "locked"
 	},
 }
@@ -207,6 +243,10 @@ var subSectionUnlock = {
 	split: "locked",
 	primary: "locked",
 	secondary: "locked",
+	light: "locked",
+	dark: "locked",
+	secondarylight: "locked",
+	secondarydark: "locked",
 }
 
 var labelDiv = '<div class="label"></div>';
@@ -243,6 +283,8 @@ function addAll(){
 $(document).on( "click", "#title", function(e) {
 	addAll();
 });
+
+
 
 addItem("circle");
 addItem("black");

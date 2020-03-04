@@ -1,3 +1,20 @@
+function modifier(e, kind, target){
+	if (!target) {
+		target = $(e.currentTarget).attr("id");
+	}
+	if (e.shiftKey) {
+		if(current.charge.status == "enabled"){
+			setCurrent("charge", kind, target);
+		}
+	} else if (e.altKey) {
+		if(current.split.status == "enabled"){
+			setCurrent("split", kind, target);
+		}
+	} else {
+		setCurrent("main", kind, target);
+	}
+}
+
 $(document).on( "click", ".item.shape", function(e) {
 	modifier(e, "shape");
 });
@@ -23,12 +40,15 @@ $(document).on( "click", ".item.split", function(e) {
 	setCurrent("split", "status", "enabled");
 	setCurrent("charge", "status", "enabled");
 });
+
 $(document).on( "click", ".item.side", function(e) {
 	setCurrent("charge", "type", "side");
 });
+
 $(document).on( "click", ".item.corner", function(e) {
 	setCurrent("charge", "type", "corner");
 });
+
 $(document).on( "click", ".item", function(e) {
 	draw();
 	updateSelectors();
@@ -38,3 +58,11 @@ $(document).on( "click", ".item", function(e) {
 $(document).on( "click", "#shaperino", function(e) {
 	clickShaperino();
 });
+
+
+$(document).keydown(function(event) {
+	if (event.which === 82) {
+		randomShape();
+		draw();
+		updateSelectors();
+} });

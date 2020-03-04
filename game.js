@@ -57,11 +57,11 @@ var currentPowerCounter = {
 
 }
 
-	function updateCounters(){	
-		$.each(counter, function(index){
-			$("#" + index + " .counter").html(Math.floor(counter[index]));
-		});
-	}
+function updateCounters(){	
+	$.each(counter, function(index){
+		$("#" + index + " .counter").html(Math.floor(counter[index]));
+	});
+}
 
 	/*function updatePowerCounters(mode, kind){
 		currentPowerCounter[current[mode][kind]] += power[kind][mode];
@@ -124,20 +124,140 @@ var currentPowerCounter = {
 		}
 
 		updateCounters();
-
 		checkBuild();
-
 
 	});
 
 
+
+	unlock = {
+
+		square: {
+			amount: 10,
+			currency: "circle"
+		},
+
+		rhombus: {
+			amount: 15,
+			currency: "square"
+		},
+
+		white: {
+			amount: 20,
+			currency: "black"
+		},
+
+		red: {
+			amount: 25,
+			currency: "white"
+		},
+
+		blue: {
+			amount: 30,
+			currency: "red"
+		},
+
+		yellow: {
+			amount: 40,
+			currency: "square"
+		},
+
+		green: {
+			amount: 80,
+			currency: "top"
+		},
+
+		yellow: {
+			amount: 100,
+			currency: "rhombus"
+		},
+
+		orange: {
+			amount: 110,
+			currency: "blue"
+		},
+
+		violet: {
+			amount: 90,
+			currency: "circle"
+		},
+
+		grey: {
+			amount: 110,
+			currency: "yellow"
+		},
+
+		top: {
+			amount: 25,
+			currency: "red"
+		},
+
+		right: {
+			amount: 80,
+			currency: "circle"
+		},
+
+		bottom: {
+			amount: 45,
+			currency: "right"
+		},
+
+		left: {
+			amount: 50,
+			currency: "bottom"
+		},
+
+		topleft: {
+			amount: 80,
+			currency: "left"
+		},
+
+		topright: {
+			amount: 100,
+			currency: "yellow"
+		},
+
+		bottomleft: {
+			amount: 110,
+			currency: "left"
+		},
+
+		bottomright: {
+			amount: 120,
+			currency: "bottom"
+		},
+
+		topbottom: {
+			amount: 120,
+			currency: "rhombus"
+		},
+		leftright: {	
+			amount: 130,
+			currency: "right"
+		},
+		topleftbottomright: {
+			amount: 140,
+			currency: "square"
+		},
+		toprightbottomleft: {
+			amount: 150,
+			currency: "red"
+		},
+
+
+	}
+
 	function checkBuild(){
 
-	if (counter.circle == 10) { addItem("shape", "shape", "square")}
-	if (counter.black == 25) { addItem("color", "primary", "white")}
-	if (counter.square == 50) { addItem("shape", "shape", "rhombus")}
-	if (counter.white == 50) { addItem("color", "primary", "red")}
-	if (counter.red == 25) { addItemFull("charge", "side", "top")}
+		$.each(unlock, function(key, value) {
+
+			setInterval(function(){ 
+
+			if (counter[value.currency] > value.amount) { addItem(key) }
+
+			 }, 1000);
+
+		});
 
 	}
 

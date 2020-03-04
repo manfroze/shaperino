@@ -1,110 +1,204 @@
-struct = {
-	"shape": {
-		"shape": {
-			title: "shape",
-			items: ["circle", "square", "rhombus"],
-			classes: ["shape"],
-			card: ["card"],
-		},
-	},
-
-	"charge": {
-		"side": {
-			title: "side",
-			items: ["top", "right", "bottom", "left"],
-			classes: ["side", "charge"],
-			card: ["card"],
-		},
-		"corner": {
-			title: "corner",
-			items: ["topleft", "topright", "bottomleft", "bottomright"],
-			classes: ["corner", "charge"],
-			card: ["small"],
-		},
-		"split": {
-			title: "split",
-			items:	["top", "left", "topleft", "topright"],
-			classes: ["split"],
-			card: ["small"],
-		}
-	},
-
-	"color": {
-		"primary": {
-			title: "primary",
-			items: ["black", "white", "red", "yellow", "blue"],
-			classes: ["color", "primary"],
-			card: ["card"],
-		},
-		"secondary": {
-			title: "secondary",
-			items: ["green", "orange", "violet", "grey"],
-			classes: ["color", "secondary"],
-			card: ["small"],
-		},
-		"light": {
-			title: "light",
-			items: ["lightred", "lightyellow", "lightblue"],
-			classes: ["color", "secondary"],
-			card: ["small"],
-		},
-		"dark": {
-			title: "dark",
-			items: ["darkred", "darkyellow", "darkblue"],
-			classes: ["color", "secondary"],
-			card: ["small"],
-		},
-		"secondarylight": {
-			title: "secondary light",
-			items: ["lightgreen", "lightorange", "lightviolet", "lightgrey"],
-			classes: ["color", "secondary"],
-			card: ["small"],
-		},
-		"secondarydark": {
-			title: "secondary dark",
-			items: ["darkgreen", "darkorange", "darkviolet", "darkgrey"],
-			classes: ["color", "secondary"],
-			card: ["small"],
-		},
-	}
+classes = {
+	"shape": ["shape"],
+	"side": ["side", "charge"],
+	"corner": ["corner", "charge"],
+	"split":["split"],
+	"primary": ["color", "primary"],
+	"secondary": ["color", "secondary"],
+	"light": ["color", "secondary"],
+	"dark": ["color", "secondary"],
+	"secondarylight": ["color", "secondary"],
+	"secondarydark": ["color", "secondary"],
 }
+
+items = {
+	circle: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+		locked: "locked"
+	},
+	square: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+		locked: "locked"
+	},
+	rhombus: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+		locked: "locked"
+	},
+
+	top: {
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+		locked: "locked"
+	},
+	left: {	
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+		locked: "locked"
+	},
+	right: {
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+		locked: "locked"
+	},
+	bottom: {
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+		locked: "locked"
+	},
+	topleft: {
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+		locked: "locked"
+	},
+	topright: {	
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+		locked: "locked"
+	},
+	bottomleft: {
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+		locked: "locked"
+	},
+	bottomright: {
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+		locked: "locked"
+	},
+	topbottom: {
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+		locked: "locked"
+	},
+	leftright: {	
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+		locked: "locked"
+	},
+	topleftbottomright: {
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+		locked: "locked"
+	},
+	toprightbottomleft: {
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+		locked: "locked"
+	},
+	black: {
+		subsec: "primary",
+		sec: "color",
+		card: "card",
+		locked: "locked"
+	},
+	white: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+		locked: "locked"
+	},
+	red: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+		locked: "locked"
+	},
+	blue: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+		locked: "locked"
+	},
+	yellow: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+		locked: "locked"
+	},
+	green: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+		locked: "locked"
+	},
+	orange: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+		locked: "locked"
+	},
+	violet: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+		locked: "locked"
+	},
+	grey: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+		locked: "locked"
+	},
+}
+
+sectionUnlock = {
+	shape: "locked",
+	charge: "locked",
+	color: "locked"
+}
+subSectionUnlock = {
+	shape: "locked",
+	side: "locked",
+	corner: "locked",
+	split: "locked",
+	primary: "locked",
+	secondary: "locked",
+}
+
+
 
 labelDiv = '<div class="label"></div>';
 powerDiv = '<div class="power"></div>';
 counterDiv = '<div class="counter">0</div>';
 
-
-function addSection(name) {
-$("#" + name + "").append('<div class="title">' + name.toUpperCase() + '</div>' );
-}
-
-function addSubSection(sec, subsec) {
-
-	if (struct[sec][subsec].card == "small") {
-	subtitle = '<div class="title sub">' + struct[sec][subsec].title.toUpperCase() + '</div>'
+function addItem(item){
+	if (sectionUnlock[items[item].sec] == "locked") {
+		sectionUnlock[items[item].sec] = "unlocked"
+		$("#" + items[item].sec + "").append('<div class="title">' + items[item].sec.toUpperCase() + '</div>' );
+	}
+	if (subSectionUnlock[items[item].subsec] == "locked") {
+		subSectionUnlock[items[item].subsec] = "unlocked"
+		if (items[item].card == "small") {
+			subtitle = '<div class="title sub">' + items[item].subsec.toUpperCase() + '</div>'
 		} else { subtitle = ""}
-	$("#" + sec + "").append('<div id="' + subsec + '" class="subsection">' + subtitle + '<div class="container"></div></div>')
-
+		$("#" + items[item].sec + "").append('<div id="' + items[item].subsec + '" class="subsection">' + subtitle + '<div class="container"></div></div>')
+	}
+	if (items[item].locked == "locked") {
+		items[item].locked = "unlocked"
+		if (items[item].card == "card") {
+			dash = labelDiv + powerDiv + counterDiv;
+		} else { dash = ""};
+		$('#' + items[item].subsec + ' > .container').append('<div id="' + item + '" class="item ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' );
+	}
 }
 
-function addItem(sec, subsec, item) {
-
-	if (struct[sec][subsec].card == "card") {
-		dash = labelDiv + powerDiv + counterDiv;
-	} else { dash = ""};
-	$('#' + subsec + ' > .container').append('<div id="' + item + '" class="item ' + struct[sec][subsec].classes.join(' ') + " " + struct[sec][subsec].card + '">' + dash + '</div>' );
-
-}
-
-function addItemFull(sec, subsec, item){
-
-addSection(sec);
-addSubSection(sec, subsec);
-addItem(sec, subsec, item);
-
-}
-
-
-addItemFull("shape", "shape", "circle");
-addItemFull("color", "primary", "black");
-
+addItem("circle");
+addItem("black");

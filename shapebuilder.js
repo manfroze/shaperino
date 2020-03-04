@@ -42,6 +42,7 @@ var current = {
 	},
 	split: {
 		status: "disabled",
+		position: "topbottom",
 		shape: "circle",
 		color: "black",
 		colorType: "primary",
@@ -66,25 +67,28 @@ var comp = {
 		green: ["yellow", "blue"],
 		violet: ["blue", "red"],
 		grey: ["white", "black"],
-
 		darkred: ["red", "black"],
 		darkyellow: ["yellow", "black"],
 		darkblue: ["blue", "black"],
-
 		lightred: ["red", "white"],
 		lightyellow: ["yellow", "white"],
 		lightblue: ["blue", "white"],
-
 		darkorange: ["red", "yellow", "black"],
 		darkgreen: ["yellow", "blue", "black"],
 		darkviolet: ["blue", "red", "black"],
-		darkgrey: ["white", "black", "black"],
-
 		lightorange: ["red", "yellow", "white"],
 		lightgreen: ["yellow", "blue", "white"],
 		lightviolet: ["blue", "red", "white"],
-		lightgrey: ["white", "black", "white"],
 	}
+}
+
+var split = {
+
+"topbottom": "top",
+"leftright": "left",
+"topleftbottomright": "topleft",
+"toprightbottomleft": "topright"
+
 }
 
 function setCurrent(mode, kind, selected){
@@ -108,16 +112,16 @@ function modifier(e, kind, target){
 	}
 }
 
-function highlight(mode, kind, selector, label){
-	$("." + selector + "#" + current[mode][kind]).addClass('selected');
+function highlight(mode, kind, label){
+	$("#" + current[mode][kind]).addClass('selected');
 	$("#" + current[mode][kind] + " .label").append(label);
 }
 
-function highlightComp(type, mode, kind, selector, label){
+function highlightComp(type, mode, kind, label){
 	if (comp[type][current[mode][kind]] != ""){
 		components = comp[type][current[mode][kind]];
-		$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
-		$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
+		$("#" + components.join(", ." + selector + "#")).addClass('bordered');
+		$("#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
 	}
 }
 
@@ -130,22 +134,22 @@ function clearSelectors(){
 function updateSelectors(){
 	clearSelectors();
 	//updatePowerCounters("main", "shape");
-	highlight("main", "shape", "shape", "M");
-	highlight("main", "color", "color", "M");
+	highlight("main", "shape", "M");
+	highlight("main", "color", "M");
 	if (current.main.colorType == "secondary") {
-		highlightComp("color", "main", "color", "color", "m");
+		highlightComp("color", "main", "color", "m");
 	}
 	if (current.charge.status == "enabled" && current.split.status == "disabled") {
-		highlight("charge", "position", "charge");
+		highlight("charge", "position");
 		if (current.charge.type == "corner"){
-			highlightComp("charge", "charge", "position", "charge");
+			highlightComp("charge", "charge", "position");
 		}
 	}
 
 	if (current.charge.status == "enabled") {
 			//updatePowerCounters("shape", "charge");
-			highlight("charge", "shape", "shape", "C");
-			highlight("charge", "color", "color", "C");
+			highlight("charge", "shape", "C");
+			highlight("charge", "color", "C");
 			if (current.charge.colorType == "secondary") {
 				highlightComp("color", "charge", "color", "color", "c");
 			}
@@ -153,12 +157,12 @@ function updateSelectors(){
 
 		if (current.split.status == "enabled") {
 			//updatePowerCounters("shape", "split");
-			highlight("charge", "position", "split");
-			highlight("split", "shape", "shape", "S");
-			highlight("split", "color", "color", "S");
-			highlightComp("split", "charge", "position", "charge");
+			highlight("split", "position");
+			highlight("split", "shape", "S");
+			highlight("split", "color", "S");
+			highlightComp("split", "charge", "position");
 			if (current.split.colorType == "secondary") {
-				highlightComp("color", "split", "color", "color", "s");
+				highlightComp("color", "split", "color", "s");
 			}
 		}
 	}
@@ -188,9 +192,13 @@ $(document).on( "click", ".item.charge", function(e) {
 	setCurrent("split", "status", "disabled");
 });
 
+
+
+
 $(document).on( "click", ".item.split", function(e) {
 	var target = $(e.currentTarget).attr("id");
-	setCurrent("charge", "position", target);
+	setCurrent("split", "position", target);
+	setCurrent("charge", "position", split[target]);
 	setCurrent("split", "status", "enabled");
 	setCurrent("charge", "status", "enabled");
 });

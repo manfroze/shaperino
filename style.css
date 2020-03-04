@@ -194,6 +194,11 @@ div {
 
 }
 
+#top { order:  1; }
+#right { order:  2; }
+#bottom { order:  3; }
+#left { order:  4; }
+
 
 .item#black { background-image: url('svg/black.svg'); }
 .item#white { background-image: url('svg/white.svg'); }
@@ -235,8 +240,8 @@ div {
 .item.charge#bottomleft { background-image: url('svg/bottomleft.svg'); }
 .item.charge#bottomright { background-image: url('svg/bottomright.svg'); }
 
-.item.split#top { background-image: url('svg/top-split.svg'); }
-.item.split#left { background-image: url('svg/left-split.svg'); }
-.item.split#topleft { background-image: url('svg/topleft-split.svg'); }
-.item.split#topright { background-image: url('svg/topright-split.svg'); }
+.item.split#topbottom { background-image: url('svg/top-split.svg'); }
+.item.split#leftright { background-image: url('svg/left-split.svg'); }
+.item.split#topleftbottomright { background-image: url('svg/topleft-split.svg'); }
+.item.split#toprightbottomleft { background-image: url('svg/topright-split.svg'); }
 

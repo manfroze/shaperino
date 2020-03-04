@@ -77,6 +77,12 @@ div {
 
 }
 
+.section > .subsection > .title.sub:first-of-type {
+
+//display: none;
+
+}
+
 .container {
 
 	display: flex;

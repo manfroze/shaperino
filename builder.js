@@ -28,22 +28,22 @@ var mode = ["main", "charge", "split"];
 
 var current = {
 	main: {
-		shape: "circle",
-		color: "black",
+		shape: "rhombus",
+		color: "red",
 		colorType: "primary",
 	}, 
 	charge: {
-		status: "disabled",
+		status: "enabled",
 		type: "side",
-		position: "top",
+		position: "topleft",
 		shape: "square",
-		color: "black",
+		color: "yellow",
 		colorType: "primary",
 	},
 	split: {
-		status: "disabled",
-		shape: "rhombus",
-		color: "black",
+		status: "enabled",
+		shape: "circle",
+		color: "blue",
 		colorType: "primary",
 	} 
 }
@@ -87,10 +87,6 @@ var comp = {
 	}
 }
 
-function clear(){
-	document.getElementById("drawing").innerHTML = "";
-}
-
 function setCurrent(mode, kind, selected){
 	current[mode][kind] = selected;
 }
@@ -112,43 +108,41 @@ function modifier(e, kind, target){
 	}
 }
 
-	function highlight(mode, kind, selector, label){
-		$("." + selector + "#" + current[mode][kind]).addClass('selected');
-		$("#" + current[mode][kind] + " .label").append(label);
-	}
+function highlight(mode, kind, selector, label){
+	$("." + selector + "#" + current[mode][kind]).addClass('selected');
+	$("#" + current[mode][kind] + " .label").append(label);
+}
 
-	function highlightComp(type, mode, kind, selector, label){
-		if (comp[type][current[mode][kind]] != ""){
-			components = comp[type][current[mode][kind]];
-			$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
-			$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
+function highlightComp(type, mode, kind, selector, label){
+	if (comp[type][current[mode][kind]] != ""){
+		components = comp[type][current[mode][kind]];
+		$("." + selector + "#" + components.join(", ." + selector + "#")).addClass('bordered');
+		$("." + selector + "#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
+	}
+}
+
+function clearSelectors(){
+	$("*").removeClass('selected');
+	$("*").removeClass('bordered');
+	$(".label").html('');
+}
+
+function updateSelectors(){
+	clearSelectors();
+	updatePowerCounters("main", "shape");
+	highlight("main", "shape", "shape", "M");
+	highlight("main", "color", "color", "M");
+	if (current.main.colorType == "secondary") {
+		highlightComp("color", "main", "color", "color", "m");
+	}
+	if (current.charge.status == "enabled" && current.split.status == "disabled") {
+		highlight("charge", "position", "charge");
+		if (current.charge.type == "corner"){
+			highlightComp("charge", "charge", "position", "charge");
 		}
 	}
 
-
-	function clearSelectors(){
-		$("*").removeClass('selected');
-		$("*").removeClass('bordered');
-		$(".label").html('');
-	}
-
-	function updateSelectors(){
-		clearSelectors();
-		updatePowerCounters("main", "shape");
-		highlight("main", "shape", "shape", "M");
-		highlight("main", "color", "color", "M");
-		if (current.main.colorType == "secondary") {
-			highlightComp("color", "main", "color", "color", "m");
-		}
-		if (current.charge.status == "enabled" && current.split.status == "disabled") {
-			highlight("charge", "position", "charge");
-			if (current.charge.type == "corner"){
-				highlightComp("charge", "charge", "position", "charge");
-			}
-		}
-
-
-		if (current.charge.status == "enabled") {
+	if (current.charge.status == "enabled") {
 			//updatePowerCounters("shape", "charge");
 			highlight("charge", "shape", "shape", "C");
 			highlight("charge", "color", "color", "C");
@@ -169,50 +163,51 @@ function modifier(e, kind, target){
 		}
 	}
 
-		// CLICKS //
+// CLICKS //
 
-	$( ".item.shape" ).click(function(e) {
-		modifier(e, "shape");
-	});
+$( ".item.shape" ).click(function(e) {
+	modifier(e, "shape");
+});
 
-	$( ".item.color" ).click(function(e) {
-		modifier(e, "color");
-	});
+$( ".item.color" ).click(function(e) {
+	modifier(e, "color");
+});
 
-	$( ".item.primary" ).click(function(e) {
-		modifier(e, "colorType", "primary");
-	});
+$( ".item.primary" ).click(function(e) {
+	modifier(e, "colorType", "primary");
+});
 
-	$( ".item.secondary" ).click(function(e) {
-		modifier(e, "colorType", "secondary");
-	});
+$( ".item.secondary" ).click(function(e) {
+	modifier(e, "colorType", "secondary");
+});
 
-	$( ".item.charge" ).click(function(e) {
-		var target = $(e.currentTarget).attr("id");
-		setCurrent("charge", "position", target);
-		setCurrent("charge", "status", "enabled");
-		setCurrent("split", "status", "disabled");
-	});
+$( ".item.charge" ).click(function(e) {
+	var target = $(e.currentTarget).attr("id");
+	setCurrent("charge", "position", target);
+	setCurrent("charge", "status", "enabled");
+	setCurrent("split", "status", "disabled");
+});
 
-	$( ".item.split" ).click(function(e) {
-		var target = $(e.currentTarget).attr("id");
-		setCurrent("charge", "position", target);
-		setCurrent("split", "status", "enabled");
-		setCurrent("charge", "status", "enabled");
-	});
+$( ".item.split" ).click(function(e) {
+	var target = $(e.currentTarget).attr("id");
+	setCurrent("charge", "position", target);
+	setCurrent("split", "status", "enabled");
+	setCurrent("charge", "status", "enabled");
+});
 
-	$( ".item.side" ).click(function(e) {
-		setCurrent("charge", "type", "side");
-	});
+$( ".item.side" ).click(function(e) {
+	setCurrent("charge", "type", "side");
+});
 
-	$( ".item.corner" ).click(function(e) {
-		setCurrent("charge", "type", "corner");
-	});
+$( ".item.corner" ).click(function(e) {
+	setCurrent("charge", "type", "corner");
+});
 
-	$( ".item" ).click(function(e) {
-		generate();
-	});
+$( ".item" ).click(function(e) {
+	draw();
+	updateSelectors();
+});
 
 
-
-generate();
+draw();
+updateSelectors();

@@ -1,4 +1,4 @@
-// ABSOLUTE VARIABLES //
+// VARIABLES //
 
 var cloneIndex = 0;
 
@@ -16,8 +16,6 @@ var rhombusSizeDiff = {
 	charge: 50,
 	split: 50
 }
-
-// RELATIVE VARIABLES //
 
 var centerPoints = {
 	normal: {
@@ -49,23 +47,39 @@ var center = {
 	}
 }
 
+var centerPositions = {
+	"left": ["zero", "middle"],
+	"top": ["middle", "zero"],
+	"right": ["full", "middle"],
+	"bottom": ["middle", "full"],
+	"topleft": ["zero", "zero"],
+	"topright": ["full", "zero"],
+	"bottomright": ["full", "full"],
+	"bottomleft": ["zero", "full"]
+}
 
+var mirror = {
+	"full": "zero",
+	"zero": "full",
+	"middle": "middle"
+}
 
-function drawGeometry() {
+// DRAW GEOMETRY //
 
-	draw = SVG('drawing').size(500, 500);
-	geometry = draw.group();
+function draw() {
+
+	clearCanvas();
+	chargePosition();
+
+	geometry = SVG('drawing').size(500, 500).group();
 
 	drawShape("main");
-
 	if (current.charge.status == "enabled") {
 		drawShape("charge");
 	}
-
 	if (current.split.status == "enabled") {
 		drawShape("split");
 	}
-
 }
 
 // SINGLE SHAPE FUNCTIONS //
@@ -82,7 +96,6 @@ function rhombus(size, centerX, centerY, color) {
 	geometry.rect(size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 }
 
-
 // DRAW SHAPE FUNCTION //
 
 function drawShape(kind) {
@@ -97,71 +110,23 @@ function drawShape(kind) {
 
 }
 
-function position(){
-
-
 // SET CHARGES POSITION //
 
-if (current.charge.position == "left") {
-	center.normal.charge[0] = centerPoints.normal.charge.zero
-	center.normal.charge[1] = centerPoints.normal.charge.middle
-}
-if (current.charge.position == "top") {
-	center.normal.charge[0] = centerPoints.normal.charge.middle
-	center.normal.charge[1] = centerPoints.normal.charge.zero
-}
-if (current.charge.position == "right") {
-	center.normal.charge[0] = centerPoints.normal.charge.full
-	center.normal.charge[1]  = centerPoints.normal.charge.middle
-}
-if (current.charge.position == "bottom") {
-	center.normal.charge[0] = centerPoints.normal.charge.middle
-	center.normal.charge[1] = centerPoints.normal.charge.full
-}
-if (current.charge.position == "topleft") {
-	center.normal.charge[0] = centerPoints.normal.charge.zero
-	center.normal.charge[1] = centerPoints.normal.charge.zero
-}
-if (current.charge.position == "topright") {
-	center.normal.charge[0] = centerPoints.normal.charge.full
-	center.normal.charge[1] = centerPoints.normal.charge.zero
-}
-if (current.charge.position == "bottomright") {
-	center.normal.charge[0] = centerPoints.normal.charge.full
-	center.normal.charge[1] = centerPoints.normal.charge.full
-}
-if (current.charge.position == "bottomleft") {
-	center.normal.charge[0] = centerPoints.normal.charge.zero
-	center.normal.charge[1] = centerPoints.normal.charge.full
+function chargePosition(){
+	$.each(centerPositions, function(index, value){
+		if (current.charge.position == index) {
+			$.each(value, function(i, v){
+				center.normal.charge[i] = centerPoints.normal.charge[v]
+				center.normal.split[i] = centerPoints.normal.charge[mirror[v]]
+				center.rhombus.charge[i] = centerPoints.rhombus.charge[v]
+				center.rhombus.split[i] = centerPoints.rhombus.charge[mirror[v]]
+			});
+		}
+	});
 }
 
-// ASSIGN OTHER POSITION //
+// CLEAR //
 
-for (var i = 0; i < 2; i++) {
-
-	if (center.normal.charge[i] == centerPoints.normal.charge.zero) {
-		center.normal.split[i] = centerPoints.normal.charge.full;
-		center.rhombus.charge[i] = centerPoints.rhombus.charge.zero;
-		center.rhombus.split[i] = centerPoints.rhombus.charge.full
-	} else if (center.normal.charge[i] == centerPoints.normal.charge.full) {
-		center.normal.split[i] = centerPoints.normal.charge.zero;
-		center.rhombus.charge[i] = centerPoints.rhombus.charge.full;
-		center.rhombus.split[i] = centerPoints.rhombus.charge.zero
-	} else if (center.normal.charge[i] == centerPoints.normal.charge.middle) {
-		center.normal.split[i] = centerPoints.normal.charge.middle;
-		center.rhombus.charge[i] = centerPoints.rhombus.charge.middle;
-		center.rhombus.split[i] = centerPoints.rhombus.charge.middle
-	}
-}
-
-}
-
-
-function generate() {
-
-	clear();
-	position();
-	drawGeometry();
-	updateSelectors();
-
+function clearCanvas(){
+	document.getElementById("drawing").innerHTML = "";
 }

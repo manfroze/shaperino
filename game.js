@@ -66,8 +66,6 @@ var currentPowerCounter = {
 		function updatePowerCounters(mode, kind){
 		currentPowerCounter[current[mode][kind]] += power[kind][mode];
 		$("#" + current[mode][kind] + " .power").html(currentPowerCounter[current[mode][kind]]);
-		console.log(currentPowerCounter);
-
 	}
 
 

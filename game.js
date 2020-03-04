@@ -63,10 +63,10 @@ var currentPowerCounter = {
 		});
 	}
 
-		function updatePowerCounters(mode, kind){
+	/*function updatePowerCounters(mode, kind){
 		currentPowerCounter[current[mode][kind]] += power[kind][mode];
 		$("#" + current[mode][kind] + " .power").html(currentPowerCounter[current[mode][kind]]);
-	}
+	}*/
 
 
 
@@ -125,4 +125,21 @@ var currentPowerCounter = {
 
 		updateCounters();
 
+		checkBuild();
+
+
 	});
+
+
+	function checkBuild(){
+
+	if (counter.circle == 10) { addItem("shape", "shape", "square")}
+	if (counter.black == 25) { addItem("color", "primary", "white")}
+	if (counter.square == 50) { addItem("shape", "shape", "rhombus")}
+	if (counter.white == 50) { addItem("color", "primary", "red")}
+	if (counter.red == 25) { addItemFull("charge", "side", "top")}
+
+	}
+
+
+

@@ -28,22 +28,22 @@ var mode = ["main", "charge", "split"];
 
 var current = {
 	main: {
-		shape: "rhombus",
-		color: "red",
+		shape: "circle",
+		color: "black",
 		colorType: "primary",
 	}, 
 	charge: {
-		status: "enabled",
+		status: "disabled",
 		type: "side",
 		position: "topleft",
 		shape: "square",
-		color: "yellow",
+		color: "black",
 		colorType: "primary",
 	},
 	split: {
-		status: "enabled",
+		status: "disabled",
 		shape: "circle",
-		color: "blue",
+		color: "black",
 		colorType: "primary",
 	} 
 }
@@ -129,7 +129,7 @@ function clearSelectors(){
 
 function updateSelectors(){
 	clearSelectors();
-	updatePowerCounters("main", "shape");
+	//updatePowerCounters("main", "shape");
 	highlight("main", "shape", "shape", "M");
 	highlight("main", "color", "color", "M");
 	if (current.main.colorType == "secondary") {
@@ -165,45 +165,45 @@ function updateSelectors(){
 
 // CLICKS //
 
-$( ".item.shape" ).click(function(e) {
+$(document).on( "click", ".item.shape", function(e) {
 	modifier(e, "shape");
 });
 
-$( ".item.color" ).click(function(e) {
+$(document).on( "click", ".item.color", function(e) {
 	modifier(e, "color");
 });
 
-$( ".item.primary" ).click(function(e) {
+$(document).on( "click", ".item.primary", function(e) {
 	modifier(e, "colorType", "primary");
 });
 
-$( ".item.secondary" ).click(function(e) {
+$(document).on( "click", ".item.secondary", function(e) {
 	modifier(e, "colorType", "secondary");
 });
 
-$( ".item.charge" ).click(function(e) {
+$(document).on( "click", ".item.charge", function(e) {
 	var target = $(e.currentTarget).attr("id");
 	setCurrent("charge", "position", target);
 	setCurrent("charge", "status", "enabled");
 	setCurrent("split", "status", "disabled");
 });
 
-$( ".item.split" ).click(function(e) {
+$(document).on( "click", ".item.split", function(e) {
 	var target = $(e.currentTarget).attr("id");
 	setCurrent("charge", "position", target);
 	setCurrent("split", "status", "enabled");
 	setCurrent("charge", "status", "enabled");
 });
 
-$( ".item.side" ).click(function(e) {
+$(document).on( "click", ".item.side", function(e) {
 	setCurrent("charge", "type", "side");
 });
 
-$( ".item.corner" ).click(function(e) {
+$(document).on( "click", ".item.corner", function(e) {
 	setCurrent("charge", "type", "corner");
 });
 
-$( ".item" ).click(function(e) {
+$(document).on( "click", ".item", function(e) {
 	draw();
 	updateSelectors();
 });

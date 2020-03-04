@@ -120,8 +120,8 @@ function highlight(mode, kind, label){
 function highlightComp(type, mode, kind, label){
 	if (comp[type][current[mode][kind]] != ""){
 		components = comp[type][current[mode][kind]];
-		$("#" + components.join(", ." + selector + "#")).addClass('bordered');
-		$("#" + components.join(" .label , ." + selector + "#")+ " .label").append(label);
+		$("#" + components.join(", ")).addClass('bordered');
+		$("#" + components.join(" .label ,")+ " .label").append(label);
 	}
 }
 
@@ -151,7 +151,7 @@ function updateSelectors(){
 			highlight("charge", "shape", "C");
 			highlight("charge", "color", "C");
 			if (current.charge.colorType == "secondary") {
-				highlightComp("color", "charge", "color", "color", "c");
+				highlightComp("color", "charge", "color", "c");
 			}
 		}
 

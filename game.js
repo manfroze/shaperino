@@ -193,8 +193,8 @@ function updateCounters(){
 		},
 
 		right: {
-			amount: 80,
-			currency: "circle"
+			amount: 40,
+			currency: "top"
 		},
 
 		bottom: {
@@ -208,22 +208,22 @@ function updateCounters(){
 		},
 
 		topleft: {
-			amount: 80,
+			amount: 60,
 			currency: "left"
 		},
 
 		topright: {
-			amount: 100,
+			amount: 50,
 			currency: "yellow"
 		},
 
 		bottomleft: {
-			amount: 110,
+			amount: 60,
 			currency: "left"
 		},
 
 		bottomright: {
-			amount: 120,
+			amount: 70,
 			currency: "bottom"
 		},
 

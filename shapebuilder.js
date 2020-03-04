@@ -57,10 +57,10 @@ var comp = {
 		bottomright: ["bottom", "right"],
 	},
 	split: {
-		top: ["top", "bottom"],
-		left: ["left", "right"],
-		topleft: ["top", "left", "bottom", "right"],
-		topright: ["top", "left", "bottom", "right"],
+		topbottom: ["top", "bottom"],
+		leftright: ["left", "right"],
+		topleftbottomright: ["top", "left", "bottom", "right"],
+		toprightbottomleft: ["top", "left", "bottom", "right"],
 	},
 	color: {
 		orange: ["red", "yellow"],
@@ -120,8 +120,9 @@ function highlight(mode, kind, label){
 function highlightComp(type, mode, kind, label){
 	if (comp[type][current[mode][kind]] != ""){
 		components = comp[type][current[mode][kind]];
-		$("#" + components.join(", ")).addClass('bordered');
-		$("#" + components.join(" .label ,")+ " .label").append(label);
+
+		$("#" + components.join(", #")).addClass('bordered');
+		$("#" + components.join(" .label , #")+ " .label").append(label);
 	}
 }
 
@@ -160,7 +161,7 @@ function updateSelectors(){
 			highlight("split", "position");
 			highlight("split", "shape", "S");
 			highlight("split", "color", "S");
-			highlightComp("split", "charge", "position");
+			highlightComp("split", "split", "position");
 			if (current.split.colorType == "secondary") {
 				highlightComp("color", "split", "color", "s");
 			}

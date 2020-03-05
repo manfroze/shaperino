@@ -52,15 +52,15 @@ $(document).on( "click", "#shaperino", function(e) {
 // DEBUG //
 
 $(document).on( "click", "#clickboost", function(e) {
-	clickBoost("shape", "main", 1);
-	clickBoost("color", "main", 1);
-	clickBoost("charge", "position", 1);
+	clickBoost("shape", "main", 10);
+	clickBoost("color", "main", 10);
+	clickBoost("charge", "position", 10);
 });
 
 $(document).on( "click", "#idleboost", function(e) {
-	idleBoost("shape", "main", 1);
-	idleBoost("color", "main", 1);
-	idleBoost("charge", "position", 1);
+	idleBoost("shape", "main", 10);
+	idleBoost("color", "main", 10);
+	idleBoost("charge", "position", 10);
 });
 
 $(document).on( "click", "#complete", function(e) {

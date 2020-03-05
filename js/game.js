@@ -96,8 +96,18 @@ const price = {
 	},
 	green: {
 		preview: [700, "blue"],
-		unlock: [1000, "blue"],
-		price: [350, "top"]
+		unlock: [1000, "yellow"],
+		price: [450, "top"]
+	},
+	orange: {
+		preview: [1000, "yellow"],
+		unlock: [1200, "red"],
+		price: [700, "right"]
+	},
+	violet: {
+		preview: [1400, "red"],
+		unlock: [2000, "blue"],
+		price: [5000, "circle"]
 	},
 	top: {
 		preview: [1000, "circle"],
@@ -105,19 +115,19 @@ const price = {
 		price: [1000, "rhombus"]
 	},
 	right: {
-		preview: [10, "top"],
-		unlock: [20, "top"],
-		price: [30, "top"]
+		preview: [500, "top"],
+		unlock: [600, "top"],
+		price: [2600, "blue"]
 	},
 	bottom: {
-		preview: [10, "right"],
-		unlock: [20, "right"],
-		price: [30, "right"]
+		preview: [1000, "right"],
+		unlock: [1500, "right"],
+		price: [3000, "red"]
 	},
 	left: {
-		preview: [10, "bottom"],
-		unlock: [20, "bottom"],
-		price: [30, "bottom"]
+		preview: [1500, "bottom"],
+		unlock: [2000, "bottom"],
+		price: [2000, "right"]
 	},
 
 }

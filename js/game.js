@@ -184,7 +184,9 @@ function priceUnlock(){
 }
 
 function itemBuy(item){
-	if (counter[price[item].price[1]] > price[item].price[0] - 1) { addItem(item) }
+	if (counter[price[item].price[1]] > price[item].price[0] - 1) { addItem(item)}
+
+	counter[price[item].price[1]] -= price[item].price[0];
 }
 
 function loop(){

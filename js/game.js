@@ -178,6 +178,8 @@ function priceUnlock(){
 	$.each(price, function(key, value) {
 		if (counter[value.preview[1]] > value.preview[0] - 1) { addPreview(key) }
 		if (counter[value.unlock[1]] > value.unlock[0] - 1) { addUnlock(key) }
+		if (counter[value.price[1]] > value.price[0] - 1) { buyableStatus(key, "on") }
+		if (counter[value.price[1]] < value.price[0] - 1) { buyableStatus(key, "off") }
 	});
 }
 

@@ -251,22 +251,22 @@ var classes = {
 
 function style(){
 	$.each(shape, function(key, value){
-	  $('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
-	  $('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	  $('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	  $('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
+		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 	});
 	$.each(positions, function(key, value){
-	  $('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
-	  $('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	  $('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	  $('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
+		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 	});
 	$.each(colors, function(key, value){
-	  $('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
-	  $('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	  $('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	  $('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
+		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 	});
 }
 
@@ -302,7 +302,7 @@ function addUnlock(item){
 		items[item].status = "unlocked"
 		$('#' + item + '').removeClass("preview").addClass("unlocked");
 		if (price[item]){
-		$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '">' + price[item].price[0] + '</div>');
+			$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '">' + price[item].price[0] + '</div>');
 		}
 	}
 	style();
@@ -316,6 +316,20 @@ function addItem(item){
 	}
 	style();
 }
+
+function buyableStatus(item, state){
+
+	if (state == "on") {
+		$('#' + item + '').removeClass("unbuyable").addClass("buyable");
+	} else if (state == "off") {
+		$('#' + item + '').removeClass("buyable").addClass("unbuyable");
+	}
+
+
+
+	style();
+}
+
 
 function addComplete(item){
 	addPreview(item);

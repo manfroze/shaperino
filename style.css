@@ -109,7 +109,7 @@ div {
 }
 
 .item.active:hover,
-.item.unlocked:hover {
+.item.unlocked.buyable:hover {
 	background-color: #ccc;
 }
 
@@ -126,9 +126,12 @@ div {
 	background-color: #eee;
 }
 
-.item.unlocked {
-	//opacity: 0.5;
+.item.unlocked.buyable {
 	cursor: pointer;
+}
+
+.item.unlocked.unbuyable {
+	opacity: 0.5;
 }
 
 .item.active {

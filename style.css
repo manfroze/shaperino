@@ -206,6 +206,21 @@ display: none;
 	cursor: pointer;
 }
 
+#debug .container {
+	margin-bottom: 20px;
+}
+
+.data {
+
+font-size: 10px;
+margin-right: 10px;
+
+}
+
+.data span {
+	font-weight: bold;
+}
+
 #top { order:  1; }
 #right { order:  2; }
 #bottom { order:  3; }

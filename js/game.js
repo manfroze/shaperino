@@ -19,7 +19,9 @@ var clickPower = {
 		charge: 0.5,
 		split: 0.1,
 	},
-	charge: 1,
+	charge: {
+		position: 1,
+	},
 	color: {
 		main: 1,
 		charge: 0.4,
@@ -33,7 +35,9 @@ var idlePower = {
 		charge: 0.05,
 		split: 0.01,
 	},
-	charge: 0.1,
+	charge: {
+		position: 0.1,
+	},
 	color: {
 		main: 0.1,
 		charge: 0.04,
@@ -120,12 +124,7 @@ function writeCounters(){
 	});
 }
 
-/*function updatePowerCounters(mode, kind){
-		currentPowerCounter[current[mode][kind]] += power[kind][mode];
-		$("#" + current[mode][kind] + " .power").html(currentPowerCounter[current[mode][kind]]);
-	}*/
-
-	function clickShaperino(){
+function clickShaperino(){
 
 // SHAPE //
 
@@ -140,7 +139,7 @@ if (current.split.status == "enabled") {
 // CHARGE //
 
 if (current.charge.status == "enabled") {
-	counter[current.charge.position] +=clickPower.charge;
+	counter[current.charge.position] +=clickPower.charge.position;
 }
 
 // COLOR //
@@ -157,7 +156,7 @@ if (current.split.status == "enabled") {
 
 if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
-		counter[value] +=clickPower.charge*clickMult;
+		counter[value] +=clickPower.charge.position*clickMult;
 	});
 }
 
@@ -165,7 +164,7 @@ if (current.charge.status == "enabled" && current.charge.type == "corner") {
 
 if (current.split.status == "enabled") {
 	$.each(comp.split[current.split.position], function(index, value){
-		counter[value] +=clickPower.charge*clickMult;
+		counter[value] +=clickPower.charge.position*clickMult;
 	});
 }
 
@@ -186,21 +185,9 @@ if (current.split.status == "enabled") {
 		counter[value] +=clickPower.color.split*clickMult;
 	});
 }
+
 writeCounters();
-}
 
-function priceUnlock(){
-	$.each(price, function(key, value) {
-		if (counter[value.preview[1]] > value.preview[0] - 1) { addPreview(key) }
-			if (counter[value.unlock[1]] > value.unlock[0] - 1) { addUnlock(key) }
-				if (counter[value.price[1]] > value.price[0] - 1) { buyableStatus(key, "on") }
-					if (counter[value.price[1]] < value.price[0] - 1) { buyableStatus(key, "off") }
-				});
-}
-
-function itemBuy(item){
-	if (counter[price[item].price[1]] > price[item].price[0] - 1) { addItem(item)}
-		counter[price[item].price[1]] -= price[item].price[0];
 }
 
 function idling(){
@@ -218,7 +205,7 @@ if (current.split.status == "enabled") {
 // CHARGE //
 
 if (current.charge.status == "enabled") {
-	counter[current.charge.position] +=idlePower.charge;
+	counter[current.charge.position] +=idlePower.charge.position;
 }
 
 // COLOR //
@@ -235,7 +222,7 @@ if (current.split.status == "enabled") {
 
 if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
-		counter[value] +=idlePower.charge*idleMult;
+		counter[value] +=idlePower.charge.position*idleMult;
 	});
 }
 
@@ -243,7 +230,7 @@ if (current.charge.status == "enabled" && current.charge.type == "corner") {
 
 if (current.split.status == "enabled") {
 	$.each(comp.split[current.split.position], function(index, value){
-		counter[value] +=idlePower.charge*idleMult;
+		counter[value] +=idlePower.charge.position*idleMult;
 	});
 }
 
@@ -267,6 +254,28 @@ if (current.split.status == "enabled") {
 
 }
 
+function priceUnlock(){
+	$.each(price, function(key, value) {
+		if (counter[value.preview[1]] > value.preview[0] - 1) {
+			addPreview(key);
+		}
+		if (counter[value.unlock[1]] > value.unlock[0] - 1) {
+			addUnlock(key);
+		}
+		if (counter[value.price[1]] > value.price[0] - 1) {
+			buyableStatus(key, "on");
+		}
+		if (counter[value.price[1]] < value.price[0] - 1) {
+			buyableStatus(key, "off");
+		}
+	});
+}
+
+function itemBuy(item){
+	if (counter[price[item].price[1]] > price[item].price[0] - 1) { addItem(item)}
+		counter[price[item].price[1]] -= price[item].price[0];
+}
+
 function idleBoost(kind, mode, amount){
 	idlePower[kind][mode] +=amount;
 }
@@ -280,6 +289,7 @@ function loop(){
 		priceUnlock();
 		idling();
 		writeCounters();
+		debugData();
 	}, 300);
 }
 

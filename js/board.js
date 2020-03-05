@@ -118,9 +118,7 @@ function updateSelectors(){
 		}
 	}
 
-
 	function setTypes(){
-
 		if (position.side.includes(current.charge.position)) {
 			setCurrent("charge", "type", "side");
 		} else if (position.corner.includes(current.charge.position)) {
@@ -134,10 +132,7 @@ function updateSelectors(){
 			} else if (color.composite.includes(current[value].color)) {
 				setCurrent(value, "colorType", "composite");
 			}
-
 		});
-
-
 	}
 
 	function rand(name) {
@@ -163,6 +158,12 @@ function updateSelectors(){
 		}	
 	}
 
+	function update(){
+
 	draw();
 	updateSelectors();
 	setTypes();
+
+	}
+
+	update();

@@ -27,9 +27,9 @@ var centerPoints = {
 	},
 	rhombus: {
 		charge: {
-			zero: (size.charge-rhombusSizeDiff.charge)/2 + 43,
+			zero: (size.charge-rhombusSizeDiff.charge)/2 + 38,
 			middle: middle,
-			full: canvasSize - ((size.charge-rhombusSizeDiff.charge)/2 + 43)
+			full: canvasSize - ((size.charge-rhombusSizeDiff.charge)/2 + 38)
 		}
 	}
 }
@@ -123,7 +123,6 @@ function rhombus(size, centerX, centerY, color) {
 // DRAW SHAPE FUNCTION //
 
 function drawShape(kind) {
-
 	if (current[kind].shape == "square") {
 		square(size[kind], center.normal[kind][0], center.normal[kind][1], colorCode[current[kind].color])
 	} else if (current[kind].shape == "circle") {
@@ -131,7 +130,6 @@ function drawShape(kind) {
 	} else if (current[kind].shape == "rhombus") {
 		rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], colorCode[current[kind].color])
 	}
-
 }
 
 // SET CHARGES POSITION //

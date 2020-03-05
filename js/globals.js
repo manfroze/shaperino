@@ -12,3 +12,11 @@ const color = {
 
 const colors = [...color.basic, ...color.composite]
 const positions = [...position.side, ...position.corner, , ...position.split]
+const chargePositions = [...position.side, ...position.corner]
+
+function rand(name) {
+	if (name instanceof Array == true) {
+		var randomNumber = Math.floor(Math.random() * name.length);
+		return name[randomNumber];
+	} 
+}

@@ -75,8 +75,7 @@ $(document).on( "click", "#unlock", function(e) {
 
 $(document).on( "click", "#random", function(e) {
 	randomShape();
-	draw();
-	updateSelectors();
+	update();
 });
 
 $(document).keydown(function(event) {

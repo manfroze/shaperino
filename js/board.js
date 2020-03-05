@@ -131,19 +131,12 @@ function setTypes(){
 	});
 }
 
-function rand(name) {
-	if (name instanceof Array == true) {
-		var randomNumber = Math.floor(Math.random() * name.length);
-		return name[randomNumber];
-	} 
-}
-
 function randomShape(){
 	setCurrent("main", "shape", rand(shape) );
 	setCurrent("main", "color", rand(colors) );
 	setCurrent("charge", "status", rand(["enabled", "disabled"]) );
 	if (current.charge.status == "enabled") {
-		setCurrent("charge", "position", rand(positions) );
+		setCurrent("charge", "position", rand(chargePositions) );
 		setCurrent("charge", "shape", rand(shape) );
 		setCurrent("charge", "color", rand(colors) );
 		setCurrent("split", "status", rand(["enabled", "disabled"]) );
@@ -158,6 +151,7 @@ function update(){
 	draw();
 	setTypes();
 	updateSelectors();
+	writeBlazon();
 }
 
 update();

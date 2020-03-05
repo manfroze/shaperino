@@ -326,6 +326,10 @@ function buyableStatus(item, state){
 	style();
 }
 
+function writeBlazon(){
+	$(".data#blazon span").html(makeBlazon());
+}
+
 function addComplete(item){
 	addPreview(item);
 	addUnlock(item);

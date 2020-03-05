@@ -13,7 +13,7 @@ var counter = {
 	blue: 0,
 }
 
-var power = {
+var clickPower = {
 	shape: {
 		main: 1,
 		charge: 0.5,
@@ -27,7 +27,22 @@ var power = {
 	},
 }
 
-var mult = 0.5;
+var idlePower = {
+	shape: {
+		main: 0.1,
+		charge: 0.05,
+		split: 0.01,
+	},
+	charge: 0.1,
+	color: {
+		main: 0.1,
+		charge: 0.04,
+		split: 0.02,
+	},
+}
+
+var clickMult = 0.5;
+var idleMult = 0.5;
 
 var currentPowerCounter = {
 	circle: 0,
@@ -110,39 +125,39 @@ function writeCounters(){
 		$("#" + current[mode][kind] + " .power").html(currentPowerCounter[current[mode][kind]]);
 	}*/
 
-function clickShaperino(){
+	function clickShaperino(){
 
 // SHAPE //
 
-counter[current.main.shape] +=power.shape.main;
+counter[current.main.shape] +=clickPower.shape.main;
 if (current.charge.status == "enabled") {
-	counter[current.charge.shape] +=power.shape.charge;
+	counter[current.charge.shape] +=clickPower.shape.charge;
 }
 if (current.split.status == "enabled") {
-	counter[current.split.shape] +=power.shape.split;
+	counter[current.split.shape] +=clickPower.shape.split;
 }
 
 // CHARGE //
 
 if (current.charge.status == "enabled") {
-	counter[current.charge.position] +=power.charge;
+	counter[current.charge.position] +=clickPower.charge;
 }
 
 // COLOR //
 
-counter[current.main.color] +=power.color.main;
+counter[current.main.color] +=clickPower.color.main;
 if (current.charge.status == "enabled") {
-	counter[current.charge.color] +=power.color.charge;
+	counter[current.charge.color] +=clickPower.color.charge;
 }
 if (current.split.status == "enabled") {
-	counter[current.split.color] +=power.color.split;
+	counter[current.split.color] +=clickPower.color.split;
 }
 
 // CORNER COMP //
 
 if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
-		counter[value] +=power.charge*mult;
+		counter[value] +=clickPower.charge*clickMult;
 	});
 }
 
@@ -150,25 +165,25 @@ if (current.charge.status == "enabled" && current.charge.type == "corner") {
 
 if (current.split.status == "enabled") {
 	$.each(comp.split[current.split.position], function(index, value){
-		counter[value] +=power.charge*mult;
+		counter[value] +=clickPower.charge*clickMult;
 	});
 }
 
 // COLOR COMP //
 
 $.each(comp.color[current.main.color], function(index, value){
-	counter[value] +=power.color.main*mult;
+	counter[value] +=clickPower.color.main*clickMult;
 });
 
 if (current.charge.status == "enabled") {
 	$.each(comp.color[current.charge.color], function(index, value){
-		counter[value] +=power.color.charge*mult;
+		counter[value] +=clickPower.color.charge*clickMult;
 	});
 }
 
 if (current.split.status == "enabled") {
 	$.each(comp.color[current.split.color], function(index, value){
-		counter[value] +=power.color.split*mult;
+		counter[value] +=clickPower.color.split*clickMult;
 	});
 }
 writeCounters();
@@ -177,21 +192,88 @@ writeCounters();
 function priceUnlock(){
 	$.each(price, function(key, value) {
 		if (counter[value.preview[1]] > value.preview[0] - 1) { addPreview(key) }
-		if (counter[value.unlock[1]] > value.unlock[0] - 1) { addUnlock(key) }
-		if (counter[value.price[1]] > value.price[0] - 1) { buyableStatus(key, "on") }
-		if (counter[value.price[1]] < value.price[0] - 1) { buyableStatus(key, "off") }
-	});
+			if (counter[value.unlock[1]] > value.unlock[0] - 1) { addUnlock(key) }
+				if (counter[value.price[1]] > value.price[0] - 1) { buyableStatus(key, "on") }
+					if (counter[value.price[1]] < value.price[0] - 1) { buyableStatus(key, "off") }
+				});
 }
 
 function itemBuy(item){
 	if (counter[price[item].price[1]] > price[item].price[0] - 1) { addItem(item)}
+		counter[price[item].price[1]] -= price[item].price[0];
+}
 
-	counter[price[item].price[1]] -= price[item].price[0];
+function idling(){
+
+// SHAPE //
+
+counter[current.main.shape] +=idlePower.shape.main;
+if (current.charge.status == "enabled") {
+	counter[current.charge.shape] +=idlePower.shape.charge;
+}
+if (current.split.status == "enabled") {
+	counter[current.split.shape] +=idlePower.shape.split;
+}
+
+// CHARGE //
+
+if (current.charge.status == "enabled") {
+	counter[current.charge.position] +=idlePower.charge;
+}
+
+// COLOR //
+
+counter[current.main.color] +=idlePower.color.main;
+if (current.charge.status == "enabled") {
+	counter[current.charge.color] +=idlePower.color.charge;
+}
+if (current.split.status == "enabled") {
+	counter[current.split.color] +=idlePower.color.split;
+}
+
+// CORNER COMP //
+
+if (current.charge.status == "enabled" && current.charge.type == "corner") {
+	$.each(comp.charge[current.charge.position], function(index, value){
+		counter[value] +=idlePower.charge*idleMult;
+	});
+}
+
+// SPLIT COMP //
+
+if (current.split.status == "enabled") {
+	$.each(comp.split[current.split.position], function(index, value){
+		counter[value] +=idlePower.charge*idleMult;
+	});
+}
+
+// COLOR COMP //
+
+$.each(comp.color[current.main.color], function(index, value){
+	counter[value] +=idlePower.color.main*idleMult;
+});
+
+if (current.charge.status == "enabled") {
+	$.each(comp.color[current.charge.color], function(index, value){
+		counter[value] +=idlePower.color.charge*idleMult;
+	});
+}
+
+if (current.split.status == "enabled") {
+	$.each(comp.color[current.split.color], function(index, value){
+		counter[value] +=idlePower.color.split*idleMult;
+	});
+}
+
+
+
+
 }
 
 function loop(){
 	setInterval(function(){ 
 		priceUnlock();
+		idling();
 		writeCounters();
 	}, 300);
 } 

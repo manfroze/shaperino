@@ -1,5 +1,4 @@
 var counter = {
-
 	circle: 0,
 	square: 0,
 	rhombus: 0,
@@ -12,7 +11,6 @@ var counter = {
 	red: 0,
 	yellow: 0,
 	blue: 0,
-
 }
 
 var power = {
@@ -141,7 +139,21 @@ var itemPrice = {
 	},
 }
 
-function updateCounters(){	
+var price = {
+	square: {
+		preview: [5, "circle"],
+		unlock: [10, "circle"],
+		price: [12, "circle"]
+	},
+	rhombus: {
+		preview: [20, "square"],
+		unlock: [35, "square"],
+		price: [100, "square"]
+	},
+
+}
+
+function writeCounters(){	
 	$.each(counter, function(index){
 		$("#" + index + " .counter").html(Math.floor(counter[index]));
 	});
@@ -152,7 +164,7 @@ function updateCounters(){
 		$("#" + current[mode][kind] + " .power").html(currentPowerCounter[current[mode][kind]]);
 	}*/
 
-	function clickShaperino(){
+function clickShaperino(){
 
 // SHAPE //
 
@@ -213,13 +225,24 @@ if (current.split.status == "enabled") {
 		counter[value] +=power.color.split*mult;
 	});
 }
-updateCounters();
+writeCounters();
 }
 
-function priceUnlock(){
+/*function priceUnlock(){
 	$.each(itemPrice, function(key, value) {
 		if (counter[value.currency] > value.amount - 1) { addItem(key) }
 	});
+}*/
+
+function priceUnlock(){
+	$.each(price, function(key, value) {
+		if (counter[value.preview[1]] > value.preview[0] - 1) { addPreview(key) }
+		if (counter[value.unlock[1]] > value.unlock[0] - 1) { addUnlock(key) }
+	});
+}
+
+function itemBuy(item){
+	if (counter[price[item].price[1]] > price[item].price[0] - 1) { addItem(item) }
 }
 
 function loop(){

@@ -90,7 +90,6 @@ div {
 	padding: 5px;
 	margin-bottom: 10px;
 	margin-right: 10px;
-	cursor: pointer;
 	text-align: center;
 	background-repeat: no-repeat;
 	background-size: 80%;
@@ -109,7 +108,8 @@ div {
 	width: 60px;
 }
 
-.item:hover {
+.item.active:hover,
+.item.unlocked:hover {
 	background-color: #ccc;
 }
 
@@ -120,6 +120,30 @@ div {
 
 .item.selected {
 	background-color: #fff;
+}
+
+.item.selected:hover {
+	background-color: #eee;
+}
+
+.item.unlocked {
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.item.active {
+	cursor: pointer;
+}
+
+.item.preview .counter,
+.item.unlocked .counter {
+
+display: none;
+
+}
+
+.label.active {
+	display: inline-block;
 }
 
 .card .label {
@@ -193,6 +217,10 @@ div {
 .item#circle { background-image: url('svg/circle.svg'); }
 .item#square { background-image: url('svg/square.svg'); }
 .item#rhombus {	background-image: url('svg/rhombus.svg'); }
+
+.item.preview#circle { background-image: url('svg/circle-preview.svg'); }
+.item.preview#square { background-image: url('svg/square-preview.svg'); }
+.item.preview#rhombus {	background-image: url('svg/rhombus-preview.svg'); }
 
 .item.charge#top { background-image: url('svg/top.svg'); }
 .item.charge#right { background-image: url('svg/right.svg'); }

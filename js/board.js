@@ -1,32 +1,8 @@
-var color = {
-	black: "#222222",
-	white: "#FFFFFF",
-	red: "#FF4329",
-	yellow: "#FFD600",
-	blue: "#0085FF",
-	orange: "#FF9A3D",
-	green: "#47E24D",
-	violet: "#883BEB",
-	grey: "#9F9F9F",
-	darkred: "#823525",
-	darkyellow: "#CCB152",
-	darkblue: "#1A3782",
-	lightred: "#FFC2C2",
-	lightyellow: "#FCFF81",
-	lightblue: "#7CC0FF",
-	darkorange: "#825933",
-	darkgreen: "#239727",
-	darkviolet: "#400072",
-	lightorange: "#FFBF5F",
-	lightgreen: "#C8FF54",
-	lightviolet: "#E64EFF",
-}
-
 var current = {
 	main: {
 		shape: "circle",
 		color: "black",
-		colorType: "primary",
+		colorType: "basic",
 	}, 
 	charge: {
 		status: "disabled",
@@ -34,18 +10,29 @@ var current = {
 		position: "topleft",
 		shape: "square",
 		color: "black",
-		colorType: "primary",
+		colorType: "basic",
 	},
 	split: {
 		status: "disabled",
 		position: "topbottom",
 		shape: "circle",
 		color: "black",
-		colorType: "primary",
+		colorType: "basic",
 	} 
 }
 
 shape = ["circle", "square", "rhombus"]
+mode = ["main", "charge", "split"]
+
+position = {
+	side: ["top", "left", "bottom", "right"],
+	corner: ["topright", "topleft", "bottomright", "bottomleft"]
+}
+
+color = {
+	basic: ["black", "white", "red", "yellow", "blue"],
+	composite: ["orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]
+}
 
 var comp = {
 	charge: {
@@ -81,18 +68,15 @@ var comp = {
 }
 
 var split = {
-
 	"topbottom": "top",
 	"leftright": "left",
 	"topleftbottomright": "topleft",
 	"toprightbottomleft": "topright"
-
 }
 
 function setCurrent(mode, kind, selected){
 	current[mode][kind] = selected;
 }
-
 
 function highlight(mode, kind, label){
 	$("#" + current[mode][kind]).addClass('selected');
@@ -118,7 +102,7 @@ function updateSelectors(){
 	//updatePowerCounters("main", "shape");
 	highlight("main", "shape", "M");
 	highlight("main", "color", "M");
-	if (current.main.colorType == "secondary") {
+	if (current.main.colorType == "composite") {
 		highlightComp("color", "main", "color", "m");
 	}
 	if (current.charge.status == "enabled" && current.split.status == "disabled") {
@@ -131,7 +115,7 @@ function updateSelectors(){
 			//updatePowerCounters("shape", "charge");
 			highlight("charge", "shape", "C");
 			highlight("charge", "color", "C");
-			if (current.charge.colorType == "secondary") {
+			if (current.charge.colorType == "composite") {
 				highlightComp("color", "charge", "color", "c");
 			}
 		}
@@ -141,12 +125,33 @@ function updateSelectors(){
 			highlight("split", "shape", "S");
 			highlight("split", "color", "S");
 			highlightComp("split", "split", "position");
-			if (current.split.colorType == "secondary") {
+			if (current.split.colorType == "composite") {
 				highlightComp("color", "split", "color", "s");
 			}
 		}
 	}
 
+
+	function setTypes(){
+
+		if (position.side.includes(current.charge.position)) {
+			setCurrent("charge", "type", "side");
+		} else if (position.corner.includes(current.charge.position)) {
+			setCurrent("charge", "type", "corner");
+		}
+
+		$.each(mode, function(key, value){
+
+			if (color.basic.includes(current[value].color)) {
+				setCurrent(value, "colorType", "basic");
+			} else if (color.composite.includes(current[value].color)) {
+				setCurrent(value, "colorType", "composite");
+			}
+
+		});
+
+
+	}
 
 	function rand(name) {
 		if (name instanceof Array == true) {
@@ -156,47 +161,28 @@ function updateSelectors(){
 	}
 
 	function randomShape(){
-
 		setCurrent("main", "shape", rand(shape) );
-		setCurrent("main", "colorType", rand(["primary", "secondary"]) );
-		if (current.main.colorType == "primary") {
-		setCurrent("main", "color", rand(["black", "white", "red", "yellow", "blue"]) );
-        }
-        if (current.main.colorType == "secondary") {
-		setCurrent("main", "color", rand(["orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
-        }
+
+		setCurrent("main", "color", rand(["black", "white", "red", "yellow", "blue", "orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
 
 		setCurrent("charge", "status", rand(["enabled", "disabled"]) );
-		
 		if (current.charge.status == "enabled") {
-
-		setCurrent("charge", "position", rand(["top", "right", "left", "bottom", "topright", "topleft", "bottomright", "bottomleft"]) );
-		setCurrent("charge", "shape", rand(shape) );
-		setCurrent("charge", "colorType", rand(["primary", "secondary"]) );
-		if (current.main.colorType == "primary") {
-		setCurrent("charge", "color", rand(["black", "white", "red", "yellow", "blue"]) );
-        }
-        if (current.main.colorType == "secondary") {
-		setCurrent("charge", "color", rand(["orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
-        }
-
-		setCurrent("split", "status", rand(["enabled", "disabled"]) );
-
+			setCurrent("charge", "position", rand(["top", "right", "left", "bottom", "topright", "topleft", "bottomright", "bottomleft"]) );
+			setCurrent("charge", "shape", rand(shape) );
+			setCurrent("charge", "color", rand(["black", "white", "red", "yellow", "blue", "orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
+			setCurrent("split", "status", rand(["enabled", "disabled"]) );
 		} else { setCurrent("split", "status", "disabled" ); }
 
-		if (current.split.status == "enabled") {
 
-		setCurrent("split", "shape", rand(shape) );
-		setCurrent("split", "colorType", rand(["primary", "secondary"]) );
-		if (current.main.colorType == "primary") {
-		setCurrent("split", "color", rand(["black", "white", "red", "yellow", "blue"]) );
-        }
-        if (current.main.colorType == "secondary") {
-		setCurrent("split", "color", rand(["orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
-        }
+
+		if (current.split.status == "enabled") {
+			setCurrent("split", "shape", rand(shape) );
+
+			setCurrent("split", "color", rand(["black", "white", "red", "yellow", "blue", "orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
 		}	
 
 	}
 
 	draw();
 	updateSelectors();
+	setTypes();

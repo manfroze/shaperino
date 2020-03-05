@@ -64,6 +64,30 @@ var mirror = {
 	"middle": "middle"
 }
 
+var colorCode = {
+	black: "#222222",
+	white: "#FFFFFF",
+	red: "#FF4329",
+	yellow: "#FFD600",
+	blue: "#0085FF",
+	orange: "#FF9A3D",
+	green: "#47E24D",
+	violet: "#883BEB",
+	grey: "#9F9F9F",
+	darkred: "#823525",
+	darkyellow: "#CCB152",
+	darkblue: "#1A3782",
+	lightred: "#FFC2C2",
+	lightyellow: "#FCFF81",
+	lightblue: "#7CC0FF",
+	darkorange: "#825933",
+	darkgreen: "#239727",
+	darkviolet: "#400072",
+	lightorange: "#FFBF5F",
+	lightgreen: "#C8FF54",
+	lightviolet: "#E64EFF",
+}
+
 // DRAW GEOMETRY //
 
 function draw() {
@@ -101,11 +125,11 @@ function rhombus(size, centerX, centerY, color) {
 function drawShape(kind) {
 
 	if (current[kind].shape == "square") {
-		square(size[kind], center.normal[kind][0], center.normal[kind][1], color[current[kind].color])
+		square(size[kind], center.normal[kind][0], center.normal[kind][1], colorCode[current[kind].color])
 	} else if (current[kind].shape == "circle") {
-		circle(size[kind], center.normal[kind][0], center.normal[kind][1], color[current[kind].color])
+		circle(size[kind], center.normal[kind][0], center.normal[kind][1], colorCode[current[kind].color])
 	} else if (current[kind].shape == "rhombus") {
-		rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], color[current[kind].color])
+		rhombus(size[kind]-rhombusSizeDiff[kind], center.rhombus[kind][0], center.rhombus[kind][1], colorCode[current[kind].color])
 	}
 
 }

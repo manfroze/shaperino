@@ -15,25 +15,20 @@ function modifier(e, kind, target){
 	}
 }
 
-$(document).on( "click", ".item.shape", function(e) {
+$(document).on( "click", ".item.shape.active", function(e) {
 	modifier(e, "shape");
 });
-$(document).on( "click", ".item.color", function(e) {
+$(document).on( "click", ".item.color.active", function(e) {
 	modifier(e, "color");
 });
-$(document).on( "click", ".item.primary", function(e) {
-	modifier(e, "colorType", "primary");
-});
-$(document).on( "click", ".item.secondary", function(e) {
-	modifier(e, "colorType", "secondary");
-});
-$(document).on( "click", ".item.charge", function(e) {
+
+$(document).on( "click", ".item.charge.active", function(e) {
 	var target = $(e.currentTarget).attr("id");
 	setCurrent("charge", "position", target);
 	setCurrent("charge", "status", "enabled");
 	setCurrent("split", "status", "disabled");
 });
-$(document).on( "click", ".item.split", function(e) {
+$(document).on( "click", ".item.split.active", function(e) {
 	var target = $(e.currentTarget).attr("id");
 	setCurrent("split", "position", target);
 	setCurrent("charge", "position", split[target]);
@@ -41,19 +36,16 @@ $(document).on( "click", ".item.split", function(e) {
 	setCurrent("charge", "status", "enabled");
 });
 
-$(document).on( "click", ".item.side", function(e) {
-	setCurrent("charge", "type", "side");
-});
-
-$(document).on( "click", ".item.corner", function(e) {
-	setCurrent("charge", "type", "corner");
-});
-
-$(document).on( "click", ".item", function(e) {
+$(document).on( "click", ".item.active", function(e) {
 	draw();
+	setTypes();
 	updateSelectors();
 });
 
+$(document).on("click", ".item.unlocked", function(e) {
+	var target = $(e.currentTarget).attr("id");
+	itemBuy(target);
+});
 
 $(document).on( "click", "#shaperino", function(e) {
 	clickShaperino();
@@ -65,4 +57,5 @@ $(document).keydown(function(event) {
 		randomShape();
 		draw();
 		updateSelectors();
+
 } });

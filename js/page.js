@@ -266,7 +266,7 @@ function style(){
 		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
 		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 	});
 }
 

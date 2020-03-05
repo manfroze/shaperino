@@ -65,45 +65,44 @@ var currentPowerCounter = {
 
 const price = {
 	square: {
-		preview: [10, "circle"],
-		unlock: [20, "circle"],
-		price: [30, "circle"]
+		preview: [25, "circle"],
+		unlock: [50, "circle"],
+		price: [100, "circle"]
 	},
 	rhombus: {
-		preview: [10, "square"],
-		unlock: [20, "square"],
-		price: [30, "square"]
+		preview: [90, "square"],
+		unlock: [150, "square"],
+		price: [200, "white"]
 	},
-
 	white: {
-		preview: [10, "black"],
-		unlock: [20, "black"],
-		price: [30, "black"]
+		preview: [50, "black"],
+		unlock: [90, "black"],
+		price: [125, "black"]
 	},
 	red: {
-		preview: [10, "white"],
-		unlock: [20, "white"],
-		price: [30, "white"]
+		preview: [100, "white"],
+		unlock: [150, "white"],
+		price: [350, "square"]
 	},
 	yellow: {
-		preview: [10, "red"],
-		unlock: [20, "red"],
-		price: [30, "red"]
+		preview: [150, "red"],
+		unlock: [200, "red"],
+		price: [450, "circle"]
 	},
 	blue: {
-		preview: [10, "yellow"],
-		unlock: [20, "yellow"],
-		price: [30, "yellow"]
+		preview: [180, "yellow"],
+		unlock: [250, "yellow"],
+		price: [500, "rhombus"]
 	},
 	green: {
-		preview: [30, "top"],
-		unlock: [100, "circle"],
-		price: [50, "blue"]
+		preview: [700, "blue"],
+		unlock: [1000, "blue"],
+		price: [350, "top"]
 	},
 	top: {
-		preview: [10, "blue"],
-		unlock: [20, "blue"],
-		price: [30, "blue"]
+		preview: [1000, "circle"],
+		unlock: [1000, "square"],
+		price: [1000, "rhombus"]
 	},
 	right: {
 		preview: [10, "top"],

@@ -183,12 +183,12 @@ display: none;
 
 .pricetag {
 	display: inline-block;
-	padding-right: 15px;
+	padding-right: 18px;
 	margin-top: 75px;
 	font-size: 12px;
 	font-weight: bold;
 	background-repeat: no-repeat;
-	background-size: 40%;
+	background-size: 15px;
 	background-position: 90%;
 }
 

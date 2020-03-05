@@ -51,6 +51,15 @@ $(document).on( "click", "#shaperino", function(e) {
 	clickShaperino();
 });
 
+$(document).on( "click", "#clickboost", function(e) {
+	clickBoost("shape", "main", 1);
+	clickBoost("color", "main", 1);
+});
+
+$(document).on( "click", "#idleboost", function(e) {
+	idleBoost("shape", "main", 1);
+	idleBoost("color", "main", 1);
+});
 
 $(document).keydown(function(event) {
 	if (event.which === 82) {

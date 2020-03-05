@@ -265,9 +265,14 @@ if (current.split.status == "enabled") {
 	});
 }
 
+}
 
+function idleBoost(kind, mode, amount){
+	idlePower[kind][mode] +=amount;
+}
 
-
+function clickBoost(kind, mode, amount){
+	clickPower[kind][mode] +=amount;
 }
 
 function loop(){
@@ -276,6 +281,6 @@ function loop(){
 		idling();
 		writeCounters();
 	}, 300);
-} 
+}
 
 loop();

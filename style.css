@@ -196,6 +196,16 @@ display: none;
 	//display: inline-block;
 }
 
+.button {
+	background-color: #FFFFFF;
+	border-radius: 3px;
+	padding: 10px;
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
 #top { order:  1; }
 #right { order:  2; }
 #bottom { order:  3; }

@@ -21,19 +21,6 @@ var current = {
 	} 
 }
 
-shape = ["circle", "square", "rhombus"]
-mode = ["main", "charge", "split"]
-
-position = {
-	side: ["top", "left", "bottom", "right"],
-	corner: ["topright", "topleft", "bottomright", "bottomleft"]
-}
-
-color = {
-	basic: ["black", "white", "red", "yellow", "blue"],
-	composite: ["orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]
-}
-
 var comp = {
 	charge: {
 		topleft: ["top", "left"],
@@ -162,25 +149,18 @@ function updateSelectors(){
 
 	function randomShape(){
 		setCurrent("main", "shape", rand(shape) );
-
-		setCurrent("main", "color", rand(["black", "white", "red", "yellow", "blue", "orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
-
+		setCurrent("main", "color", rand(colors) );
 		setCurrent("charge", "status", rand(["enabled", "disabled"]) );
 		if (current.charge.status == "enabled") {
-			setCurrent("charge", "position", rand(["top", "right", "left", "bottom", "topright", "topleft", "bottomright", "bottomleft"]) );
+			setCurrent("charge", "position", rand(positions) );
 			setCurrent("charge", "shape", rand(shape) );
-			setCurrent("charge", "color", rand(["black", "white", "red", "yellow", "blue", "orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
+			setCurrent("charge", "color", rand(colors) );
 			setCurrent("split", "status", rand(["enabled", "disabled"]) );
 		} else { setCurrent("split", "status", "disabled" ); }
-
-
-
 		if (current.split.status == "enabled") {
 			setCurrent("split", "shape", rand(shape) );
-
-			setCurrent("split", "color", rand(["black", "white", "red", "yellow", "blue", "orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]) );
+			setCurrent("split", "color", rand(colors) );
 		}	
-
 	}
 
 	draw();

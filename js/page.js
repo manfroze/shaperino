@@ -249,30 +249,30 @@ var classes = {
 	"secondarydark": ["color", "composite", "secondarydark"],
 }
 
+function style(){
+	$.each(shape, function(key, value){
+	  $('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
+	  $('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	  $('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	  $('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	});
+	$.each(positions, function(key, value){
+	  $('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
+	  $('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	  $('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	  $('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	});
+	$.each(colors, function(key, value){
+	  $('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
+	  $('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	  $('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	  $('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+	});
+}
+
 var labelDiv = '<div class="label"></div>';
 var powerDiv = '<div class="power"></div>';
 var counterDiv = '<div class="counter">0</div>';
-
-/*function addItem(item){
-	if (sectionUnlock[items[item].sec] == "locked") {
-		sectionUnlock[items[item].sec] = "unlocked"
-		$("#" + items[item].sec + "").append('<div class="title">' + items[item].sec.toUpperCase() + '</div>' );
-	}
-	if (subSectionUnlock[items[item].subsec] == "locked") {
-		subSectionUnlock[items[item].subsec] = "unlocked"
-		if (items[item].card == "small") {
-			subtitle = '<div class="title sub">' + items[item].subsec.toUpperCase() + '</div>'
-		} else { subtitle = ""}
-		$("#" + items[item].sec + "").append('<div id="' + items[item].subsec + '" class="subsection">' + subtitle + '<div class="container"></div></div>')
-	}
-	if (items[item].locked == "locked") {
-		items[item].locked = "unlocked"
-		if (items[item].card == "card") {
-			dash = labelDiv + powerDiv + counterDiv;
-		} else { dash = ""};
-		$('#' + items[item].subsec + ' > .container').append('<div id="' + item + '" class="item ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' );
-	}
-}*/
 
 function addPreview(item){
 	if (sectionUnlock[items[item].sec] == "locked") {
@@ -294,18 +294,18 @@ function addPreview(item){
 		} else { dash = ""};
 		$('#' + items[item].subsec + ' > .container').append('<div id="' + item + '" class="item preview ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' );
 	}
+	style();
 }
 
 function addUnlock(item){
 	if (items[item].status == "preview") {
 		items[item].status = "unlocked"
 		$('#' + item + '').removeClass("preview").addClass("unlocked");
-
 		if (price[item]){
-		$('#' + item + '').append('<div class="pricetag">' + price[item].price + '</div>');
+		$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '">' + price[item].price[0] + '</div>');
 		}
-
 	}
+	style();
 }
 
 function addItem(item){
@@ -314,6 +314,7 @@ function addItem(item){
 		$('#' + item + '').removeClass("unlocked").addClass("active");
 		$('#' + item + ' .pricetag').remove();
 	}
+	style();
 }
 
 function addComplete(item){

@@ -44,111 +44,57 @@ var currentPowerCounter = {
 	blue: 0,
 }
 
-var itemPrice = {
+const price = {
 	square: {
-		amount: 10,
-		currency: "circle"
+		preview: [10, "circle"],
+		unlock: [20, "circle"],
+		price: [30, "circle"]
 	},
 	rhombus: {
-		amount: 15,
-		currency: "square"
+		preview: [10, "square"],
+		unlock: [20, "square"],
+		price: [30, "square"]
 	},
+
 	white: {
-		amount: 20,
-		currency: "black"
+		preview: [10, "black"],
+		unlock: [20, "black"],
+		price: [30, "black"]
 	},
 	red: {
-		amount: 25,
-		currency: "white"
+		preview: [10, "white"],
+		unlock: [20, "white"],
+		price: [30, "white"]
+	},
+	yellow: {
+		preview: [10, "red"],
+		unlock: [20, "red"],
+		price: [30, "red"]
 	},
 	blue: {
-		amount: 30,
-		currency: "red"
-	},
-	yellow: {
-		amount: 40,
-		currency: "square"
-	},
-	green: {
-		amount: 80,
-		currency: "top"
-	},
-	yellow: {
-		amount: 100,
-		currency: "rhombus"
-	},
-	orange: {
-		amount: 110,
-		currency: "blue"
-	},
-	violet: {
-		amount: 90,
-		currency: "circle"
-	},
-	grey: {
-		amount: 110,
-		currency: "yellow"
+		preview: [10, "yellow"],
+		unlock: [20, "yellow"],
+		price: [30, "yellow"]
 	},
 	top: {
-		amount: 25,
-		currency: "red"
+		preview: [10, "blue"],
+		unlock: [20, "blue"],
+		price: [30, "blue"]
 	},
 	right: {
-		amount: 40,
-		currency: "top"
+		preview: [10, "top"],
+		unlock: [20, "top"],
+		price: [30, "top"]
 	},
 	bottom: {
-		amount: 45,
-		currency: "right"
+		preview: [10, "right"],
+		unlock: [20, "right"],
+		price: [30, "right"]
 	},
 	left: {
-		amount: 50,
-		currency: "bottom"
-	},
-	topleft: {
-		amount: 60,
-		currency: "left"
-	},
-	topright: {
-		amount: 50,
-		currency: "yellow"
-	},
-	bottomleft: {
-		amount: 60,
-		currency: "left"
-	},
-	bottomright: {
-		amount: 70,
-		currency: "bottom"
-	},
-	topbottom: {
-		amount: 120,
-		currency: "rhombus"
-	},
-	leftright: {	
-		amount: 130,
-		currency: "right"
-	},
-	topleftbottomright: {
-		amount: 140,
-		currency: "square"
-	},
-	toprightbottomleft: {
-		amount: 150,
-		currency: "red"
-	},
-}
-
-var price = {
-	square: {
-		preview: [5, "circle"],
-		unlock: [10, "circle"],
-		price: [12, "circle"]
-	},
-	rhombus: {
-		preview: [20, "square"],
-		unlock: [35, "square"],
-		price: [100, "square"]
+		preview: [10, "bottom"],
+		unlock: [20, "bottom"],
+		price: [30, "bottom"]
 	},
 
 }
@@ -194,7 +140,7 @@ if (current.split.status == "enabled") {
 
 // CORNER COMP //
 
-if (current.charge.type == "corner") {
+if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
 		counter[value] +=power.charge*mult;
 	});
@@ -228,12 +174,6 @@ if (current.split.status == "enabled") {
 writeCounters();
 }
 
-/*function priceUnlock(){
-	$.each(itemPrice, function(key, value) {
-		if (counter[value.currency] > value.amount - 1) { addItem(key) }
-	});
-}*/
-
 function priceUnlock(){
 	$.each(price, function(key, value) {
 		if (counter[value.preview[1]] > value.preview[0] - 1) { addPreview(key) }
@@ -248,9 +188,8 @@ function itemBuy(item){
 function loop(){
 	setInterval(function(){ 
 		priceUnlock();
+		writeCounters();
 	}, 300);
 } 
-
-
 
 loop();

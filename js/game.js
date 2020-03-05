@@ -95,6 +95,11 @@ const price = {
 		unlock: [20, "yellow"],
 		price: [30, "yellow"]
 	},
+	green: {
+		preview: [30, "top"],
+		unlock: [100, "circle"],
+		price: [50, "blue"]
+	},
 	top: {
 		preview: [10, "blue"],
 		unlock: [20, "blue"],

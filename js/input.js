@@ -63,8 +63,14 @@ $(document).on( "click", "#idleboost", function(e) {
 	idleBoost("charge", "position", 1);
 });
 
-$(document).on( "click", "#addall", function(e) {
+$(document).on( "click", "#complete", function(e) {
 	addAll();
+});
+$(document).on( "click", "#preview", function(e) {
+	addAllPreviews();
+});
+$(document).on( "click", "#unlock", function(e) {
+	addAllUnlock();
 });
 
 $(document).on( "click", "#random", function(e) {

@@ -199,15 +199,19 @@ display: none;
 .button {
 	background-color: #FFFFFF;
 	border-radius: 3px;
-	padding: 10px;
+	padding: 7px;
 	display: inline-block;
 	font-weight: bold;
-	margin-right: 20px;
+	margin-right: 10px;
 	cursor: pointer;
 }
 
+.button:hover {
+	background-color: #ccc;
+}
+
 #debug .container {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .data {

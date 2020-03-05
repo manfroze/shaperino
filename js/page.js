@@ -254,19 +254,19 @@ function style(){
 		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
 		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 	$.each(positions, function(key, value){
 		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
 		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 	$.each(colors, function(key, value){
 		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
 		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 }
 
@@ -291,7 +291,7 @@ function addPreview(item){
 		items[item].status = "preview"
 		if (items[item].card == "card") {
 			dash = labelDiv + powerDiv + counterDiv;
-		} else { dash = ""};
+		} else { dash = labelDiv};
 		$('#' + items[item].subsec + ' > .container').append('<div id="' + item + '" class="item preview ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' );
 	}
 	style();
@@ -343,6 +343,19 @@ function addAll(){
 	});
 }
 
+function addAllPreviews(){
+	$.each(items, function(item) {
+		addPreview(item);
+	});
+}
+
+function addAllUnlock(){
+	$.each(items, function(item) {
+		addPreview(item);
+		addUnlock(item);
+	});
+}
+
 function debugData(){
 	$(".data#main-shape span").html(current.main.shape);
 	$(".data#main-color span").html(current.main.color);
@@ -363,6 +376,4 @@ function debugData(){
 	$(".data#click-power-charge span").html(clickPower.charge.position);
 	$(".data#click-mult span").html(clickMult);
 	$(".data#idle-mult span").html(idleMult);
-
-
 }

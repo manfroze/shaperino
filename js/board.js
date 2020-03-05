@@ -86,7 +86,6 @@ function clearSelectors(){
 
 function updateSelectors(){
 	clearSelectors();
-	//updatePowerCounters("main", "shape");
 	highlight("main", "shape", "M");
 	highlight("main", "color", "M");
 	if (current.main.colorType == "composite") {
@@ -99,71 +98,66 @@ function updateSelectors(){
 		}
 	}
 	if (current.charge.status == "enabled") {
-			//updatePowerCounters("shape", "charge");
-			highlight("charge", "shape", "C");
-			highlight("charge", "color", "C");
-			if (current.charge.colorType == "composite") {
-				highlightComp("color", "charge", "color", "c");
-			}
-		}
-		if (current.split.status == "enabled") {
-			//updatePowerCounters("shape", "split");
-			highlight("split", "position");
-			highlight("split", "shape", "S");
-			highlight("split", "color", "S");
-			highlightComp("split", "split", "position");
-			if (current.split.colorType == "composite") {
-				highlightComp("color", "split", "color", "s");
-			}
+		highlight("charge", "shape", "C");
+		highlight("charge", "color", "C");
+		if (current.charge.colorType == "composite") {
+			highlightComp("color", "charge", "color", "c");
 		}
 	}
-
-	function setTypes(){
-		if (position.side.includes(current.charge.position)) {
-			setCurrent("charge", "type", "side");
-		} else if (position.corner.includes(current.charge.position)) {
-			setCurrent("charge", "type", "corner");
+	if (current.split.status == "enabled") {
+		highlight("split", "position");
+		highlight("split", "shape", "S");
+		highlight("split", "color", "S");
+		highlightComp("split", "split", "position");
+		if (current.split.colorType == "composite") {
+			highlightComp("color", "split", "color", "s");
 		}
+	}
+}
 
-		$.each(mode, function(key, value){
-
-			if (color.basic.includes(current[value].color)) {
-				setCurrent(value, "colorType", "basic");
-			} else if (color.composite.includes(current[value].color)) {
-				setCurrent(value, "colorType", "composite");
-			}
-		});
+function setTypes(){
+	if (position.side.includes(current.charge.position)) {
+		setCurrent("charge", "type", "side");
+	} else if (position.corner.includes(current.charge.position)) {
+		setCurrent("charge", "type", "corner");
 	}
 
-	function rand(name) {
-		if (name instanceof Array == true) {
-			var randomNumber = Math.floor(Math.random() * name.length);
-			return name[randomNumber];
-		} 
-	}
+	$.each(mode, function(key, value){
+		if (color.basic.includes(current[value].color)) {
+			setCurrent(value, "colorType", "basic");
+		} else if (color.composite.includes(current[value].color)) {
+			setCurrent(value, "colorType", "composite");
+		}
+	});
+}
 
-	function randomShape(){
-		setCurrent("main", "shape", rand(shape) );
-		setCurrent("main", "color", rand(colors) );
-		setCurrent("charge", "status", rand(["enabled", "disabled"]) );
-		if (current.charge.status == "enabled") {
-			setCurrent("charge", "position", rand(positions) );
-			setCurrent("charge", "shape", rand(shape) );
-			setCurrent("charge", "color", rand(colors) );
-			setCurrent("split", "status", rand(["enabled", "disabled"]) );
-		} else { setCurrent("split", "status", "disabled" ); }
-		if (current.split.status == "enabled") {
-			setCurrent("split", "shape", rand(shape) );
-			setCurrent("split", "color", rand(colors) );
-		}	
-	}
+function rand(name) {
+	if (name instanceof Array == true) {
+		var randomNumber = Math.floor(Math.random() * name.length);
+		return name[randomNumber];
+	} 
+}
 
-	function update(){
+function randomShape(){
+	setCurrent("main", "shape", rand(shape) );
+	setCurrent("main", "color", rand(colors) );
+	setCurrent("charge", "status", rand(["enabled", "disabled"]) );
+	if (current.charge.status == "enabled") {
+		setCurrent("charge", "position", rand(positions) );
+		setCurrent("charge", "shape", rand(shape) );
+		setCurrent("charge", "color", rand(colors) );
+		setCurrent("split", "status", rand(["enabled", "disabled"]) );
+	} else { setCurrent("split", "status", "disabled" ); }
+	if (current.split.status == "enabled") {
+		setCurrent("split", "shape", rand(shape) );
+		setCurrent("split", "color", rand(colors) );
+	}	
+}
 
+function update(){
 	draw();
-	updateSelectors();
 	setTypes();
+	updateSelectors();
+}
 
-	}
-
-	update();
+update();

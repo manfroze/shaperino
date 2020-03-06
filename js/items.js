@@ -221,7 +221,8 @@ var items = {
 var sectionUnlock = {
 	shape: "locked",
 	charge: "locked",
-	color: "locked"
+	color: "locked",
+	upgrades: "locked"
 }
 var subSectionUnlock = {
 	shape: "locked",
@@ -234,6 +235,7 @@ var subSectionUnlock = {
 	dark: "locked",
 	secondarylight: "locked",
 	secondarydark: "locked",
+	upgrades: "locked"
 }
 
 var classes = {
@@ -247,6 +249,74 @@ var classes = {
 	"dark": ["color", "composite", "dark"],
 	"secondarylight": ["color", "composite", "secondarylight"],
 	"secondarydark": ["color", "composite", "secondarydark"],
+}
+
+const price = {
+	square: {
+		preview: [25, "circle"],
+		unlock: [50, "circle"],
+		price: [100, "circle"]
+	},
+	rhombus: {
+		preview: [90, "square"],
+		unlock: [150, "square"],
+		price: [200, "white"]
+	},
+	white: {
+		preview: [50, "black"],
+		unlock: [90, "black"],
+		price: [125, "black"]
+	},
+	red: {
+		preview: [100, "white"],
+		unlock: [150, "white"],
+		price: [350, "square"]
+	},
+	yellow: {
+		preview: [150, "red"],
+		unlock: [200, "red"],
+		price: [450, "circle"]
+	},
+	blue: {
+		preview: [180, "yellow"],
+		unlock: [250, "yellow"],
+		price: [500, "rhombus"]
+	},
+	green: {
+		preview: [700, "blue"],
+		unlock: [1000, "yellow"],
+		price: [450, "top"]
+	},
+	orange: {
+		preview: [1000, "yellow"],
+		unlock: [1200, "red"],
+		price: [700, "right"]
+	},
+	violet: {
+		preview: [1400, "red"],
+		unlock: [2000, "blue"],
+		price: [5000, "circle"]
+	},
+	top: {
+		preview: [1000, "circle"],
+		unlock: [1000, "square"],
+		price: [1000, "rhombus"]
+	},
+	right: {
+		preview: [500, "top"],
+		unlock: [600, "top"],
+		price: [2600, "blue"]
+	},
+	bottom: {
+		preview: [1000, "right"],
+		unlock: [1500, "right"],
+		price: [3000, "red"]
+	},
+	left: {
+		preview: [1500, "bottom"],
+		unlock: [2000, "bottom"],
+		price: [2000, "right"]
+	},
 }
 
 function style(){
@@ -274,19 +344,23 @@ var labelDiv = '<div class="label"></div>';
 var powerDiv = '<div class="power"></div>';
 var counterDiv = '<div class="counter">0</div>';
 
-function addPreview(item){
-	if (sectionUnlock[items[item].sec] == "locked") {
-		sectionUnlock[items[item].sec] = "unlocked"
-		$("#" + items[item].sec + "").append('<div class="title">' + items[item].sec.toUpperCase() + '</div>' );
+function addSection(section){
+	if (sectionUnlock[section] == "locked") {
+		sectionUnlock[section] = "unlocked"
+		$("#" + section + "").append('<div class="title">' + section.toUpperCase() + '</div>' );
 	}
-	if (subSectionUnlock[items[item].subsec] == "locked") {
-		subSectionUnlock[items[item].subsec] = "unlocked"
-		if (items[item].card == "small") {
-			subtitle = '<div class="title sub">' + items[item].subsec.toUpperCase() + '</div>'
-		} else { subtitle = ""}
-		$("#" + items[item].sec + "").append('<div id="' + items[item].subsec + '" class="subsection">' + subtitle + '<div class="container"></div></div>')
-	}
+}
 
+function addSubSection(section, subsection){
+	if (subSectionUnlock[subsection] == "locked") {
+		subSectionUnlock[subsection] = "unlocked"
+		$("#" + section + "").append('<div id="' + subsection + '" class="subsection"> <div class="title sub">' + subsection.toUpperCase() + '</div> <div class="container"></div></div>')
+	}
+}
+
+function addPreview(item){
+	addSection(items[item].sec);
+	addSubSection(items[item].sec, items[item].subsec);
 	if (items[item].status == "locked") {
 		items[item].status = "preview"
 		if (items[item].card == "card") {
@@ -326,58 +400,43 @@ function buyableStatus(item, state){
 	style();
 }
 
-function writeBlazon(){
-	$(".data#blazon span").html(makeBlazon());
-}
-
 function addComplete(item){
 	addPreview(item);
 	addUnlock(item);
 	addItem(item);
 }
 
+function priceUnlock(){
+	$.each(price, function(key, value) {
+		if (counter[value.preview[1]] > value.preview[0] - 1) {
+			addPreview(key);
+		}
+		if (counter[value.unlock[1]] > value.unlock[0] - 1) {
+			addUnlock(key);
+		}
+		if (counter[value.price[1]] > value.price[0] - 1) {
+			buyableStatus(key, "on");
+		}
+		if (counter[value.price[1]] < value.price[0] - 1) {
+			buyableStatus(key, "off");
+		}
+	});
+}
+
+function itemBuy(item){
+	if (counter[price[item].price[1]] > price[item].price[0] - 1) {
+		addItem(item);
+		counter[price[item].price[1]] -= price[item].price[0];
+		$('#' + item + '').removeClass("buyable");
+	}	
+}
+
 addComplete("circle");
 addComplete("black");
 
-// DEBUG //
+// INPUT //
 
-function addAll(){
-	$.each(items, function(item) {
-		addComplete(item);
-	});
-}
-
-function addAllPreviews(){
-	$.each(items, function(item) {
-		addPreview(item);
-	});
-}
-
-function addAllUnlock(){
-	$.each(items, function(item) {
-		addPreview(item);
-		addUnlock(item);
-	});
-}
-
-function debugData(){
-	$(".data#main-shape span").html(current.main.shape);
-	$(".data#main-color span").html(current.main.color);
-	$(".data#charge-status span").html(current.charge.status);
-	$(".data#split-status span").html(current.split.status);
-	$(".data#charge-position span").html(current.charge.position);
-	$(".data#charge-shape span").html(current.charge.shape);
-	$(".data#charge-color span").html(current.charge.color);
-	$(".data#charge-type span").html(current.charge.type);
-	$(".data#split-shape span").html(current.split.shape);
-	$(".data#split-color span").html(current.split.color);
-	$(".data#split-position span").html(current.split.position);
-	$(".data#click-power-shape span").html(clickPower.shape.main + " " + clickPower.shape.charge + " " + clickPower.shape.split);
-	$(".data#click-power-color span").html(clickPower.color.main + " " + clickPower.color.charge + " " + clickPower.color.split);
-	$(".data#idle-power-shape span").html(idlePower.shape.main + " " + idlePower.shape.charge + " " + idlePower.shape.split);
-	$(".data#idle-power-color span").html(idlePower.color.main + " " + idlePower.color.charge + " " + idlePower.color.split);
-	$(".data#idle-power-charge span").html(idlePower.charge.position);
-	$(".data#click-power-charge span").html(clickPower.charge.position);
-	$(".data#click-mult span").html(clickMult);
-	$(".data#idle-mult span").html(idleMult);
-}
+$(document).on("click", ".item.unlocked.buyable", function(e) {
+	var target = $(e.currentTarget).attr("id");
+	itemBuy(target);
+});

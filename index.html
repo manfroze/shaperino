@@ -4,6 +4,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.0/svg.js" integrity="sha256-3QT42ZZOdRfHJnrJHoR+H4mAs5j8hEbHpoLSV4QYD4U=" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="lib/QTransform.js"></script>
+	<script type="text/javascript" src="lib/jquery.html5storage.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
 </head>
@@ -14,12 +16,13 @@
 			</div>
 			<div id="charge" class="section">
 			</div>
+			<div id="upgrades" class="section">
+			</div>
 		</div>
 		<div id="centerColumn">
 			<div id="title">SHAPERINO</div>
 			<div id="shaperino" class="section"></div>
-			<div id="upgrades" class="section">
-			</div>
+
 			<div id="debug" class="section">
 				<div class="title">DEBUG</div>
 				<div class="container">
@@ -30,6 +33,10 @@
 					<div id="preview" class="button">preview</div>
 					<div id="unlock" class="button">unlock</div>
 					<div id="complete" class="button">complete</div>
+					<div id="earn" class="button">earn</div>
+					<div id="addupgrades" class="button">add upgrades</div>
+				</div>
+				<div class="container">
 					<div id="random" class="button">random</div>
 				</div>
 				<div class="container">
@@ -71,18 +78,15 @@
 			</div>
 		</div>
 	</div>
-
-	<script type="text/javascript" src="lib/QTransform.js"></script>
-	<script type="text/javascript" src="lib/jquery.html5storage.min.js"></script>
-
 	<script type="text/javascript" src="js/globals.js"></script>
 	<script type="text/javascript" src="js/blazon.js"></script>
-	<script type="text/javascript" src="js/game.js"></script>
-	<script type="text/javascript" src="js/page.js"></script>
+	
+	<script type="text/javascript" src="js/items.js"></script>
+	<script type="text/javascript" src="js/upgrades.js"></script>
+	<script type="text/javascript" src="js/clickidle.js"></script>
 	<script type="text/javascript" src="js/geometry.js"></script>
 	<script type="text/javascript" src="js/board.js"></script>
 	<script type="text/javascript" src="js/animate.js"></script>
-	<script type="text/javascript" src="js/input.js"></script>
-
+	<script type="text/javascript" src="js/debug.js"></script>
 </body>
 </html>

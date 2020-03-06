@@ -36,8 +36,6 @@ const blazonDict = {
 	splitEnd: ["on the other side", "on the mirror side"]
 }
 
-
-
 function makeBlazon(){
 	blazonTerm = {
 		main: {
@@ -77,4 +75,8 @@ function makeBlazon(){
 
 	return blazon;
 
+}
+
+function writeBlazon(){
+	$(".data#blazon span").html(makeBlazon());
 }

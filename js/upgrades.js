@@ -22,6 +22,12 @@ var upgrade = {
 		type: "boost",
 		data: ["click", "shape", "charge"],
 		amount: 0.1,
+	},
+	boostidlecolormain: {
+		name: "boost main color idling",
+		type: "boost",
+		data: ["idle", "color", "main"],
+		amount: 0.1,
 	}
 }
 
@@ -70,6 +76,13 @@ var upgradeLevel = {
 		},
 	},
 	boostclickshapecharge: {
+		l1: {
+			unlock: [2000, "white"],
+			price: [700, "bottom"],
+			status: "locked",
+		},	
+	},
+	boostidlecolormain: {
 		l1: {
 			unlock: [2000, "white"],
 			price: [700, "bottom"],

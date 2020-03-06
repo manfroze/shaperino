@@ -21,7 +21,7 @@ function addAllUnlock(){
 
 function earn(){
 	$.each(counter, function(key, value) {
-		counter[value] = 1000;
+		counter[key] += 784;
 		writeCounters();
 	});
 }
@@ -38,12 +38,12 @@ function debugData(){
 	$(".data#split-shape span").html(current.split.shape);
 	$(".data#split-color span").html(current.split.color);
 	$(".data#split-position span").html(current.split.position);
-	$(".data#click-power-shape span").html(clickPower.shape.main + " " + clickPower.shape.charge + " " + clickPower.shape.split);
-	$(".data#click-power-color span").html(clickPower.color.main + " " + clickPower.color.charge + " " + clickPower.color.split);
-	$(".data#idle-power-shape span").html(idlePower.shape.main + " " + idlePower.shape.charge + " " + idlePower.shape.split);
-	$(".data#idle-power-color span").html(idlePower.color.main + " " + idlePower.color.charge + " " + idlePower.color.split);
-	$(".data#idle-power-charge span").html(idlePower.charge.position);
-	$(".data#click-power-charge span").html(clickPower.charge.position);
+	$(".data#click-power-shape span").html(power.click.shape.main + " " + power.click.shape.charge + " " + power.click.shape.split);
+	$(".data#click-power-color span").html(power.click.color.main + " " + power.click.color.charge + " " + power.click.color.split);
+	$(".data#idle-power-shape span").html(power.idle.shape.main + " " + power.idle.shape.charge + " " + power.idle.shape.split);
+	$(".data#idle-power-color span").html(power.idle.color.main + " " + power.idle.color.charge + " " + power.idle.color.split);
+	$(".data#idle-power-charge span").html(power.idle.charge.position);
+	$(".data#click-power-charge span").html(power.click.charge.position);
 	$(".data#click-mult span").html(clickMult);
 	$(".data#idle-mult span").html(idleMult);
 }
@@ -51,15 +51,15 @@ function debugData(){
 // INPUT //
 
 $(document).on( "click", "#clickboost", function(e) {
-	clickBoost("shape", "main", 10);
-	clickBoost("color", "main", 10);
-	clickBoost("charge", "position", 10);
+	boost("click", "shape", "main", 10);
+	boost("click", "color", "main", 10);
+	boost("click", "charge", "position", 10);
 });
 
 $(document).on( "click", "#idleboost", function(e) {
-	idleBoost("shape", "main", 10);
-	idleBoost("color", "main", 10);
-	idleBoost("charge", "position", 10);
+	boost("idle", "shape", "main", 10);
+	boost("idle", "color", "main", 10);
+	boost("idle", "charge", "position", 10);
 });
 
 $(document).on( "click", "#complete", function(e) {

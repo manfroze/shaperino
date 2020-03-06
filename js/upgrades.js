@@ -1,80 +1,106 @@
 var upgrade = {
-	boostidleshapemain01: {
-		name: "activate main shape idling",
-		status: "locked",
-		unlock: [10, "circle"],
-		price: [100, "circle"],
+	boostidleshapemain: {
+		name: "boost main shape idling",
 		type: "boost",
-		boost: ["idle", "shape", "main", 0.1]
+		boost: ["idle", "shape", "main", 0.1],
+		currentLevel: "l1",
 	},
-	boostclickshapemain01: {
+	boostclickshapemain: {
 		name: "boost main shape click power",
-		status: "locked",
-		unlock: [10, "square"],
-		price: [100, "square"],
 		type: "boost",
-		boost: ["click", "shape", "main", 0.5]
+		boost: ["click", "shape", "main", 0.5],
+		currentLevel: "l1",
 	}
 }
 
-function addUpgrade(item){
+var upgradeLevel = {
+	boostidleshapemain: {
+		l1: {
+			unlock: [1000, "rhombus"],
+			price: [200, "red"],
+			status: "locked",
+		},
+		l2: {
+			unlock: [200, "white"],
+			price: [500, "blue"],
+			status: "locked",
+		},
+		l3: {
+			unlock: [10000, "circle"],
+			price: [1000, "bottom"],
+			status: "locked",
+		},		
+	},
+	boostclickshapemain: {
+		l1: {
+			unlock: [1000, "white"],
+			price: [3000, "black"],
+			status: "locked",
+		},
+		l2: {
+			unlock: [2000, "square"],
+			price: [1500, "left"],
+			status: "locked",
+		},
+		l3: {
+			unlock: [1500, "yellow"],
+			price: [2500, "yellow"],
+			status: "locked",
+		},
+	}
+}
+
+function addUpgrade(item, level){
 	addSection("upgrades");
 	addSubSection("upgrades", "upgrades")
-	if (upgrade[item].status == "locked") {
-		upgrade[item].status = "active"
-		$('#upgrades > .container').append('<div id="' + item + '"class="upgrade"><span>' + upgrade[item].name + '</span><div class="pricetag ' + upgrade[item].price[1] + '">' + upgrade[item].price[0] + '</div></div>' );
-		$('#' + item + '').removeClass("locked").addClass("unlocked");
+	if (upgradeLevel[item][level].status == "locked") {
+		upgradeLevel[item][level].status = "unlocked"
+		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade"><span>' + upgrade[item].name + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '">' + upgradeLevel[item][level].price[0] + '</div></div>' );
+		$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
+		upgrade[item].currentLevel = level;
 	}
 	style();
 }
 
-
 function upgradeUnlock(){
-	$.each(upgrade, function(key, value) {
-		if (counter[value.unlock[1]] > value.unlock[0] - 1) {
-			addUpgrade(key);
-		}
-		if (counter[value.price[1]] > value.price[0] - 1) {
-			buyableStatus(key, "on");
-		}
-		if (counter[value.price[1]] < value.price[0] - 1) {
-			buyableStatus(key, "off");
-		}
+	$.each(upgradeLevel, function(key, value) {
+		$.each(value, function(levelKey, levelValue) {
+			if (counter[levelValue.unlock[1]] > levelValue.unlock[0]) {
+				addUpgrade(key, levelKey);
+			}
+
+			if (counter[upgradeLevel[key][levelKey].price[1]] > upgradeLevel[key][levelKey].price[0]) {
+				buyableStatus(key + "-" + levelKey, "on");
+			}
+			if (counter[upgradeLevel[key][levelKey].price[1]] < upgradeLevel[key][levelKey].price[0]) {
+				buyableStatus(key + "-" + levelKey, "off");
+			}
+
+		});
+
 	});
 }
 
-function upgradeBuy(item){
-	if (counter[upgrade[item].price[1]] > upgrade[item].price[0] - 1) {
-		counter[upgrade[item].price[1]] -= upgrade[item].price[0];
+function upgradeBuy(item, level){
+	if (counter[upgradeLevel[item][level].price[1]] > upgradeLevel[item][level].price[0] - 1) {
+		counter[upgradeLevel[item][level].price[1]] -= upgradeLevel[item][level].price[0];
 		upgradeEffect(item);
-		$('#' + item + '').remove();
+		upgradeLevel[item][level].status = "bought"
+		$('#' + item + "-" + level).hide("slow").remove();
 	}	
 }
 
 function upgradeEffect(item){
 	if (upgrade[item].type == "boost") {
-		if (upgrade[item].boost[0] == "click") {
-			clickBoost(upgrade[item].boost[1], upgrade[item].boost[2], upgrade[item].boost[3]);
-		}
-		if (upgrade[item].boost[0] == "idle") {
-			idleBoost(upgrade[item].boost[1], upgrade[item].boost[2], upgrade[item].boost[3]);
-		}
+		boost(upgrade[item].boost[0], upgrade[item].boost[1], upgrade[item].boost[2], upgrade[item].boost[3]);
 	}	
-}
-
-
-function idleBoost(kind, mode, amount){
-	idlePower[kind][mode] +=amount;
-}
-
-function clickBoost(kind, mode, amount){
-	clickPower[kind][mode] +=amount;
 }
 
 // INPUT //
 
 $(document).on("click", ".upgrade.unlocked.buyable", function(e) {
 	var target = $(e.currentTarget).attr("id");
-	upgradeBuy(target);
+	var idlev =	target.split('-')
+	upgradeBuy(idlev[0], idlev[1]);
 });
 

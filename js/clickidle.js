@@ -13,36 +13,37 @@ var counter = {
 	blue: 0,
 }
 
-var clickPower = {
-	shape: {
-		main: 1,
-		charge: 0.5,
-		split: 0.1,
+var power = {
+	idle: {
+		shape: {
+			main: 0,
+			charge: 0,
+			split: 0,
+		},
+		charge: {
+			position: 0,
+		},
+		color: {
+			main: 0,
+			charge: 0,
+			split: 0,
+		}
 	},
-	charge: {
-		position: 1,
-	},
-	color: {
-		main: 1,
-		charge: 0.4,
-		split: 0.2,
-	},
-}
-
-var idlePower = {
-	shape: {
-		main: 0,
-		charge: 0,
-		split: 0,
-	},
-	charge: {
-		position: 0,
-	},
-	color: {
-		main: 0,
-		charge: 0,
-		split: 0,
-	},
+	click: {
+		shape: {
+			main: 1,
+			charge: 0.5,
+			split: 0.1,
+		},
+		charge: {
+			position: 1,
+		},
+		color: {
+			main: 1,
+			charge: 0.4,
+			split: 0.2,
+		},
+	}
 }
 
 var clickMult = 0.5;
@@ -58,35 +59,35 @@ function clickShaperino(){
 
 // SHAPE //
 
-counter[current.main.shape] +=clickPower.shape.main;
+counter[current.main.shape] +=power.click.shape.main;
 if (current.charge.status == "enabled") {
-	counter[current.charge.shape] +=clickPower.shape.charge;
+	counter[current.charge.shape] +=power.click.shape.charge;
 }
 if (current.split.status == "enabled") {
-	counter[current.split.shape] +=clickPower.shape.split;
+	counter[current.split.shape] +=power.click.shape.split;
 }
 
 // CHARGE //
 
 if (current.charge.status == "enabled") {
-	counter[current.charge.position] +=clickPower.charge.position;
+	counter[current.charge.position] +=power.click.charge.position;
 }
 
 // COLOR //
 
-counter[current.main.color] +=clickPower.color.main;
+counter[current.main.color] +=power.click.color.main;
 if (current.charge.status == "enabled") {
-	counter[current.charge.color] +=clickPower.color.charge;
+	counter[current.charge.color] +=power.click.color.charge;
 }
 if (current.split.status == "enabled") {
-	counter[current.split.color] +=clickPower.color.split;
+	counter[current.split.color] +=power.click.color.split;
 }
 
 // CORNER COMP //
 
 if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
-		counter[value] +=clickPower.charge.position*clickMult;
+		counter[value] +=power.click.charge.position*clickMult;
 	});
 }
 
@@ -94,25 +95,25 @@ if (current.charge.status == "enabled" && current.charge.type == "corner") {
 
 if (current.split.status == "enabled") {
 	$.each(comp.split[current.split.position], function(index, value){
-		counter[value] +=clickPower.charge.position*clickMult;
+		counter[value] +=power.click.charge.position*clickMult;
 	});
 }
 
 // COLOR COMP //
 
 $.each(comp.color[current.main.color], function(index, value){
-	counter[value] +=clickPower.color.main*clickMult;
+	counter[value] +=power.click.color.main*clickMult;
 });
 
 if (current.charge.status == "enabled") {
 	$.each(comp.color[current.charge.color], function(index, value){
-		counter[value] +=clickPower.color.charge*clickMult;
+		counter[value] +=power.click.color.charge*clickMult;
 	});
 }
 
 if (current.split.status == "enabled") {
 	$.each(comp.color[current.split.color], function(index, value){
-		counter[value] +=clickPower.color.split*clickMult;
+		counter[value] +=power.click.color.split*clickMult;
 	});
 }
 
@@ -124,35 +125,35 @@ function idling(){
 
 // SHAPE //
 
-counter[current.main.shape] +=idlePower.shape.main;
+counter[current.main.shape] +=power.idle.shape.main;
 if (current.charge.status == "enabled") {
-	counter[current.charge.shape] +=idlePower.shape.charge;
+	counter[current.charge.shape] +=power.idle.shape.charge;
 }
 if (current.split.status == "enabled") {
-	counter[current.split.shape] +=idlePower.shape.split;
+	counter[current.split.shape] +=power.idle.shape.split;
 }
 
 // CHARGE //
 
 if (current.charge.status == "enabled") {
-	counter[current.charge.position] +=idlePower.charge.position;
+	counter[current.charge.position] +=power.idle.charge.position;
 }
 
 // COLOR //
 
-counter[current.main.color] +=idlePower.color.main;
+counter[current.main.color] +=power.idle.color.main;
 if (current.charge.status == "enabled") {
-	counter[current.charge.color] +=idlePower.color.charge;
+	counter[current.charge.color] +=power.idle.color.charge;
 }
 if (current.split.status == "enabled") {
-	counter[current.split.color] +=idlePower.color.split;
+	counter[current.split.color] +=power.idle.color.split;
 }
 
 // CORNER COMP //
 
 if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
-		counter[value] +=idlePower.charge.position*idleMult;
+		counter[value] +=power.idle.charge.position*idleMult;
 	});
 }
 
@@ -160,29 +161,34 @@ if (current.charge.status == "enabled" && current.charge.type == "corner") {
 
 if (current.split.status == "enabled") {
 	$.each(comp.split[current.split.position], function(index, value){
-		counter[value] +=idlePower.charge.position*idleMult;
+		counter[value] +=power.idle.charge.position*idleMult;
 	});
 }
 
 // COLOR COMP //
 
 $.each(comp.color[current.main.color], function(index, value){
-	counter[value] +=idlePower.color.main*idleMult;
+	counter[value] +=power.idle.color.main*idleMult;
 });
 
 if (current.charge.status == "enabled") {
 	$.each(comp.color[current.charge.color], function(index, value){
-		counter[value] +=idlePower.color.charge*idleMult;
+		counter[value] +=power.idle.color.charge*idleMult;
 	});
 }
 
 if (current.split.status == "enabled") {
 	$.each(comp.color[current.split.color], function(index, value){
-		counter[value] +=idlePower.color.split*idleMult;
+		counter[value] +=power.idle.color.split*idleMult;
 	});
 }
 
 }
+
+function boost(type, kind, mode, amount){
+	power[type][kind][mode] +=amount;
+}
+
 
 function loop(){
 	setInterval(function(){ 

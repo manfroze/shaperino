@@ -42,7 +42,7 @@ div {
 }
 
 #shaperino {
-	margin: 10px auto;
+	margin: 30px auto;
 	cursor: pointer;
 	transition: transform .5s ease;
 	width:  500px;
@@ -153,6 +153,7 @@ display: none;
 	vertical-align: middle;
 	padding: 26px;
 	text-align: left;
+	font-weight: bold;
 }
 
 .label.active {

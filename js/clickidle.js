@@ -20,7 +20,7 @@ var power = {
 			charge: 0,
 			split: 0,
 		},
-		charge: {
+		position: {
 			position: 0,
 		},
 		color: {
@@ -35,7 +35,7 @@ var power = {
 			charge: 0.5,
 			split: 0.1,
 		},
-		charge: {
+		position: {
 			position: 1,
 		},
 		color: {
@@ -70,7 +70,7 @@ if (current.split.status == "enabled") {
 // CHARGE //
 
 if (current.charge.status == "enabled") {
-	counter[current.charge.position] +=power.click.charge.position;
+	counter[current.charge.position] +=power.click.position.position;
 }
 
 // COLOR //
@@ -87,7 +87,7 @@ if (current.split.status == "enabled") {
 
 if (current.charge.status == "enabled" && current.charge.type == "corner") {
 	$.each(comp.charge[current.charge.position], function(index, value){
-		counter[value] +=power.click.charge.position*clickMult;
+		counter[value] +=power.click.position.position*clickMult;
 	});
 }
 

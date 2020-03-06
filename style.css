@@ -148,10 +148,13 @@ display: none;
 	border-radius: 3px;
 	height: 70px;
 	width: 100%;
-	//background-color: #ccc;
 	border: 1px solid #ccc;
 	vertical-align: middle;
 	padding: 26px;
+	padding-left: 65px;
+	background-repeat: no-repeat;
+	background-size: 50px;
+	background-position: 10px;
 	text-align: left;
 	font-weight: bold;
 }
@@ -199,7 +202,7 @@ display: none;
 	font-weight: bold;
 	background-repeat: no-repeat;
 	background-size: 15px;
-	background-position: 90%;
+	background-position: right;
 }
 
 .card .pricetag {

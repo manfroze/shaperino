@@ -42,8 +42,8 @@ function debugData(){
 	$(".data#click-power-color span").html(power.click.color.main + " " + power.click.color.charge + " " + power.click.color.split);
 	$(".data#idle-power-shape span").html(power.idle.shape.main + " " + power.idle.shape.charge + " " + power.idle.shape.split);
 	$(".data#idle-power-color span").html(power.idle.color.main + " " + power.idle.color.charge + " " + power.idle.color.split);
-	$(".data#idle-power-charge span").html(power.idle.charge.position);
-	$(".data#click-power-charge span").html(power.click.charge.position);
+	$(".data#idle-power-charge span").html(power.idle.position.position);
+	$(".data#click-power-charge span").html(power.click.position.position);
 	$(".data#click-mult span").html(clickMult);
 	$(".data#idle-mult span").html(idleMult);
 }
@@ -82,8 +82,10 @@ $(document).on( "click", "#random", function(e) {
 });
 
 $(document).on( "click", "#addupgrades", function(e) {
-	$.each(upgrade, function(item) {
-		addUpgrade(item);
+	$.each(upgradeLevel, function(key, value) {
+		$.each(value, function(levelKey, levelValue) {
+			addUpgrade(key, levelKey);
+		});
 	});
 });
 

@@ -36,6 +36,11 @@ const blazonDict = {
 	splitEnd: ["on the other side", "on the mirror side"]
 }
 
+function addBlazon(){
+	$("#blazon").append('<span></span>');
+	writeBlazon();
+}
+
 function makeBlazon(){
 	blazonTerm = {
 		main: {
@@ -55,28 +60,22 @@ function makeBlazon(){
 			end: rand(blazonDict.splitEnd),
 		}
 	}
-
 	blazonPart = {
-	main: "a " + blazonTerm.main.color + " " + blazonTerm.main.shape,
-	charge: blazonTerm.charge.verb + " " + blazonTerm.charge.color + " " + blazonTerm.charge.shape + " " + blazonTerm.charge.position,
-	split: blazonTerm.split.verb + " " + blazonTerm.split.color + " " + blazonTerm.split.shape + " " + blazonTerm.split.end,
-	
+		main: "A " + blazonTerm.main.color + " " + blazonTerm.main.shape,
+		charge: blazonTerm.charge.verb + " " + blazonTerm.charge.color + " " + blazonTerm.charge.shape + " " + blazonTerm.charge.position,
+		split: blazonTerm.split.verb + " " + blazonTerm.split.color + " " + blazonTerm.split.shape + " " + blazonTerm.split.end,
+
 	}
-
 	blazon = blazonPart.main;
-
 	if (current.charge.status == "enabled") {
 		blazon += " " + blazonPart.charge;
 	}
-
 	if (current.split.status == "enabled") {
 		blazon += " " + blazonPart.split;
 	}
-
 	return blazon;
-
 }
 
 function writeBlazon(){
-	$(".data#blazon span").html(makeBlazon());
+	$("#blazon span").html(makeBlazon());
 }

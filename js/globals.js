@@ -49,4 +49,8 @@ function style(){
 			});
 		});
 	});
+
+	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
+
 }
+

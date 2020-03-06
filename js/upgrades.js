@@ -28,6 +28,11 @@ var upgrade = {
 		type: "boost",
 		data: ["idle", "color", "main"],
 		amount: 0.1,
+	},
+	blazon: {
+		name: "unlock blazons",
+		type: "blazon",
+		data: ["blazon"],
 	}
 }
 
@@ -49,7 +54,6 @@ var upgradeLevel = {
 			status: "locked",
 		},		
 	},
-
 	boostidleshapecharge: {
 		l1: {
 			unlock: [1000, "circle"],
@@ -57,7 +61,6 @@ var upgradeLevel = {
 			status: "locked",
 		},	
 	},
-
 	boostclickshapemain: {
 		l1: {
 			unlock: [1000, "white"],
@@ -89,6 +92,14 @@ var upgradeLevel = {
 			status: "locked",
 		},	
 	},
+		blazon: {
+		l1: {
+			unlock: [10000, "left"],
+			price: [10000, "red"],
+			status: "locked",
+		},	
+	},
+
 }
 
 function addUpgrade(item, level){
@@ -132,6 +143,9 @@ function upgradeBuy(item, level){
 function upgradeEffect(item){
 	if (upgrade[item].type == "boost") {
 		boost(upgrade[item].data[0], upgrade[item].data[1], upgrade[item].data[2], upgrade[item].amount);
+	}
+	if (upgrade[item].type == "blazon") {
+		addBlazon();
 	}	
 }
 

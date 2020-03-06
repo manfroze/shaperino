@@ -42,7 +42,8 @@ div {
 }
 
 #shaperino {
-	margin: 30px auto;
+	margin: 30px auto 20px;
+
 	cursor: pointer;
 	transition: transform .5s ease;
 	width:  500px;
@@ -256,6 +257,17 @@ margin-right: 10px;
 
 .data span {
 	font-weight: bold;
+}
+
+#blazon span {
+
+background-color: #ffffff;
+padding: 10px;
+display: inline-block;
+border-radius: 3px;
+margin-bottom: 20px;
+font-size: 12px;
+
 }
 
 #top { order:  1; }

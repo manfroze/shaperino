@@ -110,7 +110,9 @@ function updateSelectors(){
 		if (current.charge.colorType == "composite") {
 			highlightComp("color", "charge", "color", "c");
 		}
-	}
+		$('.button.charge').addClass("active").removeClass("inactive");
+		$('.button.remove').addClass("active").removeClass("inactive");
+	} 
 	if (current.split.status == "enabled") {
 		highlight("split", "position");
 		highlight("split", "shape", "S");
@@ -119,18 +121,19 @@ function updateSelectors(){
 		if (current.split.colorType == "composite") {
 			highlightComp("color", "split", "color", "s");
 		}
+		$('.button.split').addClass("active").removeClass("inactive");
+	} 
+
+	if (current.charge.status == "disabled"){
+		$('.button.charge').addClass("inactive").removeClass("active");
+		$('.button.remove').addClass("inactive").removeClass("active");
 	}
-	selectorState("split");
-	selectorState("charge");
+	if (current.split.status == "disabled"){
+		$('.button.split').addClass("inactive").removeClass("active");
+	}
+
 }
 
-function selectorState(mode){
-	if (current[mode].status == "disabled"){
-		$('.button.' + mode).addClass("inactive").removeClass("active");
-	} else if (current[mode].status == "enabled") {
-		$('.button.' + mode).addClass("active").removeClass("inactive");
-	}
-}
 
 function setTypes(){
 	if (position.side.includes(current.charge.position)) {
@@ -174,6 +177,7 @@ function selector(mode){
 	if (mode == "main"){
 		$('.button.active').removeClass("selected");	
 	} else {
+		$('.button.active').removeClass("selected");
 		$('.button.active.' + mode).addClass("selected");
 	}
 }
@@ -214,6 +218,12 @@ $(document).on( "click", ".button.charge", function(e) {
 
 $(document).on( "click", ".button.split", function(e) {
 	selector("split");
+});
+
+$(document).on( "click", ".button.remove", function(e) {
+	setCurrent("charge", "status", "disabled");
+	setCurrent("split", "status", "disabled");
+	update();
 });
 
 $(document).on( "click", ".item.shape.active", function(e) {

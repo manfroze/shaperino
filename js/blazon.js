@@ -37,7 +37,7 @@ const blazonDict = {
 }
 
 function addBlazon(){
-	$("#blazon").append('<span></span>');
+	$("#blazon").append('<span></span>').hide().fadeIn(2000);
 	writeBlazon();
 }
 

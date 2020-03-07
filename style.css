@@ -157,8 +157,22 @@ display: none;
 	background-size: 50px;
 	background-position: 10px;
 	text-align: left;
+}
+
+.upgrade .name {
 	font-weight: bold;
 }
+
+.upgrade .level {
+	font-weight: bold;
+	margin-left: 5px;
+	background-color: #CCC;
+	color: #222;
+	border-radius: 3px;
+	padding:  3px 5px;
+	font-size: 12px;
+}
+
 
 .label.active {
 	display: inline-block;
@@ -261,6 +275,7 @@ margin-right: 10px;
 
 #blazon span {
 
+display: none;
 background-color: #ffffff;
 padding: 10px;
 display: inline-block;

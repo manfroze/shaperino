@@ -1,6 +1,6 @@
 const shape = ["circle", "square", "rhombus"]
 const mode = ["main", "charge", "split"]
-const kind = ["shape", "position", "color"]
+const kind = ["shape", "charge", "color"]
 const powertype = ["idle", "click"]
 const position = {
 	side: ["top", "left", "bottom", "right"],
@@ -44,9 +44,7 @@ function style(){
 	});
 	$.each(powertype, function(key, powertype){
 		$.each(kind, function(key, kind){
-			$.each(mode, function(key, mode){
-				$('.upgrade.boost.' + powertype +'.' + kind + '.' + mode).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '-' + mode + '.svg")')
-			});
+				$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
 		});
 	});
 

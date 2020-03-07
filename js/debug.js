@@ -28,38 +28,36 @@ function earn(){
 
 function debugData(){
 	$(".data#main-shape span").html(current.main.shape);
-	$(".data#main-color span").html(current.main.color);
+	$(".data#main-color span").html(current.main.color + " (" + current.main.colorType + ")");
 	$(".data#charge-status span").html(current.charge.status);
 	$(".data#split-status span").html(current.split.status);
 	$(".data#charge-position span").html(current.charge.position);
 	$(".data#charge-shape span").html(current.charge.shape);
-	$(".data#charge-color span").html(current.charge.color);
+	$(".data#charge-color span").html(current.charge.color + " (" + current.charge.colorType + ")");
 	$(".data#charge-type span").html(current.charge.type);
 	$(".data#split-shape span").html(current.split.shape);
-	$(".data#split-color span").html(current.split.color);
+	$(".data#split-color span").html(current.split.color + " (" + current.split.colorType + ")");
 	$(".data#split-position span").html(current.split.position);
-	$(".data#click-power-shape span").html(power.click.shape.main + " " + power.click.shape.charge + " " + power.click.shape.split);
-	$(".data#click-power-color span").html(power.click.color.main + " " + power.click.color.charge + " " + power.click.color.split);
-	$(".data#idle-power-shape span").html(power.idle.shape.main + " " + power.idle.shape.charge + " " + power.idle.shape.split);
-	$(".data#idle-power-color span").html(power.idle.color.main + " " + power.idle.color.charge + " " + power.idle.color.split);
-	$(".data#idle-power-charge span").html(power.idle.position.position);
-	$(".data#click-power-charge span").html(power.click.position.position);
-	$(".data#click-mult span").html(clickMult);
-	$(".data#idle-mult span").html(idleMult);
+	$(".data#click-power-shape span").html(power.click.shape);
+	$(".data#click-power-color span").html(power.click.color);
+	$(".data#idle-power-shape span").html(power.idle.shape);
+	$(".data#idle-power-color span").html(power.idle.color);
+	$(".data#idle-power-charge span").html(power.idle.charge);
+	$(".data#click-power-charge span").html(power.click.charge);
 }
 
 // INPUT //
 
 $(document).on( "click", "#clickboost", function(e) {
-	boost("click", "shape", "main", 10);
-	boost("click", "color", "main", 10);
-	boost("click", "charge", "position", 10);
+	boost("click", "shape", 10);
+	boost("click", "color", 10);
+	boost("click", "charge", 10);
 });
 
 $(document).on( "click", "#idleboost", function(e) {
-	boost("idle", "shape", "main", 10);
-	boost("idle", "color", "main", 10);
-	boost("idle", "charge", "position", 10);
+	boost("idle", "shape", 10);
+	boost("idle", "color", 10);
+	boost("idle", "charge", 10);
 });
 
 $(document).on( "click", "#complete", function(e) {
@@ -79,6 +77,10 @@ $(document).on( "click", "#earn", function(e) {
 $(document).on( "click", "#random", function(e) {
 	randomShape();
 	update();
+});
+
+$(document).on( "click", "#wonder-bar", function(e) {
+	drawWonderBar();
 });
 
 $(document).on( "click", "#addupgrades", function(e) {

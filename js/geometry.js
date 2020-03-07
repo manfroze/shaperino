@@ -1,22 +1,15 @@
-// VARIABLES //
-
-var cloneIndex = 0;
-
 var canvasSize = 500;
 var middle = canvasSize/2;
-
 var size = {
 	main: 400,
 	charge: 220,
 	split: 220
 }
-
 var rhombusSizeDiff = {
 	main: 50,
 	charge: 50,
 	split: 50
 }
-
 var centerPoints = {
 	normal: {
 		charge: {
@@ -33,7 +26,6 @@ var centerPoints = {
 		}
 	}
 }
-
 var center = {
 	normal: {
 		main: [middle, middle],
@@ -46,6 +38,14 @@ var center = {
 		split: []
 	}
 }
+var wonderBarRotation = 0;
+var wonderBarCenter = [middle, middle]
+var wonderBarSizeList = {
+	x: [300, 350, 400, 420, 490],
+	y: [80, 100, 120]
+}
+var wonderBarCenterOffset = 0;
+var wonderBarCenterOffsetList = [0, 25, 50, 100]
 
 var centerPositions = {
 	"left": ["zero", "middle"],
@@ -57,13 +57,11 @@ var centerPositions = {
 	"bottomright": ["full", "full"],
 	"bottomleft": ["zero", "full"]
 }
-
 var mirror = {
 	"full": "zero",
 	"zero": "full",
 	"middle": "middle"
 }
-
 var colorCode = {
 	black: "#222222",
 	white: "#FFFFFF",
@@ -88,15 +86,27 @@ var colorCode = {
 	lightviolet: "#E64EFF",
 }
 
+// SET CHARGES POSITION //
+
+function chargePosition(){
+	$.each(centerPositions, function(index, value){
+		if (current.charge.position == index) {
+			$.each(value, function(i, v){
+				center.normal.charge[i] = centerPoints.normal.charge[v]
+				center.normal.split[i] = centerPoints.normal.charge[mirror[v]]
+				center.rhombus.charge[i] = centerPoints.rhombus.charge[v]
+				center.rhombus.split[i] = centerPoints.rhombus.charge[mirror[v]]
+			});
+		}
+	});
+}
+
 // DRAW GEOMETRY //
 
 function draw() {
-
 	clearCanvas();
 	chargePosition();
-
-	geometry = SVG('shaperino').size(500, 500).group();
-
+	shaperino = SVG('shaperino').size(500, 500).group();
 	drawShape("main");
 	if (current.charge.status == "enabled") {
 		drawShape("charge");
@@ -104,20 +114,6 @@ function draw() {
 	if (current.split.status == "enabled") {
 		drawShape("split");
 	}
-}
-
-// SINGLE SHAPE FUNCTIONS //
-
-function circle(size, centerX, centerY, color) {
-	geometry.circle(size, size).center(centerX, centerY).attr({ fill: color })
-}
-
-function square(size, centerX, centerY, color) {
-	geometry.rect(size, size).center(centerX, centerY).attr({ fill: color })
-}
-
-function rhombus(size, centerX, centerY, color) {
-	geometry.rect(size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 }
 
 // DRAW SHAPE FUNCTION //
@@ -132,19 +128,67 @@ function drawShape(kind) {
 	}
 }
 
-// SET CHARGES POSITION //
+// SINGLE SHAPE FUNCTIONS //
 
-function chargePosition(){
-	$.each(centerPositions, function(index, value){
-		if (current.charge.position == index) {
-			$.each(value, function(i, v){
-				center.normal.charge[i] = centerPoints.normal.charge[v]
-				center.normal.split[i] = centerPoints.normal.charge[mirror[v]]
-				center.rhombus.charge[i] = centerPoints.rhombus.charge[v]
-				center.rhombus.split[i] = centerPoints.rhombus.charge[mirror[v]]
-			});
+function circle(size, centerX, centerY, color) {
+	shaperino.circle(size, size).center(centerX, centerY).attr({ fill: color })
+}
+function square(size, centerX, centerY, color) {
+	shaperino.rect(size, size).center(centerX, centerY).attr({ fill: color })
+}
+function rhombus(size, centerX, centerY, color) {
+	shaperino.rect(size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+}
+
+// DRAW WONDER BAR //
+
+function drawWonderBar() {
+	if (current.wonderbar.status == "enabled") {wonder.remove();}
+	current.wonderbar.status = "enabled"
+	wonderBarSize = {
+		x: rand(wonderBarSizeList.x),
+		y: rand(wonderBarSizeList.y),
+	}
+	wonderBarCenter = [middle, middle];
+
+	if (current.split.status == "enabled") {
+		wonderBarCenterOffset = 0;
+	} else {
+		wonderBarCenterOffset = rand(wonderBarCenterOffsetList);
+	}
+
+	if (current.charge.status == "enabled") {
+
+		if ((current.charge.position == "topleft") || (current.charge.position == "bottomright"))  {
+			wonderBarRotation = 45
 		}
-	});
+		if ((current.charge.position == "topright") || (current.charge.position == "bottomleft")) {
+			wonderBarRotation = -45
+		}
+		if (current.charge.position == "left") {
+			wonderBarRotation = 0
+			wonderBarCenter[0] = wonderBarCenter[0] - wonderBarCenterOffset
+		}
+		if (current.charge.position == "top") {
+			wonderBarRotation = 90
+			wonderBarCenter[1] = wonderBarCenter[1] - wonderBarCenterOffset
+		}
+		if (current.charge.position == "right") {
+			wonderBarRotation = 0
+			wonderBarCenter[0] = wonderBarCenter[0] + wonderBarCenterOffset
+		}
+		if (current.charge.position == "bottom") {
+			wonderBarRotation = 90
+			wonderBarCenter[1] = wonderBarCenter[1] + wonderBarCenterOffset
+		}
+
+	} else if (current.charge.status == "disabled") {
+
+		wonderBarRotation = rand([0, 45, -45, 90]);
+
+	}
+	wonder = shaperino.rect(wonderBarSize.x, wonderBarSize.y).center(wonderBarCenter[0], wonderBarCenter[1]).attr({ fill: colorCode[rand(colors)] }).transform({ rotation: wonderBarRotation });
+
 }
 
 // CLEAR //

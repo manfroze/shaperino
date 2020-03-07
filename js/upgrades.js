@@ -1,33 +1,39 @@
 var upgrade = {
-	boostidleshapemain: {
-		name: "boost main shape idling",
+	boostidleshape: {
+		name: "boost shape idling",
 		type: "boost",
-		data: ["idle", "shape", "main"],
+		data: ["idle", "shape"],
 		amount: 0.2,
 	},
-	boostclickshapemain: {
-		name: "boost main shape click",
+	boostidlecharge: {
+		name: "boost charge idling",
 		type: "boost",
-		data: ["click", "shape", "main"],
-		amount: 0.5,
+		data: ["idle", "charge"],
+		amount: 0.2,
 	},
-	boostidleshapecharge: {
-		name: "boost charge shape idling",
+	boostidlecolor: {
+		name: "boost color idling",
 		type: "boost",
-		data: ["idle", "shape", "charge"],
-		amount: 0.1,
+		data: ["idle", "color"],
+		amount: 0.2,
 	},
-	boostclickshapecharge: {
-		name: "boost charge shape click",
+	boostclickshape: {
+		name: "boost shape click",
 		type: "boost",
-		data: ["click", "shape", "charge"],
-		amount: 0.1,
+		data: ["click", "shape"],
+		amount: 1,
 	},
-	boostidlecolormain: {
-		name: "boost main color idling",
+	boostclickcharge: {
+		name: "boost charge click",
 		type: "boost",
-		data: ["idle", "color", "main"],
-		amount: 0.1,
+		data: ["click", "charge"],
+		amount: 1,
+	},
+	boostclickcolor: {
+		name: "boost color click",
+		type: "boost",
+		data: ["click", "color"],
+		amount: 1,
 	},
 	blazon: {
 		name: "unlock blazons",
@@ -37,61 +43,109 @@ var upgrade = {
 }
 
 var upgradeLevel = {
-	boostidleshapemain: {
+	boostidleshape: {
 		l1: {
 			unlock: [1000, "rhombus"],
-			price: [200, "red"],
+			price: [2000, "blue"],
 			status: "locked",
 		},
 		l2: {
-			unlock: [200, "white"],
-			price: [500, "blue"],
+			unlock: [3000, "rhombus"],
+			price: [4000, "blue"],
 			status: "locked",
 		},
 		l3: {
-			unlock: [10000, "circle"],
-			price: [1000, "bottom"],
+			unlock: [5000, "rhombus"],
+			price: [6000, "blue"],
 			status: "locked",
 		},		
 	},
-	boostidleshapecharge: {
+	boostidlecharge: {
 		l1: {
-			unlock: [1000, "circle"],
-			price: [250, "yellow"],
-			status: "locked",
-		},	
-	},
-	boostclickshapemain: {
-		l1: {
-			unlock: [1000, "white"],
-			price: [3000, "black"],
+			unlock: [1000, "right"],
+			price: [2000, "red"],
 			status: "locked",
 		},
 		l2: {
-			unlock: [2000, "square"],
-			price: [1500, "left"],
+			unlock: [3000, "right"],
+			price: [4000, "red"],
 			status: "locked",
 		},
 		l3: {
-			unlock: [1500, "yellow"],
-			price: [2500, "yellow"],
+			unlock: [5000, "right"],
+			price: [6000, "red"],
+			status: "locked",
+		},		
+	},
+	boostidlecolor: {
+		l1: {
+			unlock: [1000, "yellow"],
+			price: [2000, "bottom"],
+			status: "locked",
+		},
+		l2: {
+			unlock: [3000, "yellow"],
+			price: [4000, "bottom"],
+			status: "locked",
+		},
+		l3: {
+			unlock: [5000, "yellow"],
+			price: [6000, "bottom"],
+			status: "locked",
+		},		
+	},
+	boostclickshape: {
+		l1: {
+			unlock: [1000, "circle"],
+			price: [2000, "black"],
+			status: "locked",
+		},
+		l2: {
+			unlock: [3000, "circle"],
+			price: [4000, "black"],
+			status: "locked",
+		},
+		l3: {
+			unlock: [5000, "circle"],
+			price: [6000, "black"],
 			status: "locked",
 		},
 	},
-	boostclickshapecharge: {
+	boostclickcharge: {
 		l1: {
-			unlock: [2000, "white"],
-			price: [700, "bottom"],
+			unlock: [1000, "top"],
+			price: [2000, "square"],
 			status: "locked",
-		},	
+		},
+		l2: {
+			unlock: [3000, "top"],
+			price: [4000, "square"],
+			status: "locked",
+		},
+		l3: {
+			unlock: [5000, "top"],
+			price: [6000, "square"],
+			status: "locked",
+		},
 	},
-	boostidlecolormain: {
+	boostclickcolor: {
 		l1: {
-			unlock: [2000, "white"],
-			price: [700, "bottom"],
+			unlock: [1000, "white"],
+			price: [2000, "left"],
 			status: "locked",
-		},	
+		},
+		l2: {
+			unlock: [3000, "white"],
+			price: [4000, "left"],
+			status: "locked",
+		},
+		l3: {
+			unlock: [5000, "white"],
+			price: [6000, "left"],
+			status: "locked",
+		},
 	},
+
 		blazon: {
 		l1: {
 			unlock: [10000, "left"],
@@ -107,7 +161,7 @@ function addUpgrade(item, level){
 	addSubSection("upgrades", "upgrades")
 	if (upgradeLevel[item][level].status == "locked") {
 		upgradeLevel[item][level].status = "unlocked"
-		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span>' + upgrade[item].name + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '">' + upgradeLevel[item][level].price[0] + '</div></div>' );
+		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '">' + upgradeLevel[item][level].price[0] + '</div></div>' );
 		$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
 	}
 	style();
@@ -142,7 +196,7 @@ function upgradeBuy(item, level){
 
 function upgradeEffect(item){
 	if (upgrade[item].type == "boost") {
-		boost(upgrade[item].data[0], upgrade[item].data[1], upgrade[item].data[2], upgrade[item].amount);
+		boost(upgrade[item].data[0], upgrade[item].data[1], upgrade[item].amount);
 	}
 	if (upgrade[item].type == "blazon") {
 		addBlazon();

@@ -18,6 +18,10 @@ var current = {
 		shape: "circle",
 		color: "black",
 		colorType: "basic",
+	},
+	wonderbar: {
+		status: "disabled",
+		color: "black",
 	} 
 }
 
@@ -148,8 +152,8 @@ function randomShape(){
 }
 
 function update(){
-	draw();
 	setTypes();
+	draw();
 	updateSelectors();
 	writeBlazon();
 }

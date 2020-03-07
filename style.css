@@ -292,16 +292,6 @@ div {
 	background-color: #FFF;
 }
 
-#debug {
-	width: 400px;
-	margin: 0 auto;
-	display: none;
-
-}
-
-#debug .container {
-	margin-bottom: 10px;
-}
 
 .data {
 
@@ -342,10 +332,10 @@ div {
 }
 
 .panel {
-	height: 300px;
+	//height: 300px;
 	margin-top: 10px;
 	padding: 10px;
-	background-color: #ccc;
+	background-color: #eee;
 	border-radius: 3px;
 }
 

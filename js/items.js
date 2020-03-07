@@ -322,11 +322,15 @@ const price = {
 var labelDiv = '<div class="label"></div>';
 var powerDiv = '<div class="power"></div>';
 var counterDiv = '<div class="counter">0</div>';
+var chargeButtons = '<div id="chargebuttons" class="container"><div class="button charge inactive">charge <span class="modifier">shift</span></div><div class="button split inactive">split <span class="modifier">alt</span></div><div class="button hyper inactive">hyper</div></div>';
 
 function addSection(section){
 	if (sectionUnlock[section] == "locked") {
 		sectionUnlock[section] = "unlocked"
 		$("#" + section + "").append('<div class="title">' + section.toUpperCase() + '</div>' );
+		if (section == "charge"){
+			$("#" + section + "").append(chargeButtons);
+		}
 	}
 }
 
@@ -345,8 +349,6 @@ function addPreview(item){
 		if (items[item].card == "card") {
 			dash = labelDiv + powerDiv + counterDiv;
 		} else { dash = labelDiv};
-		//$('#' + items[item].subsec + ' > .container').append('<div id="' + item + '" class="item preview ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' );
-
 		$('<div id="' + item + '" class="item preview ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
 	}
 	style();

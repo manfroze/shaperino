@@ -22,7 +22,8 @@ var current = {
 	wonderbar: {
 		status: "disabled",
 		color: "black",
-	} 
+	},
+	select: "main"
 }
 
 var comp = {
@@ -64,6 +65,8 @@ var split = {
 	"topleftbottomright": "topleft",
 	"toprightbottomleft": "topright"
 }
+
+var splitto = swap(split);
 
 function setCurrent(mode, kind, selected){
 	current[mode][kind] = selected;
@@ -117,6 +120,16 @@ function updateSelectors(){
 			highlightComp("color", "split", "color", "s");
 		}
 	}
+	selectorState("split");
+	selectorState("charge");
+}
+
+function selectorState(mode){
+	if (current[mode].status == "disabled"){
+		$('.button.' + mode).addClass("inactive").removeClass("active");
+	} else if (current[mode].status == "enabled") {
+		$('.button.' + mode).addClass("active").removeClass("inactive");
+	}
 }
 
 function setTypes(){
@@ -131,6 +144,11 @@ function setTypes(){
 			setCurrent(value, "colorType", "basic");
 		} else if (color.composite.includes(current[value].color)) {
 			setCurrent(value, "colorType", "composite");
+		}
+	});
+	$.each(splitto, function(key, value){
+		if (current.charge.position == key) {
+			setCurrent("split", "position", value);
 		}
 	});
 }
@@ -151,6 +169,15 @@ function randomShape(){
 	}	
 }
 
+function selector(mode){
+	current.select = mode;
+	if (mode == "main"){
+		$('.button.active').removeClass("selected");	
+	} else {
+		$('.button.active.' + mode).addClass("selected");
+	}
+}
+
 function update(){
 	setTypes();
 	draw();
@@ -162,28 +189,40 @@ update();
 
 // INPUT //
 
-function modifier(e, kind, target){
-	if (!target) {
-		target = $(e.currentTarget).attr("id");
-	}
-	if (e.shiftKey) {
-		if(current.charge.status == "enabled"){
-			setCurrent("charge", kind, target);
+$(document).bind('keydown', function (event) {
+	if (current.charge.status =="enabled") {
+		if (event.keyCode == 16) {
+			selector("charge")
 		}
-	} else if (e.altKey) {
-		if(current.split.status == "enabled"){
-			setCurrent("split", kind, target);
-		}
-	} else {
-		setCurrent("main", kind, target);
 	}
-}
+	if (event.keyCode == 18) {
+		if (current.split.status =="enabled") {
+			selector("split")
+		}
+	}
+});
+
+$(document).bind('keyup', function (event) {
+	if (event.keyCode == 16 || event.keyCode == 18) {
+		selector("main")
+	}
+});
+
+$(document).on( "click", ".button.charge", function(e) {
+	selector("charge");
+});
+
+$(document).on( "click", ".button.split", function(e) {
+	selector("split");
+});
 
 $(document).on( "click", ".item.shape.active", function(e) {
-	modifier(e, "shape");
+	target = $(e.currentTarget).attr("id");
+	setCurrent(current.select, "shape", target);
 });
 $(document).on( "click", ".item.color.active", function(e) {
-	modifier(e, "color");
+	target = $(e.currentTarget).attr("id");
+	setCurrent(current.select, "color", target);
 });
 
 $(document).on( "click", ".item.charge.active", function(e) {

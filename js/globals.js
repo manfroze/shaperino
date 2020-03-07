@@ -23,6 +23,14 @@ function rand(name) {
 	} 
 }
 
+function swap(json){
+  var ret = {};
+  for(var key in json){
+    ret[json[key]] = key;
+  }
+  return ret;
+}
+
 function style(){
 	$.each(shape, function(key, value){
 		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')

@@ -142,36 +142,6 @@ div {
 display: none;
 }
 
-.upgrade {
-	position: relative;
-	box-sizing: border-box;
-	margin-bottom: 10px;
-	border-radius: 3px;
-	height: 70px;
-	width: 100%;
-	border: 1px solid #ccc;
-	vertical-align: middle;
-	padding: 26px;
-	padding-left: 65px;
-	background-repeat: no-repeat;
-	background-size: 50px;
-	background-position: 10px;
-	text-align: left;
-}
-
-.upgrade .name {
-	font-weight: bold;
-}
-
-.upgrade .level {
-	font-weight: bold;
-	margin-left: 5px;
-	background-color: #CCC;
-	color: #222;
-	border-radius: 3px;
-	padding:  3px 5px;
-	font-size: 12px;
-}
 
 
 .label.active {
@@ -233,23 +203,94 @@ display: none;
 	right: 20px;
 }
 
+.upgrade {
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	height: 70px;
+	width: 100%;
+	vertical-align: middle;
+	padding: 26px;
+	padding-left: 65px;
+	background-repeat: no-repeat;
+	background-size: 50px;
+	background-position: 10px;
+	text-align: left;
+	max-width: 450px;
+}
 
-.selected .power {
-	//display: inline-block;
+.upgrade .name {
+	font-weight: bold;
+}
+
+.upgrade .level {
+	font-weight: bold;
+	margin-left: 5px;
+	background-color: #CCC;
+	color: #222;
+	border-radius: 3px;
+	padding:  3px 5px;
+	font-size: 12px;
 }
 
 .button {
-	background-color: #FFFFFF;
 	border-radius: 3px;
-	padding: 7px;
-	display: inline-block;
-	font-weight: bold;
-	margin-right: 10px;
+	border: 1px solid #ccc;
 	cursor: pointer;
 }
 
 .button:hover {
 	background-color: #ccc;
+}
+
+#chargebuttons {
+	margin-bottom: 10px;
+}
+
+#chargebuttons .button.inactive {
+	opacity:  0.5;
+	cursor: default;
+}
+
+#chargebuttons .button.inactive:hover {
+	background-color: transparent;
+}
+
+#chargebuttons .button {
+	display: inline-block;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	text-align: left;
+	padding: 7px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+
+#chargebuttons .button .modifier {
+	font-weight: bold;
+	background-color: #CCC;
+	color: #222;
+	border-radius: 3px;
+	padding:  3px 5px;
+	font-size: 12px;
+}
+
+#chargebuttons .button.inactive .modifier {
+	display: none;
+}
+
+
+#chargebuttons .button.selected {
+	border-color: #FFF;
+	background-color: #FFF;
+}
+
+#debug .button {
+	padding: 7px;
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 10px;
+	cursor: pointer;
 }
 
 #debug {
@@ -282,6 +323,7 @@ display: inline-block;
 border-radius: 3px;
 margin-bottom: 20px;
 font-size: 12px;
+max-width: 400px;
 
 }
 

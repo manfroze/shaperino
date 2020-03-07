@@ -143,6 +143,9 @@ function rhombus(size, centerX, centerY, color) {
 // DRAW WONDER BAR //
 
 function drawWonderBar() {
+
+	avColors = colors.filter(e => e !== current.main.color && e !== current.charge.color && e !== current.split.color);
+
 	if (current.wonderbar.status == "enabled") {wonder.remove();}
 	current.wonderbar.status = "enabled"
 	wonderBarSize = {
@@ -158,7 +161,6 @@ function drawWonderBar() {
 	}
 
 	if (current.charge.status == "enabled") {
-
 		if ((current.charge.position == "topleft") || (current.charge.position == "bottomright"))  {
 			wonderBarRotation = 45
 		}
@@ -187,7 +189,7 @@ function drawWonderBar() {
 		wonderBarRotation = rand([0, 45, -45, 90]);
 
 	}
-	wonder = shaperino.rect(wonderBarSize.x, wonderBarSize.y).center(wonderBarCenter[0], wonderBarCenter[1]).attr({ fill: colorCode[rand(colors)] }).transform({ rotation: wonderBarRotation });
+	wonder = shaperino.rect(wonderBarSize.x, wonderBarSize.y).center(wonderBarCenter[0], wonderBarCenter[1]).attr({ fill: colorCode[rand(avColors)] }).transform({ rotation: wonderBarRotation });
 
 }
 

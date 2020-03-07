@@ -38,7 +38,12 @@ var upgrade = {
 	blazon: {
 		name: "unlock blazons",
 		type: "blazon",
-		data: ["blazon"],
+		data: [""],
+	},
+	wonderbar: {
+		name: "unlock wonder bar",
+		type: "wonderbar",
+		data: [""],
 	}
 }
 
@@ -161,7 +166,7 @@ function addUpgrade(item, level){
 	addSubSection("upgrades", "upgrades")
 	if (upgradeLevel[item][level].status == "locked") {
 		upgradeLevel[item][level].status = "unlocked"
-		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '">' + upgradeLevel[item][level].price[0] + '</div></div>' );
+		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade button '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '">' + upgradeLevel[item][level].price[0] + '</div></div>' );
 		$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
 	}
 	style();

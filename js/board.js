@@ -212,15 +212,15 @@ $(document).bind('keyup', function (event) {
 	}
 });
 
-$(document).on( "click", ".button.charge", function(e) {
+$(document).on( "click", "#charge .button.charge", function(e) {
 	selector("charge");
 });
 
-$(document).on( "click", ".button.split", function(e) {
+$(document).on( "click", "#charge .button.split", function(e) {
 	selector("split");
 });
 
-$(document).on( "click", ".button.remove", function(e) {
+$(document).on( "click", "#charge .button.remove", function(e) {
 	setCurrent("charge", "status", "disabled");
 	setCurrent("split", "status", "disabled");
 	update();

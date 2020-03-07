@@ -224,6 +224,13 @@ div {
 	background-position: 10px;
 	text-align: left;
 	max-width: 450px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+}
+
+.upgrade:hover {
+	background-color: #ccc;
 }
 
 .upgrade .name {
@@ -244,33 +251,27 @@ div {
 	border-radius: 3px;
 	border: 1px solid #ccc;
 	cursor: pointer;
+	padding: 7px 12px;
+	margin-right: 10px;
+	display: inline-block;
+
 }
 
 .button:hover {
 	background-color: #ccc;
 }
 
-#chargebuttons {
-	margin-bottom: 10px;
-}
-
-#chargebuttons .button.inactive {
+.button.inactive {
 	opacity:  0.5;
-	cursor: default;
+	cursor: default !important;
 }
 
-#chargebuttons .button.inactive:hover {
+.button.inactive:hover {
 	background-color: transparent;
 }
 
-#chargebuttons .button {
-	display: inline-block;
-	border-radius: 3px;
-	border: 1px solid #ccc;
-	text-align: left;
-	padding: 7px;
-	cursor: pointer;
-	margin-right: 10px;
+#chargebuttons {
+	margin-bottom: 10px;
 }
 
 #chargebuttons .button .modifier {
@@ -286,18 +287,9 @@ div {
 	display: none;
 }
 
-
-#chargebuttons .button.selected {
+.button.selected {
 	border-color: #FFF;
 	background-color: #FFF;
-}
-
-#debug .button {
-	padding: 7px;
-	display: inline-block;
-	font-weight: bold;
-	margin-right: 10px;
-	cursor: pointer;
 }
 
 #debug {
@@ -331,6 +323,30 @@ div {
 	margin-bottom: 20px;
 	font-size: 12px;
 	max-width: 400px;
+}
+
+#menu {
+	display: flex;
+}
+
+#menu .button {
+	flex-grow: 1;
+	padding: 7px 12px;
+	display: inline-block;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+#menu .button#remove {
+	flex-grow: 0;
+}
+
+.panel {
+	height: 300px;
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #ccc;
+	border-radius: 3px;
 }
 
 #footer {

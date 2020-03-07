@@ -150,15 +150,20 @@ var upgradeLevel = {
 			status: "locked",
 		},
 	},
-
-		blazon: {
+	blazon: {
 		l1: {
 			unlock: [10000, "left"],
 			price: [10000, "red"],
 			status: "locked",
 		},	
 	},
-
+	wonderbar: {
+		l1: {
+			unlock: [10000, "red"],
+			price: [10000, "rhombus"],
+			status: "locked",
+		},	
+	}
 }
 
 function addUpgrade(item, level){

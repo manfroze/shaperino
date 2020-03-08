@@ -64,7 +64,7 @@ div {
 	font-weight: bold;
 	text-align: center;
 	font-size: 22px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .title.sub {
@@ -253,7 +253,8 @@ div {
 	padding: 7px 12px;
 	margin-right: 10px;
 	display: inline-block;
-
+	font-size: 16px;
+	text-align: center;
 }
 
 .button:hover {
@@ -261,7 +262,7 @@ div {
 }
 
 .button.inactive {
-	opacity:  0.5;
+	opacity: 0.5;
 	cursor: default !important;
 }
 
@@ -269,11 +270,16 @@ div {
 	background-color: transparent;
 }
 
-#chargebuttons {
+.button.selected {
+	border-color: #FFF;
+	background-color: #FFF;
+}
+
+.chargebuttons {
 	margin-bottom: 10px;
 }
 
-#chargebuttons .button .modifier {
+.chargebuttons .button .modifier {
 	font-weight: bold;
 	background-color: #CCC;
 	color: #222;
@@ -282,15 +288,16 @@ div {
 	font-size: 12px;
 }
 
-#chargebuttons .button.inactive .modifier {
+.chargebuttons .button.inactive .modifier {
 	display: none;
 }
 
-.button.selected {
-	border-color: #FFF;
-	background-color: #FFF;
+#charge .button.remove {
+	width: 30px;
+	height: 30px;
+	padding:  5px;
+	margin-left: 10px;
 }
-
 
 .data {
 

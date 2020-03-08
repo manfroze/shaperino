@@ -2,13 +2,15 @@ var canvasSize = 500;
 var middle = canvasSize/2;
 var size = {
 	main: 400,
+	hyper: 240,
 	charge: 220,
 	split: 220
 }
 var rhombusSizeDiff = {
 	main: 50,
 	charge: 50,
-	split: 50
+	split: 50,
+	hyper: 0
 }
 var centerPoints = {
 	normal: {
@@ -30,12 +32,14 @@ var center = {
 	normal: {
 		main: [middle, middle],
 		charge: [],
-		split: []
+		split: [],
+		hyper: [middle, middle]
 	},
 	rhombus: {
 		main: [middle, middle],
 		charge: [],
-		split: []
+		split: [],
+		hyper: [middle, middle]
 	}
 }
 var wonderBarRotation = 0;
@@ -108,12 +112,16 @@ function draw() {
 	chargePosition();
 	shaperino = SVG('shaperino').size(500, 500).group();
 	drawShape("main");
+	if (current.hyper.status == "enabled") {
+		drawShape("hyper");
+	}
 	if (current.charge.status == "enabled") {
 		drawShape("charge");
 	}
 	if (current.split.status == "enabled") {
 		drawShape("split");
 	}
+
 }
 
 // DRAW SHAPE FUNCTION //

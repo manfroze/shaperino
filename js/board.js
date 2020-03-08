@@ -19,6 +19,12 @@ var current = {
 		color: "black",
 		colorType: "basic",
 	},
+	hyper: {
+		status: "disabled",
+		shape: "circle",
+		color: "white",
+		colorType: "basic",
+	},
 	wonderbar: {
 		status: "disabled",
 		color: "black",
@@ -122,7 +128,17 @@ function updateSelectors(){
 			highlightComp("color", "split", "color", "s");
 		}
 		$('.button.split').addClass("active").removeClass("inactive");
-	} 
+	}
+
+	if (current.hyper.status == "enabled") {
+		highlight("hyper", "position");
+		highlight("hyper", "shape", "H");
+		highlight("hyper", "color", "H");
+		if (current.hyper.colorType == "composite") {
+			highlightComp("color", "hyper", "color", "h");
+		}
+		$('.button.hyper').addClass("active").removeClass("inactive");
+	}
 
 	if (current.charge.status == "disabled"){
 		$('.button.charge').addClass("inactive").removeClass("active");
@@ -131,9 +147,13 @@ function updateSelectors(){
 	if (current.split.status == "disabled"){
 		$('.button.split').addClass("inactive").removeClass("active");
 	}
+	if (current.hyper.status == "disabled"){
+		$('.button.hyper').addClass("inactive").removeClass("active");
+	}
+
+	current.select = "main";
 
 }
-
 
 function setTypes(){
 	if (position.side.includes(current.charge.position)) {
@@ -212,12 +232,16 @@ $(document).bind('keyup', function (event) {
 	}
 });
 
-$(document).on( "click", "#charge .button.charge", function(e) {
+$(document).on( "click", ".button.charge", function(e) {
 	selector("charge");
 });
 
-$(document).on( "click", "#charge .button.split", function(e) {
+$(document).on( "click", ".button.split", function(e) {
 	selector("split");
+});
+
+$(document).on( "click", ".button.hyper", function(e) {
+	selector("hyper");
 });
 
 $(document).on( "click", "#charge .button.remove", function(e) {

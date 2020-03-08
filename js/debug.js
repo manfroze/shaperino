@@ -79,6 +79,11 @@ $(document).on( "click", "#random", function(e) {
 	update();
 });
 
+$(document).on( "click", "#hyper-debug", function(e) {
+	current.hyper.status = "enabled";
+	updateSelectors();
+});
+
 $(document).on( "click", "#wonder-bar", function(e) {
 	drawWonderBar();
 });

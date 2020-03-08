@@ -1,5 +1,5 @@
 const shape = ["circle", "square", "rhombus"]
-const mode = ["main", "charge", "split"]
+const mode = ["main", "charge", "split", "hyper"]
 const kind = ["shape", "charge", "color"]
 const powertype = ["idle", "click"]
 const position = {

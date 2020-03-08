@@ -1,38 +1,4 @@
-var current = {
-	main: {
-		shape: "circle",
-		color: "black",
-		colorType: "basic",
-	}, 
-	charge: {
-		status: "disabled",
-		type: "side",
-		position: "topleft",
-		shape: "square",
-		color: "black",
-		colorType: "basic",
-	},
-	split: {
-		status: "disabled",
-		position: "topbottom",
-		shape: "circle",
-		color: "black",
-		colorType: "basic",
-	},
-	hyper: {
-		status: "disabled",
-		shape: "circle",
-		color: "white",
-		colorType: "basic",
-	},
-	wonderbar: {
-		status: "disabled",
-		color: "black",
-	},
-	select: "main"
-}
-
-var comp = {
+const comp = {
 	charge: {
 		topleft: ["top", "left"],
 		topright: ["top", "right"],
@@ -65,33 +31,36 @@ var comp = {
 	}
 }
 
-var split = {
+const split = {
 	"topbottom": "top",
 	"leftright": "left",
 	"topleftbottomright": "topleft",
 	"toprightbottomleft": "topright"
 }
 
-var splitto = swap(split);
+const splitto = swap(split);
 
 function setCurrent(mode, kind, selected){
 	current[mode][kind] = selected;
 }
 
-function highlight(mode, kind, label){
-	$("#" + current[mode][kind]).addClass('selected');
-	$("#" + current[mode][kind] + " .label").append(label);
+function highlight(mode, kind){
+	$("#" + current[mode][kind]).addClass('selected').addClass('sel-' + mode);
+	$("#" + current[mode][kind] + " .label").append('<span class="pip sel-'+ mode +'"></span>');
 }
 
-function highlightComp(type, mode, kind, label){
+function highlightComp(type, mode, kind){
 	if (comp[type][current[mode][kind]] != ""){
 		components = comp[type][current[mode][kind]];
-		$("#" + components.join(", #")).addClass('bordered');
-		$("#" + components.join(" .label , #")+ " .label").append(label);
+		$("#" + components.join(", .card#")).addClass('bordered').addClass('sel-' + mode);
+		$("#" + components.join(" .label , .card#") + " .label").append('<span class="pip comp sel-' + mode + '"></span>');
 	}
 }
 
 function clearSelectors(){
+	$.each(mode, function(key, value){
+		$(".item").removeClass('sel-' + value);
+	});
 	$("*").removeClass('selected');
 	$("*").removeClass('bordered');
 	$(".label").html('');
@@ -99,10 +68,10 @@ function clearSelectors(){
 
 function updateSelectors(){
 	clearSelectors();
-	highlight("main", "shape", "M");
-	highlight("main", "color", "M");
+	highlight("main", "shape");
+	highlight("main", "color");
 	if (current.main.colorType == "composite") {
-		highlightComp("color", "main", "color", "m");
+		highlightComp("color", "main", "color");
 	}
 	if (current.charge.status == "enabled" && current.split.status == "disabled") {
 		highlight("charge", "position");
@@ -111,31 +80,31 @@ function updateSelectors(){
 		}
 	}
 	if (current.charge.status == "enabled") {
-		highlight("charge", "shape", "C");
-		highlight("charge", "color", "C");
+		highlight("charge", "shape");
+		highlight("charge", "color");
 		if (current.charge.colorType == "composite") {
-			highlightComp("color", "charge", "color", "c");
+			highlightComp("color", "charge", "color");
 		}
 		$('.button.charge').addClass("active").removeClass("inactive");
 		$('.button.remove').addClass("active").removeClass("inactive");
 	} 
 	if (current.split.status == "enabled") {
 		highlight("split", "position");
-		highlight("split", "shape", "S");
-		highlight("split", "color", "S");
+		highlight("split", "shape");
+		highlight("split", "color");
 		highlightComp("split", "split", "position");
 		if (current.split.colorType == "composite") {
-			highlightComp("color", "split", "color", "s");
+			highlightComp("color", "split", "color");
 		}
 		$('.button.split').addClass("active").removeClass("inactive");
 	}
 
 	if (current.hyper.status == "enabled") {
 		highlight("hyper", "position");
-		highlight("hyper", "shape", "H");
-		highlight("hyper", "color", "H");
+		highlight("hyper", "shape");
+		highlight("hyper", "color");
 		if (current.hyper.colorType == "composite") {
-			highlightComp("color", "hyper", "color", "h");
+			highlightComp("color", "hyper", "color");
 		}
 		$('.button.hyper').addClass("active").removeClass("inactive");
 	}
@@ -151,7 +120,7 @@ function updateSelectors(){
 		$('.button.hyper').addClass("inactive").removeClass("active");
 	}
 
-	current.select = "main";
+	selector("main");
 
 }
 
@@ -177,9 +146,37 @@ function setTypes(){
 }
 
 function randomShape(){
+	unlockedItems();
+	setCurrent("main", "shape", rand(unlockedShapes) );
+	setCurrent("main", "color", rand(unlockedColors) );
+	setCurrent("hyper", "status", rand(["enabled", "disabled"]));
+	if (unlockeditems.includes('top' || 'left' || 'right' || 'bottom')){
+		setCurrent("charge", "status", rand(["enabled", "disabled"]) );
+	}
+	if (current.charge.status == "enabled") {
+		setCurrent("charge", "position", rand(unlockedChargePositions) );
+		setCurrent("charge", "shape", rand(unlockedShapes) );
+		setCurrent("charge", "color", rand(unlockedColors) );
+		if (unlockeditems.includes('topbottom' || 'leftright' || 'topleftbottomright' || 'toprightbottomleft')){
+			setCurrent("split", "status", rand(["enabled", "disabled"]) );
+		}
+	} else { setCurrent("split", "status", "disabled" ); }
+	if (current.split.status == "enabled") {
+		setCurrent("split", "shape", rand(unlockedShapes) );
+		setCurrent("split", "color", rand(unlockedColors) );
+	}
+	if (current.hyper.status == "enabled") {
+		setCurrent("hyper", "shape", rand(unlockedShapes) );
+		setCurrent("hyper", "color", rand(unlockedColors) );
+	}
+	update();
+}
+
+function allRandomShape(){
 	setCurrent("main", "shape", rand(shape) );
 	setCurrent("main", "color", rand(colors) );
 	setCurrent("charge", "status", rand(["enabled", "disabled"]) );
+	setCurrent("hyper", "status", rand(["enabled", "disabled"]));
 	if (current.charge.status == "enabled") {
 		setCurrent("charge", "position", rand(chargePositions) );
 		setCurrent("charge", "shape", rand(shape) );
@@ -189,17 +186,24 @@ function randomShape(){
 	if (current.split.status == "enabled") {
 		setCurrent("split", "shape", rand(shape) );
 		setCurrent("split", "color", rand(colors) );
-	}	
+	}
+	if (current.hyper.status == "enabled") {
+		setCurrent("hyper", "shape", rand(shape) );
+		setCurrent("hyper", "color", rand(colors) );
+	}
+	update();
+	if (rand(["0", "1"]) == "0") { drawWonderBar(); }
 }
+
 
 function selector(mode){
 	current.select = mode;
-	if (mode == "main"){
-		$('.button.active').removeClass("selected");	
-	} else {
+	//if (mode == "main"){
+		//$('.button.active').removeClass("selected");	
+	//} else {
 		$('.button.active').removeClass("selected");
 		$('.button.active.' + mode).addClass("selected");
-	}
+	//}
 }
 
 function update(){
@@ -207,6 +211,7 @@ function update(){
 	draw();
 	updateSelectors();
 	writeBlazon();
+	//unlockedItems();
 }
 
 update();
@@ -230,6 +235,10 @@ $(document).bind('keyup', function (event) {
 	if (event.keyCode == 16 || event.keyCode == 18) {
 		selector("main")
 	}
+});
+
+$(document).on( "click", ".button.main", function(e) {
+	selector("main");
 });
 
 $(document).on( "click", ".button.charge", function(e) {

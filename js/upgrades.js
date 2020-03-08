@@ -1,4 +1,4 @@
-var upgrade = {
+const upgrade = {
 	boostidleshape: {
 		name: "boost shape idling",
 		type: "boost",
@@ -47,7 +47,7 @@ var upgrade = {
 	}
 }
 
-var upgradeLevel = {
+const upgradeLevel = {
 	boostidleshape: {
 		l1: {
 			unlock: [1000, "rhombus"],
@@ -171,7 +171,7 @@ function addUpgrade(item, level){
 	addSubSection("upgrades", "upgrades")
 	if (upgradeLevel[item][level].status == "locked") {
 		upgradeLevel[item][level].status = "unlocked"
-		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '">' + upgradeLevel[item][level].price[0] + '</div></div>' );
+		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '"><span>' + upgradeLevel[item][level].price[0] + '</span></div></div>' );
 		$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
 	}
 	style();

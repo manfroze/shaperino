@@ -2,7 +2,7 @@ var canvasSize = 500;
 var middle = canvasSize/2;
 var size = {
 	main: 400,
-	hyper: 240,
+	hyper: 280,
 	charge: 220,
 	split: 220
 }

@@ -1,35 +1,3 @@
-var counter = {
-	circle: 0,
-	square: 0,
-	rhombus: 0,
-	top: 0,
-	left: 0,
-	right: 0,
-	bottom: 0,
-	black: 0,
-	white: 0,
-	red: 0,
-	yellow: 0,
-	blue: 0,
-}
-var power = {
-	idle: {
-		shape: 0,
-		charge: 0,
-		color: 0,
-	},
-	click: {
-		shape: 1,
-		charge: 1,
-		color: 1,
-	}
-}
-var multi = {
-	charge: 0.5,
-	split: 0.25,
-	comp: 0.5
-}
-
 function writeCounters(){	
 	$.each(counter, function(index){
 		$("#" + index + " .counter").html(Math.floor(counter[index]));
@@ -47,7 +15,6 @@ function increaseCounters(powertype){
 	if (current.charge.status == "enabled" && current.charge.type == "side") {
 		counter[current.charge.position] +=power[powertype].charge;
 	}
-
 	if(current.main.colorType == "basic") {
 		counter[current.main.color] +=power[powertype].color;
 	}
@@ -67,8 +34,6 @@ function increaseCounters(powertype){
 			counter[value] +=power[powertype].charge * multi.comp;
 		});
 	}
-
-
 	if (current.main.colorType == "composite") {
 		$.each(comp.color[current.main.color], function(index, value){
 			counter[value] +=power[powertype].color * multi.comp;

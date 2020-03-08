@@ -76,7 +76,10 @@ $(document).on( "click", "#earn", function(e) {
 
 $(document).on( "click", "#random", function(e) {
 	randomShape();
-	update();
+});
+
+$(document).on( "click", "#totalrandom", function(e) {
+	allRandomShape();
 });
 
 $(document).on( "click", "#hyper-debug", function(e) {

@@ -158,7 +158,7 @@ div {
 	height: 20px;
 	position: absolute;
 	top: 5px;
-	left: 8px;
+	left: 5px;
 	font-size: 15px;
 }
 
@@ -170,12 +170,34 @@ div {
 	font-size: 12px;
 }
 
+.label .pip {
+	//background-color: #222;
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	margin-right: 2px;
+	//border-radius: 10px;
+}
+
+.sel-main.pip { background-image: url('svg/pip-main.svg'); }
+.sel-charge.pip { background-image: url('svg/pip-charge.svg'); }
+.sel-split.pip { background-image: url('svg/pip-split.svg'); }
+.sel-hyper.pip { background-image: url('svg/pip-hyper.svg'); }
+.sel-main.pip.comp { background-image: url('svg/pip-main-comp.svg'); }
+.sel-charge.pip.comp { background-image: url('svg/pip-charge-comp.svg'); }
+.sel-split.pip.comp { background-image: url('svg/pip-split-comp.svg'); }
+.sel-hyper.pip.comp { background-image: url('svg/pip-hyper-comp.svg'); }
+
+#charge .pip {
+	display: none;
+}
+
 .counter {
 	font-weight: bold;
 	position: absolute;
 	bottom: 5px;
 	right: 8px;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 .power {
@@ -188,20 +210,28 @@ div {
 
 .pricetag {
 	display: inline-block;
-	padding-right: 18px;
 	font-size: 12px;
 	font-weight: bold;
 	background-repeat: no-repeat;
 	background-size: 15px;
 	background-position: right;
+	background-origin: content-box;
+	font-weight: bold;
+	background-color: #CCC;
+	border-radius: 3px;
+	padding: 4px 7px 4px 9px;
+}
+
+.pricetag span {
+	margin-right: 16px;
 }
 
 .card .pricetag {
-	margin-top: 75px;
+	margin-top: 34px;
 }
 
 .small .pricetag {
-	margin-top: 50px;
+	margin-top: 14px;
 }
 
 .upgrade .pricetag {
@@ -250,10 +280,10 @@ div {
 	border-radius: 3px;
 	border: 1px solid #ccc;
 	cursor: pointer;
-	padding: 7px 12px;
+	padding: 7px;
 	margin-right: 10px;
 	display: inline-block;
-	font-size: 16px;
+	font-size: 13px;
 	text-align: center;
 }
 
@@ -279,16 +309,38 @@ div {
 	margin-bottom: 10px;
 }
 
-.chargebuttons .button .modifier {
+.chargebuttons .button {
+	background-repeat: no-repeat;
+	background-origin: content-box;
+	background-position: 0;
+}
+
+.chargebuttons .button > span:first-child {
+	padding-left: 15px;
+}
+
+.chargebuttons .button.main { background-image: url('svg/pip-main.svg'); }
+.chargebuttons .button.charge { background-image: url('svg/pip-charge.svg'); }
+.chargebuttons .button.split  { background-image: url('svg/pip-split.svg'); }
+.chargebuttons .button.hyper  { background-image: url('svg/pip-hyper.svg'); }
+
+.chargebuttons .hyper {
+	display: none;
+}
+
+.button .modifier {
 	font-weight: bold;
 	background-color: #CCC;
 	color: #222;
 	border-radius: 3px;
-	padding:  3px 5px;
-	font-size: 12px;
+	padding: 3px 5px;
+	font-size: 10px;
+	position: relative;
+	bottom: 1px;
+	margin-left: 5px;
 }
 
-.chargebuttons .button.inactive .modifier {
+.button.inactive .modifier {
 	display: none;
 }
 
@@ -297,6 +349,8 @@ div {
 	height: 30px;
 	padding:  5px;
 	margin-left: 10px;
+	top: -2px;
+    position: relative;
 }
 
 .data {
@@ -361,6 +415,14 @@ div {
 	padding:  10px 15px;
 	border-radius: 3px 3px 0 0;
 	text-align: center;
+}
+
+#debug .container {
+	margin-bottom: 10px;
+}
+
+#menu .button#debug {
+	display: none;
 }
 
 #top { order:  1; }

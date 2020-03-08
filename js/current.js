@@ -1,5 +1,6 @@
 var current = {
 	main: {
+		status: "enabled",
 		shape: "circle",
 		color: "black",
 		colorType: "basic",

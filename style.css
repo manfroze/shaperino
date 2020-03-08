@@ -37,7 +37,6 @@ div {
 
 .center.column {
 	flex-grow: 2;
-	//width:  500px;
 	text-align: center;
 }
 
@@ -196,6 +195,31 @@ div {
 .sel-split.pip.comp { background-image: url('svg/pip-split-comp.svg'); }
 .sel-hyper.pip.comp { background-image: url('svg/pip-hyper-comp.svg'); }
 
+.sel-hyper.pip circle {
+	animation: col 3s linear infinite;
+}
+
+@keyframes col {
+	0%,71% {fill:none}
+	72% {fill:black}
+	75%,100% {fill:none}
+}
+
+.sel-hyper.pip  {
+	animation: col 0.3s linear infinite;
+	//transition: transform 300ms linear;
+}
+
+@keyframes col {
+	from {filter: hue-rotate(0deg)}
+	to {filter: hue-rotate(360deg)}
+}
+
+.button.hyper {
+	animation: col 1s linear infinite;
+	border-color: #FF4329;
+}
+
 #charge .pip {
 	display: none;
 }
@@ -333,7 +357,7 @@ div {
 .chargebuttons .button.hyper  { background-image: url('svg/pip-hyper.svg'); }
 
 .chargebuttons .hyper {
-	display: none;
+	//display: none;
 }
 
 .button .modifier {
@@ -358,7 +382,7 @@ div {
 	padding:  5px;
 	margin-left: 10px;
 	top: -2px;
-    position: relative;
+	position: relative;
 }
 
 .data {

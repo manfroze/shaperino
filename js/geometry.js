@@ -13,8 +13,8 @@ const modif = {
 		offset: 38,
 	},
 	cross: {
-		size: 0.45,
-		offset: 60,
+		size: 0.3,
+		offset: 70,
 	},
 	octagon: {
 		size: 0.5,
@@ -166,8 +166,8 @@ function shapeDraw(shape, size, centerX, centerY, color) {
 		shaperino.rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "cross") {
-		shaperino.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color })
-		shaperino.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color })
+		shaperino.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		shaperino.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "octagon") {
 		shaperino.polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })

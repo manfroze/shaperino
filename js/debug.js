@@ -100,17 +100,22 @@ $(document).on( "click", "#addupgrades", function(e) {
 });
 
 $(document).keydown(function(event) {
-	if (event.which === 68) {
+	if (event.key === 'd') { 
 		$('#debug').toggle();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.which === 82) {
+	if (event.key === 'r') {
 		allRandomShape();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.which === 84) {
+	if (event.key === 't') { // T
 		randomShape();
+	} });
+
+$(document).keydown(function(event) {
+	if (event.key === 'c') { 
+		addAll();
 	} });
 

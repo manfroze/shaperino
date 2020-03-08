@@ -13,10 +13,12 @@ const modif = {
 		offset: 38,
 	},
 	cross: {
-		size: 0.4,
+		size: 0.45,
+		offset: 60,
 	},
 	octagon: {
 		size: 0.5,
+		offset: 50,
 	}
 }
 
@@ -37,14 +39,14 @@ const chargeCenter = {
 			full: canvasSize - ((size.charge+modif.rhombus.size)/2 + modif.rhombus.offset)
 	},
 	cross: {
-			zero: size.charge/2,
+			zero: (size.charge*modif.cross.size)/2 + modif.cross.offset,
 			middle: middle,
-			full: canvasSize - size.charge/2
+			full: canvasSize - ((size.charge*modif.cross.size)/2 + modif.cross.offset)
 	},
 	octagon: {
-			zero: size.charge/2,
+			zero: (size.charge*modif.octagon.size)/2 + modif.octagon.offset,
 			middle: middle,
-			full: canvasSize - size.charge/2
+			full: canvasSize - ((size.charge*modif.octagon.size)/2 + modif.octagon.offset)
 	},
 }
 
@@ -96,37 +98,19 @@ const colorCode = {
 }
 
 var center = {
-	circle: {
-		main: [middle, middle],
-		charge: [],
-		split: [],
-		hyper: [middle, middle]
-	},
-	square: {
-		main: [middle, middle],
-		charge: [],
-		split: [],
-		hyper: [middle, middle]
-	},
-	rhombus: {
-		main: [middle, middle],
-		charge: [],
-		split: [],
-		hyper: [middle, middle]
-	},
-	cross: {
-		main: [middle, middle],
-		charge: [],
-		split: [],
-		hyper: [middle, middle]
-	},
-	octagon: {
-		main: [middle, middle],
-		charge: [],
-		split: [],
-		hyper: [middle, middle]
-	}
+	circle: {},
+	square: {},
+	rhombus: {},
+	cross: {},
+	octagon: {}
 }
+
+$.each(shape, function(key, sha){
+ center[sha].main = [middle, middle];
+ center[sha].charge = [];
+ center[sha].split = [];
+ center[sha].hyper = [middle, middle];
+});
 
 var wonderBarCenter = [middle, middle]
 var wonderBarRotation = 0;

@@ -14,13 +14,23 @@ const classes = {
 const price = {
 	square: {
 		preview: [25, "circle"],
-		unlock: [50, "circle"],
-		price: [100, "circle"]
+		unlock: [100, "circle"],
+		price: [250, "circle"]
 	},
 	rhombus: {
-		preview: [90, "square"],
-		unlock: [150, "square"],
-		price: [200, "white"]
+		preview: [100, "circle"],
+		unlock: [250, "square"],
+		price: [500, "white"]
+	},
+	cross: {
+		preview: [20000, "yellow"],
+		unlock: [175000, "rhombus"],
+		price: [1000000, "left"]
+	},
+	octagon: {
+		preview: [20000, "bottom"],
+		unlock: [175000, "cross"],
+		price: [1000000, "blue"]
 	},
 	white: {
 		preview: [50, "black"],
@@ -50,9 +60,74 @@ const price = {
 	orange: {
 		preview: [1000, "yellow"],
 		unlock: [1200, "red"],
-		price: [700, "right"]
+		price: [800, "right"]
 	},
 	violet: {
+		preview: [1400, "red"],
+		unlock: [2000, "blue"],
+		price: [5000, "circle"]
+	},
+	grey: {
+		preview: [30000, "white"],
+		unlock: [10000, "black"],
+		price: [7000, "bottom"]
+	},
+	lightred: {
+		preview: [100000, "left"],
+		unlock: [100000, "red"],
+		price: [10000, "cross"]
+	},
+	lightyellow: {
+		preview: [100000, "square"],
+		unlock: [100000, "yellow"],
+		price: [10000, "octagon"]
+	},
+	lightblue: {
+		preview: [100000, "bottom"],
+		unlock: [100000, "blue"],
+		price: [1000000, "circle"]
+	},
+	darkred: {
+		preview: [600000, "right"],
+		unlock: [1000000, "red"],
+		price: [10000000, "square"]
+	},
+	darkyellow: {
+		preview: [600000, "circle"],
+		unlock: [1000000, "yellow"],
+		price: [10000000, "blue"]
+	},
+	darkblue: {
+		preview: [600000, "top"],
+		unlock: [1000000, "blue"],
+		price: [100000, "octagon"]
+	},
+	lightgreen: {
+		preview: [700, "blue"],
+		unlock: [1000, "yellow"],
+		price: [450, "top"]
+	},
+	lightorange: {
+		preview: [10000000, "red"],
+		unlock: [100000000, "yellow"],
+		price: [1000000000, "cross"]
+	},
+	lightviolet: {
+		preview: [10000000, "blue"],
+		unlock: [100000000, "red"],
+		price: [1000000000, "octagon"]
+	},
+	darkgreen: {
+		preview: [10000000, "yellow"],
+		unlock: [100000000, "blue"],
+		price: [10000000000, "rhombus"]
+	},
+	darkorange: {
+		preview: [1000, "yellow"],
+		unlock: [1200, "red"],
+		price: [700, "right"]
+	},
+	darkviolet: {
 		preview: [1400, "red"],
 		unlock: [2000, "blue"],
 		price: [5000, "circle"]
@@ -73,6 +148,46 @@ const price = {
 		price: [3000, "red"]
 	},
 	left: {
+		preview: [1500, "bottom"],
+		unlock: [2000, "bottom"],
+		price: [2000, "right"]
+	},
+	topleft: {
+		preview: [1000, "circle"],
+		unlock: [1000, "square"],
+		price: [1000, "rhombus"]
+	},
+	topright: {
+		preview: [500, "top"],
+		unlock: [600, "top"],
+		price: [2600, "blue"]
+	},
+	bottomleft: {
+		preview: [1000, "right"],
+		unlock: [1500, "right"],
+		price: [3000, "red"]
+	},
+	bottomright: {
+		preview: [1500, "bottom"],
+		unlock: [2000, "bottom"],
+		price: [2000, "right"]
+	},
+	topbottom: {
+		preview: [1000, "circle"],
+		unlock: [1000, "square"],
+		price: [1000, "rhombus"]
+	},
+	leftright: {
+		preview: [500, "top"],
+		unlock: [600, "top"],
+		price: [2600, "blue"]
+	},
+	toprightbottomleft: {
+		preview: [1000, "right"],
+		unlock: [1500, "right"],
+		price: [3000, "red"]
+	},
+	topleftbottomright: {
 		preview: [1500, "bottom"],
 		unlock: [2000, "bottom"],
 		price: [2000, "right"]
@@ -123,7 +238,7 @@ function addUnlock(item){
 		items[item].status = "unlocked"
 		$('#' + item + '').removeClass("preview").addClass("unlocked");
 		if (price[item]){
-			$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + price[item].price[0] + '</span></div>');
+			$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
 		}
 	}
 	style();

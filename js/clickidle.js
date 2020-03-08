@@ -1,6 +1,6 @@
 function writeCounters(){	
 	$.each(counter, function(index){
-		$("#" + index + " .counter").html(Math.floor(counter[index]));
+		$("#" + index + " .counter").html(formatNumber(counter[index]));
 	});
 }
 
@@ -60,12 +60,14 @@ function boost(type, kind, amount){
 
 function loop(){
 	setInterval(function(){ 
-		priceUnlock();
-		upgradeUnlock();
 		increaseCounters("idle");
 		writeCounters();
-		debugData();
 	}, 300);
+	setInterval(function(){ 
+		priceUnlock();
+		upgradeUnlock();
+		debugData();
+	}, 1000);
 }
 
 loop();

@@ -52,6 +52,18 @@ var items = {
 		card: "card",
 		status: "locked"
 	},
+	cross: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+		status: "locked"
+	},
+	octagon: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+		status: "locked"
+	},
 	top: {
 		sec: "charge",
 		subsec: "side",
@@ -275,6 +287,8 @@ var counter = {
 	circle: 0,
 	square: 0,
 	rhombus: 0,
+	cross: 0,
+	octagon: 0,
 	top: 0,
 	left: 0,
 	right: 0,
@@ -285,6 +299,7 @@ var counter = {
 	yellow: 0,
 	blue: 0,
 }
+
 var power = {
 	idle: {
 		shape: 0,

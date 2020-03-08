@@ -9,51 +9,43 @@ const size = {
 
 const modif = {
 	rhombus: {
-		size: 50,
+		size: -50,
 		offset: 38,
+	},
+	cross: {
+		size: 0.4,
+	},
+	octagon: {
+		size: 0.5,
 	}
 }
 
-const shapeData = {
+const chargeCenter = {
 	circle: {
-		size: {
-			main: 0,
-			charge: 0,
-			split: 0,
-			hyper: 0
-		},
-		chargeCenter: {
 			zero: size.charge/2,
 			middle: middle,
 			full: canvasSize - size.charge/2
 		},
-	},
 	square: {
-		size: {
-			main: 0,
-			charge: 0,
-			split: 0,
-			hyper: 0
-		},
-		chargeCenter: {
 			zero: size.charge/2,
 			middle: middle,
 			full: canvasSize - size.charge/2
 		},
-	},
 	rhombus: {
-		size: {
-			main: modif.rhombus.size,
-			charge: modif.rhombus.size,
-			split: modif.rhombus.size,
-			hyper: 0
-		},
-		chargeCenter: {
-			zero: (size.charge-modif.rhombus.size)/2 + modif.rhombus.offset,
+			zero: (size.charge+modif.rhombus.size)/2 + modif.rhombus.offset,
 			middle: middle,
-			full: canvasSize - ((size.charge-modif.rhombus.size)/2 + modif.rhombus.offset)
-		},
-	}
+			full: canvasSize - ((size.charge+modif.rhombus.size)/2 + modif.rhombus.offset)
+	},
+	cross: {
+			zero: size.charge/2,
+			middle: middle,
+			full: canvasSize - size.charge/2
+	},
+	octagon: {
+			zero: size.charge/2,
+			middle: middle,
+			full: canvasSize - size.charge/2
+	},
 }
 
 const wonderBarSizeList = {
@@ -121,6 +113,18 @@ var center = {
 		charge: [],
 		split: [],
 		hyper: [middle, middle]
+	},
+	cross: {
+		main: [middle, middle],
+		charge: [],
+		split: [],
+		hyper: [middle, middle]
+	},
+	octagon: {
+		main: [middle, middle],
+		charge: [],
+		split: [],
+		hyper: [middle, middle]
 	}
 }
 
@@ -135,8 +139,8 @@ function chargePosition(){
 		if (current.charge.position == index) {
 			$.each(value, function(i, v){
 				$.each(shape, function(key, sha){
-					center[sha].charge[i] = shapeData[sha].chargeCenter[v]
-					center[sha].split[i] = shapeData[sha].chargeCenter[mirror[v]]
+					center[sha].charge[i] = chargeCenter[sha][v]
+					center[sha].split[i] = chargeCenter[sha][mirror[v]]
 				});
 			});
 		}
@@ -159,8 +163,12 @@ function draw() {
 
 // DRAW SHAPE FUNCTION //
 
-function drawShape(kind) {
+/*function drawShape(kind) {
 	shapeDraw(current[kind].shape, size[kind]-shapeData[current[kind].shape].size[kind], center[current[kind].shape][kind][0], center[current[kind].shape][kind][1], colorCode[current[kind].color])
+}*/
+
+function drawShape(kind) {
+	shapeDraw(current[kind].shape, size[kind], center[current[kind].shape][kind][0], center[current[kind].shape][kind][1], colorCode[current[kind].color])
 }
 
 function shapeDraw(shape, size, centerX, centerY, color) {
@@ -171,7 +179,14 @@ function shapeDraw(shape, size, centerX, centerY, color) {
 		shaperino.rect(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "rhombus") {
-		shaperino.rect(size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		shaperino.rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+	}
+	if (shape == "cross") {
+		shaperino.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color })
+		shaperino.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color })
+	}
+	if (shape == "octagon") {
+		shaperino.polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
 	}
 }
 

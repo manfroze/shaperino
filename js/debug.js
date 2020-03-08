@@ -103,3 +103,14 @@ $(document).keydown(function(event) {
 	if (event.which === 68) {
 		$('#debug').toggle();
 	} });
+
+$(document).keydown(function(event) {
+	if (event.which === 82) {
+		allRandomShape();
+	} });
+
+$(document).keydown(function(event) {
+	if (event.which === 84) {
+		randomShape();
+	} });
+

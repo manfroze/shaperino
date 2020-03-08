@@ -1,5 +1,5 @@
-const shape = ["circle", "square", "rhombus"]
-const mode = ["main", "charge", "split", "hyper"]
+const shape = ["circle", "square", "rhombus", "cross", "octagon"]
+const mode = ["main", "hyper", "charge", "split"]
 const kind = ["shape", "charge", "color"]
 const powertype = ["idle", "click"]
 const position = {
@@ -15,6 +15,7 @@ const color = {
 const colors = [...color.basic, ...color.composite]
 const positions = [...position.side, ...position.corner, , ...position.split]
 const chargePositions = [...position.side, ...position.corner]
+const tokens = [shape, ...color.basic, ...position.side]
 
 function rand(name) {
 	if (name instanceof Array == true) {

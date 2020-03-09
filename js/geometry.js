@@ -14,11 +14,11 @@ const modif = {
 	},
 	cross: {
 		size: 0.3,
-		offset: 70,
+		offset: 73,
 	},
 	octagon: {
 		size: 0.5,
-		offset: 50,
+		offset: 56,
 	}
 }
 
@@ -73,30 +73,6 @@ const mirror = {
 	"middle": "middle"
 }
 
-const colorCode = {
-	black: "#222222",
-	white: "#FFFFFF",
-	red: "#FF4329",
-	yellow: "#FFD600",
-	blue: "#0085FF",
-	orange: "#FF9A3D",
-	green: "#47E24D",
-	violet: "#883BEB",
-	grey: "#9F9F9F",
-	darkred: "#823525",
-	darkyellow: "#CCB152",
-	darkblue: "#1A3782",
-	lightred: "#FFC2C2",
-	lightyellow: "#FCFF81",
-	lightblue: "#7CC0FF",
-	darkorange: "#825933",
-	darkgreen: "#239727",
-	darkviolet: "#400072",
-	lightorange: "#FFBF5F",
-	lightgreen: "#C8FF54",
-	lightviolet: "#E64EFF",
-}
-
 var center = {
 	circle: {},
 	square: {},
@@ -136,41 +112,38 @@ function chargePosition(){
 function draw() {
 	clearCanvas();
 	chargePosition();
-	shaperino = SVG('shaperino').size(500, 500).group();
 	$.each(mode, function(j, k){
 		if (current[k].status == "enabled") {
 			drawShape(k);
 		}
 	});
-
 }
 
 // DRAW SHAPE FUNCTION //
 
-/*function drawShape(kind) {
-	shapeDraw(current[kind].shape, size[kind]-shapeData[current[kind].shape].size[kind], center[current[kind].shape][kind][0], center[current[kind].shape][kind][1], colorCode[current[kind].color])
-}*/
-
-function drawShape(kind) {
-	shapeDraw(current[kind].shape, size[kind], center[current[kind].shape][kind][0], center[current[kind].shape][kind][1], colorCode[current[kind].color])
+function drawShape(mode) {
+	shapeDraw(mode, current[mode].shape, size[mode], center[current[mode].shape][mode][0], center[current[mode].shape][mode][1], colorCode[current[mode].color])
 }
 
-function shapeDraw(shape, size, centerX, centerY, color) {
+function shapeDraw(mode, shape, size, centerX, centerY, color) {
+
+	var modes = mode;
+
 	if (shape == "circle") {
-		shaperino.circle(size, size).center(centerX, centerY).attr({ fill: color })
+		SVG(mode + '-canvas').size(500, 500).group().circle(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "square") {
-		shaperino.rect(size, size).center(centerX, centerY).attr({ fill: color })
+		SVG(mode + '-canvas').size(500, 500).group().rect(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "rhombus") {
-		shaperino.rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		SVG(mode + '-canvas').size(500, 500).group().rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "cross") {
-		shaperino.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
-		shaperino.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		SVG(mode + '-canvas').size(500, 500).group().rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		SVG(mode + '-canvas').size(500, 500).group().rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "octagon") {
-		shaperino.polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
+		SVG(mode + '-canvas').size(500, 500).group().polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
 	}
 }
 
@@ -218,7 +191,7 @@ function drawWonderBar() {
 	} else if (current.charge.status == "disabled") {
 		wonderBarRotation = rand([0, 45, -45, 90]);
 	}
-	wonder = shaperino.rect(wonderBarSize.x, wonderBarSize.y).center(wonderBarCenter[0], wonderBarCenter[1]).attr({ fill: colorCode[rand(avColors)] }).transform({ rotation: wonderBarRotation });
+	wonder = SVG('wonder-canvas').size(500, 500).group().rect(wonderBarSize.x, wonderBarSize.y).center(wonderBarCenter[0], wonderBarCenter[1]).attr({ fill: colorCode[rand(avColors)] }).transform({ rotation: wonderBarRotation });
 
 	//wonder.animate().rotate(wonderBarRotation + 360);
 }
@@ -226,5 +199,18 @@ function drawWonderBar() {
 // CLEAR //
 
 function clearCanvas(){
-	document.getElementById("shaperino").innerHTML = "";
+	//document.getElementById("shaperino").innerHTML = "";
+	
+
+	document.getElementById('main-canvas').innerHTML = "";
+	document.getElementById('charge-canvas').innerHTML = "";
+	document.getElementById('split-canvas').innerHTML = "";
+	document.getElementById('hyper-canvas').innerHTML = "";
+	document.getElementById('wonder-canvas').innerHTML = "";
+
+	$.each(mode, function(j, k){
+		//$('#' + k + '-canvas').empty()
+		//document.getElementById(k + '-canvas').innerHTML = "";
+	});
+	//$('#wonder-canvas').empty()
 }

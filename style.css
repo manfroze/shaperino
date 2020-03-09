@@ -6,6 +6,10 @@ body {
 	margin: 0;
 }
 
+a {
+	color: #FFF;
+}
+
 div {
 	box-sizing: border-box !important;
 }
@@ -25,7 +29,6 @@ div {
 }
 .column {
 	position: relative;
-	overflow-y: scroll;
 	max-height: 100%;
 }
 
@@ -33,6 +36,7 @@ div {
 	flex-grow: 1;
 	padding: 10px;
 	width:  512px;
+	overflow-y: scroll;
 } 
 
 .center.column {
@@ -75,6 +79,39 @@ div {
 	transition: transform .5s ease;
 	width:  500px;
 	text-align: center;
+	position: relative;
+}
+
+.canvas {
+
+pointer-events: none;
+
+}
+
+.canvas svg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+}
+
+.canvas svg g {
+	pointer-events: auto;
+}
+
+#wonder-canvas svg g:hover {
+	stroke: #222;
+	stroke-width: 10;
+	filter: hue-rotate(100deg)
+}
+
+#shaperino:hover #hyper-canvas  {
+	animation: hyper 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes hyper {
+	0% {filter: hue-rotate(0deg)}
+	100% {filter: hue-rotate(45deg)}
 }
 
 .title {
@@ -87,10 +124,7 @@ div {
 .title.sub {
 	font-size: 15px;
 	margin-bottom: 15px;
-}
-
-.section > .subsection > .title.sub:first-of-type {
-	//display: none;
+	display: none;
 }
 
 .container {
@@ -207,18 +241,11 @@ div {
 	animation: col 3s linear infinite;
 }
 
-@keyframes col {
-	0%,71% {fill:none}
-	72% {fill:black}
-	75%,100% {fill:none}
-}
-
 .sel-hyper.pip  {
-	animation: col 0.3s linear infinite;
-	//transition: transform 300ms linear;
+	animation: flashing 0.3s linear infinite;
 }
 
-@keyframes col {
+@keyframes flashing {
 	from {filter: hue-rotate(0deg)}
 	to {filter: hue-rotate(360deg)}
 }
@@ -424,6 +451,8 @@ div {
 }
 
 #menu {
+	position: relative;
+	top: 520px;
 	display: flex;
 }
 
@@ -440,7 +469,8 @@ div {
 }
 
 .panel {
-	//height: 300px;
+	position: relative;
+	top: 520px;
 	max-width: 100%;
 	margin-top: 10px;
 	padding: 10px;
@@ -449,10 +479,8 @@ div {
 }
 
 #footer {
-	box-sizing: border-box;
 	position: absolute;
-	bottom: 0px;
-	margin-bottom: 10px;
+	bottom: 8px;
 	text-align: center;
 	width: 100%;
 }
@@ -460,9 +488,39 @@ div {
 #footer span {
 	background-color: #222;
 	color: #fff;
-	padding:  10px 15px;
+	padding:  8px 10px;
 	border-radius: 3px 3px 0 0;
 	text-align: center;
+	font-size: 13px;
+}
+
+#colorbar {
+	display: none;
+	position: absolute;
+	bottom:  0;
+	left:  0;
+	width: 100%;
+	height: 30px;
+	background-color: #EEE;
+	text-align: left;
+	transition: 1s;
+}
+
+#colorbar .piece {
+	height: 100%;
+	display: inline-block;
+	width: 0;
+	max-width: calc(100vw/21);
+	position: relative;
+}
+
+#colorbar .piece span {
+	position: absolute;
+	bottom: 15px;
+	right: 5px;
+	font-size: 8px;
+	color: #fff;
+	mix-blend-mode: difference;
 }
 
 #debug .container {

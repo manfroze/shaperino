@@ -30,6 +30,9 @@ var current = {
 		status: "disabled",
 		color: "black",
 	},
+	colorbar: {
+		status: "disabled",
+	},
 	select: "main"
 }
 
@@ -313,8 +316,10 @@ var power = {
 	}
 }
 var multi = {
+	main: 1,
 	charge: 0.5,
 	split: 0.25,
+	hyper: 2,
 	comp: 0.5
 }
 

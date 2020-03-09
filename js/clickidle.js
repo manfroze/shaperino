@@ -5,25 +5,23 @@ function writeCounters(){
 }
 
 function increaseCounters(powertype){
-	counter[current.main.shape] +=power[powertype].shape;
-	if (current.charge.status == "enabled") {
-		counter[current.charge.shape] +=power[powertype].shape * multi.charge;
-	}
-	if (current.split.status == "enabled") {
-		counter[current.split.shape] +=power[powertype].shape * multi.split;
-	}
+
+
+	$.each(mode, function(key, value){
+		if (current[value].status == "enabled") {
+			counter[current[value].shape] +=power[powertype].shape * multi[value];
+			if(current[value].colorType == "basic") {
+				counter[current[value].color] +=power[powertype].color * multi[value];
+			}
+		}
+	});
+
 	if (current.charge.status == "enabled" && current.charge.type == "side") {
 		counter[current.charge.position] +=power[powertype].charge;
 	}
-	if(current.main.colorType == "basic") {
-		counter[current.main.color] +=power[powertype].color;
-	}
-	if (current.charge.status == "enabled" && current.charge.colorType == "basic") {
-		counter[current.charge.color] +=power[powertype].color * multi.charge;
-	}
-	if (current.split.status == "enabled" && current.split.colorType == "basic") {
-		counter[current.split.color] +=power[powertype].color * multi.split;
-	}
+
+	// COMP //
+
 	if (current.charge.status == "enabled" && current.charge.type == "corner") {
 		$.each(comp.charge[current.charge.position], function(index, value){
 			counter[value] +=power[powertype].charge * multi.comp;

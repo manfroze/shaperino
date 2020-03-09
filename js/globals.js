@@ -9,7 +9,30 @@ const position = {
 }
 const color = {
 	basic: ["black", "white", "red", "yellow", "blue"],
-	composite: ["orange", "green", "violet", "grey", "darkred", "darkyellow", "darkblue", "lightred", "lightyellow", "lightblue", "darkorange", "darkgreen", "darkviolet", "lightorange", "lightgreen", "lightviolet"]
+	composite: ["green", "orange", "violet", "grey", "lightred", "lightblue", "lightyellow", "darkred", "darkblue", "darkyellow", "lightgreen", "lightorange", "lightviolet", "darkgreen", "darkorange", "darkviolet"]
+}
+const colorCode = {
+	black: "#222222",
+	white: "#FFFFFF",
+	red: "#FF4329",
+	yellow: "#FFD600",
+	blue: "#0085FF",
+	orange: "#FF9A3D",
+	green: "#47E24D",
+	violet: "#883BEB",
+	grey: "#9F9F9F",
+	darkred: "#823525",
+	darkyellow: "#CCB152",
+	darkblue: "#1A3782",
+	lightred: "#FFC2C2",
+	lightyellow: "#FCFF81",
+	lightblue: "#7CC0FF",
+	darkorange: "#825933",
+	darkgreen: "#239727",
+	darkviolet: "#400072",
+	lightorange: "#FFBF5F",
+	lightgreen: "#C8FF54",
+	lightviolet: "#E64EFF",
 }
 
 const colors = [...color.basic, ...color.composite]

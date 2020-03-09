@@ -91,6 +91,10 @@ $(document).on( "click", "#wonder-bar", function(e) {
 	drawWonderBar();
 });
 
+$(document).on( "click", "#color-bar", function(e) {
+	colorBarActivate();
+});
+
 $(document).on( "click", "#addupgrades", function(e) {
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {

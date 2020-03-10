@@ -51,10 +51,10 @@ const chargeCenter = {
 }
 
 const wonderBarSizeList = {
-	x: [300, 350, 400, 420, 490],
+	x: [300, 350, 400, 450],
 	y: [80, 100, 120]
 }
-const wonderBarCenterOffsetList = [0, 25, 50, 100]
+const wonderBarCenterOffsetList = [0, 30, 50, 80]
 
 const centerPositions = {
 	"left": ["zero", "middle"],

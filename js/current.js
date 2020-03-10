@@ -269,6 +269,7 @@ var items = {
 var sectionUnlock = {
 	shape: "locked",
 	charge: "locked",
+	hyper: "locked",
 	color: "locked",
 	upgrades: "locked"
 }
@@ -277,6 +278,7 @@ var subSectionUnlock = {
 	side: "locked",
 	corner: "locked",
 	split: "locked",
+	hyper: "locked",
 	primary: "locked",
 	secondary: "locked",
 	light: "locked",
@@ -319,7 +321,7 @@ var multi = {
 	main: 1,
 	charge: 0.5,
 	split: 0.25,
-	hyper: 2,
+	hyper: 5,
 	comp: 0.5
 }
 

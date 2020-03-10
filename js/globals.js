@@ -8,7 +8,7 @@ const position = {
 	split: ["topbottom", "leftright", "topleftbottomright", "toprightbottomleft"]
 }
 const color = {
-	basic: ["black", "white", "red", "yellow", "blue"],
+	basic: ["black", "white", "red", "blue", "yellow"],
 	composite: ["green", "orange", "violet", "grey", "lightred", "lightblue", "lightyellow", "darkred", "darkblue", "darkyellow", "lightgreen", "lightorange", "lightviolet", "darkgreen", "darkorange", "darkviolet"]
 }
 const colorCode = {
@@ -57,21 +57,15 @@ function swap(json){
 
 function style(){
 	$.each(shape, function(key, value){
-		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
-		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 	$.each(positions, function(key, value){
-		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
-		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 	$.each(colors, function(key, value){
-		$('.item.preview#' + value +'').css('background-image', 'url("svg/' + value + '-preview.svg")')
-		$('.item.unlocked#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.item.active#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 	});
 	$.each(powertype, function(key, powertype){

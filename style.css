@@ -6,10 +6,6 @@ body {
 	margin: 0;
 }
 
-a {
-	color: #FFF;
-}
-
 div {
 	box-sizing: border-box !important;
 }
@@ -83,9 +79,7 @@ div {
 }
 
 .canvas {
-
-pointer-events: none;
-
+	pointer-events: none;
 }
 
 .canvas svg {
@@ -145,13 +139,17 @@ pointer-events: none;
 	box-sizing: border-box;
 	padding: 5px;
 	margin-bottom: 10px;
-	margin-right: 10px;
+	margin-left: 10px;
 	text-align: center;
 	background-repeat: no-repeat;
 	background-size: 80%;
 	background-position: center;
 	position: relative;
 	border-radius: 3px;
+}
+
+.item:first-child {
+	margin-left: 0;
 }
 
 .item.card {
@@ -194,11 +192,6 @@ pointer-events: none;
 	cursor: pointer;
 }
 
-.item.preview .counter,
-.item.unlocked .counter {
-	display: none;
-}
-
 .label.active {
 	display: inline-block;
 }
@@ -215,17 +208,15 @@ pointer-events: none;
 	height: 20px;
 	position: absolute;
 	top: 5px;
-	right: 8px;
+	right: 5px;
 	font-size: 12px;
 }
 
 .label .pip {
-	//background-color: #222;
 	width: 10px;
 	height: 10px;
 	display: inline-block;
 	margin-right: 2px;
-	//border-radius: 10px;
 }
 
 .sel-main.pip { background-image: url('svg/pip-main.svg'); }
@@ -237,12 +228,8 @@ pointer-events: none;
 .sel-split.pip.comp { background-image: url('svg/pip-split-comp.svg'); }
 .sel-hyper.pip.comp { background-image: url('svg/pip-hyper-comp.svg'); }
 
-.sel-hyper.pip circle {
-	animation: col 3s linear infinite;
-}
-
 .sel-hyper.pip  {
-	animation: flashing 0.3s linear infinite;
+	animation: flashing 1s linear infinite;
 }
 
 @keyframes flashing {
@@ -251,7 +238,7 @@ pointer-events: none;
 }
 
 .button.hyper {
-	animation: col 1s linear infinite;
+	animation: flashing 1s linear infinite;
 	border-color: #FF4329;
 }
 
@@ -263,8 +250,12 @@ pointer-events: none;
 	font-weight: bold;
 	position: absolute;
 	bottom: 5px;
-	right: 8px;
+	right: 5px;
 	font-size: 13px;
+}
+
+.item.unlocked .counter {
+	display: none;
 }
 
 .power {
@@ -419,7 +410,8 @@ pointer-events: none;
 	display: none;
 }
 
-#charge .button.remove {
+#charge .button.remove,
+#hyper .button.remove {
 	width: 30px;
 	height: 30px;
 	padding:  5px;
@@ -429,10 +421,8 @@ pointer-events: none;
 }
 
 .data {
-
 	font-size: 10px;
 	margin-right: 10px;
-
 }
 
 .data span {
@@ -485,14 +475,33 @@ pointer-events: none;
 	width: 100%;
 }
 
+#footer a {
+	color: #222;
+}
+
 #footer span {
-	background-color: #222;
-	color: #fff;
+	//background-color: #222;
+	color: #222;
 	padding:  8px 10px;
 	border-radius: 3px 3px 0 0;
 	text-align: center;
 	font-size: 13px;
 }
+
+span#keydraw {
+	font-family: 'VT323';
+	padding: 3px 5px;
+	font-size: 17px;
+	background-color: #444;
+	border-radius: 2px;
+	margin: 0 2px;
+}
+
+span#keydraw a {
+	color: #FFF;
+	text-decoration: none;
+}
+
 
 #colorbar {
 	display: none;
@@ -507,11 +516,18 @@ pointer-events: none;
 }
 
 #colorbar .piece {
-	height: 100%;
 	display: inline-block;
 	width: 0;
 	max-width: calc(100vw/21);
 	position: relative;
+	height: 30px;
+	bottom: 0px;
+	transition: 1s;
+}
+
+#colorbar .piece:hover {
+	//height: 60px;
+	//bottom: 30px;
 }
 
 #colorbar .piece span {
@@ -521,6 +537,12 @@ pointer-events: none;
 	font-size: 8px;
 	color: #fff;
 	mix-blend-mode: difference;
+	transition: 0.3s ease;
+}
+
+#colorbar .piece:hover span {
+	bottom: 35px;
+	color: #222;
 }
 
 #debug .container {

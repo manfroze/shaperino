@@ -28,7 +28,7 @@ function colorBarActivate() {
 	$.each(colors, function(key, value){
 		$("#colorbar").append('<div class="piece ' + value + '"><span></span></div>')
 		$(".piece." + value ).css('background-color', colorCode[value])
-		$("#footer").css('bottom', '30px')
+		$("#footer").css('bottom', '38px')
 	});
 }
 
@@ -37,16 +37,15 @@ function colorBarIncrease(){
 		if (current.colorbar.status == "enabled") {
 			$.each(mode, function(key, value){
 				if (current[value].status == "enabled"){
-					if (colorBar[current[value].color] <= 100-(20*multi[value])) {
-						colorBar[current[value].color] +=20*multi[value];
+					if (colorBar[current[value].color] <= 100-(0.1*multi[value])) {
+						colorBar[current[value].color] +=0.1*multi[value];
 					}
 					$(".piece." + current[value].color ).css('width', 100/21/100 * colorBar[current[value].color] + 'vw');
 					$(".piece." + current[value].color + " span").html(Math.floor(colorBar[current[value].color]) + "%");
 				}
 			});
 		}
-	}, 1000);
+	}, 300);
 }
-
 
 colorBarIncrease();

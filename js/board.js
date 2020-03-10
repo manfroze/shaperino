@@ -86,7 +86,7 @@ function updateSelectors(){
 			highlightComp("color", "charge", "color");
 		}
 		$('.button.charge').addClass("active").removeClass("inactive");
-		$('.button.remove').addClass("active").removeClass("inactive");
+		$('#charge .button.remove').addClass("active").removeClass("inactive");
 	} 
 	if (current.split.status == "enabled") {
 		highlight("split", "position");
@@ -107,21 +107,21 @@ function updateSelectors(){
 			highlightComp("color", "hyper", "color");
 		}
 		$('.button.hyper').addClass("active").removeClass("inactive");
+		$('#hyper .button.remove').addClass("active").removeClass("inactive");
 	}
 
 	if (current.charge.status == "disabled"){
 		$('.button.charge').addClass("inactive").removeClass("active");
-		$('.button.remove').addClass("inactive").removeClass("active");
+		$('#charge .button.remove').addClass("inactive").removeClass("active");
 	}
 	if (current.split.status == "disabled"){
 		$('.button.split').addClass("inactive").removeClass("active");
 	}
 	if (current.hyper.status == "disabled"){
 		$('.button.hyper').addClass("inactive").removeClass("active");
+		$('#hyper .button.remove').addClass("inactive").removeClass("active");
 	}
-
 	selector("main");
-
 }
 
 function setTypes(){
@@ -130,7 +130,6 @@ function setTypes(){
 	} else if (position.corner.includes(current.charge.position)) {
 		setCurrent("charge", "type", "corner");
 	}
-
 	$.each(mode, function(key, value){
 		if (color.basic.includes(current[value].color)) {
 			setCurrent(value, "colorType", "basic");
@@ -198,12 +197,8 @@ function allRandomShape(){
 
 function selector(mode){
 	current.select = mode;
-	//if (mode == "main"){
-		//$('.button.active').removeClass("selected");	
-	//} else {
-		$('.button.active').removeClass("selected");
-		$('.button.active.' + mode).addClass("selected");
-	//}
+	$('.button.active').removeClass("selected");
+	$('.button.active.' + mode).addClass("selected");
 }
 
 function update(){
@@ -211,7 +206,6 @@ function update(){
 	draw();
 	updateSelectors();
 	writeBlazon();
-	//unlockedItems();
 }
 
 update();
@@ -256,6 +250,11 @@ $(document).on( "click", ".button.hyper", function(e) {
 $(document).on( "click", "#charge .button.remove", function(e) {
 	setCurrent("charge", "status", "disabled");
 	setCurrent("split", "status", "disabled");
+	update();
+});
+
+$(document).on( "click", "#hyper .button.remove", function(e) {
+	setCurrent("hyper", "status", "disabled");
 	update();
 });
 

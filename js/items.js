@@ -13,184 +13,148 @@ const classes = {
 
 const price = {
 	square: {
-		preview: [25, "circle"],
-		unlock: [100, "circle"],
-		price: [250, "circle"]
+		unlock: [25, "circle"],
+		price: [150, "circle"]
 	},
 	rhombus: {
-		preview: [100, "circle"],
-		unlock: [250, "square"],
-		price: [500, "white"]
-	},
-	cross: {
-		preview: [20000, "yellow"],
-		unlock: [175000, "rhombus"],
-		price: [1000000, "left"]
-	},
-	octagon: {
-		preview: [20000, "bottom"],
-		unlock: [175000, "cross"],
-		price: [1000000, "blue"]
+		unlock: [100, "square"],
+		price: [200, "white"]
 	},
 	white: {
-		preview: [50, "black"],
-		unlock: [90, "black"],
-		price: [125, "black"]
+		unlock: [200, "black"],
+		price: [200, "square"]
 	},
 	red: {
-		preview: [100, "white"],
 		unlock: [150, "white"],
 		price: [350, "square"]
 	},
 	yellow: {
-		preview: [150, "red"],
 		unlock: [200, "red"],
 		price: [450, "circle"]
 	},
 	blue: {
-		preview: [180, "yellow"],
 		unlock: [250, "yellow"],
 		price: [500, "rhombus"]
 	},
 	green: {
-		preview: [700, "blue"],
 		unlock: [1000, "yellow"],
 		price: [450, "top"]
 	},
 	orange: {
-		preview: [1000, "yellow"],
 		unlock: [1200, "red"],
 		price: [800, "right"]
 	},
 	violet: {
-		preview: [1400, "red"],
 		unlock: [2000, "blue"],
 		price: [5000, "circle"]
 	},
 	grey: {
-		preview: [30000, "white"],
 		unlock: [10000, "black"],
 		price: [7000, "bottom"]
 	},
-	lightred: {
-		preview: [100000, "left"],
-		unlock: [100000, "red"],
-		price: [10000, "cross"]
-	},
-	lightyellow: {
-		preview: [100000, "square"],
-		unlock: [100000, "yellow"],
-		price: [10000, "octagon"]
-	},
-	lightblue: {
-		preview: [100000, "bottom"],
-		unlock: [100000, "blue"],
-		price: [1000000, "circle"]
-	},
-	darkred: {
-		preview: [600000, "right"],
-		unlock: [1000000, "red"],
-		price: [10000000, "square"]
-	},
-	darkyellow: {
-		preview: [600000, "circle"],
-		unlock: [1000000, "yellow"],
-		price: [10000000, "blue"]
-	},
-	darkblue: {
-		preview: [600000, "top"],
-		unlock: [1000000, "blue"],
-		price: [100000, "octagon"]
-	},
-	lightgreen: {
-		preview: [700, "blue"],
-		unlock: [1000, "yellow"],
-		price: [450, "top"]
-	},
-	lightorange: {
-		preview: [10000000, "red"],
-		unlock: [100000000, "yellow"],
-		price: [1000000000, "cross"]
-	},
-	lightviolet: {
-		preview: [10000000, "blue"],
-		unlock: [100000000, "red"],
-		price: [1000000000, "octagon"]
-	},
-	darkgreen: {
-		preview: [10000000, "yellow"],
-		unlock: [100000000, "blue"],
-		price: [10000000000, "rhombus"]
-	},
-	darkorange: {
-		preview: [1000, "yellow"],
-		unlock: [1200, "red"],
-		price: [700, "right"]
-	},
-	darkviolet: {
-		preview: [1400, "red"],
-		unlock: [2000, "blue"],
-		price: [5000, "circle"]
-	},
 	top: {
-		preview: [1000, "circle"],
 		unlock: [1000, "square"],
 		price: [1000, "rhombus"]
 	},
 	right: {
-		preview: [500, "top"],
 		unlock: [600, "top"],
 		price: [2600, "blue"]
 	},
 	bottom: {
-		preview: [1000, "right"],
 		unlock: [1500, "right"],
 		price: [3000, "red"]
 	},
 	left: {
-		preview: [1500, "bottom"],
 		unlock: [2000, "bottom"],
 		price: [2000, "right"]
 	},
 	topleft: {
-		preview: [1000, "circle"],
 		unlock: [1000, "square"],
 		price: [1000, "rhombus"]
 	},
 	topright: {
-		preview: [500, "top"],
 		unlock: [600, "top"],
 		price: [2600, "blue"]
 	},
 	bottomleft: {
-		preview: [1000, "right"],
 		unlock: [1500, "right"],
 		price: [3000, "red"]
 	},
 	bottomright: {
-		preview: [1500, "bottom"],
 		unlock: [2000, "bottom"],
 		price: [2000, "right"]
 	},
 	topbottom: {
-		preview: [1000, "circle"],
 		unlock: [1000, "square"],
 		price: [1000, "rhombus"]
 	},
 	leftright: {
-		preview: [500, "top"],
 		unlock: [600, "top"],
 		price: [2600, "blue"]
 	},
 	toprightbottomleft: {
-		preview: [1000, "right"],
 		unlock: [1500, "right"],
 		price: [3000, "red"]
 	},
 	topleftbottomright: {
-		preview: [1500, "bottom"],
 		unlock: [2000, "bottom"],
 		price: [2000, "right"]
+	},
+	cross: {
+		unlock: [175000, "rhombus"],
+		price: [1000000, "left"]
+	},
+	octagon: {
+		unlock: [175000, "cross"],
+		price: [1000000, "blue"]
+	},
+	lightred: {
+		unlock: [100000, "red"],
+		price: [10000, "cross"]
+	},
+	lightyellow: {
+		unlock: [100000, "yellow"],
+		price: [10000, "octagon"]
+	},
+	lightblue: {
+		unlock: [100000, "blue"],
+		price: [1000000, "circle"]
+	},
+	darkred: {
+		unlock: [1000000, "red"],
+		price: [10000000, "square"]
+	},
+	darkyellow: {
+		unlock: [1000000, "yellow"],
+		price: [10000000, "blue"]
+	},
+	darkblue: {
+		unlock: [1000000, "blue"],
+		price: [100000, "octagon"]
+	},
+	lightgreen: {
+		unlock: [1000, "yellow"],
+		price: [450, "top"]
+	},
+	lightorange: {
+		unlock: [100000000, "yellow"],
+		price: [1000000000, "cross"]
+	},
+	lightviolet: {
+		unlock: [100000000, "red"],
+		price: [1000000000, "octagon"]
+	},
+	darkgreen: {
+		unlock: [100000000, "blue"],
+		price: [10000000000, "rhombus"]
+	},
+	darkorange: {
+		unlock: [1200, "red"],
+		price: [700, "right"]
+	},
+	darkviolet: {
+		unlock: [2000, "blue"],
+		price: [5000, "circle"]
 	},
 }
 
@@ -203,7 +167,7 @@ function addSection(section){
 	if (sectionUnlock[section] == "locked") {
 		sectionUnlock[section] = "unlocked"
 		$("#" + section + "").append('<div class="title">' + section.toUpperCase() + '</div>' );
-		if (section == "charge"){
+		if (section == "charge" || section == "hyper"){
 			$("#" + section + " .title").append('<div class="button remove inactive">&#10005;</div>');
 		}
 		if (section == "charge"){
@@ -219,24 +183,15 @@ function addSubSection(section, subsection){
 		$("#" + section + "").append('<div id="' + subsection + '" class="subsection"> <div class="title sub">' + subsection.toUpperCase() + '</div> <div class="container"></div></div>')
 	}
 }
-
-function addPreview(item){
+function addUnlock(item){
 	addSection(items[item].sec);
 	addSubSection(items[item].sec, items[item].subsec);
 	if (items[item].status == "locked") {
-		items[item].status = "preview"
+		items[item].status = "unlocked"
 		if (items[item].card == "card") {
 			dash = labelDiv + powerDiv + counterDiv;
 		} else { dash = labelDiv};
-		$('<div id="' + item + '" class="item preview ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
-	}
-	style();
-}
-
-function addUnlock(item){
-	if (items[item].status == "preview") {
-		items[item].status = "unlocked"
-		$('#' + item + '').removeClass("preview").addClass("unlocked");
+		$('<div id="' + item + '" class="item unbuyable unlocked ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
 		if (price[item]){
 			$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
 		}
@@ -263,16 +218,12 @@ function buyableStatus(item, state){
 }
 
 function addComplete(item){
-	addPreview(item);
 	addUnlock(item);
 	addItem(item);
 }
 
 function priceUnlock(){
 	$.each(price, function(key, value) {
-		if (counter[value.preview[1]] > value.preview[0] - 1) {
-			addPreview(key);
-		}
 		if (counter[value.unlock[1]] > value.unlock[0] - 1) {
 			addUnlock(key);
 		}
@@ -293,6 +244,22 @@ function itemBuy(item){
 	}	
 }
 
+
+// HYPER //
+
+function hyperAdd(){
+	addSection("hyper");
+	addSubSection("hyper", "hyper");
+	$("#hyper .container").append('<div id="hyperBuy" class="upgrade"><span class="name">hyper</span></div>');
+}
+
+function hyperBuy(){
+	current.hyper.status = "enabled";
+	updateSelectors();
+	draw();
+}
+
+
 addComplete("circle");
 addComplete("black");
 
@@ -301,4 +268,8 @@ addComplete("black");
 $(document).on("click", ".item.unlocked.buyable", function(e) {
 	var target = $(e.currentTarget).attr("id");
 	itemBuy(target);
+});
+
+$(document).on("click", "#hyperBuy", function(e) {
+	hyperBuy();
 });

@@ -4,17 +4,16 @@ function addAll(){
 	$.each(items, function(item) {
 		addComplete(item);
 	});
-}
-
-function addAllPreviews(){
-	$.each(items, function(item) {
-		addPreview(item);
+	hyperAdd();
+	$.each(upgradeLevel, function(key, value) {
+		$.each(value, function(levelKey, levelValue) {
+			addUpgrade(key, levelKey);
+		});
 	});
 }
 
 function addAllUnlock(){
 	$.each(items, function(item) {
-		addPreview(item);
 		addUnlock(item);
 	});
 }
@@ -83,8 +82,9 @@ $(document).on( "click", "#totalrandom", function(e) {
 });
 
 $(document).on( "click", "#hyper-debug", function(e) {
-	current.hyper.status = "enabled";
-	updateSelectors();
+	//current.hyper.status = "enabled";
+	//updateSelectors();
+	hyperAdd();
 });
 
 $(document).on( "click", "#wonder-bar", function(e) {

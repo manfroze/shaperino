@@ -5,8 +5,6 @@ function writeCounters(){
 }
 
 function increaseCounters(powertype){
-
-
 	$.each(mode, function(key, value){
 		if (current[value].status == "enabled") {
 			counter[current[value].shape] +=power[powertype].shape * multi[value];

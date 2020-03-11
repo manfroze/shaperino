@@ -237,7 +237,7 @@ div {
 	to {filter: hue-rotate(360deg)}
 }
 
-.button.hyper {
+.button.small.hyper {
 	animation: flashing 1s linear infinite;
 	border-color: #FF4329;
 }
@@ -266,38 +266,24 @@ div {
 	font-size: 15px;
 }
 
-.pricetag {
-	display: inline-block;
-	font-size: 12px;
-	font-weight: bold;
-	background-repeat: no-repeat;
-	background-size: 15px;
-	background-position: right;
-	background-origin: content-box;
-	font-weight: bold;
-	background-color: #CCC;
+.button {
+	position: relative;
 	border-radius: 3px;
-	padding: 4px 7px 4px 9px;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	display: inline-block;
+	text-align: center;
 }
 
-.pricetag span {
-	margin-right: 16px;
+.button.small {
+	padding: 7px;
+	margin-right: 10px;
+	//display: inline-block;
+	font-size: 13px;
+	text-align: center;
 }
 
-.card .pricetag {
-	margin-top: 34px;
-}
-
-.small .pricetag {
-	margin-top: 14px;
-}
-
-.upgrade .pricetag {
-	position: absolute;
-	right: 20px;
-}
-
-.upgrade {
+.button.large {
 	position: relative;
 	box-sizing: border-box;
 	margin-bottom: 10px;
@@ -311,16 +297,13 @@ div {
 	background-position: 10px;
 	text-align: left;
 	max-width: 450px;
-	border-radius: 3px;
-	border: 1px solid #ccc;
-	cursor: pointer;
 }
 
-.upgrade:hover {
-	background-color: #ccc;
+.upgrade {
+
 }
 
-.upgrade .name {
+.button .name {
 	font-weight: bold;
 }
 
@@ -334,15 +317,12 @@ div {
 	font-size: 12px;
 }
 
-.button {
-	border-radius: 3px;
-	border: 1px solid #ccc;
-	cursor: pointer;
-	padding: 7px;
-	margin-right: 10px;
-	display: inline-block;
-	font-size: 13px;
-	text-align: center;
+.upgrade:hover .level {
+	background-color: #bbb;
+}
+
+.upgrade.hyper {
+	//animation: flashing 1s linear infinite;
 }
 
 .button:hover {
@@ -361,6 +341,88 @@ div {
 .button.selected {
 	border-color: #FFF;
 	background-color: #FFF;
+}
+
+.button.small.hyper.inactive {
+	//display: none;
+}
+
+.pricetag {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+	background-repeat: no-repeat;
+	background-size: 15px;
+	background-position: right;
+	background-origin: content-box;
+	font-weight: bold;
+	background-color: #CCC;
+	border-radius: 3px;
+	padding: 4px 7px 4px 9px;
+}
+
+.pricetag span {
+	margin-right: 16px;
+}
+
+.item.card .pricetag {
+	margin-top: 34px;
+}
+
+.item.small .pricetag {
+	margin-top: 14px;
+}
+
+.large.button .pricetag {
+	position: absolute;
+	right: 20px;
+}
+
+.upgrade:hover .pricetag {
+	background-color: #bbb;
+}
+
+.button .modifier {
+	font-weight: bold;
+	background-color: #bbb;
+	color: #222;
+	border-radius: 3px;
+	padding: 3px 5px;
+	font-size: 10px;
+	position: relative;
+	bottom: 1px;
+	margin-left: 5px;
+}
+
+.button:hover .modifier {
+	background-color: #bbb;
+}
+
+.button.selected:hover .modifier {
+	background-color: #ccc;
+}
+
+.button.inactive .modifier {
+	display: none;
+}
+
+.button.large.hyper.inactive {
+	animation: flashing 1s linear infinite;
+	opacity: 1;
+	color: #FF4329;
+	border-color: #FF4329;
+}
+
+.timer {
+	position: absolute;
+	right: 20px;
+	display: none;
+	font-size: 12px;
+	font-weight: bold;
+	font-weight: bold;
+	background-color: #CCC;
+	border-radius: 3px;
+	padding: 4px 7px;
 }
 
 .chargebuttons {
@@ -384,30 +446,6 @@ div {
 
 .chargebuttons .hyper {
 	//display: none;
-}
-
-.button .modifier {
-	font-weight: bold;
-	background-color: #CCC;
-	color: #222;
-	border-radius: 3px;
-	padding: 3px 5px;
-	font-size: 10px;
-	position: relative;
-	bottom: 1px;
-	margin-left: 5px;
-}
-
-.button:hover .modifier {
-	background-color: #FFF;
-}
-
-.button.selected:hover .modifier {
-	background-color: #CCC;
-}
-
-.button.inactive .modifier {
-	display: none;
 }
 
 #charge .button.remove,
@@ -470,8 +508,9 @@ div {
 
 #footer {
 	position: absolute;
-	bottom: 8px;
+	bottom: 20px;
 	text-align: center;
+	//width: 100%;
 	width: 100%;
 }
 
@@ -481,11 +520,17 @@ div {
 
 #footer span {
 	//background-color: #222;
-	color: #222;
-	padding:  8px 10px;
-	border-radius: 3px 3px 0 0;
-	text-align: center;
-	font-size: 13px;
+	//color: #222;
+	//padding:  8px 10px;
+	//border-radius: 3px 3px 0 0;
+	//text-align: center;
+	//font-size: 13px;
+
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	background-image: url('svg/high_logo.svg');
+	background-size: 100%;
 }
 
 span#keydraw {

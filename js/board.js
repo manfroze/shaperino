@@ -106,7 +106,7 @@ function updateSelectors(){
 		if (current.hyper.colorType == "composite") {
 			highlightComp("color", "hyper", "color");
 		}
-		$('.button.hyper').addClass("active").removeClass("inactive");
+		$('.button.small.hyper').addClass("active").removeClass("inactive");
 		$('#hyper .button.remove').addClass("active").removeClass("inactive");
 	}
 
@@ -118,7 +118,7 @@ function updateSelectors(){
 		$('.button.split').addClass("inactive").removeClass("active");
 	}
 	if (current.hyper.status == "disabled"){
-		$('.button.hyper').addClass("inactive").removeClass("active");
+		$('.button.small.hyper').addClass("inactive").removeClass("active");
 		$('#hyper .button.remove').addClass("inactive").removeClass("active");
 	}
 	selector("main");
@@ -197,8 +197,8 @@ function allRandomShape(){
 
 function selector(mode){
 	current.select = mode;
-	$('.button.active').removeClass("selected");
-	$('.button.active.' + mode).addClass("selected");
+	$('.button.small.active').removeClass("selected");
+	$('.button.small.active.' + mode).addClass("selected");
 }
 
 function update(){
@@ -223,6 +223,7 @@ $(document).bind('keydown', function (event) {
 			selector("split")
 		}
 	}
+
 });
 
 $(document).bind('keyup', function (event) {
@@ -231,19 +232,19 @@ $(document).bind('keyup', function (event) {
 	}
 });
 
-$(document).on( "click", ".button.main", function(e) {
+$(document).on( "click", ".button.small.main", function(e) {
 	selector("main");
 });
 
-$(document).on( "click", ".button.charge", function(e) {
+$(document).on( "click", ".button.small.charge", function(e) {
 	selector("charge");
 });
 
-$(document).on( "click", ".button.split", function(e) {
+$(document).on( "click", ".button.small.split", function(e) {
 	selector("split");
 });
 
-$(document).on( "click", ".button.hyper", function(e) {
+$(document).on( "click", ".button.small.hyper", function(e) {
 	selector("hyper");
 });
 

@@ -1,0 +1,38 @@
+<svg width="1000" height="300" viewBox="0 0 1000 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g style="mix-blend-mode:multiply">
+<path d="M500 -2.14577e-06H400V300H500V-2.14577e-06Z" fill="#EBB0FF"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M700 200H400V300H700V200Z" fill="#EBB0FF"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M700 -7.54992e-06H400V100H700V-7.54992e-06Z" fill="#EBB0FF"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M700 100L600 200.143L600 300H700V100Z" fill="#EBB0FF"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M100 -2.14577e-06H0V300H100V-2.14577e-06Z" fill="#92F0ED"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M300 100H0V200H300V100Z" fill="#92F0ED"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M300 -2.14577e-06H200V300H300V-2.14577e-06Z" fill="#92F0ED"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M800 -2.14577e-06H700V300H800V-2.14577e-06Z" fill="#92F0ED"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M1000 100H700V200H1000V100Z" fill="#92F0ED"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M1000 -2.14577e-06H900V300H1000V-2.14577e-06Z" fill="#92F0ED"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M350 0L300 50L350 100L400 50L350 0Z" fill="#E70006"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M400 100H300V300H400V100Z" fill="#E70006"/>
+</g>
+</svg>

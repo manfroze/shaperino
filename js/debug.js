@@ -82,8 +82,6 @@ $(document).on( "click", "#totalrandom", function(e) {
 });
 
 $(document).on( "click", "#hyper-debug", function(e) {
-	//current.hyper.status = "enabled";
-	//updateSelectors();
 	hyperAdd();
 });
 

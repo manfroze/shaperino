@@ -62,6 +62,7 @@ function loop(){
 	setInterval(function(){ 
 		priceUnlock();
 		upgradeUnlock();
+		hyperUnlock();
 		debugData();
 	}, 1000);
 }

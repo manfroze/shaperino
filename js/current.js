@@ -23,7 +23,7 @@ var current = {
 	hyper: {
 		status: "disabled",
 		shape: "circle",
-		color: "white",
+		color: "blue",
 		colorType: "basic",
 	},
 	wonderbar: {
@@ -33,7 +33,10 @@ var current = {
 	colorbar: {
 		status: "disabled",
 	},
-	select: "main"
+	select: "main",
+	hyperbutton: {
+		status: "disabled",
+	}
 }
 
 var items = {

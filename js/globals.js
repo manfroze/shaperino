@@ -11,6 +11,7 @@ const color = {
 	basic: ["black", "white", "red", "blue", "yellow"],
 	composite: ["green", "orange", "violet", "grey", "lightred", "lightblue", "lightyellow", "darkred", "darkblue", "darkyellow", "lightgreen", "lightorange", "lightviolet", "darkgreen", "darkorange", "darkviolet"]
 }
+const tokens = ["black", "white", "red", "blue", "yellow", "top", "left", "bottom", "right"]
 const colorCode = {
 	black: "#222222",
 	white: "#FFFFFF",
@@ -38,7 +39,6 @@ const colorCode = {
 const colors = [...color.basic, ...color.composite]
 const positions = [...position.side, ...position.corner, , ...position.split]
 const chargePositions = [...position.side, ...position.corner]
-const tokens = [shape, ...color.basic, ...position.side]
 
 function rand(name) {
 	if (name instanceof Array == true) {
@@ -76,6 +76,7 @@ function style(){
 
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
+	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
 
 }
 
@@ -117,4 +118,18 @@ function formatNumber(number) {
 
 		return prettifySub(number) + suffix;
 } 
+
+function formatTime(time)
+{   
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+    var ret = "";
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+}
 

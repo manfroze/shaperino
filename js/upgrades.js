@@ -44,14 +44,19 @@ const upgrade = {
 		name: "unlock wonder bar",
 		type: "wonderbar",
 		data: [""],
+	},
+	hyper: {
+		name: "unlock hyper charge",
+		type: "hyper",
+		data: [""],
 	}
 }
 
 const upgradeLevel = {
 	boostidleshape: {
 		l1: {
-			unlock: [500, "square"],
-			price: [2000, "blue"],
+			unlock: [200, "circle"],
+			price: [250, "blue"],
 			status: "locked",
 		},
 		l2: {
@@ -151,18 +156,25 @@ const upgradeLevel = {
 		},
 	},
 	blazon: {
-		l1: {
+		l0: {
 			unlock: [10000, "left"],
 			price: [10000, "red"],
 			status: "locked",
 		},	
 	},
 	wonderbar: {
-		l1: {
+		l0: {
 			unlock: [10000, "red"],
 			price: [10000, "rhombus"],
 			status: "locked",
 		},	
+	},
+	hyper: {
+		l0: {
+			unlock: [1000, "red"],
+			price: [10000, "yellow"],
+			status: "locked",
+		},
 	}
 }
 
@@ -171,7 +183,7 @@ function addUpgrade(item, level){
 	addSubSection("upgrades", "upgrades")
 	if (upgradeLevel[item][level].status == "locked") {
 		upgradeLevel[item][level].status = "unlocked"
-		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '"><span>' + upgradeLevel[item][level].price[0] + '</span></div></div>' );
+		$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="button large upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '"><span>' + upgradeLevel[item][level].price[0] + '</span></div></div>' );
 		$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
 	}
 	style();
@@ -189,9 +201,7 @@ function upgradeUnlock(){
 			if (counter[upgradeLevel[key][levelKey].price[1]] < upgradeLevel[key][levelKey].price[0]) {
 				buyableStatus(key + "-" + levelKey, "off");
 			}
-
 		});
-
 	});
 }
 
@@ -210,6 +220,9 @@ function upgradeEffect(item){
 	}
 	if (upgrade[item].type == "blazon") {
 		addBlazon();
+	}
+	if (upgrade[item].type == "hyper") {
+		hyperAdd();
 	}	
 }
 

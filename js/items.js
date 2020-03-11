@@ -14,30 +14,30 @@ const classes = {
 const price = {
 	square: {
 		unlock: [25, "circle"],
-		price: [150, "circle"]
+		price: [100, "circle"]
 	},
 	rhombus: {
 		unlock: [100, "square"],
 		price: [200, "white"]
 	},
 	white: {
-		unlock: [200, "black"],
+		unlock: [100, "black"],
 		price: [200, "square"]
 	},
 	red: {
 		unlock: [150, "white"],
-		price: [350, "square"]
+		price: [200, "rhombus"]
 	},
 	yellow: {
-		unlock: [200, "red"],
-		price: [450, "circle"]
+		unlock: [200, "white"],
+		price: [250, "circle"]
 	},
 	blue: {
-		unlock: [250, "yellow"],
-		price: [500, "rhombus"]
+		unlock: [250, "red"],
+		price: [150, "yellow"]
 	},
 	green: {
-		unlock: [1000, "yellow"],
+		unlock: [200, "yellow"],
 		price: [450, "top"]
 	},
 	orange: {
@@ -53,7 +53,7 @@ const price = {
 		price: [7000, "bottom"]
 	},
 	top: {
-		unlock: [1000, "square"],
+		unlock: [150, "rhombus"],
 		price: [1000, "rhombus"]
 	},
 	right: {
@@ -161,14 +161,14 @@ const price = {
 var labelDiv = '<div class="label"></div>';
 var powerDiv = '<div class="power"></div>';
 var counterDiv = '<div class="counter">0</div>';
-var chargeButtons = '<div class="chargebuttons" class="container"><div class="button main active selected"><span>main</span></div><div class="button charge inactive"><span>charge</span><span class="modifier">shift</span></div><div class="button split inactive"><span>split</span><span class="modifier">alt</span></div><div class="button hyper inactive"><span>hyper</span></div></div>';
+var chargeButtons = '<div class="chargebuttons" class="container"><div class="button small main active selected"><span>main</span></div><div class="button small charge inactive"><span>charge</span><span class="modifier">shift</span></div><div class="button small split inactive"><span>split</span><span class="modifier">alt</span></div><div class="button small hyper inactive"><span>hyper</span></div></div>';
 
 function addSection(section){
 	if (sectionUnlock[section] == "locked") {
 		sectionUnlock[section] = "unlocked"
 		$("#" + section + "").append('<div class="title">' + section.toUpperCase() + '</div>' );
-		if (section == "charge" || section == "hyper"){
-			$("#" + section + " .title").append('<div class="button remove inactive">&#10005;</div>');
+		if (section == "charge"){
+			$("#" + section + " .title").append('<div class="button small remove inactive">&#10005;</div>');
 		}
 		if (section == "charge"){
 			$("#color > .title").after(chargeButtons);
@@ -244,22 +244,6 @@ function itemBuy(item){
 	}	
 }
 
-
-// HYPER //
-
-function hyperAdd(){
-	addSection("hyper");
-	addSubSection("hyper", "hyper");
-	$("#hyper .container").append('<div id="hyperBuy" class="upgrade"><span class="name">hyper</span></div>');
-}
-
-function hyperBuy(){
-	current.hyper.status = "enabled";
-	updateSelectors();
-	draw();
-}
-
-
 addComplete("circle");
 addComplete("black");
 
@@ -268,8 +252,4 @@ addComplete("black");
 $(document).on("click", ".item.unlocked.buyable", function(e) {
 	var target = $(e.currentTarget).attr("id");
 	itemBuy(target);
-});
-
-$(document).on("click", "#hyperBuy", function(e) {
-	hyperBuy();
 });

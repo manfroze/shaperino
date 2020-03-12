@@ -36,6 +36,9 @@ var current = {
 	select: "main",
 	hyperbutton: {
 		status: "disabled",
+	},
+	chargenav: {
+		status: "disabled",
 	}
 }
 

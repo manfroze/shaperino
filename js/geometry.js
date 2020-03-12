@@ -107,16 +107,37 @@ function chargePosition(){
 	});
 }
 
+
+
+
 // DRAW GEOMETRY //
 
 function draw() {
 	clearCanvas();
 	chargePosition();
+
+	mainShape = SVG('main-canvas').size(500, 500).group();
+	chargeShape = SVG('charge-canvas').size(500, 500).group();
+	splitShape = SVG('split-canvas').size(500, 500).group();
+	hyperShape = SVG('hyper-canvas').size(500, 500).group();
+
+
+	//mainGroup = mainShape.group();
+
+
 	$.each(mode, function(j, k){
 		if (current[k].status == "enabled") {
 			drawShape(k);
+			if(current.chargenav.status == "enabled"){
+			cloneCopy();
+		}
 		}
 	});
+}
+
+function canvas(mode){
+	canvasname = mode + "Shape";
+	return canvasname;
 }
 
 // DRAW SHAPE FUNCTION //
@@ -126,24 +147,22 @@ function drawShape(mode) {
 }
 
 function shapeDraw(mode, shape, size, centerX, centerY, color) {
-
-	var modes = mode;
-
+	cmode = eval(canvas(mode))
 	if (shape == "circle") {
-		SVG(mode + '-canvas').size(500, 500).group().circle(size, size).center(centerX, centerY).attr({ fill: color })
+		cmode.circle(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "square") {
-		SVG(mode + '-canvas').size(500, 500).group().rect(size, size).center(centerX, centerY).attr({ fill: color })
+		cmode.rect(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "rhombus") {
-		SVG(mode + '-canvas').size(500, 500).group().rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		cmode.rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "cross") {
-		SVG(mode + '-canvas').size(500, 500).group().rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
-		SVG(mode + '-canvas').size(500, 500).group().rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		cmode.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		cmode.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "octagon") {
-		SVG(mode + '-canvas').size(500, 500).group().polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
+		cmode.polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
 	}
 }
 
@@ -196,21 +215,24 @@ function drawWonderBar() {
 	//wonder.animate().rotate(wonderBarRotation + 360);
 }
 
+function cloneCopy(){
+		document.getElementById('shapeClone').innerHTML = "";
+	
+	smallclone = SVG('shapeClone').size(100, 100);
+	mainClone = mainShape.clone();
+	chargeClone = chargeShape.clone();
+	mainClone.transform({scale: 0.2, cx: 0, cy: 0});
+	chargeClone.transform({scale: 0.2, cx: 0, cy: 0});
+	mainClone.addTo(smallclone);
+	chargeClone.addTo(smallclone);
+}
+
+
 // CLEAR //
 
 function clearCanvas(){
-	//document.getElementById("shaperino").innerHTML = "";
-	
-
-	document.getElementById('main-canvas').innerHTML = "";
-	document.getElementById('charge-canvas').innerHTML = "";
-	document.getElementById('split-canvas').innerHTML = "";
-	document.getElementById('hyper-canvas').innerHTML = "";
-	document.getElementById('wonder-canvas').innerHTML = "";
-
 	$.each(mode, function(j, k){
-		//$('#' + k + '-canvas').empty()
-		//document.getElementById(k + '-canvas').innerHTML = "";
+		document.getElementById(k + '-canvas').innerHTML = "";
 	});
-	//$('#wonder-canvas').empty()
+	document.getElementById('wonder-canvas').innerHTML = "";
 }

@@ -206,6 +206,7 @@ function update(){
 	draw();
 	updateSelectors();
 	writeBlazon();
+	gridMove();
 }
 
 update();
@@ -214,11 +215,11 @@ update();
 
 $(document).bind('keydown', function (event) {
 	if (current.charge.status =="enabled") {
-		if (event.keyCode == 16) {
+		if (event.key == "Shift") {
 			selector("charge")
 		}
 	}
-	if (event.keyCode == 18) {
+	if (event.key == "Alt") {
 		if (current.split.status =="enabled") {
 			selector("split")
 		}
@@ -227,7 +228,7 @@ $(document).bind('keydown', function (event) {
 });
 
 $(document).bind('keyup', function (event) {
-	if (event.keyCode == 16 || event.keyCode == 18) {
+	if (event.key == "Shift" || event.key == "Alt") {
 		selector("main")
 	}
 });

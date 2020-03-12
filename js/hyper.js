@@ -8,22 +8,22 @@ function hyperAdd(){
 	addSubSection("hyper", "hyper");
 	if (current.hyperbutton.status == "disabled") {
 		current.hyperbutton.status = "enabled";
-		$("#hyper .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">activate hyper charge </span><span class="timer" hidden></span><div class="pricetag '+ hypertoken +'"><span>half your</span></div></div>');
+		$("#hyper .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">activate hyper charge </span><span class="timer" hidden></span><div class="pricetag '+ hypertoken +'"><span>all</span></div></div>');
 	}
 }
 
 function hyperUnlock() {
-	if(counter[hypertoken] > 100){
+	if(counter[hypertoken] > 10000){
 		buyableStatus("hyperActivate", "on");
 	}
-	if(counter[hypertoken] < 100){
+	if(counter[hypertoken] < 10000){
 		buyableStatus("hyperActivate", "off");
 	}
 }
 
 function hyperActivate(){
-	hyperTimer = counter[hypertoken];
-	counter[hypertoken] = counter[hypertoken]*0.5;
+	hyperTimer = Math.min(Math.floor(counter[hypertoken]/1000), 86400);
+	counter[hypertoken] = 0;
 	current.hyper.shape = rand(shape);
 	current.hyper.color = rand(colors);
 	current.hyper.status = "enabled";
@@ -36,11 +36,13 @@ function hyperActivate(){
 	$("#hyperActivate .pricetag").addClass(hypertoken);
 	updateSelectors();
 	draw();
-	setInterval(function(){ 
+
+	var timer = setInterval(function (){ 
 		if(hyperTimer > 0){
 			hyperTimer--;
 			$("#hyperActivate .timer").html(formatTime(hyperTimer));
 		} else if (hyperTimer == 0) {
+			clearInterval(timer);
 			$("#hyperActivate").addClass("active").removeClass("inactive");
 			$("#hyperActivate .name").html("activate hyper charge");
 			$("#hyperActivate .timer").hide().html("");
@@ -51,6 +53,9 @@ function hyperActivate(){
 		}
 	}, 1000);
 }
+
+
+
 
 // INPUT //
 

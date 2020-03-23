@@ -606,6 +606,7 @@ span#keydraw a {
 	position: relative;
 	border-radius: 3px;
 	background-color: #bbb;
+	//border: 12px solid #aaa;
 }
 
 #grid {

@@ -216,8 +216,7 @@ function drawWonderBar() {
 }
 
 function cloneCopy(){
-		document.getElementById('shapeClone').innerHTML = "";
-	
+	document.getElementById('shapeClone').innerHTML = "";
 	smallclone = SVG('shapeClone').size(100, 100);
 	mainClone = mainShape.clone();
 	chargeClone = chargeShape.clone();

@@ -1,6 +1,8 @@
 function addChargeNav(){
 	current.chargenav.status = "enabled";
-	$('#chargenav').append('<div class="container"><div class="title">CHARGE NAVIGATOR</div><div id="board"><div id="grid"><div id="shapeClone"></div></div></div></div>')
+	$('#chargenav').append('<div class="title">CHARGE NAVIGATOR</div><div class="container"><div id="board"><div id="grid"><div id="shapeClone"></div></div></div></div>')
+	cloneCopy();
+	gridMove();
 }
 
 function gridMove() {

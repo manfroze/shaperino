@@ -93,6 +93,10 @@ $(document).on( "click", "#color-bar", function(e) {
 	colorBarActivate();
 });
 
+$(document).on( "click", "#chargenav-debug", function(e) {
+	addChargeNav();
+});
+
 $(document).on( "click", "#addupgrades", function(e) {
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {

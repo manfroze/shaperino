@@ -55,7 +55,7 @@ const upgrade = {
 const upgradeLevel = {
 	boostidleshape: {
 		l1: {
-			unlock: [200, "circle"],
+			unlock: [100, "red"],
 			price: [250, "blue"],
 			status: "locked",
 		},
@@ -89,8 +89,8 @@ const upgradeLevel = {
 	},
 	boostidlecolor: {
 		l1: {
-			unlock: [1000, "yellow"],
-			price: [2000, "bottom"],
+			unlock: [150, "top"],
+			price: [500, "black"],
 			status: "locked",
 		},
 		l2: {

@@ -519,14 +519,8 @@ div {
 }
 
 #footer span {
-	//background-color: #222;
-	//color: #222;
-	//padding:  8px 10px;
-	//border-radius: 3px 3px 0 0;
-	//text-align: center;
-	//font-size: 13px;
 
-	display: inline-block;
+	display: none;
 	width: 100px;
 	height: 30px;
 	background-image: url('svg/high_logo.svg');
@@ -550,7 +544,7 @@ span#keydraw a {
 
 #colorbar {
 	display: none;
-	position: absolute;
+	position: fixed;
 	bottom:  0;
 	left:  0;
 	width: 100%;

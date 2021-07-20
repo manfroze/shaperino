@@ -47,7 +47,7 @@ var items = {
 		sec: "shape",
 		subsec: "shape",
 		card: "card",
-		status: "locked"
+		status: "active"
 	},
 	square: {
 		sec: "shape",
@@ -149,7 +149,7 @@ var items = {
 		subsec: "primary",
 		sec: "color",
 		card: "card",
-		status: "locked"
+		status: "active"
 	},
 	white: {
 		sec: "color",
@@ -343,6 +343,4 @@ unlockedColors = unlockeditems.filter(value => colors.includes(value));
 unlockedShapes = unlockeditems.filter(value => shape.includes(value));
 unlockedChargePositions = unlockeditems.filter(value => chargePositions.includes(value));
 }
-
-
 

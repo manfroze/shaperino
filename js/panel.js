@@ -1,4 +1,6 @@
-menu = ["options", "stats", "catalogue", "debug"]
+// menu = ["options", "stats", "catalogue", "debug"]
+
+menu = ["options", "debug"]
 
 function addMenuButton(item) {
 	$("#menu").append('<div class="button small inactive" id="' + item + '">' + item + '</div>');

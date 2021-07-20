@@ -207,6 +207,7 @@ function update(){
 	updateSelectors();
 	writeBlazon();
 	gridMove();
+
 }
 
 update();

@@ -25,6 +25,13 @@ function earn(){
 	});
 }
 
+function reset(){
+	$.each(counter, function(key, value) {
+		counter[key] = 0;
+		writeCounters();
+	});
+}
+
 function debugData(){
 	$(".data#main-shape span").html(current.main.shape);
 	$(".data#main-color span").html(current.main.color + " (" + current.main.colorType + ")");
@@ -111,7 +118,7 @@ $(document).keydown(function(event) {
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'r') {
+	if (event.key === 'y') {
 		allRandomShape();
 	} });
 
@@ -125,3 +132,7 @@ $(document).keydown(function(event) {
 		addAll();
 	} });
 
+$(document).keydown(function(event) {
+	if (event.key === 'q') {
+		reset();
+	} });

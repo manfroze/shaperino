@@ -21,20 +21,20 @@ const price = {
 		price: [200, "white"]
 	},
 	white: {
-		unlock: [100, "black"],
-		price: [200, "square"]
+		unlock: [120, "black"],
+		price: [150, "square"]
 	},
 	red: {
 		unlock: [150, "white"],
-		price: [200, "rhombus"]
+		price: [175, "rhombus"]
 	},
 	yellow: {
 		unlock: [200, "white"],
-		price: [250, "circle"]
+		price: [300, "square"]
 	},
 	blue: {
-		unlock: [250, "red"],
-		price: [150, "yellow"]
+		unlock: [50, "top"],
+		price: [100, "yellow"]
 	},
 	green: {
 		unlock: [200, "yellow"],
@@ -54,7 +54,7 @@ const price = {
 	},
 	top: {
 		unlock: [150, "rhombus"],
-		price: [1000, "rhombus"]
+		price: [100, "red"]
 	},
 	right: {
 		unlock: [600, "top"],
@@ -184,19 +184,26 @@ function addSubSection(section, subsection){
 	}
 }
 function addUnlock(item){
-	addSection(items[item].sec);
-	addSubSection(items[item].sec, items[item].subsec);
 	if (items[item].status == "locked") {
-		items[item].status = "unlocked"
-		if (items[item].card == "card") {
-			dash = labelDiv + powerDiv + counterDiv;
-		} else { dash = labelDiv};
-		$('<div id="' + item + '" class="item unbuyable unlocked ' + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
-		if (price[item]){
-			$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
-		}
+		items[item].status = "unlocked";
+		drawItem(item, "unlocked");
 	}
 	style();
+}
+
+function drawItem(item, status){
+
+	addSection(items[item].sec);
+	addSubSection(items[item].sec, items[item].subsec);
+
+	if (items[item].card == "card") {
+		dash = labelDiv + powerDiv + counterDiv;
+	} else { dash = labelDiv};
+	$('<div id="' + item + '" class="item unbuyable ' + status + " " + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
+	if (price[item]){
+		$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
+	}
+
 }
 
 function addItem(item){
@@ -244,8 +251,8 @@ function itemBuy(item){
 	}	
 }
 
-addComplete("circle");
-addComplete("black");
+//addComplete("circle");
+//addComplete("black");
 
 // INPUT //
 

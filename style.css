@@ -710,6 +710,20 @@ span#keydraw a {
 	height: 100px;
 }
 
+.achievement {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.achievement span {
+	display: block;
+
+}
 
 @keyframes move-right {
 	from {background-position: 24px;}
@@ -750,11 +764,6 @@ span#keydraw a {
 	from {background-position: 0px 24px;}
 	to {background-position: 24px 0px;}
 }
-
-#top { order:  1; }
-#right { order:  2; }
-#bottom { order:  3; }
-#left { order:  4; }
 
 #side .title.sub,
 #primary .title.sub,

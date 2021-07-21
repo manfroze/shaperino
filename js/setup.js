@@ -338,6 +338,33 @@ function start() {
 		comp: 0.5
 	}
 
+	achievement = {
+		circleone: {
+			name: "back to circle one",
+			desc: "never forget where you began!",
+			expl: "reach 100 circles.",
+			type: "counter",
+			data: "circle",
+			amount: 10,
+			status: "locked"
+		},
+		diamonds: {
+			name: "diamonds",
+			desc: "these are pretty fine.",
+			expl: "reach 100 rhombi.",
+			type: "counter",
+			data: "rhombus",
+			amount: 1000,
+			status: "locked"
+		},
+		chargefirst: {
+			name: "guilty as charged",
+			desc: "yes! this is the thing you were supposed to do.",
+			type: "ext",
+			status: "locked"
+		},
+	}
+
 	upgrade = {
 		boostidleshape: {
 			name: "shapes in time",
@@ -524,6 +551,7 @@ function start() {
 	state = {
 		options: options,
 		current: current,
+		achievement: achievement,
 		items: items,
 		counter: counter,
 		power: power,
@@ -536,6 +564,7 @@ start();
 function updateState(){
 	options = state.options;
 	current = state.current;
+	achievement = state.achievement;
 	items = state.items;
 	counter = state.counter;
 	power = state.power;
@@ -545,15 +574,10 @@ function updateState(){
 
 
 $( document ).ready(function() {
-
 	if (localStorage.getItem('state')) {
-
 		state = JSON.parse(localStorage.getItem('state'))
 		updateState();
-
 	};
-
-
 	$.each(items, function(item){
 		if (items[item].status == "unlocked") {
 			drawItem(item, "unlocked");

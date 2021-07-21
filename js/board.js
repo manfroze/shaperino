@@ -190,13 +190,13 @@ update();
 // INPUT //
 
 $(document).bind('keydown', function (event) {
-	if (current.charge.status =="enabled") {
+	if (current.charge.status == "enabled") {
 		if (event.key == "Shift") {
 			selector("charge")
 		}
 	}
 	if (event.key == "Alt") {
-		if (current.split.status =="enabled") {
+		if (current.split.status == "enabled") {
 			selector("split")
 		}
 	}

@@ -56,9 +56,6 @@ function swap(json){
 }
 
 function style(){
-
-
-
 	$.each(shape, function(key, value){
 		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
@@ -85,11 +82,9 @@ function style(){
 			$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
 		});
 	});
-
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
 	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
-
 }
 
 function prettifySub(number) {

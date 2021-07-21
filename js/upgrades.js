@@ -4,6 +4,8 @@ function addUpgrade(item, level){
 	if (upgradeLevel[item][level].status == "locked") {
 		upgradeLevel[item][level].status = "unlocked";
 		upgradeDraw(item, level);
+	} else {
+		upgradeDraw(item, level);
 	}
 	style();
 }

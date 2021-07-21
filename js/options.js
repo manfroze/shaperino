@@ -3,7 +3,7 @@
 $(document).on( "click", "#save.button", function(e) {
 	$("body").append('<div class="dialog"><textarea id="exportText"></textarea> <div id="export" class="button small">copy to clipboard</div> </div>');
 	$("#exportText").html(btoa(JSON.stringify(state))); 
-	$(".dialog").before('<div class="black"></div>');
+	$(".dialog").before('<div class="blackBox"></div>');
 });
 
 $(document).on( "click", "#export.button", function(e) {
@@ -16,7 +16,7 @@ $(document).on( "click", "#export.button", function(e) {
 
 $(document).on( "click", "#load.button", function(e) {
 	$("body").append('<div class="dialog"><textarea id="importText"></textarea> <div id="import" class="button small">import</div> </div>');
-	$(".dialog").before('<div class="black"></div>');
+	$(".dialog").before('<div class="blackBox"></div>');
 });
 
 $(document).on( "click", "#import.button", function(e) {
@@ -35,7 +35,7 @@ function reset(){
 
 $(document).on( "click", "#reset.button", function(e) {
 	$("body").append('<div class="dialog"><span>Are you sure you want to reset? You will lose all of your progress.</span><div id="actuallyReset" class="button small">yes, reset</div> </div>');
-	$(".dialog").before('<div class="black"></div>');
+	$(".dialog").before('<div class="blackBox"></div>');
 });
 
 $(document).on( "click", "#actuallyReset.button", function(e) {
@@ -45,7 +45,7 @@ $(document).on( "click", "#actuallyReset.button", function(e) {
 
 // DIALOG //
 
-$(document).on( "click", ".black", function(e) {
+$(document).on( "click", ".blackBox", function(e) {
 	$(".dialog").remove();	
-	$(".black").remove();	
+	$(".blackBox").remove();	
 });

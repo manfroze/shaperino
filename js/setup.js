@@ -533,11 +533,17 @@ function updateState(){
 	upgradeLevel = state.upgradeLevel;
 }
 
+
+
 $( document ).ready(function() {
 
-	if (localStorage.getItem('state')) { state = JSON.parse(localStorage.getItem('state')) };
+	if (localStorage.getItem('state')) {
 
-	updateState();
+		state = JSON.parse(localStorage.getItem('state'))
+		updateState();
+
+	};
+
 
 	$.each(items, function(item){
 		if (items[item].status == "unlocked") {
@@ -559,6 +565,13 @@ $( document ).ready(function() {
 
 	update();
 
+	$.each(upgradeLevel, function(item, itemValue){
+		$.each(itemValue, function(level, levelValue){
+			if (upgradeLevel[item][level].status == "unlocked") {
+				addUpgrade(item, level);
+			}
+		});
+	});
 });
 
 function updateLocalStorage(){

@@ -363,6 +363,26 @@ function start() {
 			type: "ext",
 			status: "locked"
 		},
+		testachievement: {
+			name: "this is a test.",
+			desc: "u gotta remove.",
+			type: "counter",
+			data: "square",
+			amount: 10,
+			status: "locked"
+		},
+		test: {
+			name: "test",
+			status: "locked"
+		},
+		testa: {
+			name: "test",
+			status: "locked"
+		},
+		testq: {
+			name: "test",
+			status: "locked"
+		},
 	}
 
 	upgrade = {

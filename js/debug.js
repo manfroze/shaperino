@@ -25,11 +25,6 @@ function earn(){
 	});
 }
 
-function reset(){
-	start();
-	location.reload();
-}
-
 function debugData(){
 	$(".data#main-shape span").html(current.main.shape);
 	$(".data#main-color span").html(current.main.color + " (" + current.main.colorType + ")");

@@ -513,19 +513,32 @@ function start() {
 			},
 		}
 	}
-
+	
+	state = {
+		current: current,
+		items: items,
+		counter: counter,
+		power: power,
+		upgradeLevel: upgradeLevel
+	}
 }
 
 start();
 
+function updateState(){
+	current = state.current;
+	items = state.items;
+	counter = state.counter;
+	power = state.power;
+	upgradeLevel = state.upgradeLevel;
+}
 
 $( document ).ready(function() {
 
-	if (localStorage.getItem('counter')) { counter = JSON.parse(localStorage.getItem('counter')) };
-	if (localStorage.getItem('current')) { current = JSON.parse(localStorage.getItem('current')) };
-	if (localStorage.getItem('items')) { items = JSON.parse(localStorage.getItem('items')) };
-	if (localStorage.getItem('power')) { power = JSON.parse(localStorage.getItem('power')) };
-	if (localStorage.getItem('upgradeLevel')) { upgradeLevel = JSON.parse(localStorage.getItem('upgradeLevel')) };
+	if (localStorage.getItem('state')) { state = JSON.parse(localStorage.getItem('state')) };
+
+	updateState();
+
 	$.each(items, function(item){
 		if (items[item].status == "unlocked") {
 			drawItem(item, "unlocked");
@@ -546,4 +559,12 @@ $( document ).ready(function() {
 
 	update();
 
+});
+
+function updateLocalStorage(){
+	localStorage.setItem('state', JSON.stringify(state));
+}
+
+$( window ).on("unload", function() {
+	updateLocalStorage();
 });

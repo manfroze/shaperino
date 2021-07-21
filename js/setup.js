@@ -45,7 +45,8 @@ function start() {
 		},
 		chargenav: {
 			status: "disabled",
-		}
+		},
+		hypertoken: "circle"
 	}
 
 	items = {
@@ -612,9 +613,6 @@ $( document ).ready(function() {
 	if (upgradeLevel.blazon.l0.status == "bought") {
 		addBlazon();
 	}
-	if (upgradeLevel.hyper.l0.status == "bought") {
-		hyperAdd();
-	}
 
 	update();
 
@@ -627,6 +625,17 @@ $( document ).ready(function() {
 			}
 		});
 	});
+
+	if(current.hyperbutton.status == "enabled"){
+		hyperDraw();
+	}
+
+	if(current.hyper.status == "enabled"){
+		current.hyper.status = "disabled";
+		draw();
+	}
+
+
 });
 
 function updateLocalStorage(){

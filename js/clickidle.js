@@ -4,6 +4,10 @@ function writeCounters(){
 	});
 }
 
+function writeHyperTime(){	
+	$("#hyperActivate .time").html(formatTime(Math.min(Math.floor(counter[current.hypertoken]/1000), 86400)));
+}
+
 function increaseCounters(powertype){
 	$.each(mode, function(key, value){
 		if (current[value].status == "enabled") {
@@ -58,6 +62,7 @@ function loop(){
 	setInterval(function(){ 
 		increaseCounters("idle");
 		writeCounters();
+		writeHyperTime();
 	}, 300);
 	setInterval(function(){ 
 		priceUnlock();

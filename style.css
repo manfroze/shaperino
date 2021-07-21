@@ -167,8 +167,8 @@ div {
 .item#black { order: 1; }
 .item#white { order: 2; }
 .item#red { order: 3; }
-.item#blue { order: 4; }
-.item#yellow { order: 5; }
+.item#yellow { order: 4; }
+.item#blue { order: 5; }
 
 .item#top { order: 1; }
 .item#right { order: 2; }
@@ -358,7 +358,7 @@ div {
 	font-size: 12px;
 }
 
-.upgrade .desc {
+.button .desc {
 	display: block;
 	font-size: 12px;
 }
@@ -548,7 +548,7 @@ div {
 
 #panelContainer {
 	position: relative;
-	top: 500px;
+	top: 520px;
 	width: 100%;
 	max-width: 100%;
 	margin-bottom: 50px;

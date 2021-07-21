@@ -93,7 +93,8 @@ function formatNumber(number) {
 	var numberTmp = number;
 	number = Math.round(number * 1000000) / 1000000;
 	if (!isFinite(number)) return "Infinite";
-	if (number >= 0 && number < 10000) return Math.floor(number);
+	if (number >= 0 && number < 100) return parseFloat(number.toFixed(2));
+	if (number >= 100 && number < 10000) return Math.floor(number);
 	if (number === 0) {
 		return prettifySub(0);
 	}

@@ -37,7 +37,7 @@ const price = {
 		price: [100, "yellow"]
 	},
 	green: {
-		unlock: [200, "yellow"],
+		unlock: [100, "yellow"],
 		price: [450, "top"]
 	},
 	orange: {
@@ -57,19 +57,20 @@ const price = {
 		price: [100, "red"]
 	},
 	right: {
-		unlock: [600, "top"],
-		price: [2600, "blue"]
+		unlock: [500, "top"],
+		price: [500, "blue"]
 	},
 	bottom: {
-		unlock: [1500, "right"],
+		unlock: [100, "right"],
 		price: [3000, "red"]
 	},
 	left: {
-		unlock: [2000, "bottom"],
+		unlock: [150, "bottom"],
 		price: [2000, "right"]
 	},
+
 	topleft: {
-		unlock: [1000, "square"],
+		unlock: [1000, "left"],
 		price: [1000, "rhombus"]
 	},
 	topright: {
@@ -85,21 +86,21 @@ const price = {
 		price: [2000, "right"]
 	},
 	topbottom: {
-		unlock: [1000, "square"],
-		price: [1000, "rhombus"]
+		unlock: [10000, "square"],
+		price: [10000, "rhombus"]
 	},
 	leftright: {
-		unlock: [600, "top"],
-		price: [2600, "blue"]
+		unlock: [6000, "top"],
+		price: [26000, "blue"]
 	},
 	toprightbottomleft: {
-		unlock: [1500, "right"],
-		price: [3000, "red"]
+		unlock: [15000, "right"],
+		price: [30000, "red"]
 	},
 	topleftbottomright: {
-		unlock: [2000, "bottom"],
-		price: [2000, "right"]
-	},
+		unlock: [20000, "bottom"],
+		price: [20000, "right"]
+	}, 
 	cross: {
 		unlock: [175000, "rhombus"],
 		price: [1000000, "left"]
@@ -159,7 +160,7 @@ const price = {
 }
 
 var labelDiv = '<div class="label"></div>';
-var powerDiv = '<div class="power"></div>';
+var powerDiv = '<div class="power"><div class="click">+<span>1</span></div><div class="idle"><span>0</span>/s</div></div>';
 var counterDiv = '<div class="counter">0</div>';
 var chargeButtons = '<div class="chargebuttons" class="container"><div class="button small main active selected"><span>main</span></div><div class="button small charge inactive"><span>charge</span><span class="modifier">shift</span></div><div class="button small split inactive"><span>split</span><span class="modifier">alt</span></div><div class="button small hyper inactive"><span>hyper</span></div></div>';
 
@@ -169,10 +170,7 @@ function addSection(section){
 		$("#" + section + "").append('<div class="title">' + section.toUpperCase() + '</div>' );
 		if (section == "charge"){
 			$("#" + section + " .title").append('<div class="button small remove inactive">&#10005;</div>');
-		}
-		if (section == "charge"){
-			$("#color > .title").after(chargeButtons);
-			$("#shape.section > .title").after(chargeButtons);
+			$("#title").after(chargeButtons);
 		}
 	}
 }
@@ -188,7 +186,6 @@ function addUnlock(item){
 		items[item].status = "unlocked";
 		drawItem(item, "unlocked");
 	}
-	style();
 }
 
 function drawItem(item, status){
@@ -203,6 +200,7 @@ function drawItem(item, status){
 	if (price[item]){
 		$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
 	}
+	style();
 
 }
 
@@ -250,9 +248,6 @@ function itemBuy(item){
 		$('#' + item + '').removeClass("buyable");
 	}	
 }
-
-//addComplete("circle");
-//addComplete("black");
 
 // INPUT //
 

@@ -26,10 +26,8 @@ function earn(){
 }
 
 function reset(){
-	$.each(counter, function(key, value) {
-		counter[key] = 0;
-		writeCounters();
-	});
+	start();
+	location.reload();
 }
 
 function debugData(){
@@ -80,14 +78,6 @@ $(document).on( "click", "#earn", function(e) {
 	earn();
 });
 
-$(document).on( "click", "#random", function(e) {
-	randomShape();
-});
-
-$(document).on( "click", "#totalrandom", function(e) {
-	allRandomShape();
-});
-
 $(document).on( "click", "#hyper-debug", function(e) {
 	hyperAdd();
 });
@@ -115,21 +105,6 @@ $(document).on( "click", "#addupgrades", function(e) {
 $(document).keydown(function(event) {
 	if (event.key === 'd') { 
 		$('#debug').toggle();
-	} });
-
-$(document).keydown(function(event) {
-	if (event.key === 'y') {
-		allRandomShape();
-	} });
-
-$(document).keydown(function(event) {
-	if (event.key === 't') { // T
-		randomShape();
-	} });
-
-$(document).keydown(function(event) {
-	if (event.key === 'c') { 
-		addAll();
 	} });
 
 $(document).keydown(function(event) {

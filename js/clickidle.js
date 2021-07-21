@@ -73,4 +73,5 @@ loop();
 
 $(document).on( "click", "#shaperino", function(e) {
 	increaseCounters("click");
+	updatePower();
 });

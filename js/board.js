@@ -52,7 +52,7 @@ function highlight(mode, kind){
 function highlightComp(type, mode, kind){
 	if (comp[type][current[mode][kind]] != ""){
 		components = comp[type][current[mode][kind]];
-		$("#" + components.join(", .card#")).addClass('bordered').addClass('sel-' + mode);
+		$("#" + components.join(", .card#")).addClass('bordered comp').addClass('sel-' + mode);
 		$("#" + components.join(" .label , .card#") + " .label").append('<span class="pip comp sel-' + mode + '"></span>');
 	}
 }
@@ -63,6 +63,7 @@ function clearSelectors(){
 	});
 	$("*").removeClass('selected');
 	$("*").removeClass('bordered');
+	$("*").removeClass('comp');
 	$(".label").html('');
 }
 
@@ -124,6 +125,31 @@ function updateSelectors(){
 	selector("main");
 }
 
+function updatePower(){
+	$.each(powertype, function(key, powertypeValue){
+		$.each(kind, function(key, kindValue){
+			$.each(mode, function(key, modeValue){
+				$('.' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue]));
+				$('.' + kindValue + '.comp.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue] * multi.comp));
+				
+				$.each(mode, function(key, modeValueTwo){
+					if(modeValue != modeValueTwo) {	
+						$('.' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo])));
+						$('.' + kindValue + 'comp.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) * multi.comp ));
+					}
+					$.each(mode, function(key, modeValueThree){
+						if(modeValue != modeValueTwo && modeValueTwo != modeValueThree && modeValue != modeValueThree) {	
+							$('.' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree])));
+							$('.' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree]) * multi.comp ));
+						}
+					});
+				});
+			});
+		});
+	});
+}
+
+
 function setTypes(){
 	if (position.side.includes(current.charge.position)) {
 		setCurrent("charge", "type", "side");
@@ -144,57 +170,6 @@ function setTypes(){
 	});
 }
 
-function randomShape(){
-	unlockedItems();
-	setCurrent("main", "shape", rand(unlockedShapes) );
-	setCurrent("main", "color", rand(unlockedColors) );
-	setCurrent("hyper", "status", rand(["enabled", "disabled"]));
-	if (unlockeditems.includes('top' || 'left' || 'right' || 'bottom')){
-		setCurrent("charge", "status", rand(["enabled", "disabled"]) );
-	}
-	if (current.charge.status == "enabled") {
-		setCurrent("charge", "position", rand(unlockedChargePositions) );
-		setCurrent("charge", "shape", rand(unlockedShapes) );
-		setCurrent("charge", "color", rand(unlockedColors) );
-		if (unlockeditems.includes('topbottom' || 'leftright' || 'topleftbottomright' || 'toprightbottomleft')){
-			setCurrent("split", "status", rand(["enabled", "disabled"]) );
-		}
-	} else { setCurrent("split", "status", "disabled" ); }
-	if (current.split.status == "enabled") {
-		setCurrent("split", "shape", rand(unlockedShapes) );
-		setCurrent("split", "color", rand(unlockedColors) );
-	}
-	if (current.hyper.status == "enabled") {
-		setCurrent("hyper", "shape", rand(unlockedShapes) );
-		setCurrent("hyper", "color", rand(unlockedColors) );
-	}
-	update();
-}
-
-function allRandomShape(){
-	setCurrent("main", "shape", rand(shape) );
-	setCurrent("main", "color", rand(colors) );
-	setCurrent("charge", "status", rand(["enabled", "disabled"]) );
-	setCurrent("hyper", "status", rand(["enabled", "disabled"]));
-	if (current.charge.status == "enabled") {
-		setCurrent("charge", "position", rand(chargePositions) );
-		setCurrent("charge", "shape", rand(shape) );
-		setCurrent("charge", "color", rand(colors) );
-		setCurrent("split", "status", rand(["enabled", "disabled"]) );
-	} else { setCurrent("split", "status", "disabled" ); }
-	if (current.split.status == "enabled") {
-		setCurrent("split", "shape", rand(shape) );
-		setCurrent("split", "color", rand(colors) );
-	}
-	if (current.hyper.status == "enabled") {
-		setCurrent("hyper", "shape", rand(shape) );
-		setCurrent("hyper", "color", rand(colors) );
-	}
-	update();
-	if (rand(["0", "1"]) == "0") { drawWonderBar(); }
-}
-
-
 function selector(mode){
 	current.select = mode;
 	$('.button.small.active').removeClass("selected");
@@ -207,7 +182,7 @@ function update(){
 	updateSelectors();
 	writeBlazon();
 	gridMove();
-
+	updatePower();
 }
 
 update();
@@ -234,19 +209,19 @@ $(document).bind('keyup', function (event) {
 	}
 });
 
-$(document).on( "click", ".button.small.main", function(e) {
+$(document).on( "click", ".button.small.main.active", function(e) {
 	selector("main");
 });
 
-$(document).on( "click", ".button.small.charge", function(e) {
+$(document).on( "click", ".button.small.charge.active", function(e) {
 	selector("charge");
 });
 
-$(document).on( "click", ".button.small.split", function(e) {
+$(document).on( "click", ".button.small.split.active", function(e) {
 	selector("split");
 });
 
-$(document).on( "click", ".button.small.hyper", function(e) {
+$(document).on( "click", ".button.small.hyper.active", function(e) {
 	selector("hyper");
 });
 

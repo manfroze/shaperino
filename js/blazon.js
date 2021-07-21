@@ -2,6 +2,8 @@ const blazonDict = {
 	circle: ["disc", "ball", "circle", "discus", "circumference", "sun", "moon"],
 	square: ["square", "equilateral", "quadrat", "box"],
 	rhombus: ["lozenge", "rhombus", "diamond", "rhomboid"],
+	octagon: ["octagon"],
+	cross: ["cross"],
 	black: ["dark", "moor", "black", "abyssal", "noir", "sable"],
 	white: ["pale", "snowy", "white"],
 	red: ["blood", "red", "fiery", "crimson", "flaming", "vermilion", "sanguine", "ruby"],
@@ -33,7 +35,7 @@ const blazonDict = {
 	bottomleft: ["on its bottom left corner"],
 	chargeVerb: ["charged by a", "surmounted by a", "with a"],
 	splitVerb: ["and a", "opposite a", "also a"],
-	splitEnd: ["on the other side", "on the mirror side"]
+	splitEnd: ["on the other side", "on the mirror side", "on the mirror", "mirroring"]
 }
 
 function addBlazon(){

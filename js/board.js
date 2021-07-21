@@ -135,7 +135,7 @@ function updatePower(){
 				$.each(mode, function(key, modeValueTwo){
 					if(modeValue != modeValueTwo) {	
 						$('.' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo])));
-						$('.' + kindValue + 'comp.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) * multi.comp ));
+						$('.' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) * multi.comp ));
 					}
 					$.each(mode, function(key, modeValueThree){
 						if(modeValue != modeValueTwo && modeValueTwo != modeValueThree && modeValue != modeValueThree) {	

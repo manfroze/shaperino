@@ -51,7 +51,7 @@ function increaseCounters(powertype){
 }
 
 function boost(type, kind, amount){
-	power[type][kind] +=amount;
+	power[type][kind] +=amount *=amount;
 }
 
 function loop(){
@@ -63,7 +63,7 @@ function loop(){
 		priceUnlock();
 		upgradeUnlock();
 		hyperUnlock();
-		debugData();
+		//debugData();
 	}, 1000);
 }
 

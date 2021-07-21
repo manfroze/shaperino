@@ -49,3 +49,17 @@ $(document).on( "click", ".blackBox", function(e) {
 	$(".dialog").remove();	
 	$(".blackBox").remove();	
 });
+
+// COLORBLIND MODE //
+
+$(document).on( "click", "#colorblind.button", function(e) {
+	if (options.colorblind == "on"){
+		options.colorblind = "off";
+		$("#colorblind.button span").html("off");
+	} else if (options.colorblind == "off"){
+		options.colorblind = "on";
+		$("#colorblind.button span").html("on");
+	}
+});
+
+

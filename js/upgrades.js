@@ -4,16 +4,31 @@ function addUpgrade(item, level){
 	if (upgradeLevel[item][level].status == "locked") {
 		upgradeLevel[item][level].status = "unlocked";
 		upgradeDraw(item, level);
-	} else {
-		upgradeDraw(item, level);
-	}
+	} 
 	style();
 }
 
 function upgradeDraw(item, level){
 
-	$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="button large upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '"><span>' + upgradeLevel[item][level].price[0] + '</span></div></div>' );
+if(upgrade[item].type == "boost"){
+
+	if(upgrade[item].data[0]){ typeV = upgrade[item].data[0] };
+	if(upgrade[item].data[1]){ kindV = upgrade[item].data[1] };
+
+	newValue = formatNumber(power[typeV][kindV] + upgrade[item].amount * upgrade[item].amount);
+
+} 
+
+	$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="button large upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span><span class="level">' + level.replace('l','') + '</span><div class="pricetag ' + upgradeLevel[item][level].price[1] + '"><span>' + upgradeLevel[item][level].price[0] + '</span></div><span class="desc"></span></div>' );
 	$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
+
+
+if(upgrade[item].type == "boost"){
+	$('#' + item + "-" + level + ' .desc').html('boost ' + kindV + " " + typeV + ' power to ' + newValue)
+} else {
+	$('#' + item + "-" + level + ' .desc').html(upgrade[item].desc)
+}
+
 
 }
 

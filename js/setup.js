@@ -1,5 +1,9 @@
 function start() {
 
+	options = {
+		colorblind: "off"
+	}
+
 	current = {
 		main: {
 			status: "enabled",
@@ -336,63 +340,66 @@ function start() {
 
 	upgrade = {
 		boostidleshape: {
-			name: "boost shape idling",
+			name: "shapes in time",
 			type: "boost",
 			data: ["idle", "shape"],
-			amount: 0.2,
+			amount: 2.5,
 		},
 		boostidlecharge: {
-			name: "boost charge idling",
+			name: "charged by the centuries",
 			type: "boost",
 			data: ["idle", "charge"],
-			amount: 0.2,
+			amount: 2,
 		},
 		boostidlecolor: {
-			name: "boost color idling",
+			name: "rainbow future",
 			type: "boost",
 			data: ["idle", "color"],
-			amount: 0.2,
+			amount: 2.2,
 		},
 		boostclickshape: {
-			name: "boost shape click",
+			name: "strength in forms",
 			type: "boost",
 			data: ["click", "shape"],
-			amount: 1,
+			amount: 5,
 		},
 		boostclickcharge: {
-			name: "boost charge click",
+			name: "power of more",
 			type: "boost",
 			data: ["click", "charge"],
-			amount: 1,
+			amount: 5.3,
 		},
 		boostclickcolor: {
-			name: "boost color click",
+			name: "kaleidoscope",
 			type: "boost",
 			data: ["click", "color"],
-			amount: 1,
+			amount: 5.6,
 		},
 		blazon: {
-			name: "unlock blazons",
+			name: "heraldry",
 			type: "blazon",
 			data: [""],
+			desc: "unlock blazons"
 		},
 		wonderbar: {
-			name: "unlock wonder bar",
+			name: "bar none",
 			type: "wonderbar",
 			data: [""],
+			desc: "unlock the wonder bar"
 		},
 		hyper: {
-			name: "unlock hyper charge",
+			name: "glowing center",
 			type: "hyper",
 			data: [""],
+			desc: "unlock the hyper charge"
 		}
 	}
 
 	upgradeLevel = {
 		boostidleshape: {
 			l1: {
-				unlock: [100, "red"],
-				price: [250, "blue"],
+				unlock: [20, "rhombus"],
+				price: [200, "black"],
 				status: "locked",
 			},
 			l2: {
@@ -408,8 +415,8 @@ function start() {
 		},
 		boostidlecharge: {
 			l1: {
-				unlock: [1000, "top"],
-				price: [2000, "red"],
+				unlock: [100, "top"],
+				price: [200, "red"],
 				status: "locked",
 			},
 			l2: {
@@ -425,8 +432,8 @@ function start() {
 		},
 		boostidlecolor: {
 			l1: {
-				unlock: [150, "top"],
-				price: [500, "black"],
+				unlock: [125, "rhombus"],
+				price: [150, "circle"],
 				status: "locked",
 			},
 			l2: {
@@ -442,8 +449,8 @@ function start() {
 		},
 		boostclickshape: {
 			l1: {
-				unlock: [300, "top"],
-				price: [2000, "black"],
+				unlock: [125, "blue"],
+				price: [275, "black"],
 				status: "locked",
 			},
 			l2: {
@@ -459,13 +466,13 @@ function start() {
 		},
 		boostclickcharge: {
 			l1: {
-				unlock: [1000, "right"],
-				price: [2000, "square"],
+				unlock: [75, "right"],
+				price: [100, "square"],
 				status: "locked",
 			},
 			l2: {
 				unlock: [3000, "top"],
-				price: [4000, "square"],
+				price: [400, "square"],
 				status: "locked",
 			},
 			l3: {
@@ -476,8 +483,8 @@ function start() {
 		},
 		boostclickcolor: {
 			l1: {
-				unlock: [1000, "white"],
-				price: [2000, "left"],
+				unlock: [75, "white"],
+				price: [50, "left"],
 				status: "locked",
 			},
 			l2: {
@@ -515,6 +522,7 @@ function start() {
 	}
 	
 	state = {
+		options: options,
 		current: current,
 		items: items,
 		counter: counter,
@@ -526,6 +534,7 @@ function start() {
 start();
 
 function updateState(){
+	options = state.options;
 	current = state.current;
 	items = state.items;
 	counter = state.counter;
@@ -568,7 +577,9 @@ $( document ).ready(function() {
 	$.each(upgradeLevel, function(item, itemValue){
 		$.each(itemValue, function(level, levelValue){
 			if (upgradeLevel[item][level].status == "unlocked") {
-				addUpgrade(item, level);
+				addSection("upgrades");
+				addSubSection("upgrades", "upgrades")
+				upgradeDraw(item, level);
 			}
 		});
 	});

@@ -14,92 +14,92 @@ const classes = {
 const price = {
 	square: {
 		unlock: [25, "circle"],
-		price: [100, "circle"]
+		price: [50, "circle"]
 	},
 	rhombus: {
-		unlock: [100, "square"],
-		price: [200, "white"]
+		unlock: [50, "square"],
+		price: [75, "white"]
 	},
 	white: {
-		unlock: [120, "black"],
-		price: [150, "square"]
+		unlock: [50, "black"],
+		price: [50, "square"]
 	},
 	red: {
-		unlock: [150, "white"],
-		price: [175, "rhombus"]
+		unlock: [50, "white"],
+		price: [45, "rhombus"]
 	},
 	yellow: {
-		unlock: [200, "white"],
-		price: [300, "square"]
+		unlock: [75, "white"],
+		price: [120, "square"]
 	},
 	blue: {
-		unlock: [50, "top"],
-		price: [100, "yellow"]
+		unlock: [50, "red"],
+		price: [55, "yellow"]
 	},
 	green: {
-		unlock: [100, "yellow"],
-		price: [450, "top"]
+		unlock: [150, "black"],
+		price: [125, "top"]
 	},
 	orange: {
-		unlock: [1200, "red"],
-		price: [800, "right"]
+		unlock: [120, "red"],
+		price: [50, "left"]
 	},
 	violet: {
-		unlock: [2000, "blue"],
-		price: [5000, "circle"]
+		unlock: [300, "circle"],
+		price: [200, "rhombus"]
 	},
 	grey: {
-		unlock: [10000, "black"],
-		price: [7000, "bottom"]
+		unlock: [1000, "black"],
+		price: [75, "bottom"]
 	},
 	top: {
-		unlock: [150, "rhombus"],
-		price: [100, "red"]
+		unlock: [75, "white"],
+		price: [50, "red"]
 	},
 	right: {
-		unlock: [500, "top"],
-		price: [500, "blue"]
+		unlock: [25, "top"],
+		price: [50, "blue"]
 	},
 	bottom: {
-		unlock: [100, "right"],
-		price: [3000, "red"]
+		unlock: [100, "yellow"],
+		price: [100, "red"]
 	},
 	left: {
-		unlock: [150, "bottom"],
-		price: [2000, "right"]
+		unlock: [50, "blue"],
+		price: [100, "right"]
 	},
 
 	topleft: {
-		unlock: [1000, "left"],
+		unlock: [300, "red"],
 		price: [1000, "rhombus"]
 	},
 	topright: {
-		unlock: [600, "top"],
+		unlock: [500, "blue"],
 		price: [2600, "blue"]
 	},
 	bottomleft: {
-		unlock: [1500, "right"],
+		unlock: [350, "square"],
 		price: [3000, "red"]
 	},
 	bottomright: {
-		unlock: [2000, "bottom"],
+		unlock: [1000, "circle"],
 		price: [2000, "right"]
 	},
 	topbottom: {
-		unlock: [10000, "square"],
-		price: [10000, "rhombus"]
+		unlock: [1000, "square"],
+		price: [1000, "rhombus"]
 	},
 	leftright: {
-		unlock: [6000, "top"],
-		price: [26000, "blue"]
+		unlock: [600, "top"],
+		price: [2600, "blue"]
 	},
 	toprightbottomleft: {
-		unlock: [15000, "right"],
-		price: [30000, "red"]
+		unlock: [1500, "right"],
+		price: [3000, "red"]
 	},
 	topleftbottomright: {
-		unlock: [20000, "bottom"],
-		price: [20000, "right"]
+		unlock: [2000, "bottom"],
+		price: [2000, "right"]
 	}, 
 	cross: {
 		unlock: [175000, "rhombus"],

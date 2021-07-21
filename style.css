@@ -157,6 +157,23 @@ div {
 	width: 70px;
 }
 
+.item#circle { order: 1; }
+.item#square { order: 2; }
+.item#rhombus { order: 3; }
+.item#cross { order: 4; }
+.item#octagon { order: 5; }
+
+.item#black { order: 1; }
+.item#white { order: 2; }
+.item#red { order: 3; }
+.item#blue { order: 4; }
+.item#yellow { order: 5; }
+
+.item#top { order: 1; }
+.item#right { order: 2; }
+.item#bottom { order: 3; }
+.item#left { order: 4; }
+
 .item.small {
 	height: 60px;
 	width: 60px;
@@ -313,7 +330,7 @@ div {
 	height: 70px;
 	width: 100%;
 	vertical-align: middle;
-	padding: 26px;
+	padding: 20px;
 	padding-left: 65px;
 	background-repeat: no-repeat;
 	background-size: 50px;
@@ -337,6 +354,11 @@ div {
 	color: #222;
 	border-radius: 3px;
 	padding:  3px 5px;
+	font-size: 12px;
+}
+
+.upgrade .desc {
+	display: block;
 	font-size: 12px;
 }
 
@@ -560,7 +582,7 @@ div {
 }
 
 .blackBox {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: 100%;
 	top: 0;

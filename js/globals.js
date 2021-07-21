@@ -48,14 +48,17 @@ function rand(name) {
 }
 
 function swap(json){
-  var ret = {};
-  for(var key in json){
-    ret[json[key]] = key;
-  }
-  return ret;
+	var ret = {};
+	for(var key in json){
+		ret[json[key]] = key;
+	}
+	return ret;
 }
 
 function style(){
+
+
+
 	$.each(shape, function(key, value){
 		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
@@ -64,13 +67,22 @@ function style(){
 		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
-	$.each(colors, function(key, value){
-		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-	});
+
+	if (options.colorblind == "off") {
+		$.each(colors, function(key, value){
+			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+			$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+		});
+
+	} else if (options.colorblind == "on") {
+		$.each(colors, function(key, value){
+			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
+			$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
+		});
+	}
 	$.each(powertype, function(key, powertype){
 		$.each(kind, function(key, kind){
-				$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
+			$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
 		});
 	});
 
@@ -93,8 +105,8 @@ function formatNumber(number) {
 	var numberTmp = number;
 	number = Math.round(number * 1000000) / 1000000;
 	if (!isFinite(number)) return "Infinite";
-	if (number >= 0 && number < 100) return parseFloat(number.toFixed(2));
-	if (number >= 100 && number < 10000) return Math.floor(number);
+	if (number >= 0 && number < 10) return parseFloat(number.toFixed(2));
+	if (number >= 10 && number < 10000) return Math.floor(number);
 	if (number === 0) {
 		return prettifySub(0);
 	}
@@ -102,35 +114,35 @@ function formatNumber(number) {
 	if (base <= 0) return prettifySub(number);
 	number /= Math.pow(1000, base);
 
-		var suffices = [
-			'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud',
-			'Dd', 'Td', 'Qad', 'Qid', 'Sxd', 'Spd', 'Od', 'Nd', 'V', 'Uv', 'Dv',
-			'Tv', 'Qav', 'Qiv', 'Sxv', 'Spv', 'Ov', 'Nv', 'Tt'
-		];
-		var suffix;
-		if ((base <= suffices.length && base > 0)) {
-			suffix = suffices[base - 1];
-		}
-		else {
-			var exponent = parseFloat(numberTmp).toExponential(2);
-			exponent = exponent.replace('+', '');
-			return exponent;
-		}
+	var suffices = [
+	'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud',
+	'Dd', 'Td', 'Qad', 'Qid', 'Sxd', 'Spd', 'Od', 'Nd', 'V', 'Uv', 'Dv',
+	'Tv', 'Qav', 'Qiv', 'Sxv', 'Spv', 'Ov', 'Nv', 'Tt'
+	];
+	var suffix;
+	if ((base <= suffices.length && base > 0)) {
+		suffix = suffices[base - 1];
+	}
+	else {
+		var exponent = parseFloat(numberTmp).toExponential(2);
+		exponent = exponent.replace('+', '');
+		return exponent;
+	}
 
-		return prettifySub(number) + suffix;
+	return prettifySub(number) + suffix;
 } 
 
 function formatTime(time)
 {   
-    var hrs = ~~(time / 3600);
-    var mins = ~~((time % 3600) / 60);
-    var secs = ~~time % 60;
-    var ret = "";
-    if (hrs > 0) {
-        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
+	var hrs = ~~(time / 3600);
+	var mins = ~~((time % 3600) / 60);
+	var secs = ~~time % 60;
+	var ret = "";
+	if (hrs > 0) {
+		ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+	}
+	ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+	ret += "" + secs;
+	return ret;
 }
 

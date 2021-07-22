@@ -15,7 +15,7 @@ function hyperAdd(){
 function hyperDraw(){
 	addSection("hyper");
 	addSubSection("hyper", "hyper");
-	$("#hyper .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">hyper</span><span class="timer" hidden></span><div class="pricetag '+ current.hypertoken +'"><span>10K+</span></div><span class="desc">activate the hyper charge for <span class="time"></span></span></div>');
+	$("#hyper .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">hyper charge</span><span class="timer" hidden></span><div class="pricetag '+ current.hypertoken +'"><span>10K+</span></div><span class="desc">activate for <span class="time"></span></span></div>');
 }
 
 function hyperUnlock() {

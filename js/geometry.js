@@ -118,10 +118,6 @@ function draw() {
 	splitShape = SVG('split-canvas').size(500, 500).group();
 	hyperShape = SVG('hyper-canvas').size(500, 500).group();
 
-
-	//mainGroup = mainShape.group();
-
-
 	$.each(mode, function(j, k){
 		if (current[k].status == "enabled") {
 			drawShape(k);

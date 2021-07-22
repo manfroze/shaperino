@@ -41,6 +41,10 @@ function start() {
 		chargenav: {
 			status: "disabled",
 		},
+		playground: {
+			status: "disabled",
+			show: "hide"
+		},
 		hypertoken: "circle"
 	}
 
@@ -665,6 +669,16 @@ $( document ).ready(function() {
 		current.hyper.status = "disabled";
 		draw();
 	}
+
+	if (current.playground.show == "hide"){
+		$('#shaperino').show();
+		$('#playground').hide();
+	} else if (current.playground.show == "show"){
+		$('#shaperino').hide();
+		$('#playground').show();
+		drawPlayground();
+	}
+
 });
 
 // LOCAL STORAGE //

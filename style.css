@@ -11,7 +11,7 @@ div {
 }
 
 ::selection {
-	background: transparent;
+	//background: transparent;
 }
 
 #container {
@@ -803,7 +803,6 @@ span#keydraw a {
 }
 
 #playgroundPanel {
-	background-color: #47E24D;
 	height: 90%;
 	width: 100%;
 	display: inline-block;
@@ -819,6 +818,8 @@ span#keydraw a {
 
 #playgroundPanel .header span {
 	display: block;
+	mix-blend-mode: difference;
+	color: rgb(255, 255, 255);
 
 }
 

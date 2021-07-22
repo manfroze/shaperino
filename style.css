@@ -77,6 +77,8 @@ div {
 	width:  500px;
 	text-align: center;
 	position: relative;
+	//border: 1px solid #f00;
+	height: 500px;
 }
 
 .canvas {

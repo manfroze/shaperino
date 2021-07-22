@@ -5,7 +5,6 @@ var hyperTimer = 100;
 var hyperSlogan = ["look at it go!", "isn't it beautiful?", "wow. just... wow.", "oh my colorful god.", "*_________*", "click on it, presto!", "this is what science brought us.", "positively amazing.", "a true wonder of geometry."];
 
 function hyperAdd(){
-
 	if (current.hyperbutton.status == "disabled") {
 		current.hyperbutton.status = "enabled";
 		current.hypertoken = rand(tokens);
@@ -14,16 +13,12 @@ function hyperAdd(){
 }
 
 function hyperDraw(){
-
 	addSection("hyper");
 	addSubSection("hyper", "hyper");
-
 	$("#hyper .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">hyper</span><span class="timer" hidden></span><div class="pricetag '+ current.hypertoken +'"><span>10K+</span></div><span class="desc">activate the hyper charge for <span class="time"></span></span></div>');
-
 }
 
 function hyperUnlock() {
-
 	if(counter[current.hypertoken] > 10000){
 		buyableStatus("hyperActivate", "on");
 		$("#hyperActivate .pricetag span").html(formatNumber(counter[current.hypertoken]));
@@ -68,9 +63,6 @@ function hyperActivate(){
 		}
 	}, 1000);
 }
-
-
-
 
 // INPUT //
 

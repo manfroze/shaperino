@@ -39,6 +39,7 @@ function increaseCounters(powertype){
 			counter[value] +=power[powertype].color * multi.comp;
 		});
 	} 
+	
 	if (current.charge.status == "enabled" && current.charge.colorType == "composite") {
 		$.each(comp.color[current.charge.color], function(index, value){
 			counter[value] +=power[powertype].color  * multi.charge  * multi.comp;
@@ -48,7 +49,12 @@ function increaseCounters(powertype){
 		$.each(comp.color[current.split.color], function(index, value){
 			counter[value] +=power[powertype].color * multi.split * multi.comp;
 		});
-	} 
+	}
+	if (current.hyper.status == "enabled" && current.hyper.colorType == "composite") {
+		$.each(comp.color[current.hyper.color], function(index, value){
+			counter[value] +=power[powertype].color  * multi.hyper  * multi.comp;
+		});
+	}
 
 	writeCounters();
 

@@ -73,7 +73,6 @@ div {
 #shaperino {
 	margin: 30px auto 20px;
 	cursor: pointer;
-	transition: transform .5s ease;
 	width:  500px;
 	text-align: center;
 	position: relative;
@@ -90,6 +89,7 @@ div {
 	left: 0;
 	top: 0;
 	pointer-events: none;
+	transition: transform .5s ease;
 }
 
 .canvas svg g {
@@ -549,8 +549,6 @@ div {
 }
 
 #panelContainer {
-	position: relative;
-	top: 520px;
 	width: 100%;
 	max-width: 100%;
 	margin-bottom: 50px;

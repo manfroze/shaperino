@@ -19,6 +19,9 @@ panelContent = {
 	debug: '<div class="container"><div id="clickboost" class="button small">click boost</div> <div id="idleboost" class="button small">idle boost</div> </div> <div class="container"> <div id="unlock" class="button small">unlock</div> <div id="complete" class="button small">complete</div><div id="earn" class="button small">earn</div> <div id="addupgrades" class="button small">add upgrades</div> </div> <div class="container"> <div id="wonder-bar" class="button small">wonder bar</div><div id="color-bar" class="button small">color bar</div><div id="hyper-debug" class="button small">hyper</div><div id="chargenav-debug" class="button small">charge nav</div></div> <div class="container"> <div id="main-shape" class="data">shape: <span></span></div> <div id="main-color" class="data">color: <span></span></div> </div> <div class="container"> <div id="charge-status" class="data">charge: <span></span></div> <div id="charge-shape" class="data">shape: <span></span></div> <div id="charge-color" class="data">color: <span></span></div> <div id="charge-position" class="data">pos: <span></span></div> <div id="charge-type" class="data">type: <span></span></div> </div> <div class="container"> <div id="split-status" class="data">split: <span></span></div> <div id="split-shape" class="data">shape: <span></span></div> <div id="split-color" class="data">color: <span></span></div> <div id="split-position" class="data">pos: <span></span></div> </div> <div class="container"> <div id="click-power-shape" class="data">shape click power: <span></span></div> <div id="click-power-charge" class="data">charge click power: <span></span></div> <div id="click-power-color" class="data">color click power: <span></span></div> </div> <div class="container"> <div id="idle-power-shape" class="data">shape idle power: <span></span></div> <div id="idle-power-charge" class="data">charge idle power: <span></span></div> <div id="idle-power-color" class="data">color idle power: <span></span></div> </div>'
 }
 
+
+
+
 function addPanel(item) {
 	$("#panel").empty();
 	selectMenuButton(item);
@@ -26,7 +29,7 @@ function addPanel(item) {
 	if (item == "achievements") {
 		$("#panel").append('<div class="panel" id="' + item + '"></div>')
 		$.each(achievement, function(k, v) {
-			$("#achievements.panel").append('<div id="' + k + '" class="achievementTile"><span>' + achievement[k].name + '</span></div>');
+			$("#achievements.panel").append('<div id="' + k + '" class="achievementTile" title="' + achievement[k].expl + '"><span>' + achievement[k].name + '</span></div>');
 			$("#achievements.panel #" + k).addClass("locked");
 			if (achievement[k].status == "unlocked") {
 				//$("#achievements.panel #" + k + " span").html(achievement[k].name);

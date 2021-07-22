@@ -1,6 +1,6 @@
 const shape = ["circle", "square", "rhombus", "cross", "octagon"]
 const mode = ["main", "hyper", "charge", "split"]
-const kind = ["shape", "charge", "color"]
+const kind = ["shape", "position", "color"]
 const powertype = ["idle", "click"]
 const position = {
 	side: ["top", "left", "bottom", "right"],

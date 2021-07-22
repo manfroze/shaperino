@@ -321,12 +321,12 @@ function start() {
 	power = {
 		idle: {
 			shape: 0,
-			charge: 0,
+			position: 0,
 			color: 0,
 		},
 		click: {
 			shape: 1,
-			charge: 1,
+			position: 1,
 			color: 1,
 		}
 	}

@@ -19,19 +19,19 @@ function increaseCounters(powertype){
 	});
 
 	if (current.charge.status == "enabled" && current.charge.type == "side") {
-		counter[current.charge.position] +=power[powertype].charge;
+		counter[current.charge.position] +=power[powertype].position;
 	}
 
 	// COMP //
 
 	if (current.charge.status == "enabled" && current.charge.type == "corner") {
 		$.each(comp.charge[current.charge.position], function(index, value){
-			counter[value] +=power[powertype].charge * multi.comp;
+			counter[value] +=power[powertype].position * multi.comp;
 		});
 	}
 	if (current.split.status == "enabled") {
 		$.each(comp.split[current.split.position], function(index, value){
-			counter[value] +=power[powertype].charge * multi.comp;
+			counter[value] +=power[powertype].position * multi.comp;
 		});
 	}
 	if (current.main.colorType == "composite") {

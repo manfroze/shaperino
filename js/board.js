@@ -44,8 +44,12 @@ function setCurrent(mode, kind, selected){
 	current[mode][kind] = selected;
 }
 
+function highlightCharge(){
+	$("#" + current.charge.position).addClass('selected').addClass('sel-position');
+}
+
 function highlight(mode, kind){
-	$("#" + current[mode][kind]).addClass('selected').addClass('sel-' + mode);
+	$("#" + current[mode][kind]).addClass('selected').addClass('sel-' + mode).addClass('sel-' + kind);
 	$("#" + current[mode][kind] + " .label").append('<span class="pip sel-'+ mode +'"></span>');
 }
 
@@ -75,7 +79,8 @@ function updateSelectors(){
 		highlightComp("color", "main", "color");
 	}
 	if (current.charge.status == "enabled" && current.split.status == "disabled") {
-		highlight("charge", "position");
+		//highlight("charge", "position");
+		highlightCharge();
 		if (current.charge.type == "corner"){
 			highlightComp("charge", "charge", "position");
 		}
@@ -129,18 +134,19 @@ function updatePower(){
 	$.each(powertype, function(key, powertypeValue){
 		$.each(kind, function(key, kindValue){
 			$.each(mode, function(key, modeValue){
-				$('.' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue]));
-				$('.' + kindValue + '.comp.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue] * multi.comp));
+				console.log('.sel-' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span');
+				$('.sel-' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue]));
+				$('.sel-' + kindValue + '.comp.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue] * multi.comp));
 				
 				$.each(mode, function(key, modeValueTwo){
 					if(modeValue != modeValueTwo) {	
-						$('.' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo])));
-						$('.' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) * multi.comp ));
+						$('.sel-' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo])));
+						$('.sel-' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) * multi.comp ));
 					}
 					$.each(mode, function(key, modeValueThree){
 						if(modeValue != modeValueTwo && modeValueTwo != modeValueThree && modeValue != modeValueThree) {	
-							$('.' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree])));
-							$('.' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree]) * multi.comp ));
+							$('.sel-' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree])));
+							$('.sel-' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree]) * multi.comp ));
 						}
 					});
 				});

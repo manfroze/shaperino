@@ -764,7 +764,6 @@ span#keydraw a {
 	display: none;
 }
 
-
 @keyframes move-right {
 	from {background-position: 24px;}
 	to {background-position: 0px;}

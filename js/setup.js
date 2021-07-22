@@ -335,7 +335,7 @@ function start() {
 		main: 1,
 		charge: 0.5,
 		split: 0.25,
-		hyper: 5,
+		hyper: 10,
 		comp: 0.5
 	}
 
@@ -396,7 +396,7 @@ function start() {
 		boostidlecharge: {
 			name: "charged by the centuries",
 			type: "boost",
-			data: ["idle", "charge"],
+			data: ["idle", "position"],
 			amount: 2,
 		},
 		boostidlecolor: {
@@ -414,7 +414,7 @@ function start() {
 		boostclickcharge: {
 			name: "power of more",
 			type: "boost",
-			data: ["click", "charge"],
+			data: ["click", "position"],
 			amount: 5.3,
 		},
 		boostclickcolor: {

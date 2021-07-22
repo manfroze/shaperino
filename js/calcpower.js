@@ -7,14 +7,14 @@ function calcPower(){
 				charge: power.idle.shape * multi.charge,
 				split: power.idle.shape * multi.split,
 				main-charge: power.idle.shape + (power.idle.shape * multi.charge),
-				main-split: ,
-				charge-split: ,
-				main-charge-split: ,
+				main-split: power.idle.shape + (power.idle.shape * multi.split),
+				charge-split: (power.idle.shape * multi.charge) + (power.idle.shape * multi.split),
+				main-charge-split: power.idle.shape + (power.idle.shape * multi.charge) + (power.idle.shape * multi.split),
 			},
-			charge: {
-				charge: ,
-				split: ,
-				comp: ,
+			position: {
+				charge: power.idle.position,
+				split: power.idle.position,
+				comp: power.idle.position * multi.comp;
 			},
 			color: {
 				main:,
@@ -44,7 +44,7 @@ function calcPower(){
 				charge-split:,
 				main-charge-split:,
 			},
-			charge: {
+			position: {
 				charge:,
 				split:,
 				comp:,

@@ -134,7 +134,6 @@ function updatePower(){
 	$.each(powertype, function(key, powertypeValue){
 		$.each(kind, function(key, kindValue){
 			$.each(mode, function(key, modeValue){
-				console.log('.sel-' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span');
 				$('.sel-' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue]));
 				$('.sel-' + kindValue + '.comp.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue] * multi.comp));
 				

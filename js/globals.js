@@ -11,7 +11,39 @@ const color = {
 	basic: ["black", "white", "red", "blue", "yellow"],
 	composite: ["green", "orange", "violet", "grey", "lightred", "lightblue", "lightyellow", "darkred", "darkblue", "darkyellow", "lightgreen", "lightorange", "lightviolet", "darkgreen", "darkorange", "darkviolet"]
 }
-const tokens = ["black", "white", "red", "blue", "yellow", "top", "left", "bottom", "right"]
+const comp = {
+	charge: {
+		topleft: ["top", "left"],
+		topright: ["top", "right"],
+		bottomleft: ["bottom", "left"],
+		bottomright: ["bottom", "right"],
+	},
+	split: {
+		topbottom: ["top", "bottom"],
+		leftright: ["left", "right"],
+		topleftbottomright: ["top", "left", "bottom", "right"],
+		toprightbottomleft: ["top", "left", "bottom", "right"],
+	},
+	color: {
+		orange: ["red", "yellow"],
+		green: ["yellow", "blue"],
+		violet: ["blue", "red"],
+		grey: ["white", "black"],
+		darkred: ["red", "black"],
+		darkyellow: ["yellow", "black"],
+		darkblue: ["blue", "black"],
+		lightred: ["red", "white"],
+		lightyellow: ["yellow", "white"],
+		lightblue: ["blue", "white"],
+		darkorange: ["red", "yellow", "black"],
+		darkgreen: ["yellow", "blue", "black"],
+		darkviolet: ["blue", "red", "black"],
+		lightorange: ["red", "yellow", "white"],
+		lightgreen: ["yellow", "blue", "white"],
+		lightviolet: ["blue", "red", "white"],
+	}
+}
+
 const colorCode = {
 	black: "#222222",
 	white: "#FFFFFF",
@@ -37,8 +69,10 @@ const colorCode = {
 }
 
 const colors = [...color.basic, ...color.composite]
-const positions = [...position.side, ...position.corner, , ...position.split]
+const positions = [...position.side, ...position.corner, ...position.split]
 const chargePositions = [...position.side, ...position.corner]
+const token = [...shape, ...position.side, ...color.basic]
+const allItems = [...shape, ...positions, ...colors]
 
 function rand(name) {
 	if (name instanceof Array == true) {
@@ -141,3 +175,19 @@ function formatTime(time)
 	return ret;
 }
 
+
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
+if(!Array.prototype.indexOf){
+    Array.prototype.indexOf = function(val){
+        var i = this.length;
+        while (i--) {
+            if (this[i] == val) return i;
+        }
+        return -1;
+    } 
+}
+
+const mapObjectKeys = (object, key) => Object.fromEntries(Object.entries(object).map(([subKey, keyObject]) => [subKey, keyObject[key]]))

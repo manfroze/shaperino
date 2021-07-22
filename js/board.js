@@ -1,36 +1,3 @@
-const comp = {
-	charge: {
-		topleft: ["top", "left"],
-		topright: ["top", "right"],
-		bottomleft: ["bottom", "left"],
-		bottomright: ["bottom", "right"],
-	},
-	split: {
-		topbottom: ["top", "bottom"],
-		leftright: ["left", "right"],
-		topleftbottomright: ["top", "left", "bottom", "right"],
-		toprightbottomleft: ["top", "left", "bottom", "right"],
-	},
-	color: {
-		orange: ["red", "yellow"],
-		green: ["yellow", "blue"],
-		violet: ["blue", "red"],
-		grey: ["white", "black"],
-		darkred: ["red", "black"],
-		darkyellow: ["yellow", "black"],
-		darkblue: ["blue", "black"],
-		lightred: ["red", "white"],
-		lightyellow: ["yellow", "white"],
-		lightblue: ["blue", "white"],
-		darkorange: ["red", "yellow", "black"],
-		darkgreen: ["yellow", "blue", "black"],
-		darkviolet: ["blue", "red", "black"],
-		lightorange: ["red", "yellow", "white"],
-		lightgreen: ["yellow", "blue", "white"],
-		lightviolet: ["blue", "red", "white"],
-	}
-}
-
 const split = {
 	"topbottom": "top",
 	"leftright": "left",
@@ -75,20 +42,20 @@ function updateSelectors(){
 	clearSelectors();
 	highlight("main", "shape");
 	highlight("main", "color");
-	if (current.main.colorType == "composite") {
+	if (color.composite.includes(current.main.color)) {
 		highlightComp("color", "main", "color");
 	}
 	if (current.charge.status == "enabled" && current.split.status == "disabled") {
 		//highlight("charge", "position");
 		highlightCharge();
-		if (current.charge.type == "corner"){
+		if (position.corner.includes(current.charge.position)){
 			highlightComp("charge", "charge", "position");
 		}
 	}
 	if (current.charge.status == "enabled") {
 		highlight("charge", "shape");
 		highlight("charge", "color");
-		if (current.charge.colorType == "composite") {
+		if (color.composite.includes(current.charge.color)) {
 			highlightComp("color", "charge", "color");
 		}
 		$('.button.charge').addClass("active").removeClass("inactive");
@@ -99,7 +66,7 @@ function updateSelectors(){
 		highlight("split", "shape");
 		highlight("split", "color");
 		highlightComp("split", "split", "position");
-		if (current.split.colorType == "composite") {
+		if (color.composite.includes(current.split.color)) {
 			highlightComp("color", "split", "color");
 		}
 		$('.button.split').addClass("active").removeClass("inactive");
@@ -109,7 +76,7 @@ function updateSelectors(){
 		highlight("hyper", "position");
 		highlight("hyper", "shape");
 		highlight("hyper", "color");
-		if (current.hyper.colorType == "composite") {
+		if (color.composite.includes(current.hyper.color)) {
 			highlightComp("color", "hyper", "color");
 		}
 		$('.button.small.hyper').addClass("active").removeClass("inactive");
@@ -130,44 +97,15 @@ function updateSelectors(){
 	selector("main");
 }
 
-function updatePower(){
-	$.each(powertype, function(key, powertypeValue){
-		$.each(kind, function(key, kindValue){
-			$.each(mode, function(key, modeValue){
-				$('.sel-' + kindValue + '.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue]));
-				$('.sel-' + kindValue + '.comp.sel-' + modeValue + ' .power .' + powertypeValue + ' span').html(formatNumber(power[powertypeValue][kindValue] * multi[modeValue] * multi.comp));
-				
-				$.each(mode, function(key, modeValueTwo){
-					if(modeValue != modeValueTwo) {	
-						$('.sel-' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo])));
-						$('.sel-' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) * multi.comp ));
-					}
-					$.each(mode, function(key, modeValueThree){
-						if(modeValue != modeValueTwo && modeValueTwo != modeValueThree && modeValue != modeValueThree) {	
-							$('.sel-' + kindValue + '.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree])));
-							$('.sel-' + kindValue + '.comp.sel-' + modeValue + '.sel-' + modeValueTwo + '.sel-' + modeValueThree + ' .power .' + powertypeValue + ' span').html(formatNumber((power[powertypeValue][kindValue] * multi[modeValue]) + (power[powertypeValue][kindValue] * multi[modeValueTwo]) + (power[powertypeValue][kindValue] * multi[modeValueThree]) * multi.comp ));
-						}
-					});
-				});
-			});
+function writePowerCounters(){
+	$.each(token, function(key, value){
+		$.each(powertype, function(key, powertypeValue){
+		$('#' + value + ' .power .' + powertypeValue + ' span').html(formatNumber(powerCalculate[powertypeValue][value]));
 		});
 	});
 }
 
-
 function setTypes(){
-	if (position.side.includes(current.charge.position)) {
-		setCurrent("charge", "type", "side");
-	} else if (position.corner.includes(current.charge.position)) {
-		setCurrent("charge", "type", "corner");
-	}
-	$.each(mode, function(key, value){
-		if (color.basic.includes(current[value].color)) {
-			setCurrent(value, "colorType", "basic");
-		} else if (color.composite.includes(current[value].color)) {
-			setCurrent(value, "colorType", "composite");
-		}
-	});
 	$.each(splitto, function(key, value){
 		if (current.charge.position == key) {
 			setCurrent("split", "position", value);
@@ -187,7 +125,7 @@ function update(){
 	updateSelectors();
 	writeBlazon();
 	gridMove();
-	updatePower();
+	writePowerCounters();
 }
 
 update();

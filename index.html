@@ -5,6 +5,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.1/underscore-min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/zipson@0.2.12/dist/zipson.min.js" integrity="sha256-kZY1VTHB1NQBHlqqwmd6jG25X1IIWtcpM+nuv4MQ51Y=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="lib/QTransform.js"></script>
 	<script type="text/javascript" src="lib/jquery.html5storage.min.js"></script>
 	<script type="text/javascript" src="lib/svg.shapes.js"></script>
@@ -12,6 +13,17 @@
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJ3YBBJVNE"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-KJ3YBBJVNE');
+	</script>
+
 </head>
 <body>
 	<div id="blazon"></div>
@@ -32,6 +44,7 @@
 				<div id="split-canvas" class="canvas"></div>
 				<div id="wonder-canvas" class="canvas"></div>
 			</div>
+			<div id="playground" class="section"></div>
 			
 
 			<div id="panelContainer" class="section">
@@ -52,8 +65,8 @@
 		</div>
 		<div id="colorbar"></div>
 	</div>
-	<script type="text/javascript" src="js/setup.js"></script>
 	<script type="text/javascript" src="js/globals.js"></script>
+	<script type="text/javascript" src="js/setup.js"></script>
 	<script type="text/javascript" src="js/blazon.js"></script>
 	<script type="text/javascript" src="js/items.js"></script>
 	<script type="text/javascript" src="js/hyper.js"></script>
@@ -65,7 +78,7 @@
 	<script type="text/javascript" src="js/board.js"></script>
 	<script type="text/javascript" src="js/animate.js"></script>
 	<script type="text/javascript" src="js/colorbar.js"></script>
-	
+	<script type="text/javascript" src="js/colorplayground.js"></script>
 	<script type="text/javascript" src="js/panel.js"></script>
 	<script type="text/javascript" src="js/options.js"></script>
 	<script type="text/javascript" src="js/debug.js"></script>

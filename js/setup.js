@@ -9,28 +9,23 @@ function start() {
 			status: "enabled",
 			shape: "circle",
 			color: "black",
-			colorType: "basic",
 		}, 
 		charge: {
 			status: "disabled",
-			type: "side",
 			position: "topleft",
 			shape: "square",
 			color: "black",
-			colorType: "basic",
 		},
 		split: {
 			status: "disabled",
 			position: "topbottom",
 			shape: "circle",
 			color: "black",
-			colorType: "basic",
 		},
 		hyper: {
 			status: "disabled",
 			shape: "circle",
 			color: "blue",
-			colorType: "basic",
 		},
 		wonderbar: {
 			status: "disabled",
@@ -54,231 +49,235 @@ function start() {
 			sec: "shape",
 			subsec: "shape",
 			card: "card",
-			status: "active"
 		},
 		square: {
 			sec: "shape",
 			subsec: "shape",
 			card: "card",
-			status: "locked"
 		},
 		rhombus: {
 			sec: "shape",
 			subsec: "shape",
 			card: "card",
-			status: "locked"
 		},
 		cross: {
 			sec: "shape",
 			subsec: "shape",
 			card: "card",
-			status: "locked"
 		},
 		octagon: {
 			sec: "shape",
 			subsec: "shape",
 			card: "card",
-			status: "locked"
 		},
 		top: {
 			sec: "charge",
 			subsec: "side",
 			card: "card",
-			status: "locked"
 		},
 		left: {	
 			sec: "charge",
 			subsec: "side",
 			card: "card",
-			status: "locked"
 		},
 		right: {
 			sec: "charge",
 			subsec: "side",
 			card: "card",
-			status: "locked"
 		},
 		bottom: {
 			sec: "charge",
 			subsec: "side",
 			card: "card",
-			status: "locked"
 		},
 		topleft: {
 			sec: "charge",
 			subsec: "corner",
 			card: "small",
-			status: "locked"
 		},
 		topright: {	
 			sec: "charge",
 			subsec: "corner",
 			card: "small",
-			status: "locked"
 		},
 		bottomleft: {
 			sec: "charge",
 			subsec: "corner",
 			card: "small",
-			status: "locked"
 		},
 		bottomright: {
 			sec: "charge",
 			subsec: "corner",
 			card: "small",
-			status: "locked"
 		},
 		topbottom: {
 			sec: "charge",
 			subsec: "split",
 			card: "small",
-			status: "locked"
 		},
 		leftright: {	
 			sec: "charge",
 			subsec: "split",
 			card: "small",
-			status: "locked"
 		},
 		topleftbottomright: {
 			sec: "charge",
 			subsec: "split",
 			card: "small",
-			status: "locked"
 		},
 		toprightbottomleft: {
 			sec: "charge",
 			subsec: "split",
 			card: "small",
-			status: "locked"
 		},
 		black: {
 			subsec: "primary",
 			sec: "color",
 			card: "card",
-			status: "active"
 		},
 		white: {
 			sec: "color",
 			subsec: "primary",
 			card: "card",
-			status: "locked"
 		},
 		red: {
 			sec: "color",
 			subsec: "primary",
 			card: "card",
-			status: "locked"
 		},
 		blue: {
 			sec: "color",
 			subsec: "primary",
 			card: "card",
-			status: "locked"
 		},
 		yellow: {
 			sec: "color",
 			subsec: "primary",
 			card: "card",
-			status: "locked"
 		},
 		green: {
 			sec: "color",
 			subsec: "secondary",
 			card: "small",
-			status: "locked"
 		},
 		orange: {
 			sec: "color",
 			subsec: "secondary",
 			card: "small",
-			status: "locked"
 		},
 		violet: {
 			sec: "color",
 			subsec: "secondary",
 			card: "small",
-			status: "locked"
 		},
 		grey: {
 			sec: "color",
 			subsec: "secondary",
 			card: "small",
-			status: "locked"
 		},
 		lightred: {
 			sec: "color",
 			subsec: "light",
 			card: "small",
-			status: "locked"
 		},
 		lightblue: {
 			sec: "color",
 			subsec: "light",
 			card: "small",
-			status: "locked"
 		},
 		lightyellow: {
 			sec: "color",
 			subsec: "light",
 			card: "small",
-			status: "locked"
 		},
 		darkred: {
 			sec: "color",
 			subsec: "dark",
 			card: "small",
-			status: "locked"
 		},
 		darkblue: {
 			sec: "color",
 			subsec: "dark",
 			card: "small",
-			status: "locked"
 		},
 		darkyellow: {
 			sec: "color",
 			subsec: "dark",
 			card: "small",
-			status: "locked"
 		},
 		lightgreen: {
 			sec: "color",
 			subsec: "secondarylight",
 			card: "small",
-			status: "locked"
 		},
 		lightorange: {
 			sec: "color",
 			subsec: "secondarylight",
 			card: "small",
-			status: "locked"
 		},
 		lightviolet: {
 			sec: "color",
 			subsec: "secondarylight",
 			card: "small",
-			status: "locked"
 		},
 		darkgreen: {
 			sec: "color",
 			subsec: "secondarydark",
 			card: "small",
-			status: "locked"
 		},
 		darkorange: {
 			sec: "color",
 			subsec: "secondarydark",
 			card: "small",
-			status: "locked"
 		},
 		darkviolet: {
 			sec: "color",
 			subsec: "secondarydark",
 			card: "small",
-			status: "locked"
 		},
 	}
+
+	itemStatus = {
+		circle: "active",
+		square: "locked",
+		rhombus: "locked",
+		cross: "locked",
+		octagon: "locked",
+		top: "locked",
+		left: "locked",
+		right: "locked",
+		bottom: "locked",
+		topleft: "locked",
+		topright: "locked",
+		bottomleft: "locked",
+		bottomright: "locked",
+		topbottom: "locked",
+		leftright: "locked",
+		topleftbottomright: "locked",
+		toprightbottomleft: "locked",
+		black: "active",
+		white: "locked",
+		red: "locked",
+		blue: "locked",
+		yellow: "locked",
+		green: "locked",
+		orange: "locked",
+		violet: "locked",
+		grey: "locked",
+		lightred: "locked",
+		lightblue: "locked",
+		lightyellow: "locked",
+		darkred: "locked",
+		darkblue: "locked",
+		darkyellow: "locked",
+		lightgreen: "locked",
+		lightorange: "locked",
+		lightviolet: "locked",
+		darkgreen: "locked",
+		darkorange: "locked",
+		darkviolet: "locked",
+	}
+
 	sectionUnlock = {
 		shape: "locked",
 		charge: "locked",
@@ -286,6 +285,7 @@ function start() {
 		color: "locked",
 		upgrades: "locked"
 	}
+
 	subSectionUnlock = {
 		shape: "locked",
 		side: "locked",
@@ -299,6 +299,30 @@ function start() {
 		secondarylight: "locked",
 		secondarydark: "locked",
 		upgrades: "locked"
+	}
+
+	colorToken = {
+		black: 0,
+		white: 0,
+		red: 0,
+		yellow: 0,
+		blue: 0,
+		orange: 0,
+		green: 0,
+		violet: 0,
+		grey: 0,
+		darkred: 0,
+		darkyellow: 0,
+		darkblue: 0,
+		lightred: 0,
+		lightyellow: 0,
+		lightblue: 0,
+		darkorange: 0,
+		darkgreen: 0,
+		darkviolet: 0,
+		lightorange: 0,
+		lightgreen: 0,
+		lightviolet: 0,
 	}
 
 	counter = {
@@ -568,12 +592,16 @@ function start() {
 			},
 		}
 	}
-	
+
+	achievementStatus = mapObjectKeys(achievement, "status")
+	//upgradeStatus = mapObjectKeys(upgradeLevel, "status")
+
 	state = {
 		options: options,
 		current: current,
 		achievement: achievement,
-		items: items,
+		itemStatus: itemStatus,
+		colorToken: colorToken,
 		counter: counter,
 		power: power,
 		upgradeLevel: upgradeLevel
@@ -586,24 +614,27 @@ function updateState(){
 	options = state.options;
 	current = state.current;
 	achievement = state.achievement;
-	items = state.items;
+	itemStatus = state.itemStatus;
 	counter = state.counter;
+	colorToken = state.colorToken;
 	power = state.power;
 	upgradeLevel = state.upgradeLevel;
 }
 
-
+// STARTUP //
 
 $( document ).ready(function() {
+
 	if (localStorage.getItem('state')) {
 		state = JSON.parse(localStorage.getItem('state'))
 		updateState();
 	};
+
 	$.each(items, function(item){
-		if (items[item].status == "unlocked") {
+		if (itemStatus[item] == "unlocked") {
 			drawItem(item, "unlocked");
 		};
-		if (items[item].status == "active") {
+		if (itemStatus[item] == "active") {
 			drawItem(item, "active");
 			$('#' + item + ' .pricetag').remove();
 		};
@@ -634,9 +665,9 @@ $( document ).ready(function() {
 		current.hyper.status = "disabled";
 		draw();
 	}
-
-
 });
+
+// LOCAL STORAGE //
 
 function updateLocalStorage(){
 	localStorage.setItem('state', JSON.stringify(state));

@@ -564,8 +564,8 @@ div {
 }
 
 .dialog {
-	position: absolute;
-	top: 100px;
+	position: fixed;
+	top: 150px;
 	left: 50%;
 	transform: translateX(-50%);
 	background-color: #fff;
@@ -762,6 +762,68 @@ span#keydraw a {
 
 .achievementTile.locked span {
 	display: none;
+}
+
+#playground {
+	display: none;
+	margin: 30px auto 20px;
+	width:  500px;
+	text-align: center;
+	position: relative;
+	height: 500px;
+}
+
+#tabbar {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.tab {
+	display: inline-block;
+	border-radius: 5px 5px 0 0;
+	flex-grow: 1;
+	height: 50px;
+	box-sizing: border-box;
+	border: 5px solid #fff;
+	border-bottom: 0px;
+	margin-left: -5px;
+	cursor: pointer;
+}
+
+.tab:hover {
+
+	height: 60px;
+	transform: translateY(-10px);
+	margin-bottom: -10px;
+}
+
+.tab:first-child {
+	margin-left: 0px;
+}
+
+#playgroundPanel {
+	background-color: #47E24D;
+	height: 90%;
+	width: 100%;
+	display: inline-block;
+	border-radius: 0 0 5px 5px;
+	border: 5px solid #fff;
+	border-top: 0px;
+}
+
+#playgroundPanel .header {
+	margin-top: 30px;
+	font-weight: bold;
+}
+
+#playgroundPanel .header span {
+	display: block;
+
+}
+
+#playgroundPanel .amount {
+	font-size: 40px;
 }
 
 @keyframes move-right {

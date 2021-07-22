@@ -7,7 +7,7 @@ var hyperSlogan = ["look at it go!", "isn't it beautiful?", "wow. just... wow.",
 function hyperAdd(){
 	if (current.hyperbutton.status == "disabled") {
 		current.hyperbutton.status = "enabled";
-		current.hypertoken = rand(tokens);
+		current.hypertoken = rand(token);
 		hyperDraw();
 	}
 }
@@ -41,7 +41,7 @@ function hyperActivate(){
 	$("#hyperActivate .name").html("hyper charge active ");
 	$("#hyperActivate .desc").html(rand(hyperSlogan));
 	$("#hyperActivate .pricetag").removeClass(current.hypertoken);
-	current.hypertoken = rand(tokens)
+	current.hypertoken = rand(token)
 	$("#hyperActivate .pricetag").addClass(current.hypertoken);
 	updateSelectors();
 	draw();

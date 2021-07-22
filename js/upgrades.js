@@ -45,7 +45,7 @@ function upgradeBuy(item, level){
 		upgradeLevel[item][level].status = "bought"
 		$('#' + item + "-" + level).hide("slow").remove();
 	}	
-	updatePower();
+	writePowerCounters();
 }
 
 function upgradeEffect(item){

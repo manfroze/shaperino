@@ -182,8 +182,8 @@ function addSubSection(section, subsection){
 	}
 }
 function addUnlock(item){
-	if (items[item].status == "locked") {
-		items[item].status = "unlocked";
+	if (itemStatus[item] == "locked") {
+		itemStatus[item] = "unlocked";
 		drawItem(item, "unlocked");
 	}
 }
@@ -205,8 +205,8 @@ function drawItem(item, status){
 }
 
 function addItem(item){
-	if (items[item].status == "unlocked") {
-		items[item].status = "active"
+	if (itemStatus[item] == "unlocked") {
+		itemStatus[item] = "active"
 		$('#' + item + '').removeClass("unlocked").addClass("active");
 		$('#' + item + ' .pricetag').remove();
 	}
@@ -247,6 +247,7 @@ function itemBuy(item){
 		counter[price[item].price[1]] -= price[item].price[0];
 		$('#' + item + '').removeClass("buyable");
 	}	
+	drawPlayground();
 }
 
 // INPUT //

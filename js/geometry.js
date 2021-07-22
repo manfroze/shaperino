@@ -107,9 +107,6 @@ function chargePosition(){
 	});
 }
 
-
-
-
 // DRAW GEOMETRY //
 
 function draw() {

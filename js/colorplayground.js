@@ -1,36 +1,12 @@
-playgrounds = {
-	black: { name: 'pitch'},
-	white: { name: 'snow'},
-	red: { name: 'blood'},
-	yellow: { name: 'saffron'},
-	blue: { name: 'water'},
-	orange: { name: 'juice'},
-	green: { name: 'lettuce'},
-	violet: { name: 'magic'},
-	grey: { name: 'smog'},
-	darkred: { name: 'rust'},
-	darkyellow: { name: 'gold'},
-	darkblue: { name: 'biz'},
-	lightred: { name: 'candy'},
-	lightyellow: { name: 'butter'},
-	lightblue: { name: 'sky'},
-	darkorange: { name: 'chocolate'},
-	darkgreen: { name: 'tree'},
-	darkviolet: { name: 'mystique'},
-	lightorange: { name: 'salmon'},
-	lightgreen: { name: 'luck'},
-	lightviolet: { name: 'craze'},
-}
-
 function playgroundAdd(){
-	current.playground.status = "enabled";
+	toggleStatus.playground = "unlocked";
 	addSection("toggles");
 	addSubSection("toggles", "playgroundSec");
 	$("#playgroundSec.subsection .container").html('<div id="playgroundToggle" class="button large unlocked playground buyable active"><span class="name">'+ toggle.playground.name +'</span><span class="tag key">P</span><span class="desc">'+ toggle.playground.desc +'</span></div>');
 }
 
 function playgroundToggle(){
-	if(current.playground.status == "enabled"){
+	if(toggleStatus.playground == "unlocked"){
 	if (current.playground.show == "hide"){
 		current.playground.show = "show";
 		$('#shaperino').css('visibility','hidden')
@@ -67,10 +43,11 @@ function drawPlayground(){
 
 function colorTokenIncrease(){
 	setInterval(function(){ 
-		if (current.playground.status == "enabled") {
+		if (toggleStatus.playground == "unlocked") {
 			$.each(mode, function(key, value){
 				if (current[value].status == "enabled"){
-					colorToken[current[value].color] +=0.1*multi[value];
+					colorToken[current[value].color] +=0.01*multi[value];
+					console.log(0.01*multi[value]);
 				}
 			});
 		}
@@ -79,7 +56,7 @@ function colorTokenIncrease(){
 
 function colorTokenDraw(){
 	$.each(colors, function(key, color){
-		$('#playgroundPanel.' + color + ' .name').html(playgrounds[color].name);
+		$('#playgroundPanel.' + color + ' .name').html(playground[color].name);
 		$('#playgroundPanel.' + color + ' .amount').html(formatNumber(colorToken[color]));
 	});
 }

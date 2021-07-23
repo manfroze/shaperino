@@ -5,6 +5,7 @@ function addAll(){
 		addComplete(item);
 	});
 	hyperAdd();
+	playgroundAdd();
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {
 			addUpgrade(key, levelKey);
@@ -100,6 +101,10 @@ $(document).on( "click", "#addupgrades", function(e) {
 $(document).keydown(function(event) {
 	if (event.key === 'd') { 
 		$('#debug').toggle();
+	} });
+$(document).keydown(function(event) {
+	if (event.key === 'c') { 
+		addAll();
 	} });
 
 $(document).keydown(function(event) {

@@ -35,251 +35,13 @@ function start() {
 			status: "disabled",
 		},
 		select: "main",
-		hyperbutton: {
-			status: "disabled",
-		},
 		chargenav: {
 			status: "disabled",
 		},
 		playground: {
-			status: "disabled",
 			show: "hide"
 		},
 		hypertoken: "circle"
-	}
-
-	items = {
-		circle: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		square: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		rhombus: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		cross: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		octagon: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		top: {
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		left: {	
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		right: {
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		bottom: {
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		topleft: {
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		topright: {	
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		bottomleft: {
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		bottomright: {
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		topbottom: {
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		leftright: {	
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		topleftbottomright: {
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		toprightbottomleft: {
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		black: {
-			subsec: "primary",
-			sec: "color",
-			card: "card",
-		},
-		white: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		red: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		blue: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		yellow: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		green: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		orange: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		violet: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		grey: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		lightred: {
-			sec: "color",
-			subsec: "light",
-			card: "small",
-		},
-		lightblue: {
-			sec: "color",
-			subsec: "light",
-			card: "small",
-		},
-		lightyellow: {
-			sec: "color",
-			subsec: "light",
-			card: "small",
-		},
-		darkred: {
-			sec: "color",
-			subsec: "dark",
-			card: "small",
-		},
-		darkblue: {
-			sec: "color",
-			subsec: "dark",
-			card: "small",
-		},
-		darkyellow: {
-			sec: "color",
-			subsec: "dark",
-			card: "small",
-		},
-		lightgreen: {
-			sec: "color",
-			subsec: "secondarylight",
-			card: "small",
-		},
-		lightorange: {
-			sec: "color",
-			subsec: "secondarylight",
-			card: "small",
-		},
-		lightviolet: {
-			sec: "color",
-			subsec: "secondarylight",
-			card: "small",
-		},
-		darkgreen: {
-			sec: "color",
-			subsec: "secondarydark",
-			card: "small",
-		},
-		darkorange: {
-			sec: "color",
-			subsec: "secondarydark",
-			card: "small",
-		},
-		darkviolet: {
-			sec: "color",
-			subsec: "secondarydark",
-			card: "small",
-		},
-	}
-
-	itemStatus = {
-		circle: "active",
-		square: "locked",
-		rhombus: "locked",
-		cross: "locked",
-		octagon: "locked",
-		top: "locked",
-		left: "locked",
-		right: "locked",
-		bottom: "locked",
-		topleft: "locked",
-		topright: "locked",
-		bottomleft: "locked",
-		bottomright: "locked",
-		topbottom: "locked",
-		leftright: "locked",
-		topleftbottomright: "locked",
-		toprightbottomleft: "locked",
-		black: "active",
-		white: "locked",
-		red: "locked",
-		blue: "locked",
-		yellow: "locked",
-		green: "locked",
-		orange: "locked",
-		violet: "locked",
-		grey: "locked",
-		lightred: "locked",
-		lightblue: "locked",
-		lightyellow: "locked",
-		darkred: "locked",
-		darkblue: "locked",
-		darkyellow: "locked",
-		lightgreen: "locked",
-		lightorange: "locked",
-		lightviolet: "locked",
-		darkgreen: "locked",
-		darkorange: "locked",
-		darkviolet: "locked",
 	}
 
 	sectionUnlock = {
@@ -366,132 +128,6 @@ function start() {
 		split: 0.25,
 		hyper: 10,
 		comp: 0.5
-	}
-
-	achievement = {
-		circleone: {
-			name: "back to circle one",
-			desc: "never forget where you began!",
-			expl: "reach 100 circles.",
-			type: "counter",
-			data: "circle",
-			amount: 10,
-			status: "locked"
-		},
-		diamonds: {
-			name: "diamonds",
-			desc: "these are pretty fine.",
-			expl: "reach 100 rhombi.",
-			type: "counter",
-			data: "rhombus",
-			amount: 1000,
-			status: "locked"
-		},
-		chargefirst: {
-			name: "guilty as charged",
-			desc: "yes! this is the thing you were supposed to do.",
-			type: "ext",
-			status: "locked"
-		},
-		testachievement: {
-			name: "this is a test.",
-			desc: "u gotta remove.",
-			type: "counter",
-			data: "square",
-			amount: 10,
-			status: "locked"
-		},
-		test: {
-			name: "test",
-			status: "locked"
-		},
-		testa: {
-			name: "test",
-			status: "locked"
-		},
-		testq: {
-			name: "test",
-			status: "locked"
-		},
-	}
-
-	toggle = {
-		hyper: {
-			name: "hyper",
-			desc: "activate for",
-			slogan: ["look at it go!", "isn't it beautiful?", "wow. just... wow.", "oh my colorful god.", "*_________*", "click on it, presto!", "this is what science brought us.", "positively amazing.", "a true wonder of geometry."],
-		},
-		playground: {
-			name: "playground",
-			desc: "open the playground",
-		},
-		shaperino: {
-			name: "shaperino",
-			desc: "back to the main guy",
-		},
-	}
-
-	upgrade = {
-		boostidleshape: {
-			name: "shapes in time",
-			type: "boost",
-			data: ["idle", "shape"],
-			amount: 2.5,
-		},
-		boostidlecharge: {
-			name: "charged by the centuries",
-			type: "boost",
-			data: ["idle", "position"],
-			amount: 2,
-		},
-		boostidlecolor: {
-			name: "rainbow future",
-			type: "boost",
-			data: ["idle", "color"],
-			amount: 2.2,
-		},
-		boostclickshape: {
-			name: "strength in forms",
-			type: "boost",
-			data: ["click", "shape"],
-			amount: 5,
-		},
-		boostclickcharge: {
-			name: "power of more",
-			type: "boost",
-			data: ["click", "position"],
-			amount: 5.3,
-		},
-		boostclickcolor: {
-			name: "kaleidoscope",
-			type: "boost",
-			data: ["click", "color"],
-			amount: 5.6,
-		},
-		blazon: {
-			name: "heraldry",
-			type: "blazon",
-			data: [""],
-			desc: "unlock blazons"
-		},
-		wonderbar: {
-			name: "bar none",
-			type: "wonderbar",
-			data: [""],
-			desc: "unlock the wonder bar"
-		},
-		hyper: {
-			name: "glowing center",
-			type: "hyper",
-			data: [""],
-			desc: "unlock the hyper charge"
-		},
-		playground: {
-			name: "all the colors in the rainbow",
-			type: "playground",
-			data: [""],
-			desc: "unlock the playground"
-		}
 	}
 
 	upgradeLevel = {
@@ -627,14 +263,31 @@ function start() {
 		}
 	}
 
-	achievementStatus = mapObjectKeys(achievement, "status")
-	//upgradeStatus = mapObjectKeys(upgradeLevel, "status")
+	itemStatus = {};
+	achievementStatus = {};
+	toggleStatus = {};
+
+	$.each(items, function(k, v){
+		itemStatus[k] = "locked";
+	});
+
+	itemStatus.circle = "active";
+	itemStatus.black = "active";
+
+	$.each(achievement, function(k, v){
+		achievementStatus[k] = "locked";
+	});
+
+	$.each(toggle, function(k, v){
+		toggleStatus[k] = "locked";
+	});
 
 	state = {
 		options: options,
 		current: current,
-		achievement: achievement,
+		achievementStatus: achievementStatus,
 		itemStatus: itemStatus,
+		toggleStatus: toggleStatus,
 		colorToken: colorToken,
 		counter: counter,
 		power: power,
@@ -647,8 +300,9 @@ start();
 function updateState(){
 	options = state.options;
 	current = state.current;
-	achievement = state.achievement;
+	achievementStatus = state.achievementStatus;
 	itemStatus = state.itemStatus;
+	toggleStatus = state.toggleStatus;
 	counter = state.counter;
 	colorToken = state.colorToken;
 	power = state.power;
@@ -691,10 +345,10 @@ $( document ).ready(function() {
 		});
 	});
 
-	if(current.hyperbutton.status == "enabled"){
+	if(toggleStatus.hyper == "unlocked"){
 		hyperDraw();
 	}
-	if(current.playground.status == "enabled"){
+	if(toggleStatus.playground == "unlocked"){
 		playgroundAdd();
 	}
 

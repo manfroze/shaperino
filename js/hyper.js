@@ -3,8 +3,8 @@
 var hyperTimer = 100;
 
 function hyperAdd(){
-	if (current.hyperbutton.status == "disabled") {
-		current.hyperbutton.status = "enabled";
+	if (toggleStatus.hyper == "locked") {
+		toggleStatus.hyper = "unlocked";
 		current.hypertoken = rand(token);
 		hyperDraw();
 	}

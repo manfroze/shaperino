@@ -11,154 +11,6 @@ const classes = {
 	"secondarydark": ["color", "composite", "secondarydark"],
 }
 
-const price = {
-	square: {
-		unlock: [25, "circle"],
-		price: [50, "circle"]
-	},
-	rhombus: {
-		unlock: [50, "square"],
-		price: [75, "white"]
-	},
-	white: {
-		unlock: [50, "black"],
-		price: [50, "square"]
-	},
-	red: {
-		unlock: [50, "white"],
-		price: [45, "rhombus"]
-	},
-	yellow: {
-		unlock: [75, "white"],
-		price: [120, "square"]
-	},
-	blue: {
-		unlock: [50, "red"],
-		price: [55, "yellow"]
-	},
-	green: {
-		unlock: [150, "black"],
-		price: [125, "top"]
-	},
-	orange: {
-		unlock: [120, "red"],
-		price: [50, "left"]
-	},
-	violet: {
-		unlock: [300, "circle"],
-		price: [200, "rhombus"]
-	},
-	grey: {
-		unlock: [1000, "black"],
-		price: [75, "bottom"]
-	},
-	top: {
-		unlock: [75, "white"],
-		price: [50, "red"]
-	},
-	right: {
-		unlock: [25, "top"],
-		price: [50, "blue"]
-	},
-	bottom: {
-		unlock: [100, "yellow"],
-		price: [100, "red"]
-	},
-	left: {
-		unlock: [50, "blue"],
-		price: [100, "right"]
-	},
-
-	topleft: {
-		unlock: [300, "red"],
-		price: [1000, "rhombus"]
-	},
-	topright: {
-		unlock: [500, "blue"],
-		price: [2600, "blue"]
-	},
-	bottomleft: {
-		unlock: [350, "square"],
-		price: [3000, "red"]
-	},
-	bottomright: {
-		unlock: [1000, "circle"],
-		price: [2000, "right"]
-	},
-	topbottom: {
-		unlock: [1000, "square"],
-		price: [1000, "rhombus"]
-	},
-	leftright: {
-		unlock: [600, "top"],
-		price: [2600, "blue"]
-	},
-	toprightbottomleft: {
-		unlock: [1500, "right"],
-		price: [3000, "red"]
-	},
-	topleftbottomright: {
-		unlock: [2000, "bottom"],
-		price: [2000, "right"]
-	}, 
-	cross: {
-		unlock: [175000, "rhombus"],
-		price: [1000000, "left"]
-	},
-	octagon: {
-		unlock: [175000, "cross"],
-		price: [1000000, "blue"]
-	},
-	lightred: {
-		unlock: [100000, "red"],
-		price: [10000, "cross"]
-	},
-	lightyellow: {
-		unlock: [100000, "yellow"],
-		price: [10000, "octagon"]
-	},
-	lightblue: {
-		unlock: [100000, "blue"],
-		price: [1000000, "circle"]
-	},
-	darkred: {
-		unlock: [1000000, "red"],
-		price: [10000000, "square"]
-	},
-	darkyellow: {
-		unlock: [1000000, "yellow"],
-		price: [10000000, "blue"]
-	},
-	darkblue: {
-		unlock: [1000000, "blue"],
-		price: [100000, "octagon"]
-	},
-	lightgreen: {
-		unlock: [1000, "yellow"],
-		price: [450, "top"]
-	},
-	lightorange: {
-		unlock: [100000000, "yellow"],
-		price: [1000000000, "cross"]
-	},
-	lightviolet: {
-		unlock: [100000000, "red"],
-		price: [1000000000, "octagon"]
-	},
-	darkgreen: {
-		unlock: [100000000, "blue"],
-		price: [10000000000, "rhombus"]
-	},
-	darkorange: {
-		unlock: [1200, "red"],
-		price: [700, "right"]
-	},
-	darkviolet: {
-		unlock: [2000, "blue"],
-		price: [5000, "circle"]
-	},
-}
-
 if (navigator.platform == "MacIntel"){
 	hKey = "cmd"
 } else {
@@ -204,7 +56,7 @@ function drawItem(item, status){
 	} else { dash = labelDiv};
 	$('<button id="' + item + '" class="item unbuyable ' + status + " " + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</buttonx>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
 	if (price[item]){
-		$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
+		$('#' + item + '').append('<div class="price tag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
 	}
 	style();
 
@@ -214,7 +66,7 @@ function addItem(item){
 	if (itemStatus[item] == "unlocked") {
 		itemStatus[item] = "active"
 		$('#' + item + '').removeClass("unlocked").addClass("active");
-		$('#' + item + ' .pricetag').remove();
+		$('#' + item + ' .price.tag').remove();
 	}
 	style();
 }

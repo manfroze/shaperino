@@ -159,10 +159,16 @@ const price = {
 	},
 }
 
+if (navigator.platform == "MacIntel"){
+	hKey = "cmd"
+} else {
+	hKey = "ctrl"
+}
+
 var labelDiv = '<div class="label"></div>';
 var powerDiv = '<div class="power"><div class="click">+<span>1</span></div><div class="idle"><span>0</span>/s</div></div>';
 var counterDiv = '<div class="counter">0</div>';
-var chargeButtons = '<div class="chargebuttons" class="container"><div class="button small main active selected"><span>main</span></div><div class="button small charge inactive"><span>charge</span><span class="modifier">shift</span></div><div class="button small split inactive"><span>split</span><span class="modifier">alt</span></div><div class="button small hyper inactive"><span>hyper</span></div></div>';
+var chargeButtons = '<div class="chargebuttons" class="container"><div class="button small main active selected"><span>main</span></div><div class="button small charge inactive"><span>charge</span><span class="modifier">shift</span></div><div class="button small split inactive"><span>split</span><span class="modifier">alt</span></div><div class="button small hyper inactive"><span>hyper</span><span class="modifier">' + hKey + '</span></div></div>';
 
 function addSection(section){
 	if (sectionUnlock[section] == "locked") {
@@ -196,7 +202,7 @@ function drawItem(item, status){
 	if (items[item].card == "card") {
 		dash = labelDiv + powerDiv + counterDiv;
 	} else { dash = labelDiv};
-	$('<div id="' + item + '" class="item unbuyable ' + status + " " + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</div>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
+	$('<button id="' + item + '" class="item unbuyable ' + status + " " + classes[items[item].subsec].join(' ') + " " + items[item].card + '">' + dash + '</buttonx>' ).hide().appendTo('#' + items[item].subsec + ' > .container').fadeIn(2000);
 	if (price[item]){
 		$('#' + item + '').append('<div class="pricetag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
 	}

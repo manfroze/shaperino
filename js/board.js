@@ -32,7 +32,7 @@ function clearSelectors(){
 	$.each(mode, function(key, value){
 		$(".item").removeClass('sel-' + value);
 	});
-	$("*").removeClass('selected');
+	$(".item").removeClass('selected');
 	$("*").removeClass('bordered');
 	$("*").removeClass('comp');
 	$(".label").html('');
@@ -94,13 +94,13 @@ function updateSelectors(){
 		$('.button.small.hyper').addClass("inactive").removeClass("active");
 		$('#hyper .button.remove').addClass("inactive").removeClass("active");
 	}
-	selector("main");
+	//selector("main");
 }
 
 function writePowerCounters(){
 	$.each(token, function(key, value){
 		$.each(powertype, function(key, powertypeValue){
-		$('#' + value + ' .power .' + powertypeValue + ' span').html(formatNumber(powerCalculate[powertypeValue][value]));
+			$('#' + value + ' .power .' + powertypeValue + ' span').html(formatNumber(powerCalculate[powertypeValue][value]));
 		});
 	});
 }
@@ -126,11 +126,16 @@ function update(){
 	writeBlazon();
 	gridMove();
 	writePowerCounters();
+	cloneCopy();
 }
 
 update();
 
 // INPUT //
+
+// SELECTORS KEYBOARD //
+
+keyDown = false;
 
 $(document).bind('keydown', function (event) {
 	if (current.charge.status == "enabled") {
@@ -138,19 +143,34 @@ $(document).bind('keydown', function (event) {
 			selector("charge")
 		}
 	}
-	if (event.key == "Alt") {
-		if (current.split.status == "enabled") {
+	if (current.split.status == "enabled") {
+		if (event.key == "Alt") {
 			selector("split")
 		}
 	}
+	if (current.hyper.status == "enabled") {
+		if (navigator.platform == "MacIntel"){
+			if (event.key == "Meta") {
+				selector("hyper")
+			}
+		} else {
+			if (event.key == "Control") {
+				selector("hyper")
+			}
+		}
 
+	}
+	keyDown = true;
 });
 
 $(document).bind('keyup', function (event) {
-	if (event.key == "Shift" || event.key == "Alt") {
+	if (event.key == "Shift" || event.key == "Alt" || event.key == "Meta" || event.key == "Control") {
 		selector("main")
 	}
+	keyDown = false;
 });
+
+// SELECTOR CLICK //
 
 $(document).on( "click", ".button.small.main.active", function(e) {
 	selector("main");
@@ -168,6 +188,8 @@ $(document).on( "click", ".button.small.hyper.active", function(e) {
 	selector("hyper");
 });
 
+// REMOVE //
+
 $(document).on( "click", "#charge .button.remove", function(e) {
 	setCurrent("charge", "status", "disabled");
 	setCurrent("split", "status", "disabled");
@@ -178,6 +200,8 @@ $(document).on( "click", "#hyper .button.remove", function(e) {
 	setCurrent("hyper", "status", "disabled");
 	update();
 });
+
+// ITEM //
 
 $(document).on( "click", ".item.shape.active", function(e) {
 	target = $(e.currentTarget).attr("id");
@@ -204,4 +228,7 @@ $(document).on( "click", ".item.split.active", function(e) {
 
 $(document).on( "click", ".item.active", function(e) {
 	update();
+	if (keyDown == false){
+		selector("main");
+	}
 });

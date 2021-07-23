@@ -92,23 +92,23 @@ function swap(json){
 function style(){
 	$.each(shape, function(key, value){
 		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
+		$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 	$.each(positions, function(key, value){
 		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
+		$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
 	});
 
 	if (options.colorblind == "off") {
 		$.each(colors, function(key, value){
 			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-			$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+			$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
 		});
 
 	} else if (options.colorblind == "on") {
 		$.each(colors, function(key, value){
 			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
-			$('.pricetag.' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
+			$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
 		});
 	}
 	$.each(powertype, function(key, powertype){
@@ -117,8 +117,11 @@ function style(){
 		});
 	});
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
+	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
 	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
+	//$('.button.large.shaperino').css('background-image', 'url("svg/circle.svg")')
+
 }
 
 function prettifySub(number) {

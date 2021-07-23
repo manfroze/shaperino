@@ -2,8 +2,6 @@
 
 var hyperTimer = 100;
 
-var hyperSlogan = ["look at it go!", "isn't it beautiful?", "wow. just... wow.", "oh my colorful god.", "*_________*", "click on it, presto!", "this is what science brought us.", "positively amazing.", "a true wonder of geometry."];
-
 function hyperAdd(){
 	if (current.hyperbutton.status == "disabled") {
 		current.hyperbutton.status = "enabled";
@@ -13,19 +11,19 @@ function hyperAdd(){
 }
 
 function hyperDraw(){
-	addSection("hyper");
-	addSubSection("hyper", "hyper");
-	$("#hyper .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">hyper charge</span><span class="timer" hidden></span><div class="pricetag '+ current.hypertoken +'"><span>10K+</span></div><span class="desc">activate for <span class="time"></span></span></div>');
+	addSection("toggles");
+	addSubSection("toggles", "hyper");
+	$("#hyper.subsection .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">'+ toggle.hyper.name +' charge</span><span class="tag timer" hidden></span><span class="tag price '+ current.hypertoken +'"><span>10K+</span></span><span class="desc">'+ toggle.hyper.desc +' <span class="time"></span></span></div>');
 }
 
 function hyperUnlock() {
 	if(counter[current.hypertoken] > 10000){
 		buyableStatus("hyperActivate", "on");
-		$("#hyperActivate .pricetag span").html(formatNumber(counter[current.hypertoken]));
+		$("#hyperActivate .tag.price span").html(formatNumber(counter[current.hypertoken]));
 	}
 	if(counter[current.hypertoken] < 10000){
 		buyableStatus("hyperActivate", "off");
-		$("#hyperActivate .pricetag span").html("10K+");
+		$("#hyperActivate .tag.price span").html("10K+");
 	}
 }
 
@@ -35,14 +33,14 @@ function hyperActivate(){
 	current.hyper.shape = rand(shape);
 	current.hyper.color = rand(colors);
 	current.hyper.status = "enabled";
-	$("#hyperActivate .pricetag").hide();
-	$("#hyperActivate .timer").show().html(formatTime(hyperTimer));
+	$("#hyperActivate .tag.price").hide();
+	$("#hyperActivate .tag.timer").show().html(formatTime(hyperTimer));
 	$("#hyperActivate").addClass("inactive").removeClass("active");
 	$("#hyperActivate .name").html("hyper charge active ");
-	$("#hyperActivate .desc").html(rand(hyperSlogan));
-	$("#hyperActivate .pricetag").removeClass(current.hypertoken);
+	$("#hyperActivate .desc").html(rand(toggle.hyper.slogan));
+	$("#hyperActivate .tag.price").removeClass(current.hypertoken);
 	current.hypertoken = rand(token)
-	$("#hyperActivate .pricetag").addClass(current.hypertoken);
+	$("#hyperActivate .tag.price").addClass(current.hypertoken);
 	updateSelectors();
 	draw();
 
@@ -54,8 +52,8 @@ function hyperActivate(){
 			clearInterval(timer);
 			$("#hyperActivate").addClass("active").removeClass("inactive");
 			$("#hyperActivate .name").html("activate hyper charge");
-			$("#hyperActivate .timer").hide().html("");
-			$("#hyperActivate .pricetag").show();
+			$("#hyperActivate .tag.timer").hide().html("");
+			$("#hyperActivate .tag.price").show();
 			$("#hyperActivate .desc").html('activate the hyper charge for <span class="time"></span>');
 			current.hyper.status = "disabled";
 			updateSelectors();

@@ -160,6 +160,7 @@ function loop(){
 		powerCalculate = powerCounters();
 		writePowerCounters();
 		writeHyperTime();
+
 	}, 300);
 	setInterval(function(){ 
 		priceUnlock();

@@ -285,7 +285,7 @@ function start() {
 	sectionUnlock = {
 		shape: "locked",
 		charge: "locked",
-		hyper: "locked",
+		toggles: "locked",
 		color: "locked",
 		upgrades: "locked"
 	}
@@ -302,7 +302,8 @@ function start() {
 		dark: "locked",
 		secondarylight: "locked",
 		secondarydark: "locked",
-		upgrades: "locked"
+		upgrades: "locked",
+		playgroundSec: "locked"
 	}
 
 	colorToken = {
@@ -414,6 +415,22 @@ function start() {
 		},
 	}
 
+	toggle = {
+		hyper: {
+			name: "hyper",
+			desc: "activate for",
+			slogan: ["look at it go!", "isn't it beautiful?", "wow. just... wow.", "oh my colorful god.", "*_________*", "click on it, presto!", "this is what science brought us.", "positively amazing.", "a true wonder of geometry."],
+		},
+		playground: {
+			name: "playground",
+			desc: "open the playground",
+		},
+		shaperino: {
+			name: "shaperino",
+			desc: "back to the main guy",
+		},
+	}
+
 	upgrade = {
 		boostidleshape: {
 			name: "shapes in time",
@@ -468,6 +485,12 @@ function start() {
 			type: "hyper",
 			data: [""],
 			desc: "unlock the hyper charge"
+		},
+		playground: {
+			name: "all the colors in the rainbow",
+			type: "playground",
+			data: [""],
+			desc: "unlock the playground"
 		}
 	}
 
@@ -594,6 +617,13 @@ function start() {
 				price: [10000, "yellow"],
 				status: "locked",
 			},
+		},
+		playground: {
+			l0: {
+				unlock: [2, "circle"],
+				price: [2, "black"],
+				status: "locked",
+			},
 		}
 	}
 
@@ -664,18 +694,21 @@ $( document ).ready(function() {
 	if(current.hyperbutton.status == "enabled"){
 		hyperDraw();
 	}
+	if(current.playground.status == "enabled"){
+		playgroundAdd();
+	}
 
 	if(current.hyper.status == "enabled"){
 		current.hyper.status = "disabled";
-		draw();
+		update();
 	}
 
 	if (current.playground.show == "hide"){
-		$('#shaperino').show();
-		$('#playground').hide();
+		$('#shaperino').css('visibility','visible')
+		$('#playground').css('visibility','hidden')
 	} else if (current.playground.show == "show"){
-		$('#shaperino').hide();
-		$('#playground').show();
+		$('#shaperino').css('visibility','hidden')
+		$('#playground').css('visibility','visible')
 		drawPlayground();
 	}
 

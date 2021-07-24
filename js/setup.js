@@ -35,11 +35,13 @@ function start() {
 			status: "disabled",
 		},
 		select: "main",
-		chargenav: {
-			status: "disabled",
-		},
 		playground: {
-			show: "hide"
+			show: "hide",
+			tab: "green"
+		},
+		navigator: {
+			show: "hide",
+			score: 0,
 		},
 		hypertoken: "circle"
 	}
@@ -69,27 +71,137 @@ function start() {
 	}
 
 	colorToken = {
-		black: 0,
-		white: 0,
-		red: 0,
-		yellow: 0,
-		blue: 0,
-		orange: 0,
-		green: 0,
-		violet: 0,
-		grey: 0,
-		darkred: 0,
-		darkyellow: 0,
-		darkblue: 0,
-		lightred: 0,
-		lightyellow: 0,
-		lightblue: 0,
-		darkorange: 0,
-		darkgreen: 0,
-		darkviolet: 0,
-		lightorange: 0,
-		lightgreen: 0,
-		lightviolet: 0,
+		black: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0,
+			final: 0
+		},
+		white: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0,
+			final: 0
+		},
+		red: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0,
+			final: 0
+		},
+		yellow: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0,
+			final: 0	
+		},
+		blue: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0,
+			final: 0
+		},
+		orange: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		green: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		violet: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		grey: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		darkred: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		darkyellow: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		darkblue: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		lightred: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		lightyellow: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		lightblue: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		darkorange: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		darkgreen: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		darkviolet: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		lightorange: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		lightgreen: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
+		lightviolet: {
+			primary: 0,
+			secondary: 0,
+			tertiary: 0,
+			actor: 0
+		},
 	}
 
 	counter = {
@@ -265,6 +377,7 @@ function start() {
 
 	itemStatus = {};
 	achievementStatus = {};
+	catalogueStatus = {};
 	toggleStatus = {};
 
 	$.each(items, function(k, v){
@@ -278,14 +391,27 @@ function start() {
 		achievementStatus[k] = "locked";
 	});
 
+	$.each(catalogue, function(k, v){
+		catalogueStatus[k] = "locked";
+	});
+
 	$.each(toggle, function(k, v){
 		toggleStatus[k] = "locked";
+	});
+
+
+	prova = {};
+
+	$.each(colors, function(k, v){
+		prova[v] = "ok";
+		prova[v].state = "balla";
 	});
 
 	state = {
 		options: options,
 		current: current,
 		achievementStatus: achievementStatus,
+		catalogueStatus: catalogueStatus,
 		itemStatus: itemStatus,
 		toggleStatus: toggleStatus,
 		colorToken: colorToken,
@@ -301,6 +427,7 @@ function updateState(){
 	options = state.options;
 	current = state.current;
 	achievementStatus = state.achievementStatus;
+	catalogueStatus = state.catalogueStatus;
 	itemStatus = state.itemStatus;
 	toggleStatus = state.toggleStatus;
 	counter = state.counter;
@@ -324,7 +451,7 @@ $( document ).ready(function() {
 		};
 		if (itemStatus[item] == "active") {
 			drawItem(item, "active");
-			$('#' + item + ' .pricetag').remove();
+			$('#' + item + ' .price.tag').remove();
 		};
 		updateSelectors();
 	});
@@ -365,6 +492,17 @@ $( document ).ready(function() {
 		$('#playground').css('visibility','visible')
 		drawPlayground();
 	}
+
+	if (current.navigator.show == "hide"){
+		$('#shaperino').css('visibility','visible')
+		$('#navigator').css('visibility','hidden')
+	} else if (current.navigator.show == "show"){
+		$('#shaperino').css('visibility','hidden')
+		$('#navigator').css('visibility','visible')
+		drawNavigator();
+	}
+
+	selector("main");
 
 });
 

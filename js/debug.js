@@ -26,17 +26,22 @@ function earn(){
 	});
 }
 
+setInterval(function(){ 
+	debugData();
+}, 300);
+
+
 function debugData(){
 	$(".data#main-shape span").html(current.main.shape);
-	$(".data#main-color span").html(current.main.color + " (" + current.main.colorType + ")");
+	$(".data#main-color span").html(current.main.color);
 	$(".data#charge-status span").html(current.charge.status);
 	$(".data#split-status span").html(current.split.status);
 	$(".data#charge-position span").html(current.charge.position);
 	$(".data#charge-shape span").html(current.charge.shape);
-	$(".data#charge-color span").html(current.charge.color + " (" + current.charge.colorType + ")");
+	$(".data#charge-color span").html(current.charge.color);
 	$(".data#charge-type span").html(current.charge.type);
 	$(".data#split-shape span").html(current.split.shape);
-	$(".data#split-color span").html(current.split.color + " (" + current.split.colorType + ")");
+	$(".data#split-color span").html(current.split.color);
 	$(".data#split-position span").html(current.split.position);
 	$(".data#click-power-shape span").html(power.click.shape);
 	$(".data#click-power-color span").html(power.click.color);
@@ -111,3 +116,13 @@ $(document).keydown(function(event) {
 	if (event.key === 'q') {
 		reset();
 	} });
+
+$(document).keydown(function(event) {
+	if (event.key === 'v') {
+	$.each(catalogue, function(k, v){
+		catalogueStatus[k] = "unlocked";
+	});
+} });
+
+
+

@@ -120,42 +120,43 @@ function draw() {
 
 	$.each(mode, function(j, k){
 		if (current[k].status == "enabled") {
-			drawShape(k);
-			if(current.chargenav.status == "enabled"){
+			canvasname = k + "Shape";
+			drawShape(eval(canvasname), k);
 			cloneCopy();
-		}
+			cloneCopyNav();
 		}
 	});
 }
 
-function canvas(mode){
+function canvasName(mode){
 	canvasname = mode + "Shape";
-	return canvasname;
+	return eval(canvasname);
 }
 
 // DRAW SHAPE FUNCTION //
 
-function drawShape(mode) {
-	shapeDraw(mode, current[mode].shape, size[mode], center[current[mode].shape][mode][0], center[current[mode].shape][mode][1], colorCode[current[mode].color])
+function drawShape(canvas, mode) {
+	shapeDraw(canvas, mode, current[mode].shape, size[mode], center[current[mode].shape][mode][0], center[current[mode].shape][mode][1], colorCode[current[mode].color])
+	//console.log(canvas(mode), current[mode].shape);
 }
 
-function shapeDraw(mode, shape, size, centerX, centerY, color) {
-	cmode = eval(canvas(mode))
+function shapeDraw(canvas, mode, shape, size, centerX, centerY, color) {
+	//cmode = eval(canvas(mode))
 	if (shape == "circle") {
-		cmode.circle(size, size).center(centerX, centerY).attr({ fill: color })
+		canvas.circle(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "square") {
-		cmode.rect(size, size).center(centerX, centerY).attr({ fill: color })
+		canvas.rect(size, size).center(centerX, centerY).attr({ fill: color })
 	}
 	if (shape == "rhombus") {
-		cmode.rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		canvas.rect(size+modif.rhombus.size, size+modif.rhombus.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "cross") {
-		cmode.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
-		cmode.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		canvas.rect(size, size*modif.cross.size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
+		canvas.rect(size*modif.cross.size, size).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 45 })
 	}
 	if (shape == "octagon") {
-		cmode.polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
+		canvas.polygon().ngon({radius: size*modif.octagon.size, edges: 8}).center(centerX, centerY).attr({ fill: color }).transform({ rotation: 22.5 })
 	}
 }
 
@@ -227,6 +228,24 @@ function cloneCopy(){
 	}
 }
 
+function cloneCopyNav(){
+	if(document.getElementById('shapeCloneNav')){
+	document.getElementById('shapeCloneNav').innerHTML = "";
+	smallclone = SVG('shapeCloneNav').size(100, 100);
+	mainClone = mainShape.clone();
+	chargeClone = chargeShape.clone();
+	splitClone = splitShape.clone();
+	hyperClone = hyperShape.clone();
+	mainClone.transform({scale: 0.2, cx: 0, cy: 0});
+	chargeClone.transform({scale: 0.2, cx: 0, cy: 0});
+	splitClone.transform({scale: 0.2, cx: 0, cy: 0});
+	hyperClone.transform({scale: 0.2, cx: 0, cy: 0});
+	mainClone.addTo(smallclone);
+	hyperClone.addTo(smallclone);
+	chargeClone.addTo(smallclone);
+	splitClone.addTo(smallclone);
+	}
+}
 
 // CLEAR //
 

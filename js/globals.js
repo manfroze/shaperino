@@ -267,6 +267,84 @@ const items = {
 		},
 	}
 
+const catalogue = {
+	donaldduck: {
+		name: "donald duck",
+		main: {
+			shape: "circle",
+			color: "white",
+		}, 
+		charge: {
+			position: "topleft",
+			shape: "circle",
+			color: "blue",
+		},
+		split: {
+			position: "topleftbottomright",
+			shape: "rhombus",
+			color: "orange",
+		}
+	},
+	earthmoon: {
+		name: "earth and moon",
+		main: {
+			shape: "circle",
+			color: "blue",
+		}, 
+		charge: {
+			position: "topleft",
+			shape: "circle",
+			color: "grey",
+		}
+	},
+	coolguy: {
+		name: "cool guy",
+		main: {
+			shape: "square",
+			color: "lightred",
+		}, 
+		charge: {
+			position: "left",
+			shape: "circle",
+			color: "black",
+		},
+		split: {
+			position: "leftright",
+			shape: "circle",
+			color: "black",
+		}
+	},
+	water: {
+		name: "h2o",
+		main: {
+			shape: "circle",
+			color: "red",
+		}, 
+		charge: {
+			position: "topright",
+			shape: "circle",
+			color: "white",
+		},
+		split: {
+			position: "toprightbottomleft",
+			shape: "circle",
+			color: "white",
+		}
+	},
+	warning: {
+		name: "warning",
+		main: {
+			shape: "circle",
+			color: "red",
+		}, 
+		hyper: {
+			shape: "cross",
+			color: "white",
+		}
+	}
+
+}
+
 const toggle = {
 	hyper: {
 		name: "hyper",
@@ -284,27 +362,87 @@ const toggle = {
 }
 
 const playground = {
-	black: { name: 'pitch'},
-	white: { name: 'snow'},
-	red: { name: 'blood'},
-	yellow: { name: 'saffron'},
-	blue: { name: 'water'},
-	orange: { name: 'juice'},
-	green: { name: 'lettuce'},
-	violet: { name: 'magic'},
-	grey: { name: 'smog'},
-	darkred: { name: 'rust'},
-	darkyellow: { name: 'gold'},
-	darkblue: { name: 'biz'},
-	lightred: { name: 'candy'},
-	lightyellow: { name: 'butter'},
-	lightblue: { name: 'sky'},
-	darkorange: { name: 'chocolate'},
-	darkgreen: { name: 'tree'},
-	darkviolet: { name: 'mystique'},
-	lightorange: { name: 'salmon'},
-	lightgreen: { name: 'luck'},
-	lightviolet: { name: 'craze'},
+	black: { 
+		primary: 'pitch',
+		final: 'obsidian'
+	},
+	white: {
+		primary: 'snow',
+		final: 'pearl'
+	},
+	red: {
+		primary: 'blood',
+		final: 'ruby'
+	},
+	yellow: {
+		primary: 'saffron',
+		final: 'topaz'
+	},
+	blue: {
+		primary: 'water',
+		final: 'sapphire'
+	},
+	orange: {
+		primary: 'juice',
+		secondary: '',
+		tertiary: '',
+		actor: '',
+	},
+	green: {
+		primary: 'lettuce'
+	},
+	violet: {
+		primary: 'magic',
+		secondary: 'spells',
+		tertiary: 'amulets',
+		actor: 'wizards',
+	},
+	grey: {
+		primary: 'smog'
+	},
+	darkred: {
+		primary: 'rust',
+		actor: 'old factories',
+	},
+	darkyellow: {
+		primary: 'gold'
+	},
+	darkblue: {
+		primary: 'biz'
+	},
+	lightred: {
+		primary: 'candy'
+	},
+	lightyellow: {
+		primary: 'butter',
+		actor: 'men spreading butter',
+		secondary: 'spread butter',
+		tertiary: 'eaten butter'
+	},
+	lightblue: {
+		primary: 'sky'
+	},
+	darkorange: {
+		primary: 'chocolate'
+	},
+	darkgreen: {
+		primary: 'tree'
+	},
+	darkviolet: {
+		primary: 'mystique',
+		actor: 'mystery men',
+		secondary: 'arcane',
+		tertiary: 'unknown'
+	},
+	lightorange: {
+		primary: 'salmon'
+	},
+	lightgreen: {
+		primary: 'luck'
+	},
+	lightviolet: {
+		primary: 'craze'
+	}
 }
 
 const upgrade = {
@@ -600,6 +738,7 @@ function style(){
 			$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
 		});
 	});
+
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')

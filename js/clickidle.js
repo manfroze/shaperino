@@ -155,19 +155,22 @@ function boost(type, kind, amount){
 
 function loop(){
 	setInterval(function(){ 
-		increaseCounters("idle");
-		writeCounters();
 		powerCalculate = powerCounters();
 		writePowerCounters();
 		writeHyperTime();
-
 	}, 300);
 	setInterval(function(){ 
+		increaseCounters("idle");
+		writeCounters();
 		priceUnlock();
 		upgradeUnlock();
 		achievementCheck();
+		catalogueCheck();
 		hyperUnlock();
 	}, 1000);
+	setInterval(function(){ 
+		//selector("main")
+	}, 10000);
 }
 
 loop();

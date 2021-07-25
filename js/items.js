@@ -47,10 +47,8 @@ function addUnlock(item){
 }
 
 function drawItem(item, status){
-
 	addSection(items[item].sec);
 	addSubSection(items[item].sec, items[item].subsec);
-
 	if (items[item].card == "card") {
 		dash = labelDiv + powerDiv + counterDiv;
 	} else { dash = labelDiv};
@@ -59,7 +57,6 @@ function drawItem(item, status){
 		$('#' + item + '').append('<div class="price tag ' + price[item].price[1] + '"><span>' + formatNumber(price[item].price[0]) + '</span></div>');
 	}
 	style();
-
 }
 
 function addItem(item){
@@ -105,7 +102,7 @@ function itemBuy(item){
 		counter[price[item].price[1]] -= price[item].price[0];
 		$('#' + item + '').removeClass("buyable");
 	}	
-	drawPlayground();
+	updatePlaygroundTabs();
 }
 
 // INPUT //

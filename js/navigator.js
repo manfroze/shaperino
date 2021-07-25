@@ -1,29 +1,10 @@
-function navigatorToggle(){
-	current.playground.show = "hide";
-	$('#playground').css('visibility','hidden')
-	//if(toggleStatus.navigator == "unlocked"){
-		if (current.navigator.show == "hide"){
-			current.navigator.show = "show";
-			$('#shaperino').css('visibility','hidden')
-			$('#navigator').css('visibility','visible')
-
-			drawNavigator();
-		} else if (current.navigator.show == "show"){
-			current.navigator.show = "hide";
-			$('#shaperino').css('visibility','visible')
-			$('#navigator').css('visibility','hidden')
-
-			//$("#playgroundSec.subsection .container").html('<div id="playgroundToggle" class="button large unlocked playground buyable active"><span class="name">'+ toggle.playground.name +'</span><span class="tag key">P</span><span class="desc">'+ toggle.playground.desc +'</span></div>');
-		}
-		style();
-	//}
-}
-
 function drawNavigator(){
+	shaperinoToggleDraw('navigator');
 	$('#navigator').html('<div class="container"><div id="board"><div id="grid"><div id="ground"></div><div id="shapeCloneNav"></div><div id="ui"><div id="score">0</div></div></div></div></div>')
 	$('#grid #score').html(current.navigator.score);
 	drawNavItems();
-	cloneCopyNav();
+	cloner('shapeCloneNav');
+	cloner('shapeClone');
 	gridMove();
 }
 
@@ -76,7 +57,8 @@ setInterval(function(){
 
 $(document).bind('keydown', function (event) {
 	if (current.navigator.show == "show"){
-		$(".column").css("overflow", "hidden");
+		$(".center.column").css("overflow-y", "hidden");
+		$(".center.column").css("overflow-x", "hidden");
 		if (event.key == "ArrowLeft") {
 			current.charge.position = "left";
 			update();
@@ -98,10 +80,16 @@ $(document).bind('keydown', function (event) {
 
 $(document).bind('keyup', function (event) {
 	$(".center.column").css("overflow-y", "scroll");
+	$(".center.column").css("overflow-x", "hidden");
 });
 
 
 $(document).keydown(function(event) {
-	if (event.key === 'h') {
-		navigatorToggle();
+	if (event.key === 'n') {
+		toggleToggle('navigator');
 	} });
+
+$(document).on( "click", "#navigatorToggle", function(e) {
+	toggleToggle('navigator');
+	style();
+});

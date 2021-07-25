@@ -63,7 +63,12 @@ function upgradeEffect(item){
 		hyperAdd();
 	}
 	if (upgrade[item].type == "playground") {
-		playgroundAdd();
+		//playgroundAdd();
+		toggleAdd('playground');
+	}
+	if (upgrade[item].type == "navigator") {
+		//navigatorAdd();
+		toggleAdd('navigator');
 	}	
 }
 

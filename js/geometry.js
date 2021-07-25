@@ -122,8 +122,8 @@ function draw() {
 		if (current[k].status == "enabled") {
 			canvasname = k + "Shape";
 			drawShape(eval(canvasname), k);
-			cloneCopy();
-			cloneCopyNav();
+			cloner('shapeCloneNav');
+			cloner('shapeClone');
 		}
 	});
 }
@@ -209,29 +209,10 @@ function drawWonderBar() {
 	//wonder.animate().rotate(wonderBarRotation + 360);
 }
 
-function cloneCopy(){
-	if(document.getElementById('shapeClone')){
-	document.getElementById('shapeClone').innerHTML = "";
-	smallclone = SVG('shapeClone').size(100, 100);
-	mainClone = mainShape.clone();
-	chargeClone = chargeShape.clone();
-	splitClone = splitShape.clone();
-	hyperClone = hyperShape.clone();
-	mainClone.transform({scale: 0.2, cx: 0, cy: 0});
-	chargeClone.transform({scale: 0.2, cx: 0, cy: 0});
-	splitClone.transform({scale: 0.2, cx: 0, cy: 0});
-	hyperClone.transform({scale: 0.2, cx: 0, cy: 0});
-	mainClone.addTo(smallclone);
-	hyperClone.addTo(smallclone);
-	chargeClone.addTo(smallclone);
-	splitClone.addTo(smallclone);
-	}
-}
-
-function cloneCopyNav(){
-	if(document.getElementById('shapeCloneNav')){
-	document.getElementById('shapeCloneNav').innerHTML = "";
-	smallclone = SVG('shapeCloneNav').size(100, 100);
+function cloner(canvas){
+	if(document.getElementById(canvas)){
+	document.getElementById(canvas).innerHTML = "";
+	smallclone = SVG(canvas).size(100, 100);
 	mainClone = mainShape.clone();
 	chargeClone = chargeShape.clone();
 	splitClone = splitShape.clone();

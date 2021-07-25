@@ -355,6 +355,10 @@ const toggle = {
 		name: "playground",
 		desc: "open the playground",
 	},
+	navigator: {
+		name: "navigator",
+		desc: "open the navigator",
+	},
 	shaperino: {
 		name: "shaperino",
 		desc: "back to the main guy",
@@ -445,42 +449,225 @@ const playground = {
 	}
 }
 
+const price = {
+
+		// SHAPES //
+
+		square: {
+			unlock: [25, "circle"],
+			price: [50, "circle"]
+		},
+		rhombus: {
+			unlock: [50, "square"],
+			price: [75, "white"]
+		},
+		cross: {
+			unlock: [15000, "rhombus"],
+			price: [100000, "white"]
+		},
+		octagon: {
+			unlock: [15000, "red"],
+			price: [100000, "blue"]
+		},
+
+		// COLORS //
+
+		// primary //
+
+		white: {
+			unlock: [50, "black"],
+			price: [50, "square"]
+		},
+		red: {
+			unlock: [50, "white"],
+			price: [45, "rhombus"]
+		},
+		yellow: {
+			unlock: [75, "white"],
+			price: [120, "circle"]
+		},
+		blue: {
+			unlock: [50, "red"],
+			price: [50, "top"]
+		},
+
+		// secondary //
+
+		green: {
+			unlock: [150, "black"],
+			price: [125, "top"]
+		},
+		orange: {
+			unlock: [120, "red"],
+			price: [500, "left"]
+		},
+		violet: {
+			unlock: [300, "circle"],
+			price: [750, "right"]
+		},
+		grey: {
+			unlock: [1000, "black"],
+			price: [3000, "bottom"]
+		},
+
+		// light primary //
+
+		lightred: {
+			unlock: [10000, "red"],
+			price: [10000, "circle"]
+		},
+		lightblue: {
+			unlock: [10000, "blue"],
+			price: [100000, "square"]
+		},
+		lightyellow: {
+			unlock: [10000, "yellow"],
+			price: [1000000, "rhombus"]
+		},
+
+		// dark primary //
+
+		darkred: {
+			unlock: [10000, "red"],
+			price: [25000000, "cross"]
+		},
+		darkblue: {
+			unlock: [10000, "blue"],
+			price: [300000000, "black"]
+		},
+		darkyellow: {
+			unlock: [10000, "yellow"],
+			price: [750000000, "square"]
+		},
+
+		// light secondary //
+
+		lightgreen: {
+			unlock: [50000, "yellow"],
+			price: [45000000000, "cross"]
+		},
+		lightorange: {
+			unlock: [50000, "white"],
+			price: [600000000000, "octagon"]
+		},
+		lightviolet: {
+			unlock: [50000, "red"],
+			price: [1000000000000, "left"]
+		},
+
+		// dark secondary //
+
+		darkgreen: {
+			unlock: [50000, "blue"],
+			price: [30000000000000, "right"]
+		},
+		darkorange: {
+			unlock: [50000, "black"],
+			price: [700000000000000, "cross"]
+		},
+		darkviolet: {
+			unlock: [50000, "blue"],
+			price: [5000000000000000, "octagon"]
+		},
+
+		// POSITIONS //
+
+		// side //
+
+		top: {
+			unlock: [75, "white"],
+			price: [50, "red"]
+		},
+		right: {
+			unlock: [25, "top"],
+			price: [50, "blue"]
+		},
+		bottom: {
+			unlock: [100, "red"],
+			price: [100, "yellow"]
+		},
+
+		left: {
+			unlock: [50, "blue"],
+			price: [100, "right"]
+		},
+
+		// corner //
+
+		topleft: {
+			unlock: [1000, "top"],
+			price: [1000, "left"]
+		},
+		topright: {
+			unlock: [1000, "right"],
+			price: [2500, "top"]
+		},
+		bottomleft: {
+			unlock: [1000, "left"],
+			price: [4500, "bottom"]
+		},
+		bottomright: {
+			unlock: [1000, "bottom"],
+			price: [7000, "right"]
+		},
+
+		// split //
+
+		topbottom: {
+			unlock: [10000, "top"],
+			price: [10000, "bottom"]
+		},
+		leftright: {
+			unlock: [10000, "left"],
+			price: [10000, "right"]
+		},
+		toprightbottomleft: {
+			unlock: [25000, "right"],
+			price: [25000, "left"]
+		},
+		topleftbottomright: {
+			unlock: [25000, "bottom"],
+			price: [25000, "top"]
+		}, 
+
+	}
+
 const upgrade = {
 	boostidleshape: {
 		name: "shapes in time",
 		type: "boost",
 		data: ["idle", "shape"],
-		amount: 2.5,
+		amount: 5,
 	},
 	boostidlecharge: {
 		name: "charged by the centuries",
 		type: "boost",
 		data: ["idle", "position"],
-		amount: 2,
+		amount: 3,
 	},
 	boostidlecolor: {
 		name: "rainbow future",
 		type: "boost",
 		data: ["idle", "color"],
-		amount: 2.2,
+		amount: 6,
 	},
 	boostclickshape: {
 		name: "strength in forms",
 		type: "boost",
 		data: ["click", "shape"],
-		amount: 5,
+		amount: 7,
 	},
 	boostclickcharge: {
 		name: "power of more",
 		type: "boost",
 		data: ["click", "position"],
-		amount: 5.3,
+		amount: 7,
 	},
 	boostclickcolor: {
 		name: "kaleidoscope",
 		type: "boost",
 		data: ["click", "color"],
-		amount: 5.6,
+		amount: 7,
 	},
 	blazon: {
 		name: "heraldry",
@@ -505,6 +692,12 @@ const upgrade = {
 		type: "playground",
 		data: [""],
 		desc: "unlock the playground"
+	},
+	navigator: {
+		name: "in the grid",
+		type: "navigator",
+		data: [""],
+		desc: "unlock the navigator"
 	}
 }
 
@@ -547,154 +740,6 @@ const achievement = {
 			name: "test",
 		},
 	}
-
-const price = {
-	square: {
-		unlock: [25, "circle"],
-		price: [50, "circle"]
-	},
-	rhombus: {
-		unlock: [50, "square"],
-		price: [75, "white"]
-	},
-	white: {
-		unlock: [50, "black"],
-		price: [50, "square"]
-	},
-	red: {
-		unlock: [50, "white"],
-		price: [45, "rhombus"]
-	},
-	yellow: {
-		unlock: [75, "white"],
-		price: [120, "square"]
-	},
-	blue: {
-		unlock: [50, "red"],
-		price: [55, "yellow"]
-	},
-	green: {
-		unlock: [150, "black"],
-		price: [125, "top"]
-	},
-	orange: {
-		unlock: [120, "red"],
-		price: [50, "left"]
-	},
-	violet: {
-		unlock: [300, "circle"],
-		price: [200, "rhombus"]
-	},
-	grey: {
-		unlock: [1000, "black"],
-		price: [75, "bottom"]
-	},
-	top: {
-		unlock: [75, "white"],
-		price: [50, "red"]
-	},
-	right: {
-		unlock: [25, "top"],
-		price: [50, "blue"]
-	},
-	bottom: {
-		unlock: [100, "yellow"],
-		price: [100, "red"]
-	},
-	left: {
-		unlock: [50, "blue"],
-		price: [100, "right"]
-	},
-	topleft: {
-		unlock: [300, "red"],
-		price: [1000, "rhombus"]
-	},
-	topright: {
-		unlock: [500, "blue"],
-		price: [2600, "blue"]
-	},
-	bottomleft: {
-		unlock: [350, "square"],
-		price: [3000, "red"]
-	},
-	bottomright: {
-		unlock: [1000, "circle"],
-		price: [2000, "right"]
-	},
-	topbottom: {
-		unlock: [1000, "square"],
-		price: [1000, "rhombus"]
-	},
-	leftright: {
-		unlock: [600, "top"],
-		price: [2600, "blue"]
-	},
-	toprightbottomleft: {
-		unlock: [1500, "right"],
-		price: [3000, "red"]
-	},
-	topleftbottomright: {
-		unlock: [2000, "bottom"],
-		price: [2000, "right"]
-	}, 
-	cross: {
-		unlock: [175000, "rhombus"],
-		price: [1000000, "left"]
-	},
-	octagon: {
-		unlock: [175000, "cross"],
-		price: [1000000, "blue"]
-	},
-	lightred: {
-		unlock: [100000, "red"],
-		price: [10000, "cross"]
-	},
-	lightyellow: {
-		unlock: [100000, "yellow"],
-		price: [10000, "octagon"]
-	},
-	lightblue: {
-		unlock: [100000, "blue"],
-		price: [1000000, "circle"]
-	},
-	darkred: {
-		unlock: [1000000, "red"],
-		price: [10000000, "square"]
-	},
-	darkyellow: {
-		unlock: [1000000, "yellow"],
-		price: [10000000, "blue"]
-	},
-	darkblue: {
-		unlock: [1000000, "blue"],
-		price: [100000, "octagon"]
-	},
-	lightgreen: {
-		unlock: [1000, "yellow"],
-		price: [450, "top"]
-	},
-	lightorange: {
-		unlock: [100000000, "yellow"],
-		price: [1000000000, "cross"]
-	},
-	lightviolet: {
-		unlock: [100000000, "red"],
-		price: [1000000000, "octagon"]
-	},
-	darkgreen: {
-		unlock: [100000000, "blue"],
-		price: [10000000000, "rhombus"]
-	},
-	darkorange: {
-		unlock: [1200, "red"],
-		price: [700, "right"]
-	},
-	darkviolet: {
-		unlock: [2000, "blue"],
-		price: [5000, "circle"]
-	},
-}
-
 
 function rand(name) {
 	if (name instanceof Array == true) {
@@ -741,9 +786,9 @@ function style(){
 
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
+	$('.button.large.navigator').css('background-image', 'url("svg/navigator.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
 	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
-	//$('.button.large.shaperino').css('background-image', 'url("svg/circle.svg")')
 
 }
 
@@ -800,7 +845,6 @@ function formatTime(time)
 	ret += "" + secs;
 	return ret;
 }
-
 
 function getKeyByValue(object, value) {
 	return Object.keys(object).find(key => object[key] === value);

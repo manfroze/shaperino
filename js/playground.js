@@ -1,33 +1,10 @@
-function playgroundAdd(){
-	toggleStatus.playground = "unlocked";
-	addSection("toggles");
-	addSubSection("toggles", "playgroundSec");
-	$("#playgroundSec.subsection .container").html('<div id="playgroundToggle" class="button large unlocked playground buyable active"><span class="name">'+ toggle.playground.name +'</span><span class="tag key">P</span><span class="desc">'+ toggle.playground.desc +'</span></div>');
-}
-
-function playgroundToggle(){
-	current.navigator.show = "hide";
-	$('#navigator').css('visibility','hidden')
-
-	if(toggleStatus.playground == "unlocked"){
-		if (current.playground.show == "hide"){
-			current.playground.show = "show";
-			$('#shaperino').css('visibility','hidden')
-			$('#playground').css('visibility','visible')
-			drawPlayground();
-		} else if (current.playground.show == "show"){
-			current.playground.show = "hide";
-			$('#shaperino').css('visibility','visible')
-			$('#playground').css('visibility','hidden')
-
-			$("#playgroundSec.subsection .container").html('<div id="playgroundToggle" class="button large unlocked playground buyable active"><span class="name">'+ toggle.playground.name +'</span><span class="tag key">P</span><span class="desc">'+ toggle.playground.desc +'</span></div>');
-		}
-		style();
-	}
-}
-
 function drawPlayground(){
-	$("#playgroundSec.subsection .container").html('<div id="playgroundToggle" class="button large unlocked shaperino buyable active"><div id="shapeClone"></div><span class="name">'+ toggle.shaperino.name +'</span><span class="tag key">P</span><span class="desc">'+ toggle.shaperino.desc +'</span></div>');
+	shaperinoToggleDraw('playground');
+	updatePlaygroundTabs();
+	cloner('shapeClone');
+}
+
+function updatePlaygroundTabs(){
 	$('#playground').html('<div id="tabbar"></div>');
 	$.each(colors, function(key, color){
 		$('#tabbar').append('<div class="tab disabled" id="'+ color +'-tab"></div>');
@@ -38,7 +15,6 @@ function drawPlayground(){
 	});
 	$('#playground').append('<div id="playgroundPanel"></div>');
 	playgroundTab(current.playground.tab);
-	cloneCopy();
 }
 
 // COLOR TOKENS //
@@ -106,10 +82,10 @@ function playgroundTab(colorName){
 	// PANEL CONTENT //
 
 	if(color.composite.includes(colorName)){
-		$('#playground #playgroundPanel').html('<div class="primary tile"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="actor tile"><div class="text"><span class="amount"></span><span class="name"></div><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">10 ' + playground[colorName].primary + '</span></div></div><div class="items"><div class="secondary tile"><span class="amount"></span><span class="name"></span><span class="desc"></span></div><div class="tertiary tile"><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">10 ' + playground[colorName].secondary + '</span></div><div class="text"><span class="amount"></span><span class="name"></span></div><div class="buyBox"></div></div></div>');
-		$('#playgroundPanel .tile.actor').css( "background", "url('svg/" + colorName + "-actor.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
-		$('#playgroundPanel .tile.secondary').css( "background", "url('svg/" + colorName + "-secondary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
-		$('#playgroundPanel .tile.tertiary').css( "background", "url('svg/" + colorName + "-tertiary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="actor box"><div class="text"><span class="amount"></span><span class="name"></div><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">10 ' + playground[colorName].primary + '</span></div></div><div class="items"><div class="secondary box"><span class="amount"></span><span class="name"></span><span class="desc"></span></div><div class="tertiary box"><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">10 ' + playground[colorName].secondary + '</span></div><div class="text"><span class="amount"></span><span class="name"></span></div><div class="buyBox"></div></div></div>');
+		$('#playgroundPanel .box.actor').css( "background", "url('svg/" + colorName + "-actor.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playgroundPanel .box.secondary').css( "background", "url('svg/" + colorName + "-secondary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playgroundPanel .box.tertiary').css( "background", "url('svg/" + colorName + "-tertiary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
 		$('#playgroundPanel.' + colorName + ' .actor .name').html(playground[colorName].actor);
 		$('#playgroundPanel.' + colorName + ' .secondary .name').html(playground[colorName].secondary);
 		$('#playgroundPanel.' + colorName + ' .tertiary .name').html(playground[colorName].tertiary);
@@ -120,14 +96,14 @@ function playgroundTab(colorName){
 		});
 
 	} else if(color.basic.includes(colorName)){
-		$('#playground #playgroundPanel').html('<div class="primary tile"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="final tile"><span class="amount"></span><span class="name"></span></div></div>');
-		$('#playgroundPanel .tile.final').css( "background", "linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="final box"><span class="amount"></span><span class="name"></span></div></div>');
+		$('#playgroundPanel .box.final').css( "background", "linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
 
 		$('#playgroundPanel.' + colorName + ' .final .name').html(playground[colorName].final);
 	}
 
 	$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
-	$('#playgroundPanel .tile.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
+	$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
 }
 
 // BUY //
@@ -209,10 +185,10 @@ $(document).on( "click", ".buyFinal", function(e) {
 
 $(document).keydown(function(event) {
 	if (event.key === 'p') {
-		playgroundToggle();
+		toggleToggle('playground');
 	} });
 
 $(document).on( "click", "#playgroundToggle", function(e) {
-	playgroundToggle();
+	toggleToggle('playground');
 	style();
 });

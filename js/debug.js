@@ -5,7 +5,8 @@ function addAll(){
 		addComplete(item);
 	});
 	hyperAdd();
-	playgroundAdd();
+	toggleAdd('playground');
+	toggleAdd('navigator');
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {
 			addUpgrade(key, levelKey);
@@ -21,9 +22,27 @@ function addAllUnlock(){
 
 function earn(){
 	$.each(counter, function(key, value) {
-		counter[key] += 784;
+		counter[key] += 10000;
 		writeCounters();
 	});
+}
+
+function decreaseUpgradePrice(){
+	$.each(upgradeLevel, function(k, v){
+		$.each(v, function(levelKey, levelValue) {
+			if(upgradeLevel[k][levelKey].unlock){upgradeLevel[k][levelKey].unlock[0] /= 10;}
+			if(upgradeLevel[k][levelKey].price){upgradeLevel[k][levelKey].price[0] /= 10;}
+		});
+	});
+	update();
+}
+
+function decreaseItemPrice(){
+	$.each(price, function(k, v){
+			price[k].unlock[0] /= 10;
+			price[k].price[0] /= 10;
+	});
+	update();
 }
 
 setInterval(function(){ 
@@ -56,21 +75,19 @@ function debugData(){
 $(document).on( "click", "#clickboost", function(e) {
 	boost("click", "shape", 10);
 	boost("click", "color", 10);
-	boost("click", "charge", 10);
+	boost("click", "position", 10);
 });
 
 $(document).on( "click", "#idleboost", function(e) {
 	boost("idle", "shape", 10);
 	boost("idle", "color", 10);
-	boost("idle", "charge", 10);
+	boost("idle", "position", 10);
 });
 
 $(document).on( "click", "#complete", function(e) {
 	addAll();
 });
-$(document).on( "click", "#preview", function(e) {
-	addAllPreviews();
-});
+
 $(document).on( "click", "#unlock", function(e) {
 	addAllUnlock();
 });
@@ -91,10 +108,6 @@ $(document).on( "click", "#color-bar", function(e) {
 	colorBarActivate();
 });
 
-$(document).on( "click", "#chargenav-debug", function(e) {
-	addChargeNav();
-});
-
 $(document).on( "click", "#addupgrades", function(e) {
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {
@@ -103,10 +116,6 @@ $(document).on( "click", "#addupgrades", function(e) {
 	});
 });
 
-$(document).keydown(function(event) {
-	if (event.key === 'd') { 
-		$('#debug').toggle();
-	} });
 $(document).keydown(function(event) {
 	if (event.key === 'c') { 
 		addAll();
@@ -123,6 +132,3 @@ $(document).keydown(function(event) {
 		catalogueStatus[k] = "unlocked";
 	});
 } });
-
-
-

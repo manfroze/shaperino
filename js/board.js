@@ -126,7 +126,7 @@ function update(){
 	writeBlazon();
 	gridMove();
 	writePowerCounters();
-	cloneCopy();
+	cloner('shapeClone');
 }
 
 update();

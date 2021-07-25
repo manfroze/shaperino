@@ -25,17 +25,16 @@ const blazonDict = {
 	lightorange: ["salmon", "light orange"],
 	lightgreen: ["chartreuse"],
 	lightviolet: ["magenta", "fuchsia", "hot pink"],
-	top: ["on top", "on the top", "as a crown"],
-	left: ["on its left", "left side"],
-	right: ["on the right", "right side"],
-	bottom: ["on the bottom", "on its bottom"],
-	topright: ["on its top right corner"],
-	topleft: ["on its top left corner"],
-	bottomright: ["on its bottom right corner"],
+	top: ["on top", "on the top", "as a crown", "crowning"],
+	left: ["on its left", "left side", "ad sinistram"],
+	right: ["on the right", "right side", "a destra"],
+	bottom: ["on the bottom", "on its bottom", "bottom side"],
+	topright: ["on the top right "],
+	topleft: ["on the top left"],
+	bottomright: ["on the bottom right"],
 	bottomleft: ["on its bottom left corner"],
 	chargeVerb: ["charged by a", "surmounted by a", "with a"],
-	splitVerb: ["and a", "opposite a", "also a"],
-	splitEnd: ["on the other side", "on the mirror side", "on the mirror", "mirroring"]
+	splitVerb: ["and a", "opposite a", "also a", "mirroring, a"],
 }
 
 function addBlazon(){
@@ -59,14 +58,12 @@ function makeBlazon(){
 			verb: rand(blazonDict.splitVerb),
 			shape: rand(blazonDict[current.split.shape]),
 			color: rand(blazonDict[current.split.color]),
-			end: rand(blazonDict.splitEnd),
 		}
 	}
 	blazonPart = {
 		main: "A " + blazonTerm.main.color + " " + blazonTerm.main.shape,
 		charge: blazonTerm.charge.verb + " " + blazonTerm.charge.color + " " + blazonTerm.charge.shape + " " + blazonTerm.charge.position,
-		split: blazonTerm.split.verb + " " + blazonTerm.split.color + " " + blazonTerm.split.shape + " " + blazonTerm.split.end,
-
+		split: blazonTerm.split.verb + " " + blazonTerm.split.color + " " + blazonTerm.split.shape
 	}
 	blazon = blazonPart.main;
 	if (current.charge.status == "enabled") {
@@ -75,6 +72,7 @@ function makeBlazon(){
 	if (current.split.status == "enabled") {
 		blazon += " " + blazonPart.split;
 	}
+	blazon += ".";
 	return blazon;
 }
 

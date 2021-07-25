@@ -147,8 +147,6 @@ function increaseCounters(powertype){
 	writeCounters(); 
 }
 
-
-
 function boost(type, kind, amount){
 	power[type][kind] +=amount *=amount;
 }

@@ -67,43 +67,30 @@ function start() {
 		secondarylight: "locked",
 		secondarydark: "locked",
 		upgrades: "locked",
-		playgroundSec: "locked"
+		playgroundSec: "locked",
+		navigatorSec: "locked",
+		shaperinoSec: "unlocked"
 	}
 
 	colorToken = {
 		black: {
 			primary: 0,
-			secondary: 0,
-			tertiary: 0,
-			actor: 0,
 			final: 0
 		},
 		white: {
 			primary: 0,
-			secondary: 0,
-			tertiary: 0,
-			actor: 0,
 			final: 0
 		},
 		red: {
 			primary: 0,
-			secondary: 0,
-			tertiary: 0,
-			actor: 0,
 			final: 0
 		},
 		yellow: {
 			primary: 0,
-			secondary: 0,
-			tertiary: 0,
-			actor: 0,
 			final: 0	
 		},
 		blue: {
 			primary: 0,
-			secondary: 0,
-			tertiary: 0,
-			actor: 0,
 			final: 0
 		},
 		orange: {
@@ -245,20 +232,33 @@ function start() {
 	upgradeLevel = {
 		boostidleshape: {
 			l1: {
-				unlock: [20, "rhombus"],
-				price: [200, "black"],
+				unlock: [50, "white"],
+				price: [100, "black"],
 				status: "locked",
 			},
 			l2: {
-				unlock: [3000, "rhombus"],
-				price: [4000, "blue"],
+				unlock: [500, "white"],
+				price: [1000, "black"],
 				status: "locked",
 			},
 			l3: {
-				unlock: [5000, "rhombus"],
-				price: [6000, "blue"],
+				unlock: [5000, "white"],
+				price: [10000, "black"],
 				status: "locked",
-			},		
+			},
+			l5: {
+				unlock: [50000, "white"],
+				price: [100000, "black"],
+				status: "locked",
+			},
+
+			l5: {
+				unlock: [500000, "white"],
+				price: [1000000, "black"],
+				status: "locked",
+			},
+	
+
 		},
 		boostidlecharge: {
 			l1: {
@@ -267,47 +267,47 @@ function start() {
 				status: "locked",
 			},
 			l2: {
-				unlock: [3000, "right"],
-				price: [4000, "red"],
+				unlock: [1000, "top"],
+				price: [2000, "red"],
 				status: "locked",
 			},
 			l3: {
-				unlock: [5000, "right"],
-				price: [6000, "red"],
+				unlock: [10000, "top"],
+				price: [20000, "red"],
 				status: "locked",
 			},		
 		},
 		boostidlecolor: {
 			l1: {
-				unlock: [125, "rhombus"],
+				unlock: [75, "rhombus"],
 				price: [150, "circle"],
 				status: "locked",
 			},
 			l2: {
-				unlock: [3000, "yellow"],
-				price: [4000, "bottom"],
+				unlock: [750, "rhombus"],
+				price: [1500, "circle"],
 				status: "locked",
 			},
 			l3: {
-				unlock: [5000, "yellow"],
-				price: [6000, "bottom"],
+				unlock: [7500, "rhombus"],
+				price: [15000, "circle"],
 				status: "locked",
 			},		
 		},
 		boostclickshape: {
 			l1: {
-				unlock: [125, "blue"],
-				price: [275, "black"],
+				unlock: [50, "red"],
+				price: [200, "rhombus"],
 				status: "locked",
 			},
 			l2: {
-				unlock: [3000, "square"],
-				price: [4000, "black"],
+				unlock: [500, "red"],
+				price: [2000, "rhombus"],
 				status: "locked",
 			},
 			l3: {
-				unlock: [5000, "circle"],
-				price: [6000, "black"],
+				unlock: [5000, "red"],
+				price: [20000, "rhombus"],
 				status: "locked",
 			},
 		},
@@ -318,30 +318,30 @@ function start() {
 				status: "locked",
 			},
 			l2: {
-				unlock: [3000, "top"],
-				price: [400, "square"],
+				unlock: [750, "right"],
+				price: [1000, "square"],
 				status: "locked",
 			},
 			l3: {
-				unlock: [5000, "top"],
-				price: [6000, "square"],
+				unlock: [7500, "right"],
+				price: [10000, "square"],
 				status: "locked",
 			},
 		},
 		boostclickcolor: {
 			l1: {
 				unlock: [75, "white"],
-				price: [50, "left"],
+				price: [50, "top"],
 				status: "locked",
 			},
 			l2: {
-				unlock: [3000, "white"],
-				price: [4000, "left"],
+				unlock: [750, "white"],
+				price: [500, "top"],
 				status: "locked",
 			},
 			l3: {
-				unlock: [5000, "white"],
-				price: [6000, "left"],
+				unlock: [7500, "white"],
+				price: [5000, "top"],
 				status: "locked",
 			},
 		},
@@ -362,14 +362,21 @@ function start() {
 		hyper: {
 			l0: {
 				unlock: [1000, "red"],
-				price: [10000, "yellow"],
+				price: [10000, "blue"],
 				status: "locked",
 			},
 		},
 		playground: {
 			l0: {
-				unlock: [2, "circle"],
-				price: [2, "black"],
+				unlock: [125, "top"],
+				price: [1000, "yellow"],
+				status: "locked",
+			},
+		},
+		navigator: {
+			l0: {
+				unlock: [1000, "rhombus"],
+				price: [1000, "top"],
 				status: "locked",
 			},
 		}
@@ -417,7 +424,7 @@ function start() {
 		colorToken: colorToken,
 		counter: counter,
 		power: power,
-		upgradeLevel: upgradeLevel
+		upgradeLevel: upgradeLevel,
 	}
 }
 
@@ -434,6 +441,22 @@ function updateState(){
 	colorToken = state.colorToken;
 	power = state.power;
 	upgradeLevel = state.upgradeLevel;
+}
+
+activeColors = [];
+activeShapes = [];
+
+function activeItems(){
+$.each(colors, function(i, color){
+	if(itemStatus[color] == "active"){
+		activeColors.push(color);
+	}
+});
+$.each(shape, function(i, sha){
+	if(itemStatus[sha] == "active"){
+		activeShapes.push(sha);
+	}
+});
 }
 
 // STARTUP //
@@ -476,7 +499,10 @@ $( document ).ready(function() {
 		hyperDraw();
 	}
 	if(toggleStatus.playground == "unlocked"){
-		playgroundAdd();
+		toggleAdd('playground');
+	}
+	if(toggleStatus.navigator == "unlocked"){
+		toggleAdd('navigator');
 	}
 
 	if(current.hyper.status == "enabled"){
@@ -484,23 +510,21 @@ $( document ).ready(function() {
 		update();
 	}
 
-	if (current.playground.show == "hide"){
-		$('#shaperino').css('visibility','visible')
-		$('#playground').css('visibility','hidden')
-	} else if (current.playground.show == "show"){
-		$('#shaperino').css('visibility','hidden')
-		$('#playground').css('visibility','visible')
+	if (current.playground.show == "show"){
+		$('#shaperino').css('visibility','hidden');
+		$('#playground').css('visibility','visible');
 		drawPlayground();
 	}
-
-	if (current.navigator.show == "hide"){
-		$('#shaperino').css('visibility','visible')
-		$('#navigator').css('visibility','hidden')
-	} else if (current.navigator.show == "show"){
-		$('#shaperino').css('visibility','hidden')
-		$('#navigator').css('visibility','visible')
+	if (current.navigator.show == "show"){
+		$('#shaperino').css('visibility','hidden');
+		$('#navigator').css('visibility','visible');
 		drawNavigator();
 	}
+	if (current.playground.show == "hide" && current.navigator.show == "hide"){
+		$('#shaperino').css('visibility','visible')
+		$('#playground').css('visibility','hidden')
+		$('#navigator').css('visibility','hidden')
+	} 
 
 	selector("main");
 

@@ -13,7 +13,7 @@ function hyperAdd(){
 function hyperDraw(){
 	addSection("toggles");
 	addSubSection("toggles", "hyper");
-	$("#hyper.subsection .container").append('<div id="hyperActivate" class="button large unlocked hyper buyable active"><span class="name">'+ toggle.hyper.name +' charge</span><span class="tag timer" hidden></span><span class="tag price '+ current.hypertoken +'"><span>10K+</span></span><span class="desc">'+ toggle.hyper.desc +' <span class="time"></span></span></div>');
+	$("#hyper.subsection .container").append('<div id="hyperActivate" class="button toggle large unlocked hyper buyable active"><span class="name">'+ toggle.hyper.name +' charge</span><span class="tag timer" hidden></span><span class="tag price '+ current.hypertoken +'"><span>10K+</span></span><span class="desc">'+ toggle.hyper.desc +' <span class="time"></span></span></div>');
 }
 
 function hyperUnlock() {
@@ -28,10 +28,11 @@ function hyperUnlock() {
 }
 
 function hyperActivate(){
+	activeItems();
 	hyperTimer = Math.min(Math.floor(counter[current.hypertoken]/1000), 86400);
 	counter[current.hypertoken] = 0;
-	current.hyper.shape = rand(shape);
-	current.hyper.color = rand(colors);
+	current.hyper.shape = rand(activeShapes);
+	current.hyper.color = rand(activeColors);
 	current.hyper.status = "enabled";
 	$("#hyperActivate .tag.price").hide();
 	$("#hyperActivate .tag.timer").show().html(formatTime(hyperTimer));

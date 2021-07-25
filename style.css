@@ -20,6 +20,7 @@ button {
 	padding: 0;
 	margin: 0;
 	position: relative;
+    outline: none;
 }
 
 ::selection {
@@ -52,6 +53,7 @@ display: none;
 	padding: 10px;
 	width:  450px;
 	overflow-y: scroll;
+	padding-bottom: 100px;
 } 
 
 .center.column {
@@ -202,6 +204,10 @@ display: none;
 .item#right { order: 2; }
 .item#bottom { order: 3; }
 .item#left { order: 4; }
+
+.subsection.hyper { order: 1; }
+.subsection.playgroundSec { order: 2; }
+.subsection.navigatorSec { order: 3; }
 
 .item.small {
 	height: 60px;
@@ -371,6 +377,14 @@ display: none;
 
 .upgrade {
 
+}
+
+.upgrade.buyable {
+	order: 1;
+}
+
+.upgrade.unbuyable {
+	order: 2;
 }
 
 .button .name {
@@ -552,17 +566,17 @@ display: none;
 }
 
 #blazon {
-	position: relative;
-	top: 0px;
+	position: absolute;
+	bottom: 0px;
 	width:100%;
+	z-index: 800;
 }
 
 #blazon span {
-	//width: 50%;
 	display: none;
-	background-color: #ffffff;
+	background-color: rgba(255,255,255,0.7);
 	padding: 10px 20px;
-	border-radius: 0 0 8px 8px;
+	border-radius: 5px 5px 0 0;
 	display: inline-block;
 	font-size: 12px;
 }
@@ -599,6 +613,7 @@ display: none;
 	height: 500px;
 	width: 500px;
 	pointer-events: none;
+	z-index: 3000;
 }
 
 .panel {
@@ -654,8 +669,8 @@ display: none;
 	position: absolute;
 	bottom: 20px;
 	text-align: center;
-	//width: 100%;
 	width: 100%;
+	height: 100px;
 }
 
 #footer a {
@@ -663,8 +678,6 @@ display: none;
 }
 
 #footer span {
-
-	display: none;
 	width: 100px;
 	height: 30px;
 	background-image: url('svg/high_logo.svg');
@@ -879,54 +892,28 @@ span#keydraw a {
 	background-color: #fff;
 	border-radius: 8px;
 	padding: 20px;
+	z-index: 9000;
 }
 
 .alert span {
 	display: block;
 }
 
-#achievements.panel {
+#achievements.panel .content {
 	display: flex;
 	flex-wrap: wrap;
 	align-content: flex-start;
 
 }
 
-.achievementTile {
-	//flex-grow: 1;
-	display: inline-block;
-	margin: 10px;
-	width: 100px;
-	height: 100px;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 20px;
-}
-
-.achievementTile.locked {
-	background-color: #ccc;
-}
-
-.achievementTile.unlocked {
-
-}
-
-.achievementTile span {
-	font-size: 12px;
-}
-
-.achievementTile.locked span {
-	display: none;
-}
-
-#cataloguePanel {
+#cataloguePanel .content {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	align-content: flex-start;
 }
 
-.catalogueTile {
+.tile {
 	width: 100px;
 	height: 100px;
 	position: relative;
@@ -936,7 +923,38 @@ span#keydraw a {
 	background-color: #DDD;
 }
 
-.catalogueTile svg {
+.tile .name {
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	font-weight: bold;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	border-radius: 5px;
+	background-color: rgba(221, 221, 221, 0.9);
+}
+
+.catalogue.tile .name {
+	padding-top: 30px;
+}
+
+.achievement.tile .name {
+	padding-top: 15px;
+	font-size: 15px;
+}
+
+.achievement.tile .expl {
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.tile.unlocked:hover .name {
+	display: inline-block;
+}
+
+.tile svg {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -944,20 +962,16 @@ span#keydraw a {
 	transform-origin: 10px 10px;
 }
 
-
-.catalogueTile.locked {
+.tile.locked {
 	background-color: #ccc;
 }
 
-.catalogueTile.unlocked {
+.tile.unlocked {
 	background-color: #ddd;
+	cursor: url('svg/cursor-pointer.svg'), pointer;
 }
 
-.catalogueTile span {
-
-}
-
-.catalogueTile.locked svg {
+.tile.locked svg {
 	display: none;
 }
 
@@ -970,7 +984,7 @@ span#keydraw a {
 	height: 500px;
 }
 
-#playgroundToggle #shapeClone {
+.button #shapeClone {
 	position: absolute;
 	left: -15px;
 	top: -16px;
@@ -1037,7 +1051,7 @@ span#keydraw a {
 	box-sizing: border-box;
 }
 
-#playgroundPanel .tile {
+#playgroundPanel .box {
 	margin: 5px;
 	border-radius: 5px;
 	padding: 10px;
@@ -1047,9 +1061,9 @@ span#keydraw a {
 	background-repeat: no-repeat !important;
 }
 
-#playgroundPanel.white .tile,
-#playgroundPanel.lightyellow .tile,
-#playgroundPanel.lightgreen .tile {
+#playgroundPanel.white .box,
+#playgroundPanel.lightyellow .box,
+#playgroundPanel.lightgreen .box {
 	background-color: rgba(30, 30, 30, 0.5) !important;
 	background-image: none !important;
 }

@@ -28,7 +28,7 @@ function hyperUnlock() {
 }
 
 function hyperActivate(){
-	activeItems();
+	findActiveItems();
 	hyperTimer = Math.min(Math.floor(counter[current.hypertoken]/1000), 86400);
 	counter[current.hypertoken] = 0;
 	current.hyper.shape = rand(activeShapes);

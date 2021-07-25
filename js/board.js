@@ -113,6 +113,33 @@ function setTypes(){
 	});
 }
 
+function randomShape(){
+	findActiveItems();
+	setCurrent("main", "shape", rand(activeShapes) );
+	setCurrent("main", "color", rand(activeColors) );
+	//setCurrent("hyper", "status", rand(["enabled", "disabled"]));
+	if (activeItems.includes('top' || 'left' || 'right' || 'bottom')){
+		setCurrent("charge", "status", rand(["enabled", "disabled"]) );
+	}
+	if (current.charge.status == "enabled") {
+		setCurrent("charge", "position", rand(activeChargePositions) );
+		setCurrent("charge", "shape", rand(activeShapes) );
+		setCurrent("charge", "color", rand(activeColors) );
+		if (activeItems.includes('topbottom' || 'leftright' || 'topleftbottomright' || 'toprightbottomleft')){
+			setCurrent("split", "status", rand(["enabled", "disabled"]) );
+		}
+	} else { setCurrent("split", "status", "disabled" ); }
+	if (current.split.status == "enabled") {
+		setCurrent("split", "shape", rand(activeShapes) );
+		setCurrent("split", "color", rand(activeColors) );
+	}
+	if (current.hyper.status == "enabled") {
+		setCurrent("hyper", "shape", rand(activeShapes) );
+		setCurrent("hyper", "color", rand(activeColors) );
+	}
+	update();
+}
+
 function selector(mode){
 	current.select = mode;
 	$('.button.small.active').removeClass("selected");

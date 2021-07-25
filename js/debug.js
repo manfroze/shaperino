@@ -39,8 +39,8 @@ function decreaseUpgradePrice(){
 
 function decreaseItemPrice(){
 	$.each(price, function(k, v){
-			price[k].unlock[0] /= 10;
-			price[k].price[0] /= 10;
+		price[k].unlock[0] /= 10;
+		price[k].price[0] /= 10;
 	});
 	update();
 }
@@ -122,13 +122,30 @@ $(document).keydown(function(event) {
 	} });
 
 $(document).keydown(function(event) {
+	if (event.key === 'r') { 
+		randomShape();
+	} });
+
+$(document).keydown(function(event) {
+	if (event.key === 't') {
+		setInterval(function(){
+			randomShape();
+		}, 150) 
+	} });
+
+$(document).keydown(function(event) {
 	if (event.key === 'q') {
 		reset();
 	} });
 
 $(document).keydown(function(event) {
+	if (event.key === 'w') {
+		drawWonderBar();
+	} });
+
+$(document).keydown(function(event) {
 	if (event.key === 'v') {
-	$.each(catalogue, function(k, v){
-		catalogueStatus[k] = "unlocked";
-	});
-} });
+		$.each(catalogue, function(k, v){
+			catalogueStatus[k] = "active";
+		});
+	} });

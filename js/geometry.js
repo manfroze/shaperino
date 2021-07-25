@@ -6,7 +6,6 @@ const size = {
 	charge: 220,
 	split: 220
 }
-
 const modif = {
 	rhombus: {
 		size: -50,
@@ -21,7 +20,6 @@ const modif = {
 		offset: 56,
 	}
 }
-
 const chargeCenter = {
 	circle: {
 			zero: size.charge/2,
@@ -49,13 +47,11 @@ const chargeCenter = {
 			full: canvasSize - ((size.charge*modif.octagon.size)/2 + modif.octagon.offset)
 	},
 }
-
 const wonderBarSizeList = {
 	x: [300, 350, 400, 450],
 	y: [80, 100, 120]
 }
 const wonderBarCenterOffsetList = [0, 30, 50, 80]
-
 const centerPositions = {
 	"left": ["zero", "middle"],
 	"top": ["middle", "zero"],
@@ -66,13 +62,11 @@ const centerPositions = {
 	"bottomright": ["full", "full"],
 	"bottomleft": ["zero", "full"]
 }
-
 const mirror = {
 	"full": "zero",
 	"zero": "full",
 	"middle": "middle"
 }
-
 var center = {
 	circle: {},
 	square: {},
@@ -80,14 +74,12 @@ var center = {
 	cross: {},
 	octagon: {}
 }
-
 $.each(shape, function(key, sha){
  center[sha].main = [middle, middle];
  center[sha].charge = [];
  center[sha].split = [];
  center[sha].hyper = [middle, middle];
 });
-
 var wonderBarCenter = [middle, middle]
 var wonderBarRotation = 0;
 var wonderBarCenterOffset = 0;
@@ -137,7 +129,6 @@ function canvasName(mode){
 
 function drawShape(canvas, mode) {
 	shapeDraw(canvas, mode, current[mode].shape, size[mode], center[current[mode].shape][mode][0], center[current[mode].shape][mode][1], colorCode[current[mode].color])
-	//console.log(canvas(mode), current[mode].shape);
 }
 
 function shapeDraw(canvas, mode, shape, size, centerX, centerY, color) {
@@ -162,16 +153,17 @@ function shapeDraw(canvas, mode, shape, size, centerX, centerY, color) {
 
 // DRAW WONDER BAR //
 
+wonder = SVG('wonder-canvas').size(500, 500).group();
+
 function drawWonderBar() {
 	avColors = colors.filter(e => e !== current.main.color && e !== current.charge.color && e !== current.split.color && e !== current.hyper.color);
-	if (current.wonderbar.status == "enabled") {wonder.remove();}
+	if (current.wonderbar.status == "enabled") { wonder.remove(); }
 	current.wonderbar.status = "enabled"
 	wonderBarSize = {
 		x: rand(wonderBarSizeList.x),
 		y: rand(wonderBarSizeList.y),
 	}
 	wonderBarCenter = [middle, middle];
-
 	if (current.split.status == "enabled") {
 		wonderBarCenterOffset = 0;
 	} else {
@@ -205,8 +197,7 @@ function drawWonderBar() {
 		wonderBarRotation = rand([0, 45, -45, 90]);
 	}
 	wonder = SVG('wonder-canvas').size(500, 500).group().rect(wonderBarSize.x, wonderBarSize.y).center(wonderBarCenter[0], wonderBarCenter[1]).attr({ fill: colorCode[rand(avColors)] }).transform({ rotation: wonderBarRotation });
-
-	//wonder.animate().rotate(wonderBarRotation + 360);
+	//wonder.animate().rotate(wonderBarRotation + 180);
 }
 
 function cloner(canvas){

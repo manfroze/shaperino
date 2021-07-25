@@ -443,20 +443,20 @@ function updateState(){
 	upgradeLevel = state.upgradeLevel;
 }
 
+activeItems = [];
 activeColors = [];
 activeShapes = [];
+activeChargePositions = [];
 
-function activeItems(){
-$.each(colors, function(i, color){
-	if(itemStatus[color] == "active"){
-		activeColors.push(color);
-	}
-});
-$.each(shape, function(i, sha){
-	if(itemStatus[sha] == "active"){
-		activeShapes.push(sha);
-	}
-});
+function findActiveItems(){
+	$.each(items, function(index, value){
+		if(itemStatus[index] == "active"){
+			activeItems.push(index);
+		}
+	});
+activeColors = activeItems.filter(value => colors.includes(value));
+activeShapes = activeItems.filter(value => shape.includes(value));
+activeChargePositions = activeItems.filter(value => chargePositions.includes(value));
 }
 
 // STARTUP //

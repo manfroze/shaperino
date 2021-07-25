@@ -220,7 +220,6 @@ function start() {
 			color: 1,
 		}
 	}
-
 	multi = {
 		main: 1,
 		charge: 0.5,
@@ -451,7 +450,9 @@ activeChargePositions = [];
 function findActiveItems(){
 	$.each(items, function(index, value){
 		if(itemStatus[index] == "active"){
+			if(!activeItems.includes(index)){
 			activeItems.push(index);
+		}
 		}
 	});
 activeColors = activeItems.filter(value => colors.includes(value));
@@ -525,9 +526,7 @@ $( document ).ready(function() {
 		$('#playground').css('visibility','hidden')
 		$('#navigator').css('visibility','hidden')
 	} 
-
 	selector("main");
-
 });
 
 // LOCAL STORAGE //

@@ -17,7 +17,7 @@ function hyperDraw(){
 }
 
 function hyperUnlock() {
-	if(counter[current.hypertoken] > 10000){
+	if(counter[current.hypertoken] >= 10000){
 		buyableStatus("hyperActivate", "on");
 		$("#hyperActivate .tag.price span").html(formatNumber(counter[current.hypertoken]));
 	}

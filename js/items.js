@@ -63,7 +63,7 @@ function addItem(item){
 	if (itemStatus[item] == "unlocked") {
 		itemStatus[item] = "active"
 		$('#' + item + '').removeClass("unlocked").addClass("active");
-		$('#' + item + ' .price.tag').remove();
+		$('#' + item + ' .price.tag').animate( {scale: 1.3}, 30).fadeOut();
 	}
 	style();
 }
@@ -100,7 +100,7 @@ function itemBuy(item){
 	if (counter[price[item].price[1]] > price[item].price[0] - 1) {
 		addItem(item);
 		counter[price[item].price[1]] -= price[item].price[0];
-		$('#' + item + '').removeClass("buyable");
+		$('#' + item).removeClass("buyable");
 	}	
 	updatePlaygroundTabs();
 }

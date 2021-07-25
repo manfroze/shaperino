@@ -47,7 +47,7 @@ function upgradeBuy(item, level){
 		counter[upgradeLevel[item][level].price[1]] -= upgradeLevel[item][level].price[0];
 		upgradeEffect(item);
 		upgradeLevel[item][level].status = "bought"
-		$('#' + item + "-" + level).hide("slow").remove();
+		$('#' + item + "-" + level).fadeOut(500).wait(500).remove();
 	}	
 	writePowerCounters();
 }

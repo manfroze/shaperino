@@ -127,6 +127,15 @@ $(document).keydown(function(event) {
 	} });
 
 $(document).keydown(function(event) {
+	if (event.key === 'e') { 
+		earn();
+	} });
+$(document).keydown(function(event) {
+	if (event.key === 'u') { 
+		addAllUnlock();
+	} });
+
+$(document).keydown(function(event) {
 	if (event.key === 't') {
 		setInterval(function(){
 			randomShape();
@@ -146,6 +155,7 @@ $(document).keydown(function(event) {
 $(document).keydown(function(event) {
 	if (event.key === 'v') {
 		$.each(catalogue, function(k, v){
-			catalogueStatus[k] = "active";
+			catalogueStatus[k] = "unlocked";
 		});
+		catalogueDraw();
 	} });

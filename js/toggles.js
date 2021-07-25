@@ -1,11 +1,11 @@
 toggleNames = ["navigator", "playground"]
 
 function toggleDraw(toggleName){
-$("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked ' + toggleName + ' buyable active"><span class="name">'+ toggle[toggleName].name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle[toggleName].desc +'</span></div>');
+$("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked ' + toggleName + ' active"><span class="name">'+ toggle[toggleName].name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle[toggleName].desc +'</span></div>');
 }
 
 function shaperinoToggleDraw(toggleName){
-$("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked shaperino buyable active"><div id="shapeClone"></div><span class="name">'+ toggle.shaperino.name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle.shaperino.desc +'</span></div>');
+$("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked shaperino active"><div id="shapeClone"></div><span class="name">'+ toggle.shaperino.name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle.shaperino.desc +'</span></div>');
 }
 
 function toggleAdd(toggleName){

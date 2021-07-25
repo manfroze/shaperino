@@ -75,200 +75,200 @@ const token = [...shape, ...position.side, ...color.basic]
 const allItems = [...shape, ...positions, ...colors]
 
 const items = {
-		circle: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		square: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		rhombus: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		cross: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		octagon: {
-			sec: "shape",
-			subsec: "shape",
-			card: "card",
-		},
-		top: {
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		left: {	
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		right: {
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		bottom: {
-			sec: "charge",
-			subsec: "side",
-			card: "card",
-		},
-		topleft: {
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		topright: {	
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		bottomleft: {
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		bottomright: {
-			sec: "charge",
-			subsec: "corner",
-			card: "small",
-		},
-		topbottom: {
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		leftright: {	
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		topleftbottomright: {
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		toprightbottomleft: {
-			sec: "charge",
-			subsec: "split",
-			card: "small",
-		},
-		black: {
-			subsec: "primary",
-			sec: "color",
-			card: "card",
-		},
-		white: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		red: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		blue: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		yellow: {
-			sec: "color",
-			subsec: "primary",
-			card: "card",
-		},
-		green: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		orange: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		violet: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		grey: {
-			sec: "color",
-			subsec: "secondary",
-			card: "small",
-		},
-		lightred: {
-			sec: "color",
-			subsec: "light",
-			card: "small",
-		},
-		lightblue: {
-			sec: "color",
-			subsec: "light",
-			card: "small",
-		},
-		lightyellow: {
-			sec: "color",
-			subsec: "light",
-			card: "small",
-		},
-		darkred: {
-			sec: "color",
-			subsec: "dark",
-			card: "small",
-		},
-		darkblue: {
-			sec: "color",
-			subsec: "dark",
-			card: "small",
-		},
-		darkyellow: {
-			sec: "color",
-			subsec: "dark",
-			card: "small",
-		},
-		lightgreen: {
-			sec: "color",
-			subsec: "secondarylight",
-			card: "small",
-		},
-		lightorange: {
-			sec: "color",
-			subsec: "secondarylight",
-			card: "small",
-		},
-		lightviolet: {
-			sec: "color",
-			subsec: "secondarylight",
-			card: "small",
-		},
-		darkgreen: {
-			sec: "color",
-			subsec: "secondarydark",
-			card: "small",
-		},
-		darkorange: {
-			sec: "color",
-			subsec: "secondarydark",
-			card: "small",
-		},
-		darkviolet: {
-			sec: "color",
-			subsec: "secondarydark",
-			card: "small",
-		},
-	}
+	circle: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+	},
+	square: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+	},
+	rhombus: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+	},
+	cross: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+	},
+	octagon: {
+		sec: "shape",
+		subsec: "shape",
+		card: "card",
+	},
+	top: {
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+	},
+	left: {	
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+	},
+	right: {
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+	},
+	bottom: {
+		sec: "charge",
+		subsec: "side",
+		card: "card",
+	},
+	topleft: {
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+	},
+	topright: {	
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+	},
+	bottomleft: {
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+	},
+	bottomright: {
+		sec: "charge",
+		subsec: "corner",
+		card: "small",
+	},
+	topbottom: {
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+	},
+	leftright: {	
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+	},
+	topleftbottomright: {
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+	},
+	toprightbottomleft: {
+		sec: "charge",
+		subsec: "split",
+		card: "small",
+	},
+	black: {
+		subsec: "primary",
+		sec: "color",
+		card: "card",
+	},
+	white: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+	},
+	red: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+	},
+	blue: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+	},
+	yellow: {
+		sec: "color",
+		subsec: "primary",
+		card: "card",
+	},
+	green: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+	},
+	orange: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+	},
+	violet: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+	},
+	grey: {
+		sec: "color",
+		subsec: "secondary",
+		card: "small",
+	},
+	lightred: {
+		sec: "color",
+		subsec: "light",
+		card: "small",
+	},
+	lightblue: {
+		sec: "color",
+		subsec: "light",
+		card: "small",
+	},
+	lightyellow: {
+		sec: "color",
+		subsec: "light",
+		card: "small",
+	},
+	darkred: {
+		sec: "color",
+		subsec: "dark",
+		card: "small",
+	},
+	darkblue: {
+		sec: "color",
+		subsec: "dark",
+		card: "small",
+	},
+	darkyellow: {
+		sec: "color",
+		subsec: "dark",
+		card: "small",
+	},
+	lightgreen: {
+		sec: "color",
+		subsec: "secondarylight",
+		card: "small",
+	},
+	lightorange: {
+		sec: "color",
+		subsec: "secondarylight",
+		card: "small",
+	},
+	lightviolet: {
+		sec: "color",
+		subsec: "secondarylight",
+		card: "small",
+	},
+	darkgreen: {
+		sec: "color",
+		subsec: "secondarydark",
+		card: "small",
+	},
+	darkorange: {
+		sec: "color",
+		subsec: "secondarydark",
+		card: "small",
+	},
+	darkviolet: {
+		sec: "color",
+		subsec: "secondarydark",
+		card: "small",
+	},
+}
 
 const catalogue = {
-	donaldduck: {
+	cat01: {
 		name: "donald duck",
 		main: {
 			shape: "circle",
@@ -285,19 +285,19 @@ const catalogue = {
 			color: "orange",
 		}
 	},
-	earthmoon: {
+	cat02: {
 		name: "earth and moon",
 		main: {
 			shape: "circle",
 			color: "blue",
 		}, 
 		charge: {
-			position: "topleft",
+			position: "bottomleft",
 			shape: "circle",
 			color: "grey",
 		}
 	},
-	coolguy: {
+	cat03: {
 		name: "cool guy",
 		main: {
 			shape: "square",
@@ -314,7 +314,7 @@ const catalogue = {
 			color: "black",
 		}
 	},
-	water: {
+	cat04: {
 		name: "h2o",
 		main: {
 			shape: "circle",
@@ -331,8 +331,8 @@ const catalogue = {
 			color: "white",
 		}
 	},
-	warning: {
-		name: "warning",
+	cat05: {
+		name: "forbidden",
 		main: {
 			shape: "circle",
 			color: "red",
@@ -341,7 +341,146 @@ const catalogue = {
 			shape: "cross",
 			color: "white",
 		}
-	}
+	},
+	cat06: {
+		name: "yield",
+		main: {
+			shape: "rhombus",
+			color: "white",
+		}, 
+		hyper: {
+			shape: "rhombus",
+			color: "yellow",
+		}
+	},
+	cat07: {
+		name: "spidey",
+		main: {
+			shape: "cross",
+			color: "black",
+		}, 
+		charge: {
+			position: "top",
+			shape: "octagon",
+			color: "red",
+		},
+		split: {
+			position: "topbottom",
+			shape: "octagon",
+			color: "red",
+		}
+	},
+	cat08: {
+		name: "sus",
+		main: {
+			shape: "circle",
+			color: "red",
+		}, 
+		charge: {
+			position: "left",
+			shape: "circle",
+			color: "lightblue",
+		}
+	},
+	cat09: {
+		name: "holy hand grenade",
+		main: {
+			shape: "circle",
+			color: "white",
+		}, 
+		charge: {
+			position: "topleft",
+			shape: "cross",
+			color: "yellow",
+		},
+		hyper: {
+			shape: "circle",
+			color: "yellow",
+		},
+	},
+	cat10: {
+		name: "abyss",
+		main: {
+			shape: "circle",
+			color: "darkviolet",
+		} 
+	},
+	cat10: {
+		name: "good grief",
+		main: {
+			shape: "square",
+			color: "yellow",
+		},
+		charge: {
+			position: "left",
+			shape: "rhombus",
+			color: "black",
+		},
+		split: {
+			position: "leftright",
+			shape: "rhombus",
+			color: "black",
+		},
+		hyper: {
+			shape: "cross",
+			color: "black",
+		}
+	},
+	cat11: {
+		name: "bzzz",
+		main: {
+			shape: "circle",
+			color: "black",
+		},
+		charge: {
+			position: "left",
+			shape: "circle",
+			color: "red",
+		},
+		split: {
+			position: "leftright",
+			shape: "circle",
+			color: "red",
+		}
+	},
+	cat12: {
+		name: "grandpa smurf",
+		main: {
+			shape: "circle",
+			color: "blue",
+		}, 
+		charge: {
+			position: "top",
+			shape: "circle",
+			color: "red",
+		},
+		split: {
+			position: "topbottom",
+			shape: "octagon",
+			color: "white",
+		}
+	},
+	cat13: {
+		name: "piet",
+		main: {
+			shape: "square",
+			color: "black",
+		},
+		hyper: {
+			shape: "square",
+			color: "red",
+		},
+		charge: {
+			position: "topleft",
+			shape: "square",
+			color: "blue",
+		},
+		split: {
+			position: "topleftbottomright",
+			shape: "square",
+			color: "yellow",
+		},
+	},
 
 }
 
@@ -632,76 +771,76 @@ const price = {
 
 	}
 
-const upgrade = {
-	boostidleshape: {
-		name: "shapes in time",
-		type: "boost",
-		data: ["idle", "shape"],
-		amount: 5,
-	},
-	boostidlecharge: {
-		name: "charged by the centuries",
-		type: "boost",
-		data: ["idle", "position"],
-		amount: 3,
-	},
-	boostidlecolor: {
-		name: "rainbow future",
-		type: "boost",
-		data: ["idle", "color"],
-		amount: 6,
-	},
-	boostclickshape: {
-		name: "strength in forms",
-		type: "boost",
-		data: ["click", "shape"],
-		amount: 7,
-	},
-	boostclickcharge: {
-		name: "power of more",
-		type: "boost",
-		data: ["click", "position"],
-		amount: 7,
-	},
-	boostclickcolor: {
-		name: "kaleidoscope",
-		type: "boost",
-		data: ["click", "color"],
-		amount: 7,
-	},
-	blazon: {
-		name: "heraldry",
-		type: "blazon",
-		data: [""],
-		desc: "unlock blazons"
-	},
-	wonderbar: {
-		name: "bar none",
-		type: "wonderbar",
-		data: [""],
-		desc: "unlock the wonder bar"
-	},
-	hyper: {
-		name: "glowing center",
-		type: "hyper",
-		data: [""],
-		desc: "unlock the hyper charge"
-	},
-	playground: {
-		name: "all the colors in the rainbow",
-		type: "playground",
-		data: [""],
-		desc: "unlock the playground"
-	},
-	navigator: {
-		name: "in the grid",
-		type: "navigator",
-		data: [""],
-		desc: "unlock the navigator"
+	const upgrade = {
+		boostidleshape: {
+			name: "shapes in time",
+			type: "boost",
+			data: ["idle", "shape"],
+			amount: 5,
+		},
+		boostidlecharge: {
+			name: "charged by the centuries",
+			type: "boost",
+			data: ["idle", "position"],
+			amount: 3,
+		},
+		boostidlecolor: {
+			name: "rainbow future",
+			type: "boost",
+			data: ["idle", "color"],
+			amount: 6,
+		},
+		boostclickshape: {
+			name: "strength in forms",
+			type: "boost",
+			data: ["click", "shape"],
+			amount: 7,
+		},
+		boostclickcharge: {
+			name: "power of more",
+			type: "boost",
+			data: ["click", "position"],
+			amount: 7,
+		},
+		boostclickcolor: {
+			name: "kaleidoscope",
+			type: "boost",
+			data: ["click", "color"],
+			amount: 7,
+		},
+		blazon: {
+			name: "heraldry",
+			type: "blazon",
+			data: [""],
+			desc: "unlock blazons"
+		},
+		wonderbar: {
+			name: "bar none",
+			type: "wonderbar",
+			data: [""],
+			desc: "unlock the wonder bar"
+		},
+		hyper: {
+			name: "glowing center",
+			type: "hyper",
+			data: [""],
+			desc: "unlock the hyper charge"
+		},
+		playground: {
+			name: "all the colors in the rainbow",
+			type: "playground",
+			data: [""],
+			desc: "unlock the playground"
+		},
+		navigator: {
+			name: "in the grid",
+			type: "navigator",
+			data: [""],
+			desc: "unlock the navigator"
+		}
 	}
-}
 
-const achievement = {
+	const achievement = {
 		circleone: {
 			name: "back to circle one",
 			desc: "never forget where you began!",
@@ -741,123 +880,123 @@ const achievement = {
 		},
 	}
 
-function rand(name) {
-	if (name instanceof Array == true) {
-		var randomNumber = Math.floor(Math.random() * name.length);
-		return name[randomNumber];
-	} 
-}
-
-function swap(json){
-	var ret = {};
-	for(var key in json){
-		ret[json[key]] = key;
-	}
-	return ret;
-}
-
-function style(){
-	$.each(shape, function(key, value){
-		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
-	});
-	$.each(positions, function(key, value){
-		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
-	});
-
-	if (options.colorblind == "off") {
-		$.each(colors, function(key, value){
-			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-			$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
-		});
-
-	} else if (options.colorblind == "on") {
-		$.each(colors, function(key, value){
-			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
-			$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
-		});
-	}
-	$.each(powertype, function(key, powertype){
-		$.each(kind, function(key, kind){
-			$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
-		});
-	});
-
-	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
-	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
-	$('.button.large.navigator').css('background-image', 'url("svg/navigator.svg")')
-	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
-	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
-
-}
-
-function prettifySub(number) {
-	number = parseFloat(number.toFixed(3));
-	if (number >= 1000) number = 999;
-	number = number.toString();
-	var hasDecimal = number.split('.');
-	if (typeof hasDecimal[1] === 'undefined' || hasDecimal[0].length >= 3) return number.substring(0, 3);
-	return number.substring(0, 4);
-}
-
-function formatNumber(number) {
-	var numberTmp = number;
-	number = Math.round(number * 1000000) / 1000000;
-	if (!isFinite(number)) return "Infinite";
-	if (number >= 0 && number < 10) return parseFloat(number.toFixed(2));
-	if (number >= 10 && number < 10000) return Math.floor(number);
-	if (number === 0) {
-		return prettifySub(0);
-	}
-	var base = Math.floor(Math.log(number) / Math.log(1000));
-	if (base <= 0) return prettifySub(number);
-	number /= Math.pow(1000, base);
-
-	var suffices = [
-	'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud',
-	'Dd', 'Td', 'Qad', 'Qid', 'Sxd', 'Spd', 'Od', 'Nd', 'V', 'Uv', 'Dv',
-	'Tv', 'Qav', 'Qiv', 'Sxv', 'Spv', 'Ov', 'Nv', 'Tt'
-	];
-	var suffix;
-	if ((base <= suffices.length && base > 0)) {
-		suffix = suffices[base - 1];
-	}
-	else {
-		var exponent = parseFloat(numberTmp).toExponential(2);
-		exponent = exponent.replace('+', '');
-		return exponent;
+	function rand(name) {
+		if (name instanceof Array == true) {
+			var randomNumber = Math.floor(Math.random() * name.length);
+			return name[randomNumber];
+		} 
 	}
 
-	return prettifySub(number) + suffix;
-} 
-
-function formatTime(time)
-{   
-	var hrs = ~~(time / 3600);
-	var mins = ~~((time % 3600) / 60);
-	var secs = ~~time % 60;
-	var ret = "";
-	if (hrs > 0) {
-		ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-	}
-	ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-	ret += "" + secs;
-	return ret;
-}
-
-function getKeyByValue(object, value) {
-	return Object.keys(object).find(key => object[key] === value);
-}
-
-if(!Array.prototype.indexOf){
-	Array.prototype.indexOf = function(val){
-		var i = this.length;
-		while (i--) {
-			if (this[i] == val) return i;
+	function swap(json){
+		var ret = {};
+		for(var key in json){
+			ret[json[key]] = key;
 		}
-		return -1;
-	} 
-}
+		return ret;
+	}
 
-const mapObjectKeys = (object, key) => Object.fromEntries(Object.entries(object).map(([subKey, keyObject]) => [subKey, keyObject[key]]))
+	function style(){
+		$.each(shape, function(key, value){
+			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+			$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
+		});
+		$.each(positions, function(key, value){
+			$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+			$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-token.svg")')
+		});
+
+		if (options.colorblind == "off") {
+			$.each(colors, function(key, value){
+				$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+				$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
+			});
+
+		} else if (options.colorblind == "on") {
+			$.each(colors, function(key, value){
+				$('.item#' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
+				$('.tag.price.' + value +'').css('background-image', 'url("svg/' + value + '-cb.svg")')
+			});
+		}
+		$.each(powertype, function(key, powertype){
+			$.each(kind, function(key, kind){
+				$('.upgrade.boost.' + powertype +'.' + kind).css('background-image', 'url("svg/boost-' + powertype +'-' + kind + '.svg")')
+			});
+		});
+
+		$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
+		$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
+		$('.button.large.navigator').css('background-image', 'url("svg/navigator.svg")')
+		$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
+		$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
+
+	}
+
+	function prettifySub(number) {
+		number = parseFloat(number.toFixed(3));
+		if (number >= 1000) number = 999;
+		number = number.toString();
+		var hasDecimal = number.split('.');
+		if (typeof hasDecimal[1] === 'undefined' || hasDecimal[0].length >= 3) return number.substring(0, 3);
+		return number.substring(0, 4);
+	}
+
+	function formatNumber(number) {
+		var numberTmp = number;
+		number = Math.round(number * 1000000) / 1000000;
+		if (!isFinite(number)) return "Infinite";
+		if (number >= 0 && number < 10) return parseFloat(number.toFixed(2));
+		if (number >= 10 && number < 10000) return Math.floor(number);
+		if (number === 0) {
+			return prettifySub(0);
+		}
+		var base = Math.floor(Math.log(number) / Math.log(1000));
+		if (base <= 0) return prettifySub(number);
+		number /= Math.pow(1000, base);
+
+		var suffices = [
+		'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'Oc', 'No', 'Dc', 'Ud',
+		'Dd', 'Td', 'Qad', 'Qid', 'Sxd', 'Spd', 'Od', 'Nd', 'V', 'Uv', 'Dv',
+		'Tv', 'Qav', 'Qiv', 'Sxv', 'Spv', 'Ov', 'Nv', 'Tt'
+		];
+		var suffix;
+		if ((base <= suffices.length && base > 0)) {
+			suffix = suffices[base - 1];
+		}
+		else {
+			var exponent = parseFloat(numberTmp).toExponential(2);
+			exponent = exponent.replace('+', '');
+			return exponent;
+		}
+
+		return prettifySub(number) + suffix;
+	} 
+
+	function formatTime(time)
+	{   
+		var hrs = ~~(time / 3600);
+		var mins = ~~((time % 3600) / 60);
+		var secs = ~~time % 60;
+		var ret = "";
+		if (hrs > 0) {
+			ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+		}
+		ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+		ret += "" + secs;
+		return ret;
+	}
+
+	function getKeyByValue(object, value) {
+		return Object.keys(object).find(key => object[key] === value);
+	}
+
+	if(!Array.prototype.indexOf){
+		Array.prototype.indexOf = function(val){
+			var i = this.length;
+			while (i--) {
+				if (this[i] == val) return i;
+			}
+			return -1;
+		} 
+	}
+
+	const mapObjectKeys = (object, key) => Object.fromEntries(Object.entries(object).map(([subKey, keyObject]) => [subKey, keyObject[key]]))

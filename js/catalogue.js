@@ -1,13 +1,31 @@
+function arraysEqual(a, b) {
+	if (a === b) return true;
+	if (a == null || b == null) return false;
+	if (a.length !== b.length) return false;
+	for (var i = 0; i < a.length; ++i) {
+		if (a[i] !== b[i]) return false;
+	}
+	return true;
+}
+
 function catalogueCheck(){
 	$.each(catalogue, function(name, value){
-		if (!value.split && current.main.shape == value.main.shape && current.main.color == value.main.color && current.charge.shape == value.charge.shape && current.charge.color == value.charge.color && current.charge.position == value.charge.position && catalogueStatus[name] == "locked"){
-			catalogueUnlock(name);
-		}
-		if(value.split && current.main.shape == value.main.shape && current.main.color == value.main.color && current.charge.shape == value.charge.shape && current.charge.color == value.charge.color && current.charge.position == value.charge.position && catalogueStatus[name] == "locked" && current.split.shape == value.split.shape && current.split.color == value.split.color && current.split.position == value.split.position ){
-			catalogueUnlock(name);
+		if(catalogueStatus[name] == "locked"){
+			curr = []
+			cata = []
+			curr.push(current.main.shape, current.main.color);
+			if(current.charge.status == "enabled"){curr.push(current.charge.shape, current.charge.color, current.charge.position);}
+			if(current.split.status == "enabled"){curr.push(current.split.shape, current.split.color, current.split.position);}
+			if(current.hyper.status == "enabled"){curr.push(current.hyper.shape, current.hyper.color);}
+			cata.push(value.main.shape, value.main.color);
+			if(value.charge){cata.push(value.charge.shape, value.charge.color, value.charge.position);}
+			if(value.split){cata.push(value.split.shape, value.split.color, value.split.position);}
+			if(value.hyper){cata.push(value.hyper.shape, value.hyper.color);}
+			if (arraysEqual(curr, cata)){
+				catalogueUnlock(name);
+			}
 		}
 	});
-
 }
 
 function catalogueUnlock(value){
@@ -17,12 +35,13 @@ function catalogueUnlock(value){
 }
 
 function catalogueDraw(){
-$("#cataloguePanel.panel .content").empty();
+	$("#cataloguePanel.panel .content").empty();
 	$.each(catalogue, function(id, value) {
-		$("#cataloguePanel.panel .content").append('<div id="' + id + '" title="' + catalogue[id].name + '" class="catalogue tile"><div class="name"><span>' + catalogue[id].name + '</span></div></div>');
+		$("#cataloguePanel.panel .content").append('<div id="' + id + '" class="catalogue tile"><div class="name"><span></span></div></div>');
 		$("#cataloguePanel.panel #" + id).addClass("locked");
 		if (catalogueStatus[id] == "unlocked") {
 			$("#cataloguePanel.panel #" + id).removeClass("locked").addClass("unlocked");
+			$("#cataloguePanel.panel #" + id + ' .name span').html(catalogue[id].name);
 		}
 		$.each(value, function(modeid, v) {
 			if(mode.includes(modeid)) {
@@ -41,3 +60,48 @@ $("#cataloguePanel.panel .content").empty();
 		})
 	})
 }
+
+$.each(catalogue, function(id, value) {
+	$(document).on( "click", "#cataloguePanel.panel #" + id +'.unlocked', function(e) {
+		setCurrent("main", "shape", catalogue[id].main.shape );
+		setCurrent("main", "color", catalogue[id].main.color );
+		if (catalogue[id].charge) {
+			setCurrent("charge", "status", "enabled");
+			setCurrent("charge", "position", catalogue[id].charge.position);
+			setCurrent("charge", "shape", catalogue[id].charge.shape);
+			setCurrent("charge", "color", catalogue[id].charge.color);
+		} else if (!catalogue[id].charge) {
+			setCurrent("charge", "status", "disabled");
+		}
+		if (catalogue[id].split) {
+			setCurrent("split", "status", "enabled");
+			setCurrent("split", "position", catalogue[id].split.position);
+			setCurrent("split", "shape", catalogue[id].split.shape);
+			setCurrent("split", "color", catalogue[id].split.color);
+		} else if (!catalogue[id].split) {
+			setCurrent("split", "status", "disabled");
+		}
+		if (catalogue[id].hyper && current.hyper.status == "enabled") {
+			//setCurrent("hyper", "status", "enabled");
+			setCurrent("hyper", "shape", catalogue[id].hyper.shape);
+			setCurrent("hyper", "color", catalogue[id].hyper.color);
+		//} else if (!catalogue[id].hyper) {
+		//	setCurrent("hyper", "status", "disabled");
+	}
+	update();
+	resetPanel();
+});
+});
+
+activeCatalogue = [];
+
+function catalogueCount(){
+	$.each(catalogueStatus, function(index, v){
+		if(catalogueStatus[index] == "unlocked"){
+			if(!activeCatalogue.includes(index)){
+				activeCatalogue.push(index);
+			} }
+		})
+	return activeCatalogue.length;
+}
+

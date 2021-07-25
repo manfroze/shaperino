@@ -205,13 +205,13 @@ function cloner(canvas){
 	document.getElementById(canvas).innerHTML = "";
 	smallclone = SVG(canvas).size(100, 100);
 	mainClone = mainShape.clone();
+	hyperClone = hyperShape.clone();
 	chargeClone = chargeShape.clone();
 	splitClone = splitShape.clone();
-	hyperClone = hyperShape.clone();
 	mainClone.transform({scale: 0.2, cx: 0, cy: 0});
+	hyperClone.transform({scale: 0.2, cx: 0, cy: 0})
 	chargeClone.transform({scale: 0.2, cx: 0, cy: 0});
 	splitClone.transform({scale: 0.2, cx: 0, cy: 0});
-	hyperClone.transform({scale: 0.2, cx: 0, cy: 0});
 	mainClone.addTo(smallclone);
 	hyperClone.addTo(smallclone);
 	chargeClone.addTo(smallclone);

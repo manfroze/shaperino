@@ -23,10 +23,10 @@ function showPanel(item) {
 	selectMenuButton(item);
 	activateMenuButton("remove")
 	if (item == "achievements") {
-		$("#panel").append('<div class="panel" id="' + item + '"><div class="title">achievements</div><div class="content"></div></div>')
+		$("#panel").append('<div class="panel" id="' + item + '"><div class="header"><div class="title">achievements</div><div class="count">' + achievementCount() + '/' + Object.keys(achievement).length + '</div></div><div class="content"></div></div>')
 		achievementDraw();
 	} else if (item == "catalogue") {
-		$("#panel").append('<div class="panel" id="' + item + 'Panel"><div class="title">catalogue</div><div class="content"></div></div>')
+		$("#panel").append('<div class="panel" id="' + item + 'Panel"><div class="header"><div class="title">catalogue</div><div class="count">' + catalogueCount() + '/' + Object.keys(catalogue).length + '</div></div><div class="content"></div></div>')
 		catalogueDraw();
 
 	} else {

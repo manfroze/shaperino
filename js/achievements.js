@@ -16,14 +16,27 @@ function achievementUnlock(value){
 }
 
 function achievementDraw(){
-$("#catalogue.panel .content").empty();
-		$.each(achievement, function(k, v) {
-			$("#achievements.panel .content").append('<div id="' + k + '" class="achievement tile" title="' + achievement[k].expl + '"><div class="name"><span>' + achievement[k].name + '</span><div class="expl"><span>' + achievement[k].expl + '</span></div></div></div>');
-			$("#achievements.panel #" + k).addClass("locked");
-			if (achievementStatus[k] == "unlocked") {
+	$("#achievement.panel .content").empty();
+	$.each(achievement, function(k, v) {
+		$("#achievements.panel .content").append('<div id="' + k + '" class="achievement tile" title="' + achievement[k].expl + '"><div class="name"><span>' + achievement[k].name + '</span><div class="expl"><span>' + achievement[k].expl + '</span></div></div></div>');
+		$("#achievements.panel #" + k).addClass("locked");
+		if (achievementStatus[k] == "unlocked") {
 				//$("#achievements.panel #" + k + " span").html(achievement[k].name);
 				$("#achievements.panel #" + k).removeClass("locked").addClass("unlocked");
 			}
 		})
 
+}
+
+activeAchievements = [];
+
+function achievementCount(){
+	$.each(achievementStatus, function(index, v){
+		if(achievementStatus[index] == "unlocked"){
+		if(!activeAchievements.includes(index)){
+			activeAchievements.push(index);
+		}
+	}
+	})
+	return activeAchievements.length;
 }

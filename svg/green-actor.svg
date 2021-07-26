@@ -1,0 +1,10 @@
+<svg width="230" height="300" viewBox="0 0 230 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="82" y="52" width="66" height="54" fill="#47E24D"/>
+<rect x="58" y="146" width="114" height="154" fill="#47E24D"/>
+<ellipse rx="46" ry="46.5" transform="matrix(1 0 0 -1 115 147.5)" fill="#FF9A3D"/>
+<circle r="11" transform="matrix(1 0 0 -1 172 215)" fill="#222222"/>
+<circle r="11" transform="matrix(1 0 0 -1 35 183)" fill="#222222"/>
+<path d="M200 198L217 215L200 232L183 215L200 198Z" fill="#47E24D"/>
+<path d="M35 138L52 155L35 172L18 155L35 138Z" fill="#47E24D"/>
+<ellipse rx="39" ry="39.5" transform="matrix(1 0 0 -1 115 124.5)" fill="#222222"/>
+</svg>

@@ -399,13 +399,6 @@ const catalogue = {
 		},
 	},
 	cat10: {
-		name: "abyss",
-		main: {
-			shape: "circle",
-			color: "darkviolet",
-		} 
-	},
-	cat10: {
 		name: "good grief",
 		main: {
 			shape: "square",
@@ -481,6 +474,78 @@ const catalogue = {
 			color: "yellow",
 		},
 	},
+	cat14: {
+		name: "scratch",
+		main: {
+			shape: "rhombus",
+			color: "green",
+		},
+		charge: {
+			position: "top",
+			shape: "circle",
+			color: "white",
+		},
+		split: {
+			position: "topbottom",
+			shape: "square",
+			color: "white",
+		},
+	},
+	cat15: {
+		name: "amsterdam",
+		main: {
+			shape: "square",
+			color: "red",
+		},
+		hyper: {
+			shape: "square",
+			color: "black",
+		},
+		charge: {
+			position: "left",
+			shape: "cross",
+			color: "white",
+		},
+		split: {
+			position: "leftright",
+			shape: "cross",
+			color: "white",
+		},
+	},
+	cat16: {
+		name: "big in japan",
+		main: {
+			shape: "square",
+			color: "white",
+		}, 
+		hyper: {
+			shape: "circle",
+			color: "red",
+		}
+	},
+	cat17: {
+		name: "abyss",
+		main: {
+			shape: "circle",
+			color: "darkviolet",
+		} 
+	},
+	cat18: {
+		name: "manhattan",
+		main: {
+			shape: "circle",
+			color: "black",
+		},
+		hyper: {
+			shape: "circle",
+			color: "lightblue",
+		},
+		charge: {
+			position: "top",
+			shape: "circle",
+			color: "black",
+		},
+	},
 
 }
 
@@ -506,52 +571,69 @@ const toggle = {
 
 const playground = {
 	black: { 
+		type: 'final',
 		primary: 'pitch',
 		final: 'obsidian'
 	},
 	white: {
+		type: 'final',
 		primary: 'snow',
-		final: 'pearl'
+		final: 'quartz'
 	},
 	red: {
+		type: 'final',
 		primary: 'blood',
 		final: 'ruby'
 	},
 	yellow: {
+		type: 'final',
 		primary: 'saffron',
 		final: 'topaz'
 	},
 	blue: {
+		type: 'final',
 		primary: 'water',
 		final: 'sapphire'
 	},
-	orange: {
-		primary: 'juice',
-		secondary: '',
-		tertiary: '',
-		actor: '',
-	},
 	green: {
-		primary: 'lettuce'
+		type: 'trict',
+		primary: 'shamrocks',
+		secondary: 'luck',
+		tertiary: 'charms',
+		actor: 'leprechauns',
+		flavor: 'feel lucky?',
+		rate: 0.2,
+		price: [10, 20, 100]		
+	},	
+	orange: {
+		type: 'trict',		
+		primary: 'oranges',
+		secondary: 'juice',
+		tertiary: 'o-coins',
+		actor: 'squeezers',
+		flavor: 'squeezin\'.',
+		rate: 0.5,
+		price: [50, 70, 500]		
 	},
 	violet: {
+		type: 'trict',
 		primary: 'magic',
 		secondary: 'spells',
 		tertiary: 'amulets',
 		actor: 'wizards',
+		flavor: 'hocus pocus.',
+		rate: 1,
+		price: [100, 150, 1000]
 	},
 	grey: {
-		primary: 'smog'
-	},
-	darkred: {
-		primary: 'rust',
-		actor: 'old factories',
-	},
-	darkyellow: {
-		primary: 'gold'
-	},
-	darkblue: {
-		primary: 'biz'
+		type: 'trict',
+		primary: 'smog',
+		secondary: 'jobs',
+		tertiary: 'capital',
+		actor: 'men',
+		flavor: 'it\'s a life.',
+		rate: 5,
+		price: [500, 300, 10000]		
 	},
 	lightred: {
 		primary: 'candy'
@@ -564,6 +646,16 @@ const playground = {
 	},
 	lightblue: {
 		primary: 'sky'
+	},	
+	darkred: {
+		primary: 'rust',
+		actor: 'old factories',
+	},
+	darkyellow: {
+		primary: 'gold'
+	},
+	darkblue: {
+		primary: 'biz'
 	},
 	darkorange: {
 		primary: 'chocolate'

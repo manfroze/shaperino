@@ -122,7 +122,7 @@ $(document).keydown(function(event) {
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'r') { 
+	if (event.key === 'd') { 
 		randomShape();
 	} });
 

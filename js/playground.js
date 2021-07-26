@@ -21,7 +21,7 @@ function updatePlaygroundTabs(){
 
 pgPower = {};
 
-function colorTokenIncrease(){
+function playgroundTokenIncrease(){
 	$.each(colors, function(k, v){
 		pgPower[v] = 0;
 	});
@@ -29,29 +29,29 @@ function colorTokenIncrease(){
 			// PRIMARY //
 			$.each(mode, function(key, value){
 				if (current[value].status == "enabled"){
-					colorToken[current[value].color].primary +=1*multi[value];
+					playgroundToken[current[value].color].primary +=1*multi[value];
 					pgPower[current[value].color] += 1*multi[value];
 				}
 			});
 			// SECONDARY //
 			$.each(colors, function(key, color){
-				if (colorToken[color].actor >= 0){
-					colorToken[color].secondary +=0.01*colorToken[color].actor;
+				if (playgroundToken[color].actor >= 0){
+					playgroundToken[color].secondary +=playground[color].rate*playgroundToken[color].actor;
 				}
 			});
 		}
 	}
 
-	function colorTokenDraw(){
+	function playgroundTokenDraw(){
 		$.each(colors, function(key, col){
-			$('#playgroundPanel.' + col + ' .primary .amount').html(formatNumber(colorToken[col].primary));
-			$('#playgroundPanel.' + col + ' .secondary .amount').html(formatNumber(colorToken[col].secondary));
-			$('#playgroundPanel.' + col + ' .tertiary .amount').html(formatNumber(colorToken[col].tertiary));
-			$('#playgroundPanel.' + col + ' .actor .amount').html(formatNumber(colorToken[col].actor));
-			$('#playgroundPanel.' + col + ' .final .amount').html(formatNumber(colorToken[col].final));
+			$('#playgroundPanel.' + col + ' .primary .amount').html(formatNumber(playgroundToken[col].primary));
+			$('#playgroundPanel.' + col + ' .secondary .amount').html(formatNumber(playgroundToken[col].secondary));
+			$('#playgroundPanel.' + col + ' .tertiary .amount').html(formatNumber(playgroundToken[col].tertiary));
+			$('#playgroundPanel.' + col + ' .actor .amount').html(formatNumber(playgroundToken[col].actor));
+			$('#playgroundPanel.' + col + ' .final .amount').html(formatNumber(playgroundToken[col].final));
 			$('#playgroundPanel.' + col + ' .primary .power').html(formatNumber(pgPower[col]) + '/s');
 
-			$('#playgroundPanel.' + col + ' .secondary .desc').html('your <strong>' + formatNumber(colorToken[col].actor) + ' ' + playground[col].actor + '</strong> are producing <strong>' + formatNumber(colorToken[col].actor*0.01) + ' ' + playground[col].secondary + '</strong> per second');
+			$('#playgroundPanel.' + col + ' .secondary .desc').html('your <strong>' + formatNumber(playgroundToken[col].actor) + ' ' + playground[col].actor + '</strong> are producing <strong>' + formatNumber(playgroundToken[col].actor*playground[col].rate) + ' ' + playground[col].secondary + '</strong> per second');
 
 
 		});
@@ -70,7 +70,7 @@ function playgroundTab(colorName){
 		}
 	});
 
-	$('#' + colorName + "-tab").removeClass("inactive").addClass("active").css('background-image', 'url("svg/' + colorName + '-colortoken.svg")');
+	$('#' + colorName + "-tab").removeClass("inactive").addClass("active").css('background-image', 'url("svg/' + colorName + '-playgroundToken.svg")');
 
 	// PANEL //
 
@@ -81,67 +81,83 @@ function playgroundTab(colorName){
 
 	// PANEL CONTENT //
 
-	if(color.composite.includes(colorName)){
-		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="actor box"><div class="text"><span class="amount"></span><span class="name"></div><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">10 ' + playground[colorName].primary + '</span></div></div><div class="items"><div class="secondary box"><span class="amount"></span><span class="name"></span><span class="desc"></span></div><div class="tertiary box"><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">10 ' + playground[colorName].secondary + '</span></div><div class="text"><span class="amount"></span><span class="name"></span></div><div class="buyBox"></div></div></div>');
-		$('#playgroundPanel .box.actor').css( "background", "url('svg/" + colorName + "-actor.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
-		$('#playgroundPanel .box.secondary').css( "background", "url('svg/" + colorName + "-secondary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
-		$('#playgroundPanel .box.tertiary').css( "background", "url('svg/" + colorName + "-tertiary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
+	$('#playground #playgroundPanel').empty();
+
+	if(playground[colorName].type == "trict"){
+		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="actor box"><div class="text"><span class="amount"></span><span class="name"></span><span class="flavor"></span></div><div class="buy" item="' + colorName + '"><span>hire one</span><span class="price">for ' + playground[colorName].price[0] + ' ' + playground[colorName].primary + '</span></div></div><div class="items"><div class="secondary box"><span class="amount"></span><span class="name"></span><span class="desc"></span></div><div class="tertiary box"><div class="head"><div class="text"><span class="amount"></span><span class="name"></span></div><div class="buy" item="' + colorName + '"><span>+1</span><span class="price">' + playground[colorName].price[1] + ' ' + playground[colorName].secondary + '</span></div></div><div class="buyBox"></div></div></div>');
+		$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");			
+		$('#playgroundPanel .box.actor').css( "background", "url('svg/" + colorName + "-actor.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playgroundPanel .box.secondary').css( "background", "linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playgroundPanel .box.tertiary').css( "background", "linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
+		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
 		$('#playgroundPanel.' + colorName + ' .actor .name').html(playground[colorName].actor);
+		$('#playgroundPanel.' + colorName + ' .actor .flavor').html(playground[colorName].flavor);
 		$('#playgroundPanel.' + colorName + ' .secondary .name').html(playground[colorName].secondary);
 		$('#playgroundPanel.' + colorName + ' .tertiary .name').html(playground[colorName].tertiary);
 		$('#playgroundPanel .buy').css( "background-color", colorCode[colorName]);
 		$.each(comp.color[colorName], function(key, col){
-			$('#playgroundPanel.' + colorName + ' .tertiary .buyBox').append('<div class="buyFinal" id="' + col + '-f" item="' + colorName + '" final="'+ col + '">1 ' + playground[col].final + '<span class="price">10 ' + playground[colorName].tertiary +'</></div>');
+			$('#playgroundPanel.' + colorName + ' .tertiary .buyBox').append('<div class="buyFinal" id="' + col + '-f" item="' + colorName + '" final="'+ col + '">1 ' + playground[col].final + '<span class="price">' + formatNumber(playground[colorName].price[2]) + ' ' + playground[colorName].tertiary +'</></div>');
 			$('#playgroundPanel.' + colorName + ' .tertiary .buyFinal#'+ col + '-f').css("background-color", colorCode[col]);
+			if(playgroundUnlock[colorName][col] == "bought"){
+				$('#playgroundPanel.' + colorName + ' .buyFinal#' + col + '-f').removeClass("disabled").addClass("deactivated");
+			}
 		});
 
-	} else if(color.basic.includes(colorName)){
+	}
+	if(playground[colorName].type == "final"){
 		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="final box"><span class="amount"></span><span class="name"></span></div></div>');
-		$('#playgroundPanel .box.final').css( "background", "linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
-
+		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
+		$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");		
+		$('#playgroundPanel .box.final').css( "background", "linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
 		$('#playgroundPanel.' + colorName + ' .final .name').html(playground[colorName].final);
 	}
 
-	$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
-	$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.9) 100%)");
 }
 
 // BUY //
 
 function playgroundBuyState(){
 	$.each(colors, function(key, col){
-		if (colorToken[col].primary >= 10){
-			$('#' + col + '-buy').addClass("enabled").removeClass("disabled");
-		} else {
-			$('#' + col + '-buy').addClass("disabled").removeClass("enabled");
+		if(playground[col].price){
+			if (playgroundToken[col].primary >= playground[col].price[0]){
+				$('#playgroundPanel.' + col + ' .actor .buy').addClass("enabled").removeClass("disabled");
+			} else {
+				$('#playgroundPanel.' + col + ' .actor .buy').addClass("disabled").removeClass("enabled");
+			}
+			if (playgroundToken[col].secondary >= playground[col].price[1]){
+				$('#playgroundPanel.' + col + ' .tertiary .buy').addClass("enabled").removeClass("disabled");
+			} else {
+				$('#playgroundPanel.' + col + ' .tertiary .buy').addClass("disabled").removeClass("enabled");
+			}
+			$.each(comp.color[col], function(key, c){	
+				if (playgroundToken[col].tertiary >= playground[col].price[2]){
+					$('#playgroundPanel.' + col + ' .buyFinal#' + c + '-f').addClass("enabled").removeClass("disabled");
+				} else {
+					$('#playgroundPanel.' + col + ' .buyFinal#' + c + '-f').addClass("disabled").removeClass("enabled");
+				}
+			});
 		}
-		if (colorToken[col].secondary >= 10){
-			$('#' + col + '-buyT').addClass("enabled").removeClass("disabled");
-		} else {
-			$('#' + col + '-buyT').addClass("disabled").removeClass("enabled");
-		}
-
 	});
 }
 
 function playgroundBuy(item, item2, rank){
 	if (rank == "actor"){
-		if (colorToken[item].primary >= 10) {
-			colorToken[item].primary -= 10;
-			colorToken[item].actor += 1;
+		if (playgroundToken[item].primary >= playground[item].price[0]) {
+			playgroundToken[item].primary -= playground[item].price[0];
+			playgroundToken[item].actor += 1;
 		}	
 	} else	if (rank == "tertiary"){
-		if (colorToken[item].secondary >= 10) {
-			colorToken[item].secondary -= 10;
-			colorToken[item].tertiary += 1;
+		if (playgroundToken[item].secondary >= playground[item].price[1]) {
+			playgroundToken[item].secondary -= playground[item].price[1];
+			playgroundToken[item].tertiary += 1;
 		}	
 	} else if (rank == "final"){
-		if (colorToken[item].tertiary >= 10) {
-			colorToken[item].tertiary -= 10;
-			colorToken[item2].final += 1;
+		if (playgroundToken[item].tertiary >= playground[item].price[2] && playgroundUnlock[item][item2] == "buyable") {
+			playgroundToken[item].tertiary -= playground[item].price[2];
+			playgroundToken[item2].final += 1;
 
-			$('#playgroundPanel.' + item + ' .buyFinal#' + item2 + '-f').hide();
-
+			playgroundUnlock[item][item2] = "bought";
+			$('#playgroundPanel.' + item + ' .buyFinal#' + item2 + '-f').removeClass("disabled").addClass("deactivated");
 		}	
 	}
 }
@@ -150,10 +166,10 @@ function playgroundBuy(item, item2, rank){
 
 function colorLoop(){
 	setInterval(function(){ 
-		colorTokenIncrease();
+		playgroundTokenIncrease();
 	}, 1000);
 	setInterval(function(){ 
-		colorTokenDraw();
+		playgroundTokenDraw();
 		playgroundBuyState();
 	}, 300);
 }

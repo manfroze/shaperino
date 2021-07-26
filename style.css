@@ -781,13 +781,15 @@ span#keydraw a {
 	height: 500px;
 	position: relative;
 	border-radius: 3px;
-	background-color: #bbb;
+	//background-color: #777;
+	background: radial-gradient(#777 70%, #666);
 }
 
 #grid {
 	width: 100%;
 	height: 100%;
 	background-image: url('svg/grid.svg');
+	opacity: 0.3;
 	background-size: 24px;
 	animation-name: none; 
 	animation-duration: 0.5s;
@@ -800,8 +802,10 @@ span#keydraw a {
 	z-index: 10;
 	height: 500px;
 	width: 500px;
+	position: absolute;
+	top: 0;
+	left: 0;
 	transform: translateX(0px);
-
 	animation-name: none; 
 	animation-duration: 10s;
 	animation-iteration-count: infinite;
@@ -815,7 +819,7 @@ span#keydraw a {
 	position: absolute;
 	top: -12px;
 	left: -12px;
-	border-radius: 12px;
+	
 	transform: translateX(-50%);
 	animation-name: none; 
 	animation-duration: 10s;
@@ -824,21 +828,62 @@ span#keydraw a {
 	z-index: 10;
 }
 
-#grid #ui {
+.trinket.circle {
+	border-radius: 12px;
+}
+
+.trinket.rhombus {
+	//transform: rotate(45deg);
+}
+
+#board #ui {
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	width: 500px;
 	height: 500px;
+	z-index: 9000;
 }
 
-#grid #score {
-	margin-top: 20px;
-	font-size: 25px;
+#board #score {
+	position: absolute;
+	font-size: 23px;
 	font-weight: bold;
+	background-color: #000;
+	color: #fff;
+	padding: 8px 15px;
+	width: 50px
 }
 
-#grid #shapeCloneNav {
+#board #score.top {
+	top: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 0 0 5px 5px;
+}
+
+#board #score.bottom {
+	bottom: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 5px 5px 0 0;
+}
+
+#board #score.left {
+	left: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+	border-radius: 0 5px 5px 0;
+}
+
+#board #score.right {
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+	border-radius: 5px 0 0 5px;
+}
+
+#board #shapeCloneNav {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -851,38 +896,38 @@ span#keydraw a {
 }
 
 @keyframes trinket-top {
-	from {transform: translateX(250px) translateY(30px);}
-    to {transform: translateX(250px) translateY(500px);}
+	from {transform: translateX(250px) translateY(20px);}
+    to {transform: translateX(250px) translateY(250px);}
 }
 @keyframes trinket-bottom {
-	from {transform: translateX(250px) translateY(500px);}
-    to {transform: translateX(250px) translateY(0px);}
+	from {transform: translateX(250px) translateY(480px);}
+    to {transform: translateX(250px) translateY(250px);}
 }
 @keyframes trinket-left {
-	from {transform: translateX(0) translateY(250px);}
-    to {transform: translateX(500px) translateY(250px);}
+	from {transform: translateX(20px) translateY(250px);}
+    to {transform: translateX(250px) translateY(250px);}
 }
 @keyframes trinket-right {
-	from {transform: translateX(500px) translateY(250px);}
-    to {transform: translateX(0px) translateY(250px);}
+	from {transform: translateX(480px) translateY(250px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-topleft {
+	from {transform: translateX(20px) translateY(20px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-topright {
+	from {transform: translateX(480px) translateY(20px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-bottomleft {
+	from {transform: translateX(20px) translateY(480px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-bottomright {
+	from {transform: translateX(480px) translateY(480px);}
+    to {transform: translateX(250px) translateY(250px);}
 }
 
-@keyframes ground-top {
-	from {transform: translateX(0px) translateY(0px);}
-    to {transform: translateX(0px) translateY(500px);}
-}
-@keyframes ground-bottom {
-	from {transform: translateX(0px) translateY(0px);}
-    to {transform: translateX(0px) translateY(-500px);}
-}
-@keyframes ground-left {
-	from {transform: translateX(0) translateY(0px);}
-    to {transform: translateX(500px) translateY(0px);}
-}
-@keyframes ground-right {
-	from {transform: translateX(0px) translateY(0px);}
-    to {transform: translateX(-500px) translateY(0px);}
-}
 
 #playground #shapeClone {
 	position: absolute;
@@ -960,6 +1005,7 @@ span#keydraw a {
 	top: 0;
 	border-radius: 5px;
 	background-color: rgba(221, 221, 221, 0.9);
+	padding: 5px;
 }
 
 .catalogue.tile .name {
@@ -1085,6 +1131,7 @@ span#keydraw a {
 	position: relative;
 	text-align: center;
 	background-repeat: no-repeat !important;
+	//text-shadow: 2px 2px #000;
 }
 
 #playgroundPanel.white .box,
@@ -1103,7 +1150,7 @@ span#keydraw a {
 }
 
 #playgroundPanel .amount {
-	font-size: 40px;
+	font-size: 35px;
 }
 
 #playgroundPanel .name {
@@ -1112,6 +1159,8 @@ span#keydraw a {
 
 #playgroundPanel .power {
 	font-weight: normal;
+	font-size: 12px;
+	margin-top: 3px;
 }
 
 #playgroundPanel .content {
@@ -1126,26 +1175,35 @@ span#keydraw a {
 	flex: 50%;
 }
 
+#playgroundPanel .actor .buy {
+	width: 100%;
+}
+
 #playgroundPanel .actor .text {
 	position: absolute;
-	bottom: 10px;
+	width: 100%;
+	bottom: 5px;
 	left: 50%;
 	transform: translateX(-50%);
-	color: rgba(255, 255, 255, 0.9);
+	color: rgba(255, 255, 255, 1);
+}
+
+#playgroundPanel .actor .flavor {
+	font-size: 12px;
+	font-weight: normal;
+	font-style: italic;
 }
 
 #playgroundPanel .buy {
-	//float:right;
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	width: 60px;
+	float: right;
 	height: 60px;
 	border-radius: 5px;
 	color: rgba(255, 255, 255, 0.9);
 	padding: 8px;
-	font-size: 25px;
+	font-size: 20px;
 	cursor: url('svg/cursor-pointer.svg'), pointer;
+	text-align: center;
+	display: inline;
 }
 
 #playgroundPanel.white .buy,
@@ -1160,12 +1218,12 @@ span#keydraw a {
 }
 
 #playgroundPanel .buy.disabled {
-	opacity: 0.3;
+	opacity: 0.5;
 	cursor: url('svg/cursor-default.svg'), default;	
 }
 
 #playgroundPanel .price {
-	font-size: 10px;
+	font-size: 13px;
 	letter-spacing: -0.5px;
 	font-weight: normal;
 	pointer-events: none;
@@ -1179,16 +1237,24 @@ span#keydraw a {
 
 #playgroundPanel .secondary {
 	flex: 50%;
+	text-align: left;
 }
 
 #playgroundPanel .tertiary {
 	flex: 50%;
 	display: flex;
 	flex-direction: column;
+	text-align: left;
+}
+
+#playgroundPanel .head {
+	//display: flex;
 }
 
 #playgroundPanel .tertiary .text {
 	margin-bottom:20px;
+	float: left;
+	display: inline;
 }
 
 #playgroundPanel .tertiary .buyBox {
@@ -1204,6 +1270,22 @@ span#keydraw a {
 	border-radius: 5px;
 	padding: 8px;
 	cursor: url('svg/cursor-pointer.svg'), pointer;
+	text-align: center;
+}
+
+#playgroundPanel .tertiary .buyBox .buyFinal.disabled {
+	opacity: 0.5;
+	cursor: url('svg/cursor-default.svg'), default;
+}
+
+#playgroundPanel .tertiary .buyBox .buyFinal.deactivated {
+	opacity: 0.5;
+	background-color: #ccc !important;
+	cursor: url('svg/cursor-default.svg'), default;
+}
+
+#playgroundPanel .tertiary .buyBox .buyFinal#white-f {
+	color: #000;
 }
 
 #playgroundPanel .tertiary .buyFinal:last-child {

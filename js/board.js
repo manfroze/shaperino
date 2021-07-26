@@ -151,7 +151,7 @@ function update(){
 	draw();
 	updateSelectors();
 	writeBlazon();
-	gridMove();
+	//gridMove();
 	writePowerCounters();
 	cloner('shapeClone');
 }

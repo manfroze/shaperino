@@ -41,7 +41,12 @@ function start() {
 		},
 		navigator: {
 			show: "hide",
-			score: 0,
+			score: {
+				top: 0,
+				bottom: 0,
+				left: 0,
+				right: 0
+			},
 		},
 		hypertoken: "circle"
 	}
@@ -72,7 +77,63 @@ function start() {
 		shaperinoSec: "unlocked"
 	}
 
-	colorToken = {
+	playgroundUnlock = {
+		black: {
+
+		},
+		white: {
+		},
+		red: {
+		},
+		yellow: {
+		},
+		blue: {
+		},
+		orange: {
+			red: "buyable",
+			yellow: "buyable",
+		},
+		green: {
+			blue: "buyable",
+			yellow: "buyable",
+		},
+		violet: {
+			red: "buyable",
+			blue: "buyable",
+		},
+		grey: {
+			black: "buyable",
+			white: "buyable",
+		},
+		darkred: {
+		},
+		darkyellow: {
+		},
+		darkblue: {
+		},
+		lightred: {
+		},
+		lightyellow: {
+		},
+		lightblue: {
+		},
+		darkorange: {
+		},
+		darkgreen: {
+		},
+		darkviolet: {
+		},
+		lightorange: {
+		},
+		lightgreen: {
+		},
+		lightviolet: {
+		},
+
+
+	}
+
+	playgroundToken = {
 		black: {
 			primary: 0,
 			final: 0
@@ -420,10 +481,11 @@ function start() {
 		catalogueStatus: catalogueStatus,
 		itemStatus: itemStatus,
 		toggleStatus: toggleStatus,
-		colorToken: colorToken,
+		playgroundToken: playgroundToken,
 		counter: counter,
 		power: power,
 		upgradeLevel: upgradeLevel,
+		playgroundUnlock: playgroundUnlock
 	}
 }
 
@@ -437,7 +499,8 @@ function updateState(){
 	itemStatus = state.itemStatus;
 	toggleStatus = state.toggleStatus;
 	counter = state.counter;
-	colorToken = state.colorToken;
+	playgroundToken = state.playgroundToken;
+	playgroundUnlock = state.playgroundUnlock;
 	power = state.power;
 	upgradeLevel = state.upgradeLevel;
 }
@@ -463,12 +526,10 @@ activeChargePositions = activeItems.filter(value => chargePositions.includes(val
 // STARTUP //
 
 $( document ).ready(function() {
-
 	if (localStorage.getItem('state')) {
 		state = JSON.parse(localStorage.getItem('state'))
 		updateState();
 	};
-
 	$.each(items, function(item){
 		if (itemStatus[item] == "unlocked") {
 			drawItem(item, "unlocked");
@@ -479,13 +540,10 @@ $( document ).ready(function() {
 		};
 		updateSelectors();
 	});
-
 	if (upgradeLevel.blazon.l0.status == "bought") {
 		addBlazon();
 	}
-
 	update();
-
 	$.each(upgradeLevel, function(item, itemValue){
 		$.each(itemValue, function(level, levelValue){
 			if (upgradeLevel[item][level].status == "unlocked") {
@@ -495,7 +553,6 @@ $( document ).ready(function() {
 			}
 		});
 	});
-
 	if(toggleStatus.hyper == "unlocked"){
 		hyperDraw();
 	}
@@ -510,7 +567,6 @@ $( document ).ready(function() {
 		current.hyper.status = "disabled";
 		update();
 	}
-
 	if (current.playground.show == "show"){
 		$('#shaperino').css('visibility','hidden');
 		$('#playground').css('visibility','visible');

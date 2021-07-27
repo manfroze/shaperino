@@ -153,13 +153,13 @@ $(document).keydown(function(event) {
 	} });
 
 $(document).bind('keydown', function (event) {
-	if (event.key == "l") {
+	if (event.key == "v") {
 		viewport();
 	}
 });
 
 $(document).keydown(function(event) {
-	if (event.key === 'v') {
+	if (event.key === 'j') {
 		$.each(catalogue, function(k, v){
 			currentStatus.catalogue[k] = "unlocked";
 		});

@@ -88,12 +88,10 @@ function playgroundPanel(colorName){
 	$('#playgroundPanel').removeClass().addClass(colorName);
 	$('#playgroundPanel').css( "background-color", colorCode[colorName]);
 	$('#playgroundPanel').css( "color", colorCode[colorName]);
-
 	// TRICT //
 
 	if(playground[colorName].type == "trict"){
 		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="actor box"><div class="text"><span class="amount"></span><span class="name"></span><span class="flavor"></span></div><div class="buy" item="' + colorName + '"><span>hire one</span><span class="price">for ' + playground[colorName].price[0] + ' ' + playground[colorName].primary + '</span></div></div><div class="items"><div class="secondary box"><div class="head"><div class="text"><span class="amount"></span><span class="name"></span></div><div class="buy hire">hire...<span class="' + nextColors(colorName)[0] + '"></span><span class="' + nextColors(colorName)[1] + '"></span></div><div class="buy upgrade">upgrade...</div></div><span class="desc"></span></div><div class="tertiary box"><div class="head"><div class="text"><span class="amount"></span><span class="name"></span></div><div class="buy" item="' + colorName + '"><span class="howmuch">+1</span><span class="price">' + playground[colorName].price[1] + ' ' + playground[colorName].secondary + '</span></div></div><div class="buyBox"></div></div></div>');
-		$('#playgroundPanel .amount').html('<img src="svg/loading.gif" />');
 		$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");			
 		$('#playgroundPanel .box.actor').css( "background", "url('svg/" + colorName + "-actor.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
 		$('#playgroundPanel .box.secondary').css( "background", "linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
@@ -109,6 +107,7 @@ function playgroundPanel(colorName){
 			$('#playgroundPanel.' + colorName + ' .tertiary .buyFinal#'+ col + '-f').css("background-color", colorCode[col]);
 			if(playgroundUnlock[colorName][col] == "bought"){
 				$('#playgroundPanel.' + colorName + ' .buyFinal#' + col + '-f').removeClass("disabled").addClass("deactivated");
+				$('#playgroundPanel.' + colorName + ' .buyFinal#' + col + '-f .price').html("bought");
 			}
 		});
 		$.each(colors, function(key, col){
@@ -133,7 +132,7 @@ function playgroundPanel(colorName){
 		$('#playgroundPanel .box.final').css( "background", "linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
 		$('#playgroundPanel.' + colorName + ' .final .name').html(playground[colorName].final);
 	}
-
+	$('#playgroundPanel .amount').html('<img src="svg/loading.gif" />');
 }
 
 function playgroundOverlay(colorName, kind){
@@ -200,6 +199,7 @@ function playgroundBuy(item, item2, type){
 
 			playgroundUnlock[item][item2] = "bought";
 			$('#playgroundPanel.' + item + ' .buyFinal#' + item2 + '-f').removeClass("disabled").addClass("deactivated");
+			$('#playgroundPanel.' + item + ' .buyFinal#' + item2 + '-f .price').html("bought");
 		}	
 	} else if (type == "hireForward"){
 		if (playgroundToken[item].secondary >= playground[item].price[3]) {

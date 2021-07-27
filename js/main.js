@@ -667,7 +667,7 @@ const playground = {
 	grey: {
 		type: 'trict',
 		primary: 'smog',
-		secondary: 'business',
+		secondary: 'biz',
 		tertiary: 'capital',
 		actor: 'men',
 		flavor: 'it\'s a life.',

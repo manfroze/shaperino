@@ -1137,7 +1137,8 @@ span#keydraw a {
 }
 
 .box img {
-	width: 35px;
+	width: 30px;
+	margin-top: 5px;
 	margin-bottom: 8px;
 	mix-blend-mode: multiply;
 	opacity: 0.5;
@@ -1348,8 +1349,9 @@ span#keydraw a {
 }
 
 #playgroundPanel .tertiary .buyBox .buyFinal.deactivated {
-	opacity: 0.5;
+	opacity: 0.45;
 	background-color: #ccc !important;
+	color: #fff !important;
 	cursor: url('svg/cursor-default.svg'), default;
 }
 

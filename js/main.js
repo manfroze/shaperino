@@ -606,6 +606,10 @@ const toggle = {
 		name: "shaperino",
 		desc: "back to the main guy",
 	},
+	viewport: {
+	name: "viewport",
+	desc: "show/hide the viewport",
+	},
 }
 
 const playground = {
@@ -963,16 +967,23 @@ const price = {
 		},
 		playground: {
 			name: "all the colors in the rainbow",
-			type: "playground",
+			type: "toggle",
 			data: [""],
 			desc: "unlock the playground"
 		},
 		navigator: {
 			name: "in the grid",
-			type: "navigator",
+			type: "toggle",
 			data: [""],
 			desc: "unlock the navigator"
-		}
+		},
+		viewport: {
+			name: "always with you",
+			type: "toggle",
+			data: [""],
+			desc: "unlock the viewport"
+		},
+
 	}
 
 	const achievement = {
@@ -1063,6 +1074,9 @@ function start() {
 			show: "hide",
 			tab: "green"
 		},
+		viewport: {
+			show: "hide",
+		},
 		navigator: {
 			show: "hide",
 			score: {
@@ -1098,6 +1112,7 @@ function start() {
 		upgrades: "locked",
 		playgroundSec: "locked",
 		navigatorSec: "locked",
+		viewportSec: "locked",
 		shaperinoSec: "unlocked"
 	}
 
@@ -1415,6 +1430,12 @@ function start() {
 				unlock: [1000, "rhombus"],
 				price: [1000, "top"],
 			},
+		},
+		viewport: {
+			l0: {
+				unlock: [1000, "rhombus"],
+				price: [1000, "top"],
+			},
 		}
 	}
 
@@ -1531,6 +1552,9 @@ $( document ).ready(function() {
 	if(currentStatus.toggle.navigator == "unlocked"){
 		toggleAdd('navigator');
 	}
+	if(currentStatus.toggle.viewport == "unlocked"){
+		toggleAdd('viewport');
+	}
 
 	if(current.hyper.status == "enabled"){
 		current.hyper.status = "disabled";
@@ -1571,6 +1595,8 @@ function swap(json){
 	return ret;
 }
 
+// STYLE //
+
 function style(){
 	$.each(shape, function(key, value){
 		$('.item#' + value +'').css('background-image', 'url("svg/' + value + '.svg")')
@@ -1602,6 +1628,7 @@ function style(){
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
 	$('.button.large.navigator').css('background-image', 'url("svg/navigator.svg")')
+	$('.button.large.viewport').css('background-image', 'url("svg/viewport.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
 	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
 

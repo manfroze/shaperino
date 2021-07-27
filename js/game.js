@@ -701,3 +701,16 @@ $(document).on( "click", ".item.active", function(e) {
 		selector("main");
 	}
 });
+
+// VIEWPORT //
+
+$(document).on( "click", "#viewportToggle", function(e) {
+	toggleToggle('viewport');
+	style();
+});
+
+$(document).bind('keydown', function (event) {
+	if (event.key == "v") {
+		toggleToggle('viewport');
+	}
+});

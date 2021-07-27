@@ -7,6 +7,7 @@ function addAll(){
 	hyperAdd();
 	toggleAdd('playground');
 	toggleAdd('navigator');
+	toggleAdd('viewport');
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {
 			addUpgrade(key, levelKey);
@@ -151,12 +152,6 @@ $(document).keydown(function(event) {
 	if (event.key === 'w') {
 		drawWonderBar();
 	} });
-
-$(document).bind('keydown', function (event) {
-	if (event.key == "v") {
-		viewport();
-	}
-});
 
 $(document).keydown(function(event) {
 	if (event.key === 'j') {

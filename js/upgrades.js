@@ -64,19 +64,14 @@ function upgradeEffect(item){
 	if (upgrade[item].type == "hyper") {
 		hyperAdd();
 	}
-	if (upgrade[item].type == "playground") {
-		//playgroundAdd();
-		toggleAdd('playground');
+	if (upgrade[item].type == "toggle") {
+		toggleAdd(item);
 	}
-	if (upgrade[item].type == "navigator") {
-		//navigatorAdd();
-		toggleAdd('navigator');
-	}	
 }
 
 // TOGGLES //
 
-toggleNames = ["navigator", "playground"]
+toggleNames = ["navigator", "playground", "viewport"]
 
 function toggleDraw(toggleName){
 $("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked ' + toggleName + ' active"><span class="name">'+ toggle[toggleName].name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle[toggleName].desc +'</span></div>');
@@ -94,25 +89,43 @@ function toggleAdd(toggleName){
 }
 
 function toggleToggle(toggleName){
+
 	resetPanel();
+if (toggleName == "playground" || toggleName == "navigator"){
 	$.each(toggleNames, function(k, v){
 		if (v != toggleName){
+			console.log(v);
 			current[v].show = "hide";
 			toggleDraw(v);
 			$('#' + v).css('visibility','hidden')
 		}
-	}) 
+	});
+}
 	if(currentStatus.toggle[toggleName] == "unlocked"){
 		if (current[toggleName].show == "hide"){
 			current[toggleName].show = "show";
-			$('#shaperino').css('visibility','hidden')
 			$('#' + toggleName).css('visibility','visible')
-			if (toggleName == "navigator"){drawNavigator();}
-			if (toggleName == "playground"){drawPlayground();}
+			if (toggleName == "navigator"){
+				$('#shaperino').css('visibility','hidden')
+				drawNavigator();
+			}
+			if (toggleName == "playground"){
+				$('#shaperino').css('visibility','hidden')
+				drawPlayground();
+			}
+			if (toggleName == "viewport"){
+				viewport();
+			}
 		} else if (current[toggleName].show == "show"){
 			current[toggleName].show = "hide";
-			$('#shaperino').css('visibility','visible')
-			$('#' + toggleName).css('visibility','hidden')
+			if (toggleName == "playground" || toggleName == "navigator"){
+				$('#shaperino').css('visibility','visible')
+				$('#' + toggleName).css('visibility','hidden')
+			}
+			if (toggleName == "viewport"){
+				viewport();
+			}
+			
 			toggleDraw(toggleName);
 		}
 		style();

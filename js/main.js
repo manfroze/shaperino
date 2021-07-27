@@ -438,6 +438,23 @@ const catalogue = {
 		},
 	},
 	cat10: {
+		name: "bzzz",
+		main: {
+			shape: "circle",
+			color: "black",
+		},
+		charge: {
+			position: "left",
+			shape: "circle",
+			color: "red",
+		},
+		split: {
+			position: "leftright",
+			shape: "circle",
+			color: "red",
+		}
+	},
+	cat11: {
 		name: "good grief",
 		main: {
 			shape: "square",
@@ -456,23 +473,6 @@ const catalogue = {
 		hyper: {
 			shape: "cross",
 			color: "black",
-		}
-	},
-	cat11: {
-		name: "bzzz",
-		main: {
-			shape: "circle",
-			color: "black",
-		},
-		charge: {
-			position: "left",
-			shape: "circle",
-			color: "red",
-		},
-		split: {
-			position: "leftright",
-			shape: "circle",
-			color: "red",
 		}
 	},
 	cat12: {
@@ -641,8 +641,8 @@ const playground = {
 		tertiary: 'charms',
 		actor: 'leprechauns',
 		flavor: 'feel lucky?',
-		rate: 0.2,
-		price: [10, 20, 100]		
+		rate: 0.5,
+		price: [25, 50, 100, 1000]		
 	},	
 	orange: {
 		type: 'trict',		
@@ -652,7 +652,7 @@ const playground = {
 		actor: 'squeezers',
 		flavor: 'squeezin\'.',
 		rate: 0.5,
-		price: [50, 70, 500]		
+		price: [50, 100, 250, 2500]		
 	},
 	violet: {
 		type: 'trict',
@@ -661,64 +661,66 @@ const playground = {
 		tertiary: 'amulets',
 		actor: 'wizards',
 		flavor: 'hocus pocus.',
-		rate: 1,
-		price: [100, 150, 1000]
+		rate: 0.25,
+		price: [100, 250, 500, 5000]
 	},
 	grey: {
 		type: 'trict',
 		primary: 'smog',
-		secondary: 'jobs',
+		secondary: 'business',
 		tertiary: 'capital',
 		actor: 'men',
 		flavor: 'it\'s a life.',
-		rate: 5,
-		price: [500, 300, 10000]		
+		rate: 0.25,
+		price: [250, 500, 1000, 10000]		
 	},
 	lightred: {
 		type: 'adventure',
 		primary: 'lust',
-
+		secondary: 'love'
 
 	},
+	lightblue: {
+		primary: 'sky'
+	},
 	lightyellow: {
+		type: 'adventure',
 		primary: 'butter',
 		actor: 'men spreading butter',
 		secondary: 'spread butter',
 		tertiary: 'eaten butter'
 	},
-	lightblue: {
-		primary: 'sky'
-	},	
 	darkred: {
 		primary: 'rust',
 		actor: 'old factories',
 	},
+	darkblue: {
+		type: 'adventure',
+		primary: 'biz'
+	},
 	darkyellow: {
 		primary: 'gold'
 	},
-	darkblue: {
-		primary: 'biz'
+	lightgreen: {
+		primary: 'luck'
 	},
-	darkorange: {
-		primary: 'chocolate'
+	lightorange: {
+		primary: 'salmon'
+	},
+	lightviolet: {
+		primary: 'craze'
 	},
 	darkgreen: {
 		primary: 'tree'
+	},
+	darkorange: {
+		primary: 'chocolate'
 	},
 	darkviolet: {
 		primary: 'mystique',
 		actor: 'mystery men',
 		secondary: 'arcane',
 		tertiary: 'unknown'
-	},
-	lightorange: {
-		primary: 'salmon'
-	},
-	lightgreen: {
-		primary: 'luck'
-	},
-	lightviolet: {
-		primary: 'craze'
 	}
 }
 
@@ -1021,8 +1023,6 @@ const price = {
 		comp: 0.5
 	}
 
-
-
 // STARTUP //
 
 function start() {
@@ -1040,14 +1040,14 @@ function start() {
 		charge: {
 			status: "disabled",
 			position: "",
-			shape: "",
-			color: "",
+			shape: "circle",
+			color: "black",
 		},
 		split: {
-			status: "",
+			status: "disabled",
 			position: "",
-			shape: "",
-			color: "",
+			shape: "circle",
+			color: "black",
 		},
 		hyper: {
 			status: "disabled",
@@ -1297,198 +1297,168 @@ function start() {
 			l1: {
 				unlock: [50, "white"],
 				price: [100, "black"],
-				status: "locked",
 			},
 			l2: {
 				unlock: [500, "white"],
 				price: [1000, "black"],
-				status: "locked",
 			},
 			l3: {
 				unlock: [5000, "white"],
 				price: [10000, "black"],
-				status: "locked",
 			},
 			l5: {
 				unlock: [50000, "white"],
 				price: [100000, "black"],
-				status: "locked",
 			},
 
 			l5: {
 				unlock: [500000, "white"],
 				price: [1000000, "black"],
-				status: "locked",
 			},
-
-
 		},
 		boostidlecharge: {
 			l1: {
 				unlock: [100, "top"],
 				price: [200, "red"],
-				status: "locked",
 			},
 			l2: {
 				unlock: [1000, "top"],
 				price: [2000, "red"],
-				status: "locked",
 			},
 			l3: {
 				unlock: [10000, "top"],
 				price: [20000, "red"],
-				status: "locked",
 			},		
 		},
 		boostidlecolor: {
 			l1: {
 				unlock: [75, "rhombus"],
 				price: [150, "circle"],
-				status: "locked",
 			},
 			l2: {
 				unlock: [750, "rhombus"],
 				price: [1500, "circle"],
-				status: "locked",
 			},
 			l3: {
 				unlock: [7500, "rhombus"],
 				price: [15000, "circle"],
-				status: "locked",
 			},		
 		},
 		boostclickshape: {
 			l1: {
 				unlock: [50, "red"],
 				price: [200, "rhombus"],
-				status: "locked",
 			},
 			l2: {
 				unlock: [500, "red"],
 				price: [2000, "rhombus"],
-				status: "locked",
 			},
 			l3: {
 				unlock: [5000, "red"],
 				price: [20000, "rhombus"],
-				status: "locked",
 			},
 		},
 		boostclickcharge: {
 			l1: {
 				unlock: [75, "right"],
 				price: [100, "square"],
-				status: "locked",
 			},
 			l2: {
 				unlock: [750, "right"],
 				price: [1000, "square"],
-				status: "locked",
 			},
 			l3: {
 				unlock: [7500, "right"],
 				price: [10000, "square"],
-				status: "locked",
 			},
 		},
 		boostclickcolor: {
 			l1: {
 				unlock: [75, "white"],
 				price: [50, "top"],
-				status: "locked",
 			},
 			l2: {
 				unlock: [750, "white"],
 				price: [500, "top"],
-				status: "locked",
 			},
 			l3: {
 				unlock: [7500, "white"],
 				price: [5000, "top"],
-				status: "locked",
 			},
 		},
 		blazon: {
 			l0: {
 				unlock: [10000, "left"],
 				price: [10000, "red"],
-				status: "locked",
 			},	
 		},
 		wonderbar: {
 			l0: {
 				unlock: [10000, "red"],
-				price: [10000, "rhombus"],
-				status: "locked",
+				price: [1000, "cross"],
 			},	
 		},
 		hyper: {
 			l0: {
 				unlock: [1000, "red"],
 				price: [10000, "blue"],
-				status: "locked",
 			},
 		},
 		playground: {
 			l0: {
 				unlock: [125, "top"],
 				price: [1000, "yellow"],
-				status: "locked",
 			},
 		},
 		navigator: {
 			l0: {
 				unlock: [1000, "rhombus"],
 				price: [1000, "top"],
-				status: "locked",
 			},
 		}
 	}
 
-	itemStatus = {};
-	achievementStatus = {};
-	catalogueStatus = {};
-	toggleStatus = {};
+	currentStatus = {}
 
-	$.each(items, function(k, v){
-		itemStatus[k] = "locked";
+	$.each(["item", "achievement", "catalogue", "toggle", "upgrade"], function(key, val){
+		currentStatus[val] = {};
+	}); 
+
+	$.each(items, function(item, v){
+		currentStatus.item[item] = "locked";
 	});
 
-	itemStatus.circle = "active";
-	itemStatus.black = "active";
+	currentStatus.item.circle = "active";
+	currentStatus.item.black = "active"; 
 
-	$.each(achievement, function(k, v){
-		achievementStatus[k] = "locked";
+	$.each(achievement, function(achievement, v){
+		currentStatus.achievement[achievement] = "locked";
 	});
 
 	$.each(catalogue, function(k, v){
-		catalogueStatus[k] = "locked";
+		currentStatus.catalogue[k] = "locked";
 	});
 
 	$.each(toggle, function(k, v){
-		toggleStatus[k] = "locked";
+		currentStatus.toggle[k] = "locked";
 	});
 
-
-	prova = {};
-
-	$.each(colors, function(k, v){
-		prova[v] = "ok";
-		prova[v].state = "balla";
+	$.each(upgradeLevel, function(upgrade, v){
+		currentStatus.upgrade[upgrade] = {};
+		$.each(v, function(level, val){
+			//console.log(level, val)
+			currentStatus.upgrade[upgrade][level] = "locked";
+		});
 	});
 
 	state = {
 		options: options,
 		current: current,
-		achievementStatus: achievementStatus,
-		catalogueStatus: catalogueStatus,
-		itemStatus: itemStatus,
-		toggleStatus: toggleStatus,
+		currentStatus: currentStatus,
 		playgroundToken: playgroundToken,
 		counter: counter,
 		power: power,
-		upgradeLevel: upgradeLevel,
-		playgroundUnlock: playgroundUnlock
+		playgroundUnlock: playgroundUnlock,
 	}
 }
 
@@ -1497,15 +1467,11 @@ start();
 function updateState(){
 	options = state.options;
 	current = state.current;
-	achievementStatus = state.achievementStatus;
-	catalogueStatus = state.catalogueStatus;
-	itemStatus = state.itemStatus;
-	toggleStatus = state.toggleStatus;
+	currentStatus = state.currentStatus;
 	counter = state.counter;
 	playgroundToken = state.playgroundToken;
 	playgroundUnlock = state.playgroundUnlock;
 	power = state.power;
-	upgradeLevel = state.upgradeLevel;
 }
 
 activeItems = [];
@@ -1515,7 +1481,7 @@ activeChargePositions = [];
 
 function findActiveItems(){
 	$.each(items, function(index, value){
-		if(itemStatus[index] == "active"){
+		if(currentStatus.item[index] == "active"){
 			if(!activeItems.includes(index)){
 				activeItems.push(index);
 			}
@@ -1534,35 +1500,35 @@ $( document ).ready(function() {
 		updateState();
 	};
 	$.each(items, function(item){
-		if (itemStatus[item] == "unlocked") {
+		if (currentStatus.item[item] == "unlocked") {
 			drawItem(item, "unlocked");
 		};
-		if (itemStatus[item] == "active") {
+		if (currentStatus.item[item] == "active") {
 			drawItem(item, "active");
 			$('#' + item + ' .price.tag').remove();
 		};
 		updateSelectors();
 	});
-	if (upgradeLevel.blazon.l0.status == "bought") {
+	if (currentStatus.upgrade.blazon.l0 == "bought") {
 		addBlazon();
 	}
 	update();
 	$.each(upgradeLevel, function(item, itemValue){
 		$.each(itemValue, function(level, levelValue){
-			if (upgradeLevel[item][level].status == "unlocked") {
+			if (currentStatus.upgrade[item][level] == "unlocked") {
 				addSection("upgrades");
 				addSubSection("upgrades", "upgrades")
 				upgradeDraw(item, level);
 			}
 		});
 	});
-	if(toggleStatus.hyper == "unlocked"){
+	if(currentStatus.toggle.hyper == "unlocked"){
 		hyperDraw();
 	}
-	if(toggleStatus.playground == "unlocked"){
+	if(currentStatus.toggle.playground == "unlocked"){
 		toggleAdd('playground');
 	}
-	if(toggleStatus.navigator == "unlocked"){
+	if(currentStatus.toggle.navigator == "unlocked"){
 		toggleAdd('navigator');
 	}
 

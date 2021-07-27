@@ -155,6 +155,7 @@ function update(){
 	writeBlazon();
 	writePowerCounters();
 	cloner('shapeClone');
+	cloner('viewportCanvas');
 }
 
 update();
@@ -203,8 +204,8 @@ function addSubSection(section, subsection){
 	}
 }
 function addUnlock(item){
-	if (itemStatus[item] == "locked") {
-		itemStatus[item] = "unlocked";
+	if (currentStatus.item[item] == "locked") {
+		currentStatus.item[item] = "unlocked";
 		drawItem(item, "unlocked");
 	}
 }
@@ -223,8 +224,8 @@ function drawItem(item, status){
 }
 
 function addItem(item){
-	if (itemStatus[item] == "unlocked") {
-		itemStatus[item] = "active"
+	if (currentStatus.item[item] == "unlocked") {
+		currentStatus.item[item] = "active"
 		$('#' + item + '').removeClass("unlocked").addClass("active");
 		$('#' + item + ' .price.tag').animate( {scale: 1.3}, 30).fadeOut();
 	}
@@ -282,28 +283,28 @@ function writeHyperTime(){
 
 function powerCounters(){
 
-var powerCalc = {}	
+	var powerCalc = {}	
 
-$.each(powertype, function(k, powertype){
+	$.each(powertype, function(k, powertype){
 		powerCalc[powertype] = {};
-	$.each(allItems, function(key, item){
-		powerCalc[powertype][item] = 0;
+		$.each(allItems, function(key, item){
+			powerCalc[powertype][item] = 0;
+		});
 	});
-});
 
-$.each(powertype, function(k, powertype){
-	$.each(mode, function(key, value){
-		if (current[value].status == "enabled") {
-			powerCalc[powertype][current[value].shape] += power[powertype].shape * multi[value];
-			if(color.basic.includes(current[value].color)) {
-				powerCalc[powertype][current[value].color] += power[powertype].color * multi[value];
+	$.each(powertype, function(k, powertype){
+		$.each(mode, function(key, value){
+			if (current[value].status == "enabled") {
+				powerCalc[powertype][current[value].shape] += power[powertype].shape * multi[value];
+				if(color.basic.includes(current[value].color)) {
+					powerCalc[powertype][current[value].color] += power[powertype].color * multi[value];
 
+				}
 			}
+		});
+		if (current.charge.status == "enabled" && position.side.includes(current.charge.position)) {
+			powerCalc[powertype][current.charge.position] += power[powertype].position;
 		}
-	});
-	if (current.charge.status == "enabled" && position.side.includes(current.charge.position)) {
-		powerCalc[powertype][current.charge.position] += power[powertype].position;
-	}
 
 	// COMP //
 
@@ -397,11 +398,8 @@ function boost(type, kind, amount){
 
 function loop(){
 	setInterval(function(){ 
-	//	powerCalculate = powerCounters();
 		writePowerCounters();
 		writeHyperTime();
-	}, 300);
-	setInterval(function(){ 
 		increaseCounters("idle");
 		writeCounters();
 		priceUnlock();
@@ -409,10 +407,10 @@ function loop(){
 		achievementCheck();
 		catalogueCheck();
 		hyperUnlock();
+		playgroundTokenIncrease();
+		playgroundTokenDraw();
+		playgroundBuyState();
 	}, 1000);
-	setInterval(function(){ 
-		//selector("main")
-	}, 10000);
 }
 
 loop();
@@ -434,13 +432,19 @@ function animateShaperino(){
 	setTimeout(() => { $("#shaperino #wonder-canvas svg").animate( {scale: 1}, 100); }, 0);
 }
 
+$( document ).on( "click", "#viewport", _.throttle(animateViewport, 200) );
+function animateViewport(){
+	$("#viewport svg").animate( {scale: 0.80}, 100);
+	setTimeout(() => { $("#viewport svg").animate( {scale: 1}, 100); }, 0);
+}
+
 // HYPER //
 
 var hyperTimer = 100;
 
 function hyperAdd(){
-	if (toggleStatus.hyper == "locked") {
-		toggleStatus.hyper = "unlocked";
+	if (currentStatus.toggle.hyper == "locked") {
+		currentStatus.toggle.hyper = "unlocked";
 		current.hypertoken = rand(token);
 		hyperDraw();
 	}
@@ -556,6 +560,21 @@ function writeBlazon(){
 	$("#blazon span").html(makeBlazon());
 }
 
+// VIEWPORT //
+
+vp = "disabled"
+
+function viewport(){
+	if(vp == "disabled"){
+		vp = "enabled";
+		$("#viewport").show();
+		$("#viewport").draggable();
+		cloner('viewportCanvas');
+	} else if (vp == "enabled"){
+		vp = "disabled";
+		$("#viewport").hide();
+	}
+}
 
 // INPUT //
 
@@ -568,6 +587,10 @@ $(document).on("click", "#hyperActivate.buyable.active", function(e) {
 // SHAPERINO //
 
 $(document).on( "click", "#shaperino", function(e) {
+	increaseCounters("click");
+});
+
+$(document).on( "click", "#viewportCanvas", function(e) {
 	increaseCounters("click");
 });
 

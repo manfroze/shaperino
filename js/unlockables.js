@@ -4,7 +4,7 @@ function achievementCheck(){
 	$.each(achievement, function(k, v) {
 		$.each(v, function(key, value) {
 			// COUNTERS //
-			if (counter[v.data] >= v.amount && achievementStatus[k] == "locked" && v.type == "counter") {
+			if (counter[v.data] >= v.amount && currentStatus.achievement[k] == "locked" && v.type == "counter") {
 				achievementUnlock(k);
 			}
 		});
@@ -12,7 +12,7 @@ function achievementCheck(){
 }
 
 function achievementUnlock(value){
-	achievementStatus[value] = "unlocked";
+	currentStatus.achievement[value] = "unlocked";
 	$("#container").append($('<div class="alert"><span class="title">' + achievement[value].name + '</span><span class="desc">' + achievement[value].desc + '</span></div>').hide().fadeIn(500).delay(2500).fadeOut(500));
 	achievementDraw();
 }
@@ -22,7 +22,7 @@ function achievementDraw(){
 	$.each(achievement, function(k, v) {
 		$("#achievements.panel .content").append('<div id="' + k + '" class="achievement tile" title="' + achievement[k].expl + '"><div class="name"><span>' + achievement[k].name + '</span><div class="expl"><span>' + achievement[k].expl + '</span></div></div></div>');
 		$("#achievements.panel #" + k).addClass("locked");
-		if (achievementStatus[k] == "unlocked") {
+		if (currentStatus.achievement[k] == "unlocked") {
 				//$("#achievements.panel #" + k + " span").html(achievement[k].name);
 				$("#achievements.panel #" + k).removeClass("locked").addClass("unlocked");
 			}
@@ -33,8 +33,8 @@ function achievementDraw(){
 activeAchievements = [];
 
 function achievementCount(){
-	$.each(achievementStatus, function(index, v){
-		if(achievementStatus[index] == "unlocked"){
+	$.each(currentStatus.achievement, function(index, v){
+		if(currentStatus.achievement[index] == "unlocked"){
 		if(!activeAchievements.includes(index)){
 			activeAchievements.push(index);
 		}
@@ -57,7 +57,7 @@ function arraysEqual(a, b) {
 
 function catalogueCheck(){
 	$.each(catalogue, function(name, value){
-		if(catalogueStatus[name] == "locked"){
+		if(currentStatus.catalogue[name] == "locked"){
 			curr = []
 			cata = []
 			curr.push(current.main.shape, current.main.color);
@@ -76,7 +76,7 @@ function catalogueCheck(){
 }
 
 function catalogueUnlock(value){
-	catalogueStatus[value] = "unlocked";
+	currentStatus.catalogue[value] = "unlocked";
 	$("#container").append($('<div class="alert"><span class="title">' + catalogue[value].name + '</span></div>').hide().fadeIn(500).delay(2500).fadeOut(500));
 	catalogueDraw();
 }
@@ -86,7 +86,7 @@ function catalogueDraw(){
 	$.each(catalogue, function(id, value) {
 		$("#cataloguePanel.panel .content").append('<div id="' + id + '" class="catalogue tile"><div class="name"><span></span></div></div>');
 		$("#cataloguePanel.panel #" + id).addClass("locked");
-		if (catalogueStatus[id] == "unlocked") {
+		if (currentStatus.catalogue[id] == "unlocked") {
 			$("#cataloguePanel.panel #" + id).removeClass("locked").addClass("unlocked");
 			$("#cataloguePanel.panel #" + id + ' .name span').html(catalogue[id].name);
 		}
@@ -143,8 +143,8 @@ $.each(catalogue, function(id, value) {
 activeCatalogue = [];
 
 function catalogueCount(){
-	$.each(catalogueStatus, function(index, v){
-		if(catalogueStatus[index] == "unlocked"){
+	$.each(currentStatus.catalogue, function(index, v){
+		if(currentStatus.catalogue[index] == "unlocked"){
 			if(!activeCatalogue.includes(index)){
 				activeCatalogue.push(index);
 			} }

@@ -122,7 +122,7 @@ $(document).keydown(function(event) {
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'd') { 
+	if (event.key === 'k') { 
 		randomShape();
 	} });
 
@@ -152,10 +152,16 @@ $(document).keydown(function(event) {
 		drawWonderBar();
 	} });
 
+$(document).bind('keydown', function (event) {
+	if (event.key == "l") {
+		viewport();
+	}
+});
+
 $(document).keydown(function(event) {
 	if (event.key === 'v') {
 		$.each(catalogue, function(k, v){
-			catalogueStatus[k] = "unlocked";
+			currentStatus.catalogue[k] = "unlocked";
 		});
 		catalogueDraw();
 	} });

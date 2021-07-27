@@ -68,22 +68,24 @@ function updateNavScore(){
 
 
 $(document).bind('keydown', function (event) {
+	
 	if (current.navigator.show == "show"){
-		$(".center.column").css("overflow-y", "hidden");
+		$(".column").css("overflow-y", "hidden");
 		$(".center.column").css("overflow-x", "hidden");
-		if (event.key == "ArrowLeft") {
+
+		if (event.key == "ArrowLeft" || event.key == "a") {
 			current.charge.position = "left";
 			update();
 		}
-		if (event.key == "ArrowUp") {
+		if (event.key == "ArrowUp" || event.key == "w") {
 			current.charge.position = "top";
 			update();
 		}
-		if (event.key == "ArrowRight") {
+		if (event.key == "ArrowRight" || event.key == "d") {
 			current.charge.position = "right";
 			update();
 		}
-		if (event.key == "ArrowDown") {
+		if (event.key == "ArrowDown" || event.key == "s") {
 			current.charge.position = "bottom";
 			update();
 		}
@@ -91,7 +93,7 @@ $(document).bind('keydown', function (event) {
 });
 
 $(document).bind('keyup', function (event) {
-	$(".center.column").css("overflow-y", "scroll");
+	$(".column").css("overflow-y", "scroll");
 	$(".center.column").css("overflow-x", "hidden");
 });
 

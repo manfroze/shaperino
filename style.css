@@ -99,9 +99,7 @@ display: none;
 	height: 500px;
 	text-align: center;
 	position: absolute;
-	top: 100px;
-	//border: 1px solid #f00;
-	
+	top: 100px;	
 }
 
 .canvas {
@@ -657,6 +655,7 @@ display: none;
 	padding: 20px;
 	width: 300px;
 	border-radius: 8px;
+	z-index: 6000;
 }
 
 .dialog textarea {
@@ -679,6 +678,7 @@ display: none;
 	left: 0;
 	background-color: #000;
 	opacity: 0.5;
+	z-index: 5000;
 }
 
 #footer {
@@ -1121,6 +1121,8 @@ span#keydraw a {
 	color: rgb(255, 255, 255);
 	padding: 15px;
 	box-sizing: border-box;
+	position: relative;
+	//line-height: 1;
 }
 
 #playgroundPanel .box {
@@ -1132,6 +1134,13 @@ span#keydraw a {
 	text-align: center;
 	background-repeat: no-repeat !important;
 	//text-shadow: 2px 2px #000;
+}
+
+.box img {
+	width: 35px;
+	margin-bottom: 8px;
+	mix-blend-mode: multiply;
+	opacity: 0.5;
 }
 
 #playgroundPanel.white .box,
@@ -1241,6 +1250,24 @@ span#keydraw a {
 	text-align: left;
 }
 
+#playgroundPanel .secondary .buy {
+	height: auto;
+	width: 95px;
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+
+#playgroundPanel .secondary .hire span {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-color: #ccc;
+	float: right;
+	margin-left: 5px;
+	border-radius: 2px;
+
+}
+
 #playgroundPanel .tertiary {
 	flex: 50%;
 	display: flex;
@@ -1248,14 +1275,55 @@ span#keydraw a {
 	text-align: left;
 }
 
+#playgroundPanel .tertiary .buy {
+	width: 95px;	
+}
+
 #playgroundPanel .head {
 	//display: flex;
 }
 
+#playgroundPanel .secondary .text ,
 #playgroundPanel .tertiary .text {
 	margin-bottom:20px;
 	float: left;
 	display: inline;
+}
+
+#playgroundPanel .secondary .overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(255, 255, 255, 0.8);
+	border-radius: 5px;
+	padding: 10px;
+	text-align: center;
+}
+#playgroundPanel .secondary .overlay .buy {
+	float: none;
+	width: 130px;
+	margin: 0 auto;
+	display: block;
+	margin-top: 10px;
+	white-space: nowrap;
+	text-align: center;
+}
+
+#playgroundPanel .secondary .overlay .buy::first-child {
+	margin-top: 30px;
+}
+
+#playgroundPanel .secondary .overlay .close {
+	float: right;
+	width: 25px;
+	height: 25px;
+	background-image: url('svg/cross.svg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	border-radius: 5px;
+	cursor: url('svg/cursor-pointer.svg'), pointer;
 }
 
 #playgroundPanel .tertiary .buyBox {
@@ -1264,7 +1332,7 @@ span#keydraw a {
 
 #playgroundPanel .tertiary .buyBox .buyFinal {
 	color: #fff;
-	font-size: 12px;
+	font-size: 13px;
 	flex: 50%;
 	margin-right: 10px;
 	display: inline-block;
@@ -1302,19 +1370,76 @@ span#keydraw a {
 	font-size: 12px;
 	position: absolute;
 	width: 90%;
-	bottom: 20px;
+	bottom: 10px;
 	left: 50%;
 	transform: translateX(-50%);
 }
 
-#playgroundPanel #shapeCloneContainer {
+/* ADVENTURE */
+
+#playgroundPanel .primary.small {
+	width: 100px;
 	position: absolute;
-	bottom: 12px;
-	right: 16px;
-	background-color: #ddd;
-	width: 120px;
-	height: 120px;
+	background-color: #fff !important;
+}
+
+#playgroundPanel .game {
+	height: 100%;
+	padding: 0;
+	background-color: #ccc;
+	position: relative;
+}
+
+#playgroundPanel .gameCanvas {
+	position: absolute;
+}
+
+#playgroundPanel .input {
+	height: 100px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-color: #aaa;
+	padding: 0;
+	margin: 0;
+	border-radius: 0 0 5px 5px;
+}
+
+#viewport {
+	display: none;
+	width: 242px;
+	height: 244px;
+	background-color: #eee;	
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	cursor: grab;
 	border-radius: 5px;
+	filter: drop-shadow(0px 5px 6px rgb(0 0 0 / 0.2));
+
+}
+
+#viewport:active {
+	cursor: grabbing;
+}
+
+#viewport #viewportCanvas {
+	transform: scale(2);
+	transform-origin: top left;
+	width: 100px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	border-radius: 5px;
+}
+
+#viewport svg {
+	cursor: url('svg/cursor-pointer.svg'), pointer;
+	transition: transform .5s ease
+}
+
+#viewport svg:hover {
+	filter: drop-shadow(0px 0px 3px rgb(0 0 0 / 0.2));
 }
 
 @keyframes move-right {

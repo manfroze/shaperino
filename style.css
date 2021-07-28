@@ -5,7 +5,7 @@ body {
 	text-align: center;
 	margin: 0;
 	cursor: url('svg/cursor-default.svg'), default;
-	//overflow: hidden;
+	overflow: hidden;
 }
 
 canvas {display: none;}
@@ -572,6 +572,8 @@ display: none;
 	font-weight: bold;
 }
 
+/* BLAZON */
+
 #blazon {
 	position: absolute;
 	bottom: 0px;
@@ -588,6 +590,8 @@ display: none;
 	font-size: 12px;
 	font-style: italic;
 }
+
+/* MENU AND PANEL */
 
 #menu {
 	display: flex;
@@ -684,6 +688,8 @@ display: none;
 	z-index: 5000;
 }
 
+/* FOOTER */
+
 #footer {
 	position: absolute;
 	bottom: 20px;
@@ -712,6 +718,8 @@ display: none;
 #menu .button#debug {
 	//display: none;
 }
+
+/* NAVIGATOR */
 
 #navigator {
 	margin: 30px auto 20px;
@@ -843,54 +851,11 @@ display: none;
 	z-index: 100;
 }
 
-@keyframes trinket-top {
-	from {transform: translateX(250px) translateY(20px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-bottom {
-	from {transform: translateX(250px) translateY(480px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-left {
-	from {transform: translateX(20px) translateY(250px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-right {
-	from {transform: translateX(480px) translateY(250px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-topleft {
-	from {transform: translateX(20px) translateY(20px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-topright {
-	from {transform: translateX(480px) translateY(20px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-bottomleft {
-	from {transform: translateX(20px) translateY(480px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-@keyframes trinket-bottomright {
-	from {transform: translateX(480px) translateY(480px);}
-    to {transform: translateX(250px) translateY(250px);}
-}
-
-#playground #shapeClone {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin-left: -50px;
-	margin-top: -50px;
-	display: inline-block;
-	width:  100px;
-	height: 100px;
-	transition: transform .5s ease
-}
-
 #shapeClone svg {
 	cursor: url('svg/cursor-pointer.svg'), pointer;
 }
+
+/* ALERT */
 
 .alert {
 	position: fixed;
@@ -916,6 +881,8 @@ display: none;
 .alert span {
 	display: block;
 }
+
+/* UNLOCKABLES */
 
 #achievements.panel .content {
 	display: flex;
@@ -994,6 +961,8 @@ display: none;
 	display: none;
 }
 
+/* PLAYGROUND */
+
 #playground {
 	margin: 30px auto 20px;
 	width:  500px;
@@ -1001,6 +970,18 @@ display: none;
 	position: absolute;
 	top: 100px;
 	height: 500px;
+}
+
+#playground #shapeClone {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -50px;
+	margin-top: -50px;
+	display: inline-block;
+	width:  100px;
+	height: 100px;
+	transition: transform .5s ease
 }
 
 .button #shapeClone {
@@ -1074,7 +1055,6 @@ display: none;
 	padding: 15px;
 	box-sizing: border-box;
 	position: relative;
-	//line-height: 1;
 }
 
 #playgroundPanel .box {
@@ -1085,7 +1065,6 @@ display: none;
 	position: relative;
 	text-align: center;
 	background-repeat: no-repeat !important;
-	//text-shadow: 2px 2px #000;
 }
 
 .box img {
@@ -1096,10 +1075,8 @@ display: none;
 	opacity: 0.5;
 }
 
-#playgroundPanel.white .box,
-#playgroundPanel.lightyellow .box,
-#playgroundPanel.lightgreen .box {
-	background-color: rgba(30, 30, 30, 0.5) !important;
+#playgroundPanel.white .box {
+	background-color: rgba(50, 50, 50, 0.7) !important;
 	background-image: none !important;
 }
 
@@ -1319,6 +1296,33 @@ display: none;
 	flex-grow: 1;
 }
 
+#playgroundPanel #gemBox {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0 30px 0;
+}
+
+#playgroundPanel .gem {
+	width: 51px;
+	height: 51px;
+	//margin-left: 5px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#playgroundPanel .gem:first-child{
+	margin-left: 0;
+}
+
+#playgroundPanel .final .buy {
+	width: 100%;
+}
+
+#playgroundPanel .final .buy:last-child {
+	margin-top: 10px;
+}
+
+
 #playgroundPanel .desc {
 	font-weight: normal;
 	font-size: 12px;
@@ -1359,6 +1363,35 @@ display: none;
 	border-radius: 0 0 5px 5px;
 }
 
+#gameScreen {
+	display: none;
+	position: absolute;
+	width: 1200px;
+	height: 600px;
+	background-color: rgb(64, 0, 114);
+	position: absolute; 
+  	left: 0; 
+  	right: 0; 
+  	margin-left: auto; 
+  	margin-right: auto;
+  	margin-top: 50px;
+  	border-radius: 5px;
+  	z-index: 9991;
+}
+
+#screenDark {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.9);
+	z-index: 9990;
+}
+
+/* VIEWPORT */
+
 #viewport {
 	display: none;
 	width: 242px;
@@ -1395,6 +1428,35 @@ display: none;
 #viewport svg:hover {
 	filter: drop-shadow(0px 0px 3px rgb(0 0 0 / 0.2));
 }
+
+/*CLONES */
+
+#faviconClone {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: -1000px;
+	left: -1000px;
+}
+
+#copyClone {
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	background-color: #ddd;
+	top: -1000px;
+	left: -1000px;
+}
+
+#copyClone svg {
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+/* ANIMATIONS */
 
 @keyframes move-right {
 	from {background-position: 24px;}
@@ -1434,4 +1496,37 @@ display: none;
 @keyframes move-bottomleft {
 	from {background-position: 0px 24px;}
 	to {background-position: 24px 0px;}
+}
+
+@keyframes trinket-top {
+	from {transform: translateX(250px) translateY(20px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-bottom {
+	from {transform: translateX(250px) translateY(480px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-left {
+	from {transform: translateX(20px) translateY(250px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-right {
+	from {transform: translateX(480px) translateY(250px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-topleft {
+	from {transform: translateX(20px) translateY(20px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-topright {
+	from {transform: translateX(480px) translateY(20px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-bottomleft {
+	from {transform: translateX(20px) translateY(480px);}
+    to {transform: translateX(250px) translateY(250px);}
+}
+@keyframes trinket-bottomright {
+	from {transform: translateX(480px) translateY(480px);}
+    to {transform: translateX(250px) translateY(250px);}
 }

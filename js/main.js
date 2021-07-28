@@ -619,12 +619,12 @@ const toggle = {
 const playground = {
 	black: { 
 		type: 'final',
-		primary: 'pitch',
+		primary: 'coal',
 		final: 'obsidian'
 	},
 	white: {
 		type: 'final',
-		primary: 'snow',
+		primary: 'milk',
 		final: 'quartz'
 	},
 	red: {
@@ -650,7 +650,7 @@ const playground = {
 		actor: 'leprechauns',
 		flavor: 'feel lucky?',
 		rate: 0.5,
-		price: [25, 50, 100, 1000]		
+		price: [25, 50, 100, 5000]		
 	},	
 	orange: {
 		type: 'trict',		
@@ -660,7 +660,7 @@ const playground = {
 		actor: 'squeezers',
 		flavor: 'squeezin\'.',
 		rate: 0.5,
-		price: [50, 100, 250, 2500]		
+		price: [50, 100, 250, 7500]		
 	},
 	violet: {
 		type: 'trict',
@@ -670,7 +670,7 @@ const playground = {
 		actor: 'wizards',
 		flavor: 'hocus pocus.',
 		rate: 0.25,
-		price: [100, 250, 500, 5000]
+		price: [100, 250, 500, 10000]
 	},
 	grey: {
 		type: 'trict',
@@ -1629,6 +1629,11 @@ function style(){
 		});
 	});
 
+	$.each(color.basic, function(key, color){
+		$(`.gem.${color}.unlocked`).css(`background-image`, `url("svg/${color}-gem.svg`)
+		$(`.gem.${color}.locked`).css(`background-image`, `url("svg/${color}-gem-locked.svg`)
+	});
+
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
 	$('.button.large.navigator').css('background-image', 'url("svg/navigator.svg")')
@@ -1719,20 +1724,56 @@ $( window ).on("unload", function() {
 	updateLocalStorage();
 });
 
-// CANVAS //
+// FAVICON //
 
 function updateFavicon(){
-	html2canvas(document.querySelector("#shaperino"), { allowTaint: true, backgroundColor: "rgba(0,0,0,0)"}).then(function(canvas) {
-		var img = canvas.toDataURL("image/png");
-		var link = document.createElement('link');
-		link.type = 'image/x-icon';
-		link.rel = 'shortcut icon';
-		link.href = img;
-		document.getElementsByTagName('head')[0].appendChild(link);
-	})
+	cloner("faviconClone");
+	html2canvas(document.querySelector("#faviconClone"), { allowTaint: true, scale: 0.32, backgroundColor: "rgba(0,0,0,0)"}).then(
+		function(canvas) {
+			var favClone = canvas.toDataURL("image/png");
+			var link = document.createElement('link');
+			link.type = 'image/x-icon';
+			link.rel = 'shortcut icon';
+			link.href = favClone;
+			document.getElementsByTagName('head')[0].appendChild(link);
+		})
 }
 
+// COPY //
 
+async function askWritePermission() {
+	try {
+		const { state } = await navigator.permissions.query({ name: 'clipboard-write', allowWithoutGesture: false })
+		return state === 'granted'
+	} catch (error) {
+		errorEl.textContent = `Compatibility error (ONLY CHROME > V66): ${error.message}`
+		console.log(error)
+		return false
+	}
+}
 
+const setToClipboard = blob => {
+	const data = [new ClipboardItem({ [blob.type]: blob })]
+	return navigator.clipboard.write(data)
+}
 
+var copiedClone;
 
+function updateCopyClone(){
+	cloner("copyClone");
+	html2canvas(document.querySelector("#copyClone"), { allowTaint: true, scale: 20}).then(
+		function(canvas) {
+			copiedClone = canvas.toDataURL("image/png");
+		})
+}
+
+async function copyClone(){	
+	try {
+		const response = await fetch(copiedClone)
+		const blob = await response.blob()
+		await setToClipboard(blob)
+	} catch (error) {
+		console.error('Something wrong happened')
+		console.error(error)
+	}
+}

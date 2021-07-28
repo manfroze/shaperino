@@ -161,3 +161,8 @@ $(document).keydown(function(event) {
 		});
 		catalogueDraw();
 	} });
+
+$(document).keydown(function(event) {
+	if (event.key === 'g') {
+		copyClone();
+	} });

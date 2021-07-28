@@ -32,6 +32,10 @@ function playgroundTokenIncrease(){
 				if (current[value].status == "enabled"){
 					playgroundToken[current[value].color].primary +=1*multi[value];
 					pgPower[current[value].color] += 1*multi[value];
+					$.each(comp.color[current[value].color], function(index, comp){
+						playgroundToken[comp].primary +=1*multi[value]*multi.comp;
+						pgPower[comp] += 1*multi[value]*multi.comp;
+					});
 				}
 			});
 			// SECONDARY //
@@ -148,7 +152,6 @@ function playgroundPanel(colorName){
 		$('#playgroundPanel.' + colorName + ' .actor .flavor').html(playground[colorName].flavor);
 		$('#playgroundPanel.' + colorName + ' .secondary .name').html(playground[colorName].secondary);
 		$('#playgroundPanel.' + colorName + ' .tertiary .name').html(playground[colorName].tertiary);
-		$('#playgroundPanel .buy').css( "background-color", colorCode[colorName]);
 
 		$.each(comp.color[colorName], function(key, col){
 			$('#playgroundPanel.' + colorName + ' .tertiary .buyBox').append('<div class="buyFinal" id="' + col + '-f" item="' + colorName + '" final="'+ col + '">1 ' + playground[col].final + '<span class="price">' + formatNumber(playground[colorName].price[2]) + ' ' + playground[colorName].tertiary +'</></div>');
@@ -182,13 +185,42 @@ function playgroundPanel(colorName){
 	// FINAL //
 
 	if(playground[colorName].type == "final"){
-		$('#playground #playgroundPanel').html('<div class="primary box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="content"><div class="final box"><span class="amount"></span><span class="name"></span></div></div>');
+		$('#playground #playgroundPanel').html(`
+			<div class="primary box">
+				<span class="amount"></span><span class="name"></span><span class="power"></span>
+			</div>
+			<div class="content">
+				<div class="final box">
+					
+					<span class="amount"></span><span class="name"></span>
+					<div id="gemBox"></div>
+						<div class="buy disabled">
+							<span>infuse ${playground[colorName].final}</span>
+							<span class="price">${formatNumber(10000)} ${playground[colorName].primary}</span>
+						</div>
+						<div class="buy disabled">
+							<span>buy final ${colorName}</span>
+							<span class="price">8 ${playground[colorName].primary}-infused ${playground[colorName].final}</span>
+						</div>
+				</div>
+			</div>`);
 		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
 		$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");		
 		$('#playgroundPanel .box.final').css( "background", "linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");
 		$('#playgroundPanel.' + colorName + ' .final .name').html(playground[colorName].final);
+		for (var i = 1; i <= playgroundToken[colorName].final; i++) {
+			$(`.${colorName} #gemBox`).append(`<div class="gem ${colorName} unlocked"></div>`)
+		}
+		for (var i = 1; i <= 8-(playgroundToken[colorName].final); i++) {
+			$(`.${colorName} #gemBox`).append(`<div class="gem ${colorName} locked"></div>`)
+		}
 	}
+
+	// GLOBAL //
+
+	$('#playgroundPanel .buy').css( "background-color", colorCode[colorName]);
 	$('#playgroundPanel .amount').html('<img src="svg/loading.gif" />');
+	style();
 }
 
 // OVERLAY //
@@ -271,6 +303,14 @@ function playgroundBuy(item, item2, type){
 			playgroundToken[item2].actor += 10;
 		}	
 	}
+}
+
+function gameScreen(){
+
+	$("#container").append('<div id="screenDark"></div><div id="gameScreen"></div>')
+	$("#screenDark").fadeIn(10000).delay(5000);
+	$("#gameScreen").show("clip", {"direction": "horizontal"}, 10000 );
+
 }
 
 // INPUT //

@@ -650,7 +650,7 @@ const playground = {
 		actor: 'leprechauns',
 		flavor: 'feel lucky?',
 		rate: 0.5,
-		price: [25, 50, 100, 5000]		
+		price: [25, 50, 100, 5000, 50000]		
 	},	
 	orange: {
 		type: 'trict',		
@@ -660,7 +660,7 @@ const playground = {
 		actor: 'squeezers',
 		flavor: 'squeezin\'.',
 		rate: 0.5,
-		price: [50, 100, 250, 7500]		
+		price: [50, 100, 250, 7500, 75000]		
 	},
 	violet: {
 		type: 'trict',
@@ -670,7 +670,7 @@ const playground = {
 		actor: 'wizards',
 		flavor: 'hocus pocus.',
 		rate: 0.25,
-		price: [100, 250, 500, 10000]
+		price: [100, 250, 500, 10000, 100000]
 	},
 	grey: {
 		type: 'trict',
@@ -680,7 +680,7 @@ const playground = {
 		actor: 'men',
 		flavor: 'it\'s a life.',
 		rate: 0.25,
-		price: [250, 500, 1000, 10000]		
+		price: [250, 500, 1000, 50000, 500000]		
 	},
 	lightred: {
 		type: 'adventure',
@@ -993,6 +993,34 @@ const price = {
 			data: [""],
 			desc: "unlock the viewport"
 		},
+		pgboostgreen: {
+			name: "lucky boost",
+			type: "pgboost",
+			data: [""],
+			desc: "leprechauns will give you speed!",
+			amount: 100
+		},
+		pgboostorange: {
+			name: "juicy boost",
+			type: "pgboost",
+			data: [""],
+			desc: "happens when you drink a lot of juice.",
+			amount: 250
+		},
+		pgboostviolet: {
+			name: "spellbound boost",
+			type: "pgboost",
+			data: [""],
+			desc: "boostate.",
+			amount: 500
+		},
+		pgboostgrey: {
+			name: "city boost",
+			type: "pgboost",
+			data: [""],
+			desc: "work.",
+			amount: 750
+		},
 
 	}
 
@@ -1125,18 +1153,22 @@ function start() {
 		orange: {
 			red: "buyable",
 			yellow: "buyable",
+			upgrade: "buyable",
 		},
 		green: {
 			blue: "buyable",
 			yellow: "buyable",
+			upgrade: "buyable",
 		},
 		violet: {
 			red: "buyable",
 			blue: "buyable",
+			upgrade: "buyable",
 		},
 		grey: {
 			black: "buyable",
 			white: "buyable",
+			upgrade: "buyable",
 		},
 		darkred: {
 		},
@@ -1436,7 +1468,27 @@ function start() {
 				unlock: [10000, "rhombus"],
 				price: [500000, "left"],
 			},
-		}
+		},
+		pgboostgreen: {
+			l0: {
+				price: [500000, "yellow"],
+			},
+		},
+		pgboostorange: {
+			l0: {
+				price: [5000000, "red"],
+			},
+		},
+		pgboostviolet: {
+			l0: {
+				price: [50000000, "blue"],
+			},
+		},
+		pgboostgrey: {
+			l0: {
+				price: [500000000, "black"],
+			},
+		},
 	}
 
 	currentStatus = {}
@@ -1632,6 +1684,10 @@ function style(){
 	$.each(color.basic, function(key, color){
 		$(`.gem.${color}.unlocked`).css(`background-image`, `url("svg/${color}-gem.svg`)
 		$(`.gem.${color}.locked`).css(`background-image`, `url("svg/${color}-gem-locked.svg`)
+	});
+
+	$.each(color.composite, function(key, color){
+		$(`.pgboost${color}`).css(`background-image`, `url("svg/${color}-boost.svg`)
 	});
 
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')

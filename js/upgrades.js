@@ -31,7 +31,7 @@ function upgradeDraw(item, level){
 function upgradeUnlock(){
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {
-			if (counter[levelValue.unlock[1]] > levelValue.unlock[0]) {
+			if (levelValue.unlock && counter[levelValue.unlock[1]] > levelValue.unlock[0]) {
 				addUpgrade(key, levelKey);
 			}
 			if (counter[upgradeLevel[key][levelKey].price[1]] >= upgradeLevel[key][levelKey].price[0]) {
@@ -58,6 +58,11 @@ function upgradeEffect(item){
 	if (upgrade[item].type == "boost") {
 		boost(upgrade[item].data[0], upgrade[item].data[1], upgrade[item].amount);
 	}
+	if (upgrade[item].type == "pgboost") {
+		boost("idle", "color", upgrade[item].amount);
+		boost("idle", "shape", upgrade[item].amount);
+		boost("idle", "position", upgrade[item].amount);
+	}	
 	if (upgrade[item].type == "blazon") {
 		addBlazon();
 	}

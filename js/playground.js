@@ -228,17 +228,29 @@ function playgroundPanel(colorName){
 function playgroundOverlay(colorName, kind){
 	$('#playgroundPanel.' + colorName + ' .secondary').append('<div class="overlay"><div class="close"></div></div>');
 	if (kind == "hire"){
-		$('#playgroundPanel.' + colorName + ' .secondary .overlay').append('<div class="buy ' + nextColors(colorName)[0] + '">hire 10 ' + playground[nextColors(colorName)[0]].actor + '<div class="price">for ' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div><div class="buy ' + nextColors(colorName)[1] + '">hire 10 ' + playground[nextColors(colorName)[1]].actor + '<div class="price">for ' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div>');
-		$('#playgroundPanel .overlay .buy.' + nextColors(colorName)[0]).css( "background-color", colorCode[nextColors(colorName)[0]]);	
-		$('#playgroundPanel .overlay .buy.' + nextColors(colorName)[1]).css( "background-color", colorCode[nextColors(colorName)[1]]);
+		$('#playgroundPanel.' + colorName + ' .secondary .overlay').append('<div class="buy hireForward ' + nextColors(colorName)[0] + '">hire 10 ' + playground[nextColors(colorName)[0]].actor + '<div class="price">for ' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div><div class="buy hireForward ' + nextColors(colorName)[1] + '">hire 10 ' + playground[nextColors(colorName)[1]].actor + '<div class="price">for ' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div>');
+		$('#playgroundPanel .overlay .buy.hireForward.' + nextColors(colorName)[0]).css( "background-color", colorCode[nextColors(colorName)[0]]);	
+		$('#playgroundPanel .overlay .buy.hireForward.' + nextColors(colorName)[1]).css( "background-color", colorCode[nextColors(colorName)[1]]);
 		
 		$.each(colors, function(key, color){
 			if(currentStatus.item[color] == "active"){
-				$('#playgroundPanel .overlay .buy.' + color).show();
+				$('#playgroundPanel .overlay .buy.hireForward.' + color).show();
 			} else if (currentStatus.item[color] != "active"){
-				$('#playgroundPanel .overlay .buy.' + color).hide();
+				$('#playgroundPanel .overlay .buy.hireForward.' + color).hide();
 			}
 		});
+	}
+	if (kind == "upgrade"){
+		$('#playgroundPanel.' + colorName + ' .secondary .overlay').append(`
+			<div class="buy pgUpgrade">
+			<span>buy ${colorName} upgrade</span>
+			<span class = "price">${playground[colorName].price[4]} ${playground[colorName].secondary}</span>
+			</div>`);
+		$('#playgroundPanel .overlay .buy').css( "background-color", colorCode[colorName]);
+		if(playgroundUnlock[colorName].upgrade == "bought"){
+				$('#playgroundPanel.' + colorName + ' .overlay .buy.pgUpgrade').removeClass("disabled").removeClass("enabled").addClass("deactivated");
+				$('#playgroundPanel.' + colorName + ' .overlay .buy.pgUpgrade .price').html("bought");
+		}
 	}
 }
 
@@ -254,10 +266,10 @@ function playgroundBuyState(){
 			}
 			if (playgroundToken[col].secondary >= playground[col].price[3] && (currentStatus.item[nextColors(col)[0]] == "active" || currentStatus.item[nextColors(col)[1]] == "active" )){
 				$('#playgroundPanel.' + col + ' .secondary .buy.hire').addClass("enabled").removeClass("disabled");
-				$('#playgroundPanel.' + col + ' .secondary .overlay .buy').addClass("enabled").removeClass("disabled");
+				$('#playgroundPanel.' + col + ' .secondary .overlay .buy.hireForward').addClass("enabled").removeClass("disabled");
 			} else {
 				$('#playgroundPanel.' + col + ' .secondary .buy.hire').addClass("disabled").removeClass("enabled");
-				$('#playgroundPanel.' + col + ' .secondary .overlay .buy').addClass("disabled").removeClass("enabled");
+				$('#playgroundPanel.' + col + ' .secondary .overlay .buy.hireForward').addClass("disabled").removeClass("enabled");
 			}
 			if (playgroundToken[col].secondary >= playground[col].price[1]){
 				$('#playgroundPanel.' + col + ' .tertiary .buy').addClass("enabled").removeClass("disabled");
@@ -265,6 +277,11 @@ function playgroundBuyState(){
 				$('#playgroundPanel.' + col + ' .tertiary .buy').addClass("disabled").removeClass("enabled");
 				$('#playgroundPanel.' + col + ' .tertiary .buy .howmuch').html('+1');
 				$('#playgroundPanel.' + col + ' .tertiary .buy .price').html(formatNumber(playground[col].price[1]) + ' ' + playground[col].secondary);
+			}
+			if (playgroundToken[col].secondary >= playground[col].price[4]){
+				$('#playgroundPanel.' + col + ' .secondary .upgrade').addClass("enabled").removeClass("disabled");
+			} else {
+				$('#playgroundPanel.' + col + ' .secondary .upgrade').addClass("disabled").removeClass("enabled");
 			}
 			$.each(comp.color[col], function(key, c){	
 				if (playgroundToken[col].tertiary >= playground[col].price[2]){
@@ -302,15 +319,21 @@ function playgroundBuy(item, item2, type){
 			playgroundToken[item].secondary -= playground[item].price[3];
 			playgroundToken[item2].actor += 10;
 		}	
+	} else if (type == "upgrade"){
+		if (playgroundToken[item].secondary >= playground[item].price[4] && playgroundUnlock[item].upgrade == "buyable") {
+			playgroundToken[item].secondary -= playground[item].price[4];
+			addUpgrade(`pgboost${item}`, "l0")
+			playgroundUnlock[item].upgrade = "bought";
+			$('#playgroundPanel.' + item + ' .overlay .buy.pgUpgrade').removeClass("disabled").removeClass("enabled").addClass("deactivated");
+			$('#playgroundPanel.' + item + ' .overlay .buy.pgUpgrade .price').html("bought");
+		}	
 	}
 }
 
 function gameScreen(){
-
 	$("#container").append('<div id="screenDark"></div><div id="gameScreen"></div>')
 	$("#screenDark").fadeIn(10000).delay(5000);
 	$("#gameScreen").show("clip", {"direction": "horizontal"}, 10000 );
-
 }
 
 // INPUT //
@@ -349,7 +372,7 @@ $.each(colors, function(key, col){
 });
 
 $.each(colors, function(key, col){
-	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .buy.upgrade', function(e) {
+	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .buy.upgrade.enabled', function(e) {
 		playgroundOverlay(col, "upgrade");
 	});
 });
@@ -361,14 +384,20 @@ $.each(colors, function(key, col){
 });
 
 $.each(colors, function(key, col){
-	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .overlay .buy.' + nextColors(col)[0], function(e) {
+	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .overlay .buy.hireForward.' + nextColors(col)[0], function(e) {
 		playgroundBuy(col, nextColors(col)[0], "hireForward")
 	});
 });
 
 $.each(colors, function(key, col){
-	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .overlay .buy.' + nextColors(col)[1], function(e) {
+	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .overlay .buy.hireForward.' + nextColors(col)[1], function(e) {
 		playgroundBuy(col, nextColors(col)[1], "hireForward")
+	});
+});
+
+$.each(colors, function(key, col){
+	$(document).on( "click", '#playgroundPanel.' + col + ' .secondary .overlay .buy.pgUpgrade', function(e) {
+		playgroundBuy(col, null, "upgrade")
 	});
 });
 

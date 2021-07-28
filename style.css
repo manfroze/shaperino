@@ -1277,7 +1277,8 @@ display: none;
 	cursor: url('svg/cursor-default.svg'), default;
 }
 
-#playgroundPanel .tertiary .buyBox .buyFinal.deactivated {
+#playgroundPanel .tertiary .buyBox .buyFinal.deactivated,
+#playgroundPanel .buy.deactivated {
 	opacity: 0.45;
 	background-color: #ccc !important;
 	color: #fff !important;

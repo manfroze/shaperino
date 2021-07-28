@@ -20,7 +20,7 @@ function upgradeDraw(item, level){
 		if(upgrade[item].data[1]){ kindV = upgrade[item].data[1] };
 		newValue = formatNumber(power[typeV][kindV] + upgrade[item].amount * upgrade[item].amount);
 	} 
-	$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="button large upgrade '+ upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span>' + levelSpan + '<span class="tag price ' + upgradeLevel[item][level].price[1] + '"><span>' + formatNumber(upgradeLevel[item][level].price[0]) + '</span></span><span class="desc"></span></div>' );
+	$('#upgrades > .container').append('<div id="' + item + "-" + level + '"class="button large upgrade '+ item + " " + upgrade[item].type + " " + upgrade[item].data.join(" ") +'"><span class="name">' + upgrade[item].name + '</span>' + levelSpan + '<span class="tag price ' + upgradeLevel[item][level].price[1] + '"><span>' + formatNumber(upgradeLevel[item][level].price[0]) + '</span></span><span class="desc"></span></div>' );
 	$('#' + item + "-" + level + '').removeClass("locked").addClass("unlocked");
 	if(upgrade[item].type == "boost"){
 		$('#' + item + "-" + level + ' .desc').html('boost ' + kindV + " " + typeV + ' power to ' + newValue)
@@ -71,37 +71,37 @@ function upgradeEffect(item){
 
 // TOGGLES //
 
-toggleNames = ["navigator", "playground", "viewport"]
+toggleNames = ["navigator", "playground", "enigmarium"]
 
 function toggleDraw(toggleName){
-$("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked ' + toggleName + ' active"><span class="name">'+ toggle[toggleName].name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle[toggleName].desc +'</span></div>');
+$("#toggles #" + toggleName + "Toggle").html('<span class="name">'+ toggle[toggleName].name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle[toggleName].desc +'</span>');
 }
 
 function shaperinoToggleDraw(toggleName){
-$("#" + toggleName + "Sec.subsection .container").html('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked shaperino active"><div id="shapeClone"></div><span class="name">'+ toggle.shaperino.name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle.shaperino.desc +'</span></div>');
+$("#toggles #" + toggleName + "Toggle").html('<div id="shapeClone"></div><span class="name">'+ toggle.shaperino.name +'</span><span class="tag key" title="you can press ' + toggleName.slice(0,1).toUpperCase() + ' on your keyboard to show/hide the ' + toggleName + '.">' + toggleName.slice(0,1).toUpperCase() + '</span><span class="desc">'+ toggle.shaperino.desc +'</span>');
 }
 
 function toggleAdd(toggleName){
 	currentStatus.toggle[toggleName] = "unlocked";
 	addSection("toggles");
-	addSubSection("toggles", toggleName + "Sec");
+	addSubSection("toggles", "toggles");
+	$("#toggles.subsection .container").append('<div id="' + toggleName + 'Toggle" class="button toggle large unlocked ' + toggleName + ' active"></div>');
 	toggleDraw(toggleName);
 }
 
 function toggleToggle(toggleName){
 
-	resetPanel();
-if (toggleName == "playground" || toggleName == "navigator"){
+if (toggleName == "playground" || toggleName == "navigator" || toggleName == "enigmarium"){
 	$.each(toggleNames, function(k, v){
 		if (v != toggleName){
-			console.log(v);
 			current[v].show = "hide";
 			toggleDraw(v);
 			$('#' + v).css('visibility','hidden')
 		}
-	});
+	});	
 }
 	if(currentStatus.toggle[toggleName] == "unlocked"){
+		resetPanel();
 		if (current[toggleName].show == "hide"){
 			current[toggleName].show = "show";
 			$('#' + toggleName).css('visibility','visible')
@@ -113,12 +113,16 @@ if (toggleName == "playground" || toggleName == "navigator"){
 				$('#shaperino').css('visibility','hidden')
 				drawPlayground();
 			}
+			if (toggleName == "enigmarium"){
+				$('#shaperino').css('visibility','hidden')
+				drawEnigmarium();
+			}
 			if (toggleName == "viewport"){
 				viewport();
 			}
 		} else if (current[toggleName].show == "show"){
 			current[toggleName].show = "hide";
-			if (toggleName == "playground" || toggleName == "navigator"){
+			if (toggleName == "playground" || toggleName == "navigator" || toggleName == "enigmarium"){
 				$('#shaperino').css('visibility','visible')
 				$('#' + toggleName).css('visibility','hidden')
 			}

@@ -602,13 +602,17 @@ const toggle = {
 		name: "navigator",
 		desc: "open the navigator",
 	},
+	enigmarium: {
+		name: "enigmarium",
+		desc: "open the enigmarium",
+	},
 	shaperino: {
 		name: "shaperino",
 		desc: "back to the main guy",
 	},
 	viewport: {
-	name: "viewport",
-	desc: "show/hide the viewport",
+		name: "viewport",
+		desc: "show/hide the viewport",
 	},
 }
 
@@ -792,15 +796,15 @@ const price = {
 
 		lightred: {
 			unlock: [10000, "red"],
-			price: [10000, "circle"]
+			price: [50000, "circle"]
 		},
 		lightblue: {
 			unlock: [10000, "blue"],
-			price: [100000, "square"]
+			price: [500000, "square"]
 		},
 		lightyellow: {
 			unlock: [10000, "yellow"],
-			price: [1000000, "rhombus"]
+			price: [5000000, "rhombus"]
 		},
 
 		// dark primary //
@@ -915,43 +919,43 @@ const price = {
 			name: "shapes in time",
 			type: "boost",
 			data: ["idle", "shape"],
-			amount: 5,
+			amount: 10,
 		},
 		boostidlecharge: {
 			name: "charged by the centuries",
 			type: "boost",
 			data: ["idle", "position"],
-			amount: 3,
+			amount: 10,
 		},
 		boostidlecolor: {
 			name: "rainbow future",
 			type: "boost",
 			data: ["idle", "color"],
-			amount: 6,
+			amount: 10,
 		},
 		boostclickshape: {
 			name: "strength in forms",
 			type: "boost",
 			data: ["click", "shape"],
-			amount: 7,
+			amount: 5,
 		},
 		boostclickcharge: {
 			name: "power of more",
 			type: "boost",
 			data: ["click", "position"],
-			amount: 7,
+			amount: 5,
 		},
 		boostclickcolor: {
 			name: "kaleidoscope",
 			type: "boost",
 			data: ["click", "color"],
-			amount: 7,
+			amount: 5,
 		},
 		blazon: {
 			name: "heraldry",
 			type: "blazon",
 			data: [""],
-			desc: "unlock blazons"
+			desc: "unlock the blazon"
 		},
 		wonderbar: {
 			name: "bar none",
@@ -977,6 +981,12 @@ const price = {
 			data: [""],
 			desc: "unlock the navigator"
 		},
+		enigmarium: {
+			name: "a mystery of shapes",
+			type: "toggle",
+			data: [""],
+			desc: "unlock the enigmarium"
+		},
 		viewport: {
 			name: "always with you",
 			type: "toggle",
@@ -990,15 +1000,15 @@ const price = {
 		circleone: {
 			name: "back to circle one",
 			desc: "never forget where you began!",
-			expl: "reach 100 circles.",
+			expl: "reach 1000 circles.",
 			type: "counter",
 			data: "circle",
-			amount: 10,
+			amount: 1000,
 		},
 		diamonds: {
 			name: "diamonds",
 			desc: "these are pretty fine.",
-			expl: "reach 100 rhombi.",
+			expl: "reach 1000 rhombi.",
 			type: "counter",
 			data: "rhombus",
 			amount: 1000,
@@ -1007,22 +1017,6 @@ const price = {
 			name: "guilty as charged",
 			desc: "yes! this is the thing you were supposed to do.",
 			type: "ext",
-		},
-		testachievement: {
-			name: "this is a test.",
-			desc: "u gotta remove.",
-			type: "counter",
-			data: "square",
-			amount: 10,
-		},
-		test: {
-			name: "test",
-		},
-		testa: {
-			name: "test",
-		},
-		testq: {
-			name: "test",
 		},
 	}
 
@@ -1072,9 +1066,12 @@ function start() {
 		select: "main",
 		playground: {
 			show: "hide",
-			tab: "green"
+			tab: "black"
 		},
 		viewport: {
+			show: "hide",
+		},
+		enigmarium: {
 			show: "hide",
 		},
 		navigator: {
@@ -1110,10 +1107,7 @@ function start() {
 		secondarylight: "locked",
 		secondarydark: "locked",
 		upgrades: "locked",
-		playgroundSec: "locked",
-		navigatorSec: "locked",
-		viewportSec: "locked",
-		shaperinoSec: "unlocked"
+		toggles: "locked",
 	}
 
 	playgroundUnlock = {
@@ -1321,7 +1315,7 @@ function start() {
 				unlock: [5000, "white"],
 				price: [10000, "black"],
 			},
-			l5: {
+			l4: {
 				unlock: [50000, "white"],
 				price: [100000, "black"],
 			},
@@ -1333,8 +1327,8 @@ function start() {
 		},
 		boostidlecharge: {
 			l1: {
-				unlock: [100, "top"],
-				price: [200, "red"],
+				unlock: [25, "top"],
+				price: [100, "red"],
 			},
 			l2: {
 				unlock: [1000, "top"],
@@ -1347,8 +1341,8 @@ function start() {
 		},
 		boostidlecolor: {
 			l1: {
-				unlock: [75, "rhombus"],
-				price: [150, "circle"],
+				unlock: [50, "rhombus"],
+				price: [100, "circle"],
 			},
 			l2: {
 				unlock: [750, "rhombus"],
@@ -1421,20 +1415,26 @@ function start() {
 		},
 		playground: {
 			l0: {
-				unlock: [125, "top"],
+				unlock: [100, "blue"],
 				price: [1000, "yellow"],
 			},
 		},
 		navigator: {
 			l0: {
-				unlock: [1000, "rhombus"],
-				price: [1000, "top"],
+				unlock: [1000, "bottom"],
+				price: [10000, "right"],
+			},
+		},
+		enigmarium: {
+			l0: {
+				unlock: [1000, "cross"],
+				price: [1000000, "octagon"],
 			},
 		},
 		viewport: {
 			l0: {
-				unlock: [1000, "rhombus"],
-				price: [1000, "top"],
+				unlock: [10000, "rhombus"],
+				price: [500000, "left"],
 			},
 		}
 	}
@@ -1552,9 +1552,13 @@ $( document ).ready(function() {
 	if(currentStatus.toggle.navigator == "unlocked"){
 		toggleAdd('navigator');
 	}
+	if(currentStatus.toggle.enigmarium == "unlocked"){
+		toggleAdd('enigmarium');
+	}	
 	if(currentStatus.toggle.viewport == "unlocked"){
 		toggleAdd('viewport');
 	}
+
 
 	if(current.hyper.status == "enabled"){
 		current.hyper.status = "disabled";
@@ -1628,6 +1632,7 @@ function style(){
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')
 	$('.button.large.navigator').css('background-image', 'url("svg/navigator.svg")')
+	$('.button.large.enigmarium').css('background-image', 'url("svg/enigmarium.svg")')
 	$('.button.large.viewport').css('background-image', 'url("svg/viewport.svg")')
 	$('.upgrade.wonderbar').css('background-image', 'url("svg/wonderbar.svg")')
 	$('.button.large.hyper').css('background-image', 'url("svg/hyper.svg")')
@@ -1713,3 +1718,21 @@ function updateLocalStorage(){
 $( window ).on("unload", function() {
 	updateLocalStorage();
 });
+
+// CANVAS //
+
+function updateFavicon(){
+	html2canvas(document.querySelector("#shaperino"), { allowTaint: true, backgroundColor: "rgba(0,0,0,0)"}).then(function(canvas) {
+		var img = canvas.toDataURL("image/png");
+		var link = document.createElement('link');
+		link.type = 'image/x-icon';
+		link.rel = 'shortcut icon';
+		link.href = img;
+		document.getElementsByTagName('head')[0].appendChild(link);
+	})
+}
+
+
+
+
+

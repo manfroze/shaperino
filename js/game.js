@@ -151,9 +151,11 @@ function selector(mode){
 function update(){
 	setTypes();
 	draw();
+	shaperinoShadow();
 	updateSelectors();
 	writeBlazon();
 	writePowerCounters();
+	updateFavicon();
 	cloner('shapeClone');
 	cloner('viewportCanvas');
 }
@@ -407,6 +409,7 @@ function loop(){
 		achievementCheck();
 		catalogueCheck();
 		hyperUnlock();
+
 		playgroundTokenIncrease();
 		playgroundTokenDraw();
 		playgroundBuyState();
@@ -417,25 +420,33 @@ loop();
 
 // ANIMATE //
 
-$( document ).on( "click", "#shaperino", _.throttle(animateShaperino, 200) );
+$( document ).on( "click", "#shaperino svg g", _.throttle(animateShaperino, 200) );
 
 function animateShaperino(){
-	$("#shaperino #main-canvas svg").animate( {scale: 0.80}, 100);
-	setTimeout(() => { $("#shaperino #main-canvas svg").animate( {scale: 1}, 100); }, 0);
-	$("#shaperino #charge-canvas svg").animate( {scale: 0.60}, 100);
-	setTimeout(() => { $("#shaperino #charge-canvas svg").animate( {scale: 1}, 100); }, 0);
-	$("#shaperino #split-canvas svg").animate( {scale: 0.60}, 100);
-	setTimeout(() => { $("#shaperino #split-canvas svg").animate( {scale: 1}, 100); }, 0);
-	$("#shaperino #hyper-canvas svg").animate( {scale: 0.70}, 100);
-	setTimeout(() => { $("#shaperino #hyper-canvas svg").animate( {scale: 1}, 100); }, 0);
-	$("#shaperino #wonder-canvas svg").animate( {scale: 0.50}, 100);
-	setTimeout(() => { $("#shaperino #wonder-canvas svg").animate( {scale: 1}, 100); }, 0);
+	$("#shaperino #main-canvas svg ").animate( {scale: 0.80}, 100);
+	setTimeout(() => { $("#shaperino #main-canvas svg ").animate( {scale: 1}, 100); }, 0);
+	$("#shaperino #charge-canvas svg ").animate( {scale: 0.60}, 100);
+	setTimeout(() => { $("#shaperino #charge-canvas svg ").animate( {scale: 1}, 100); }, 0);
+	$("#shaperino #split-canvas svg ").animate( {scale: 0.60}, 100);
+	setTimeout(() => { $("#shaperino #split-canvas svg ").animate( {scale: 1}, 100); }, 0);
+	$("#shaperino #hyper-canvas svg ").animate( {scale: 0.70}, 100);
+	setTimeout(() => { $("#shaperino #hyper-canvas svg ").animate( {scale: 1}, 100); }, 0);
+	$("#shaperino #wonder-canvas svg g").animate( {scale: 0.50}, 100);
+	setTimeout(() => { $("#shaperino #wonder-canvas svg ").animate( {scale: 1}, 100); }, 0);
 }
 
 $( document ).on( "click", "#viewport", _.throttle(animateViewport, 200) );
 function animateViewport(){
 	$("#viewport svg").animate( {scale: 0.80}, 100);
 	setTimeout(() => { $("#viewport svg").animate( {scale: 1}, 100); }, 0);
+}
+
+function shaperinoShadow(){
+	$("#shaperino svg g").hover(function() {
+		$("#shaperino svg g").css("filter", "drop-shadow(0px 0px 5px rgb(0 0 0 / 0.3))");
+	}, function() {
+		$("#shaperino svg g").css("filter", "none");
+	});
 }
 
 // HYPER //
@@ -452,8 +463,8 @@ function hyperAdd(){
 
 function hyperDraw(){
 	addSection("toggles");
-	addSubSection("toggles", "hyper");
-	$("#hyper.subsection .container").append('<div id="hyperActivate" class="button toggle large unlocked hyper buyable active"><span class="name">'+ toggle.hyper.name +' charge</span><span class="tag timer" hidden></span><span class="tag price '+ current.hypertoken +'"><span>10K+</span></span><span class="desc">'+ toggle.hyper.desc +' <span class="time"></span></span></div>');
+	addSubSection("toggles", "toggles");
+	$("#toggles.subsection .container").append('<div id="hyperActivate" class="button toggle large unlocked hyper buyable active"><span class="name">'+ toggle.hyper.name +' charge</span><span class="tag timer" hidden></span><span class="tag price '+ current.hypertoken +'"><span>10K+</span></span><span class="desc">'+ toggle.hyper.desc +' <span class="time"></span></span></div>');
 }
 
 function hyperUnlock() {
@@ -586,7 +597,7 @@ $(document).on("click", "#hyperActivate.buyable.active", function(e) {
 
 // SHAPERINO //
 
-$(document).on( "click", "#shaperino", function(e) {
+$(document).on( "click", "#shaperino svg g", function(e) {
 	increaseCounters("click");
 });
 

@@ -8,6 +8,7 @@ function addAll(){
 	toggleAdd('playground');
 	toggleAdd('navigator');
 	toggleAdd('viewport');
+	toggleAdd('enigmarium');
 	$.each(upgradeLevel, function(key, value) {
 		$.each(value, function(levelKey, levelValue) {
 			addUpgrade(key, levelKey);
@@ -118,43 +119,43 @@ $(document).on( "click", "#addupgrades", function(e) {
 });
 
 $(document).keydown(function(event) {
-	if (event.key === 'c') { 
+	if (event.key === '1') { 
 		addAll();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'k') { 
+	if (event.key === '8') { 
 		randomShape();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'e') { 
+	if (event.key === '3') { 
 		earn();
 	} });
 $(document).keydown(function(event) {
-	if (event.key === 'u') { 
+	if (event.key === '2') { 
 		addAllUnlock();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 't') {
+	if (event.key === '9') {
 		setInterval(function(){
 			randomShape();
 		}, 150) 
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'q') {
+	if (event.key === '0') {
 		reset();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'w') {
+	if (event.key === '6') {
 		drawWonderBar();
 	} });
 
 $(document).keydown(function(event) {
-	if (event.key === 'j') {
+	if (event.key === '7') {
 		$.each(catalogue, function(k, v){
 			currentStatus.catalogue[k] = "unlocked";
 		});

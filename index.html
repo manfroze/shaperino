@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <head>
 	<title>SHAPERINO</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.7.0/svg.js" integrity="sha256-3QT42ZZOdRfHJnrJHoR+H4mAs5j8hEbHpoLSV4QYD4U=" crossorigin="anonymous"></script>
@@ -10,9 +10,10 @@
 	<script type="text/javascript" src="lib/jquery.html5storage.min.js"></script>
 	<script type="text/javascript" src="lib/svg.shapes.js"></script>
 	<script type="text/javascript" src="lib/lz-string.js"></script>
+	<script type="text/javascript" src="lib/html2canvas.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.min.js"></script>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJ3YBBJVNE"></script>
@@ -23,7 +24,7 @@
 
 		gtag('config', 'G-KJ3YBBJVNE');
 	</script>
-
+	<meta name="description" content="SHAPERINO, a shape-based incremental game by Manfredi Pumo with HIGH." />
 </head>
 <body>
 	<div id="blazon"></div>
@@ -44,14 +45,14 @@
 			</div>
 			<div id="navigator" class="section"></div>			
 			<div id="playground" class="section"></div>
+			<div id="enigmarium" class="section"></div>
 			<div id="panelContainer" class="section">
 				<div id="panel"></div>
 				<div id="menu"><div class="button inactive" id="remove">&#10005;</div></div>
 			</div>
 			<div id="debug" class="section">
 			</div>
-			<div id="footer"><span></span>
-			</div>
+			<div id="footer"><a href="https://high.pumo.mp"><img src="svg/high_logo.svg" /></a></div>
 		</div>
 		<div class="side column right">
 			<div id="color" class="section">
@@ -60,6 +61,7 @@
 		</div>
 	</div>
 	<div id="viewport"><div id="viewportCanvas"></div></div>
+	<canvas id="icon"width="16"height="16"></canvas>
 	<script type="text/javascript" src="js/main.js"></script>
 	<script type="text/javascript" src="js/upgrades.js"></script>
 	<script type="text/javascript" src="js/unlockables.js"></script>
@@ -67,6 +69,7 @@
 	<script type="text/javascript" src="js/game.js"></script>
 	<script type="text/javascript" src="js/navigator.js"></script>
 	<script type="text/javascript" src="js/playground.js"></script>
+	<script type="text/javascript" src="js/enigmarium.js"></script>
 	<script type="text/javascript" src="js/adventure.js"></script>
 	<script type="text/javascript" src="js/panel.js"></script>
 	<script type="text/javascript" src="js/debug.js"></script>

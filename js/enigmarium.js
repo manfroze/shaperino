@@ -1,4 +1,6 @@
 function drawEnigmarium(){
+	$('#shaperino').css('visibility','hidden');
+	$('#enigmarium').show();
 	shaperinoToggleDraw('enigmarium');
 	cloner('shapeClone');
 	$('#enigmarium').html('<div id="tabbar"></div><div id="enigmariumPanel"></div>');
@@ -7,6 +9,7 @@ function drawEnigmarium(){
 		$('#' + shape + "-tab.inactive").css('background-image', 'url("svg/' + shape + '-empty.svg")');
 		$('#' + shape + "-tab.active").css('background-image', 'url("svg/' + shape + '.svg")');
 	});
+	enigmariumTab(current.enigmarium.tab);
 }
 
 function enigmariumTab(sha){

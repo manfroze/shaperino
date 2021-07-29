@@ -1,4 +1,6 @@
 function drawPlayground(){
+	$('#shaperino').css('visibility','hidden');
+	$('#playground').show();
 	shaperinoToggleDraw('playground');
 	$('#playground').html('<div id="tabbar"></div><div id="playgroundPanel"></div>');
 	updatePlaygroundTabs();
@@ -17,7 +19,6 @@ function updatePlaygroundTabs(){
 		}
 	});
 	playgroundTab(current.playground.tab);
-	//$('.tab#'+ current.playground.tab +'-tab').removeClass("inactive").addClass("active").css('background-image', 'url("svg/' + current.playground.tab + '-playgroundToken.svg")');
 }
 
 // COLOR TOKENS //

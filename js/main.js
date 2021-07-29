@@ -7,6 +7,7 @@ const position = {
 	corner: ["topright", "topleft", "bottomright", "bottomleft"],
 	split: ["topbottom", "leftright", "topleftbottomright", "toprightbottomleft"]
 }
+const toggleNames = ["navigator", "playground", "enigmarium", "viewport"]
 const color = {
 	basic: ["black", "white", "red", "blue", "yellow"],
 	composite: ["green", "orange", "violet", "grey", "lightred", "lightblue", "lightyellow", "darkred", "darkblue", "darkyellow", "lightgreen", "lightorange", "lightviolet", "darkgreen", "darkorange", "darkviolet"]
@@ -1692,33 +1693,31 @@ $( document ).ready(function() {
 	if(currentStatus.toggle.viewport == "unlocked"){
 		toggleAdd('viewport');
 	}
-
-
 	if(current.hyper.status == "enabled"){
 		current.hyper.status = "disabled";
 		update();
 	}
+
 	if (current.playground.show == "show"){
-		$('#shaperino').css('visibility','hidden');
-		$('#playground').css('visibility','visible');
 		drawPlayground();
 	}
 	if (current.navigator.show == "show"){
-		$('#shaperino').css('visibility','hidden');
-		$('#navigator').css('visibility','visible');
 		drawNavigator();
 	}
 	if (current.enigmarium.show == "show"){
-		$('#shaperino').css('visibility','hidden');
-		$('#enigmarium').css('visibility','visible');
 		drawEnigmarium();
 	}
-	if (current.playground.show == "hide" && current.navigator.show == "hide" && current.enigmarium.show == "hide"){
-		$('#shaperino').css('visibility','visible')
-		$('#playground').css('visibility','hidden')
-		$('#navigator').css('visibility','hidden')
-		$('#enigmarium').css('visibility','hidden')
-	} 
+	if (current.viewport.show == "show"){
+		viewport();
+	}
+
+	$.each(toggleNames, function(i, toggle){
+		if (current[toggle].show == "hide"){
+			$(`#${toggle}`).hide();
+			$('#shaperino').css('visibility','visible');	
+		}
+	});
+
 	selector("main");
 });
 

@@ -1,4 +1,6 @@
 function drawNavigator(){
+	$('#shaperino').css('visibility','hidden');
+	$('#navigator').show();
 	shaperinoToggleDraw('navigator');
 	$('#navigator').html('<div class="container"><div id="board"><div id="grid"></div><div id="ground"></div><div id="ui"><div id="score" class="top">0</div><div id="score" class="bottom">0</div><div id="score" class="left">0</div><div id="score" class="right">0</div></div><div id="shapeCloneNav"></div></div></div>')
 	$.each(position.side, function(i, pos){
@@ -8,7 +10,6 @@ function drawNavigator(){
 	updateNavScore();
 	cloner('shapeCloneNav');
 	cloner('shapeClone');
-	//gridMove();
 }
 
 function gridMove() {

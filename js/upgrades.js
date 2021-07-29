@@ -60,8 +60,8 @@ function upgradeEffect(item){
 	}
 	if (upgrade[item].type == "pgboost" && upgrade[item].data[0] == "all") {
 		boost("idle", "color", upgrade[item].amount);
-		boost("idle", "shape", upgrade[item].amount);
-		boost("idle", "position", upgrade[item].amount);
+		//boost("idle", "shape", upgrade[item].amount);
+		//boost("idle", "position", upgrade[item].amount);
 	}	
 	if (upgrade[item].type == "pgboost" && upgrade[item].data[0] == "color") {
 		boost("idle", "color", upgrade[item].amount);
@@ -104,7 +104,7 @@ if (toggleName == "playground" || toggleName == "navigator" || toggleName == "en
 		if (v != toggleName){
 			current[v].show = "hide";
 			toggleDraw(v);
-			$('#' + v).css('visibility','hidden')
+			$('#' + v).hide();
 		}
 	});	
 }
@@ -112,7 +112,7 @@ if (toggleName == "playground" || toggleName == "navigator" || toggleName == "en
 		resetPanel();
 		if (current[toggleName].show == "hide"){
 			current[toggleName].show = "show";
-			$('#' + toggleName).css('visibility','visible')
+			$('#' + toggleName).show();
 			if (toggleName == "navigator"){
 				$('#shaperino').css('visibility','hidden')
 				drawNavigator();
@@ -132,7 +132,7 @@ if (toggleName == "playground" || toggleName == "navigator" || toggleName == "en
 			current[toggleName].show = "hide";
 			if (toggleName == "playground" || toggleName == "navigator" || toggleName == "enigmarium"){
 				$('#shaperino').css('visibility','visible')
-				$('#' + toggleName).css('visibility','hidden')
+				$('#' + toggleName).hide();
 			}
 			if (toggleName == "viewport"){
 				viewport();

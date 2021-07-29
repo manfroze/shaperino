@@ -1,21 +1,23 @@
 function drawPlayground(){
 	shaperinoToggleDraw('playground');
+	$('#playground').html('<div id="tabbar"></div><div id="playgroundPanel"></div>');
 	updatePlaygroundTabs();
+	playgroundTab(current.playground.tab);
+	playgroundPanel(current.playground.tab);
 	cloner('shapeClone');
 }
 
 function updatePlaygroundTabs(){
-	$('#playground').html('<div id="tabbar"></div>');
+	$('#playground #tabbar').html('');
 	$.each(colors, function(key, color){
-		$('#tabbar').append('<div class="tab disabled" id="'+ color +'-tab"></div>');
+		$('#playground #tabbar').append('<div class="tab disabled" id="'+ color +'-tab"></div>');
 		if(currentStatus.item[color] == "active"){
 			$('.tab#'+ color +'-tab').removeClass("disabled").addClass("inactive");
 			$('.tab#'+ color +'-tab').css( "background-color", colorCode[color] );
-		} else if (currentStatus.item[color] != "active"){
 		}
 	});
-	$('#playground').append('<div id="playgroundPanel"></div>');
 	playgroundTab(current.playground.tab);
+	//$('.tab#'+ current.playground.tab +'-tab').removeClass("inactive").addClass("active").css('background-image', 'url("svg/' + current.playground.tab + '-playgroundToken.svg")');
 }
 
 // COLOR TOKENS //
@@ -94,7 +96,6 @@ function playgroundPanel(colorName){
 	$('#playgroundPanel').css( "background-color", colorCode[colorName]);
 	$('#playgroundPanel').css( "color", colorCode[colorName]);
 	// TRICT //
-
 	if(playground[colorName].type == "trict"){
 		$(`#playground #playgroundPanel`).html(`
 			<div class="primary box">
@@ -217,6 +218,7 @@ function playgroundPanel(colorName){
 		if(playgroundUnlock[colorName].final == "bought"){
 			$('#playgroundPanel.' + colorName + ' .final .buy.final').removeClass("disabled").removeClass("enabled").addClass("deactivated");
 			$('#playgroundPanel.' + colorName + ' .final .buy.final .price').html("unlocked");
+			$('#playgroundPanel.' + colorName + ' #gemBox').css("visibility", "hidden");
 		}
 	}
 
@@ -313,7 +315,6 @@ function playgroundBuyState(){
 		} else {
 			$('#playgroundPanel.' + col + ' .final .buy.final').addClass("disabled").removeClass("enabled");
 		}
-
 	});
 }
 
@@ -363,6 +364,7 @@ function playgroundBuy(item, item2, type){
 			playgroundUnlock[item].final = "bought";
 			$('#playgroundPanel.' + item + ' .final .buy.final .price').html("unlocked");
 			$('#playgroundPanel.' + item + ' .final .buy.final').removeClass("disabled").removeClass("enabled").addClass("deactivated");
+			$('#playgroundPanel.' + item + ' #gemBox').css("visibility", "hidden");
 		}
 	}
 }
@@ -392,7 +394,7 @@ $(document).on( "click", ".buy.enabled", function(e) {
 	setTimeout(() => { $(e.currentTarget).animate( {scale: 1}, 50); }, 0);
 });
 
-$(document).on( "click", ".tab.inactive", function(e) {
+$(document).on( "click", "#playground .tab.inactive", function(e) {
 	var target = $(e.currentTarget).attr("id").slice(0, -4);
 	playgroundTab(target);
 });

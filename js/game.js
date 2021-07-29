@@ -396,7 +396,7 @@ function increaseCounters(powertype){
 }
 
 function boost(type, kind, amount){
-	power[type][kind] +=amount *=amount;
+	power[type][kind] = (power[type][kind] + 1) * amount;
 }
 
 function loop(){

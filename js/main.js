@@ -1005,56 +1005,62 @@ const price = {
 			type: "pgboost",
 			data: ["all"],
 			desc: "happens when you drink a lot of juice.",
-			amount: 1000
+			amount: 100
 		},
 		pgboostviolet: {
 			name: "spellbound boost",
 			type: "pgboost",
 			data: ["all"],
-			desc: "boostate.",
-			amount: 10000
+			desc: "ipsos boostarium!",
+			amount: 100
 		},
 		pgboostgrey: {
 			name: "city boost",
 			type: "pgboost",
 			data: ["all"],
 			desc: "work.",
-			amount: 100000
+			amount: 100
 		},
 		pgboostblack: {
 			name: "obsidian boost",
 			type: "pgboost",
 			data: ["color"],
 			desc: "into the darkness.",
-			amount: 100000000
+			amount: 10000
 		},
 		pgboostwhite: {
 			name: "quartz boost",
 			type: "pgboost",
 			data: ["color"],
 			desc: "i see the white light.",
-			amount: 100000000
+			amount: 10000
 		},
 		pgboostred: {
 			name: "ruby boost",
 			type: "pgboost",
 			data: ["color"],
 			desc: "rage and blood.",
-			amount: 1000000
+			amount: 1000
 		},
 		pgboostblue: {
 			name: "sapphire boost",
 			type: "pgboost",
 			data: ["color"],
 			desc: "empowered by the blue sea!",
-			amount: 1000000
+			amount: 1000
 		},
 		pgboostyellow: {
 			name: "topaz boost",
 			type: "pgboost",
 			data: ["color"],
 			desc: "did i really infuse topazes with saffron?",
-			amount: 1000000
+			amount: 1000
+		},
+		endcolor: {
+			name: "end of color",
+			type: "endgame",
+			data: [""],
+			desc: "go beyond the rainbow.",
 		},
 
 	}
@@ -1136,6 +1142,7 @@ function start() {
 		},
 		enigmarium: {
 			show: "hide",
+			tab: "circle"
 		},
 		navigator: {
 			show: "hide",
@@ -1535,27 +1542,33 @@ function start() {
 		},
 		pgboostblack: {
 			l0: {
-				price: [10000000000000000, "black"],
+				price: [10000000000000000000000000000, "black"],
 			},
 		},
 		pgboostwhite: {
 			l0: {
-				price: [10000000000000000, "white"],
+				price: [10000000000000000000000000, "white"],
 			},
 		},
 		pgboostred: {
 			l0: {
-				price: [100000000000000, "red"],
+				price: [100000000000000000, "red"],
 			},
 		},
 		pgboostblue: {
 			l0: {
-				price: [100000000000000, "blue"],
+				price: [10000000000000000000, "blue"],
 			},
 		},
 		pgboostyellow: {
 			l0: {
-				price: [100000000000000, "yellow"],
+				price: [1000000000000000000000, "yellow"],
+			},
+		},
+		endcolor: {
+			l0: {
+				unlock: [1000000000000000000000000000000000000000000000, "white"],
+				price: [1000000000000000000000000000000000000000000000000, "black"],
 			},
 		},
 	}
@@ -1695,10 +1708,16 @@ $( document ).ready(function() {
 		$('#navigator').css('visibility','visible');
 		drawNavigator();
 	}
-	if (current.playground.show == "hide" && current.navigator.show == "hide"){
+	if (current.enigmarium.show == "show"){
+		$('#shaperino').css('visibility','hidden');
+		$('#enigmarium').css('visibility','visible');
+		drawEnigmarium();
+	}
+	if (current.playground.show == "hide" && current.navigator.show == "hide" && current.enigmarium.show == "hide"){
 		$('#shaperino').css('visibility','visible')
 		$('#playground').css('visibility','hidden')
 		$('#navigator').css('visibility','hidden')
+		$('#enigmarium').css('visibility','hidden')
 	} 
 	selector("main");
 });
@@ -1758,6 +1777,8 @@ function style(){
 	$.each(colors, function(key, color){
 		$(`.pgboost${color}`).css(`background-image`, `url("svg/${color}-boost.svg`)
 	});
+
+	$('.upgrade.endcolor').css('background-image', 'url("svg/endcolor.svg")')
 
 	$('.upgrade.blazon').css('background-image', 'url("svg/blazon.svg")')
 	$('.button.large.playground').css('background-image', 'url("svg/playground.svg")')

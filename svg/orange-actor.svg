@@ -4,7 +4,7 @@
 <rect x="38" y="146" width="114" height="164" fill="#FF9A3D"/>
 <ellipse rx="39" ry="39.5" transform="matrix(1 0 0 -1 115 124.5)" fill="#222222"/>
 <circle r="26.5" transform="matrix(1 0 0 -1 174.5 192.5)" fill="#FF9A3D"/>
-<circle r="11" transform="matrix(1 0 0 -1 144 193)" fill="#222222"/>
+<circle r="11" transform="matrix(1 0 0 -1 148 193)" fill="#222222"/>
 <circle r="11" transform="matrix(1 0 0 -1 176 166)" fill="#222222"/>
 <circle r="6" transform="matrix(1 0 0 -1 176 233)" fill="#FF9A3D"/>
 <rect x="152" y="247" width="48" height="53" fill="#7CC0FF"/>

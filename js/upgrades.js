@@ -58,10 +58,13 @@ function upgradeEffect(item){
 	if (upgrade[item].type == "boost") {
 		boost(upgrade[item].data[0], upgrade[item].data[1], upgrade[item].amount);
 	}
-	if (upgrade[item].type == "pgboost") {
+	if (upgrade[item].type == "pgboost" && upgrade[item].data[0] == "all") {
 		boost("idle", "color", upgrade[item].amount);
 		boost("idle", "shape", upgrade[item].amount);
 		boost("idle", "position", upgrade[item].amount);
+	}	
+	if (upgrade[item].type == "pgboost" && upgrade[item].data[0] == "color") {
+		boost("idle", "color", upgrade[item].amount);
 	}	
 	if (upgrade[item].type == "blazon") {
 		addBlazon();

@@ -132,11 +132,6 @@ display: none;
 	animation: hyper 0.3s ease-in-out infinite alternate;
 }
 
-@keyframes hyper {
-	0% {filter: hue-rotate(0deg)}
-	100% {filter: hue-rotate(45deg)}
-}
-
 .section > .title {
 	font-weight: bold;
 	text-align: center;
@@ -195,8 +190,8 @@ display: none;
 .item#black { order: 1; }
 .item#white { order: 2; }
 .item#red { order: 3; }
-.item#yellow { order: 4; }
-.item#blue { order: 5; }
+.item#yellow { order: 5; }
+.item#blue { order: 4; }
 
 .item#top { order: 1; }
 .item#right { order: 2; }
@@ -1080,6 +1075,11 @@ display: none;
 	background-image: none !important;
 }
 
+#playgroundPanel.yellow .box {
+	background-color: rgba(130, 90, 50, 0.7) !important;
+	background-image: none !important;
+}
+
 #playgroundPanel .primary {
 	height: 100px;
 }
@@ -1164,7 +1164,7 @@ display: none;
 
 #playgroundPanel .price {
 	font-size: 13px;
-	letter-spacing: -0.5px;
+	letter-spacing: -0.4px;
 	font-weight: normal;
 	pointer-events: none;
 }
@@ -1315,6 +1315,14 @@ display: none;
 	margin-left: 0;
 }
 
+#playgroundPanel .gem.infused {
+	animation: infuse 1s infinite alternate;
+}
+
+#playgroundPanel .gem.white.infused {
+	animation: infusewhite 1s infinite alternate;
+}
+
 #playgroundPanel .final .buy {
 	width: 100%;
 }
@@ -1458,6 +1466,21 @@ display: none;
 }
 
 /* ANIMATIONS */
+
+@keyframes hyper {
+	0% {filter: hue-rotate(0deg)}
+	100% {filter: hue-rotate(45deg)}
+}
+
+@keyframes infuse {
+	0% {filter: brightness(100%)}
+	100% {filter: brightness(500%)}
+}
+
+@keyframes infusewhite {
+	0% {filter: brightness(100%)}
+	100% {filter: brightness(-100%)}
+}
 
 @keyframes move-right {
 	from {background-position: 24px;}

@@ -31,7 +31,7 @@ function playgroundTokenIncrease(){
 			$.each(mode, function(key, value){
 				if (current[value].status == "enabled"){
 					playgroundToken[current[value].color].primary +=1*multi[value];
-					pgPower[current[value].color] += 1*multi[value];
+					pgPower[current[value].color] += multi[value];
 					$.each(comp.color[current[value].color], function(index, comp){
 						playgroundToken[comp].primary +=1*multi[value]*multi.comp;
 						pgPower[comp] += 1*multi[value]*multi.comp;
@@ -53,7 +53,7 @@ function playgroundTokenIncrease(){
 			$('#playgroundPanel.' + col + ' .secondary .amount').html(formatNumber(playgroundToken[col].secondary));
 			$('#playgroundPanel.' + col + ' .tertiary .amount').html(formatNumber(playgroundToken[col].tertiary));
 			$('#playgroundPanel.' + col + ' .actor .amount').html(formatNumber(playgroundToken[col].actor));
-			$('#playgroundPanel.' + col + ' .final .amount').html(formatNumber(playgroundToken[col].final));
+			$('#playgroundPanel.' + col + ' .final .amount').html(`${formatNumber(playgroundToken[col].final)}/8`);
 			$('#playgroundPanel.' + col + ' .primary .power').html(formatNumber(pgPower[col]) + '/s');
 			$('#playgroundPanel.' + col + ' .secondary .desc').html('your <strong>' + formatNumber(playgroundToken[col].actor) + ' ' + playground[col].actor + '</strong> are producing <strong>' + formatNumber(playgroundToken[col].actor*playground[col].rate) + ' ' + playground[col].secondary + '</strong> per second');
 
@@ -111,7 +111,7 @@ function playgroundPanel(colorName){
 			</div>
 			<div class="buy" item="${colorName}">
 			<span>hire one</span>
-			<span class="price">for ${playground[colorName].price[0]} ${playground[colorName].primary}</span>
+			<span class="price">${playground[colorName].price[0]} ${playground[colorName].primary}</span>
 			</div>
 			</div>
 			<div class="items">
@@ -121,7 +121,8 @@ function playgroundPanel(colorName){
 			<span class="amount"></span>
 			<span class="name"></span>
 			</div>
-			<div class="buy hire ${nextColors(colorName)[0]} ${nextColors(colorName)[1]} ">hire...<span class="indicator ${nextColors(colorName)[0]}"></span>
+			<div class="buy hire ${nextColors(colorName)[0]} ${nextColors(colorName)[1]} ">hire...
+			<span class="indicator ${nextColors(colorName)[0]}"></span>
 			<span class="indicator ${nextColors(colorName)[1]}"></span>
 			</div>
 			<div class="buy upgrade">upgrade...</div>
@@ -187,22 +188,21 @@ function playgroundPanel(colorName){
 	if(playground[colorName].type == "final"){
 		$('#playground #playgroundPanel').html(`
 			<div class="primary box">
-				<span class="amount"></span><span class="name"></span><span class="power"></span>
+			<span class="amount"></span><span class="name"></span><span class="power"></span>
 			</div>
 			<div class="content">
-				<div class="final box">
-					
-					<span class="amount"></span><span class="name"></span>
-					<div id="gemBox"></div>
-						<div class="buy disabled">
-							<span>infuse ${playground[colorName].final}</span>
-							<span class="price">${formatNumber(10000)} ${playground[colorName].primary}</span>
-						</div>
-						<div class="buy disabled">
-							<span>buy final ${colorName}</span>
-							<span class="price">8 ${playground[colorName].primary}-infused ${playground[colorName].final}</span>
-						</div>
-				</div>
+			<div class="final box">
+			<span class="amount"></span><span class="name"></span>
+			<div id="gemBox"></div>
+			<div class="buy infuse">
+			<span>infuse all ${playground[colorName].final}</span>
+			<span class="price">${formatNumber(1000000)} ${playground[colorName].primary}</span>
+			</div>
+			<div class="buy final">
+			<span>unlock final ${colorName} upgrade</span>
+			<span class="price">8 ${playground[colorName].primary}-infused ${playground[colorName].final}</span>
+			</div>
+			</div>
 			</div>`);
 		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
 		$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");		
@@ -214,13 +214,19 @@ function playgroundPanel(colorName){
 		for (var i = 1; i <= 8-(playgroundToken[colorName].final); i++) {
 			$(`.${colorName} #gemBox`).append(`<div class="gem ${colorName} locked"></div>`)
 		}
+		if(playgroundUnlock[colorName].final == "bought"){
+			$('#playgroundPanel.' + colorName + ' .final .buy.final').removeClass("disabled").removeClass("enabled").addClass("deactivated");
+			$('#playgroundPanel.' + colorName + ' .final .buy.final .price').html("unlocked");
+		}
 	}
 
 	// GLOBAL //
 
 	$('#playgroundPanel .buy').css( "background-color", colorCode[colorName]);
 	$('#playgroundPanel .amount').html('<img src="svg/loading.gif" />');
+	$('#playgroundPanel .ruby').html('<img src="svg/loading.gif" />');
 	style();
+
 }
 
 // OVERLAY //
@@ -228,7 +234,7 @@ function playgroundPanel(colorName){
 function playgroundOverlay(colorName, kind){
 	$('#playgroundPanel.' + colorName + ' .secondary').append('<div class="overlay"><div class="close"></div></div>');
 	if (kind == "hire"){
-		$('#playgroundPanel.' + colorName + ' .secondary .overlay').append('<div class="buy hireForward ' + nextColors(colorName)[0] + '">hire 10 ' + playground[nextColors(colorName)[0]].actor + '<div class="price">for ' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div><div class="buy hireForward ' + nextColors(colorName)[1] + '">hire 10 ' + playground[nextColors(colorName)[1]].actor + '<div class="price">for ' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div>');
+		$('#playgroundPanel.' + colorName + ' .secondary .overlay').append('<div class="buy hireForward ' + nextColors(colorName)[0] + '">hire 10 ' + playground[nextColors(colorName)[0]].actor + '<div class="price">' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div><div class="buy hireForward ' + nextColors(colorName)[1] + '">hire 10 ' + playground[nextColors(colorName)[1]].actor + '<div class="price">' + formatNumber(playground[colorName].price[3]) + ' ' + playground[colorName].secondary + '</div></div>');
 		$('#playgroundPanel .overlay .buy.hireForward.' + nextColors(colorName)[0]).css( "background-color", colorCode[nextColors(colorName)[0]]);	
 		$('#playgroundPanel .overlay .buy.hireForward.' + nextColors(colorName)[1]).css( "background-color", colorCode[nextColors(colorName)[1]]);
 		
@@ -243,13 +249,13 @@ function playgroundOverlay(colorName, kind){
 	if (kind == "upgrade"){
 		$('#playgroundPanel.' + colorName + ' .secondary .overlay').append(`
 			<div class="buy pgUpgrade">
-			<span>buy ${colorName} upgrade</span>
+			<span>unlock ${colorName} upgrade</span>
 			<span class = "price">${playground[colorName].price[4]} ${playground[colorName].secondary}</span>
 			</div>`);
 		$('#playgroundPanel .overlay .buy').css( "background-color", colorCode[colorName]);
 		if(playgroundUnlock[colorName].upgrade == "bought"){
-				$('#playgroundPanel.' + colorName + ' .overlay .buy.pgUpgrade').removeClass("disabled").removeClass("enabled").addClass("deactivated");
-				$('#playgroundPanel.' + colorName + ' .overlay .buy.pgUpgrade .price').html("bought");
+			$('#playgroundPanel.' + colorName + ' .overlay .buy.pgUpgrade').removeClass("disabled").removeClass("enabled").addClass("deactivated");
+			$('#playgroundPanel.' + colorName + ' .overlay .buy.pgUpgrade .price').html("unlocked");
 		}
 	}
 }
@@ -291,6 +297,23 @@ function playgroundBuyState(){
 				}
 			});
 		}
+
+		if (playgroundToken[col].primary >= 1000000 && playgroundUnlock[col].infused == false && playgroundToken[col].final == 8){
+			$('#playgroundPanel.' + col + ' .final .buy.infuse').addClass("enabled").removeClass("disabled");
+		} else {
+			$('#playgroundPanel.' + col + ' .final .buy.infuse').addClass("disabled").removeClass("enabled");
+		}
+		if (playgroundUnlock[col].infused == true) {
+			$('#playgroundPanel.' + col + ' .final .buy.infuse').addClass("deactivated").removeClass("enabled").removeClass("disabled");
+			$('.gem.' + col).addClass("infused");
+			$('#playgroundPanel.' + col + ' .final .buy.infuse .price').html("infused");
+		}
+		if (playgroundToken[col].final == 8 && playgroundUnlock[col].infused == true){
+			$('#playgroundPanel.' + col + ' .final .buy.final').addClass("enabled").removeClass("disabled");
+		} else {
+			$('#playgroundPanel.' + col + ' .final .buy.final').addClass("disabled").removeClass("enabled");
+		}
+
 	});
 }
 
@@ -306,7 +329,7 @@ function playgroundBuy(item, item2, type){
 			playgroundToken[item].secondary -= playgroundToken[item].secondary;
 			playgroundToken[item].tertiary += amount;
 		}	
-	} else if (type == "final"){
+	} else if (type == "gem"){
 		if (playgroundToken[item].tertiary >= playground[item].price[2] && playgroundUnlock[item][item2] == "buyable") {
 			playgroundToken[item].tertiary -= playground[item].price[2];
 			playgroundToken[item2].final += 1;
@@ -323,10 +346,24 @@ function playgroundBuy(item, item2, type){
 		if (playgroundToken[item].secondary >= playground[item].price[4] && playgroundUnlock[item].upgrade == "buyable") {
 			playgroundToken[item].secondary -= playground[item].price[4];
 			addUpgrade(`pgboost${item}`, "l0")
-			playgroundUnlock[item].upgrade = "bought";
+			playgroundUnlock[item].upgrade = "unlocked";
 			$('#playgroundPanel.' + item + ' .overlay .buy.pgUpgrade').removeClass("disabled").removeClass("enabled").addClass("deactivated");
 			$('#playgroundPanel.' + item + ' .overlay .buy.pgUpgrade .price').html("bought");
 		}	
+	} else if (type == "infuse"){
+		if (playgroundToken[item].primary >= 1000000 && playgroundUnlock[item].infused == false) {
+			playgroundUnlock[item].infused = true;
+			playgroundToken[item].primary -= 1000000;
+			$('.gem.' + item).addClass("infused");
+		}
+	} else if (type == "final"){
+		if (playgroundToken[item].final == 8 && playgroundUnlock[item].infused == true) {
+			playgroundToken[item].final -= 8;
+			addUpgrade(`pgboost${item}`, "l0")
+			playgroundUnlock[item].final = "bought";
+			$('#playgroundPanel.' + item + ' .final .buy.final .price').html("unlocked");
+			$('#playgroundPanel.' + item + ' .final .buy.final').removeClass("disabled").removeClass("enabled").addClass("deactivated");
+		}
 	}
 }
 
@@ -406,10 +443,22 @@ $(document).on( "click", ".tertiary .buy", function(e) {
 	playgroundBuy(target, null, "tertiary");
 });
 
+$.each(colors, function(key, col){
+	$(document).on( "click", '#playgroundPanel.' + col + ' .final .buy.infuse.enabled', function(e) {
+		playgroundBuy(col, null, "infuse");
+	});
+});
+
+$.each(colors, function(key, col){
+	$(document).on( "click", '#playgroundPanel.' + col + ' .final .buy.final.enabled', function(e) {
+		playgroundBuy(col, null, "final")
+	});
+});
+
 $(document).on( "click", ".buyFinal", function(e) {
 	var tertiary = $(e.currentTarget).attr("item");
 	var final = $(e.currentTarget).attr("final");
-	playgroundBuy(tertiary, final, "final");
+	playgroundBuy(tertiary, final, "gem");
 });
 
 $(document).keydown(function(event) {

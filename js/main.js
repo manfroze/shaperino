@@ -650,7 +650,7 @@ const playground = {
 		actor: 'leprechauns',
 		flavor: 'feel lucky?',
 		rate: 0.5,
-		price: [25, 50, 100, 5000, 50000]		
+		price: [25, 50, 100, 5000, 25000]		
 	},	
 	orange: {
 		type: 'trict',		
@@ -660,7 +660,7 @@ const playground = {
 		actor: 'squeezers',
 		flavor: 'squeezin\'.',
 		rate: 0.5,
-		price: [50, 100, 250, 7500, 75000]		
+		price: [50, 100, 250, 7500, 50000]		
 	},
 	violet: {
 		type: 'trict',
@@ -670,7 +670,7 @@ const playground = {
 		actor: 'wizards',
 		flavor: 'hocus pocus.',
 		rate: 0.25,
-		price: [100, 250, 500, 10000, 100000]
+		price: [100, 250, 500, 10000, 75000]
 	},
 	grey: {
 		type: 'trict',
@@ -680,7 +680,7 @@ const playground = {
 		actor: 'men',
 		flavor: 'it\'s a life.',
 		rate: 0.25,
-		price: [250, 500, 1000, 50000, 500000]		
+		price: [250, 500, 1000, 50000, 100000]		
 	},
 	lightred: {
 		type: 'adventure',
@@ -796,15 +796,15 @@ const price = {
 
 		lightred: {
 			unlock: [10000, "red"],
-			price: [50000, "circle"]
+			price: [750000, "circle"]
 		},
 		lightblue: {
 			unlock: [10000, "blue"],
-			price: [500000, "square"]
+			price: [7500000, "square"]
 		},
 		lightyellow: {
 			unlock: [10000, "yellow"],
-			price: [5000000, "rhombus"]
+			price: [12500000, "rhombus"]
 		},
 
 		// dark primary //
@@ -996,30 +996,65 @@ const price = {
 		pgboostgreen: {
 			name: "lucky boost",
 			type: "pgboost",
-			data: [""],
+			data: ["all"],
 			desc: "leprechauns will give you speed!",
 			amount: 100
 		},
 		pgboostorange: {
 			name: "juicy boost",
 			type: "pgboost",
-			data: [""],
+			data: ["all"],
 			desc: "happens when you drink a lot of juice.",
-			amount: 250
+			amount: 1000
 		},
 		pgboostviolet: {
 			name: "spellbound boost",
 			type: "pgboost",
-			data: [""],
+			data: ["all"],
 			desc: "boostate.",
-			amount: 500
+			amount: 10000
 		},
 		pgboostgrey: {
 			name: "city boost",
 			type: "pgboost",
-			data: [""],
+			data: ["all"],
 			desc: "work.",
-			amount: 750
+			amount: 100000
+		},
+		pgboostblack: {
+			name: "obsidian boost",
+			type: "pgboost",
+			data: ["color"],
+			desc: "into the darkness.",
+			amount: 100000000
+		},
+		pgboostwhite: {
+			name: "quartz boost",
+			type: "pgboost",
+			data: ["color"],
+			desc: "i see the white light.",
+			amount: 100000000
+		},
+		pgboostred: {
+			name: "ruby boost",
+			type: "pgboost",
+			data: ["color"],
+			desc: "rage and blood.",
+			amount: 1000000
+		},
+		pgboostblue: {
+			name: "sapphire boost",
+			type: "pgboost",
+			data: ["color"],
+			desc: "empowered by the blue sea!",
+			amount: 1000000
+		},
+		pgboostyellow: {
+			name: "topaz boost",
+			type: "pgboost",
+			data: ["color"],
+			desc: "did i really infuse topazes with saffron?",
+			amount: 1000000
 		},
 
 	}
@@ -1140,15 +1175,24 @@ function start() {
 
 	playgroundUnlock = {
 		black: {
-
+			infused: false,
+			final: "buyable"
 		},
 		white: {
+			infused: false,
+			final: "buyable"
 		},
 		red: {
+			infused: false,
+			final: "buyable"
 		},
 		yellow: {
+			infused: false,
+			final: "buyable"
 		},
 		blue: {
+			infused: false,
+			final: "buyable"
 		},
 		orange: {
 			red: "buyable",
@@ -1489,6 +1533,31 @@ function start() {
 				price: [500000000, "black"],
 			},
 		},
+		pgboostblack: {
+			l0: {
+				price: [10000000000000000, "black"],
+			},
+		},
+		pgboostwhite: {
+			l0: {
+				price: [10000000000000000, "white"],
+			},
+		},
+		pgboostred: {
+			l0: {
+				price: [100000000000000, "red"],
+			},
+		},
+		pgboostblue: {
+			l0: {
+				price: [100000000000000, "blue"],
+			},
+		},
+		pgboostyellow: {
+			l0: {
+				price: [100000000000000, "yellow"],
+			},
+		},
 	}
 
 	currentStatus = {}
@@ -1686,7 +1755,7 @@ function style(){
 		$(`.gem.${color}.locked`).css(`background-image`, `url("svg/${color}-gem-locked.svg`)
 	});
 
-	$.each(color.composite, function(key, color){
+	$.each(colors, function(key, color){
 		$(`.pgboost${color}`).css(`background-image`, `url("svg/${color}-boost.svg`)
 	});
 

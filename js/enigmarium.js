@@ -3,6 +3,8 @@ function drawEnigmarium(){
 	cloner('shapeClone');
 }
 
+
+
 $(document).keydown(function(event) {
 	if (event.key === 'e') {
 		toggleToggle('enigmarium');

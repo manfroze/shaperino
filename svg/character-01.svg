@@ -1,0 +1,11 @@
+<svg width="230" height="364" viewBox="0 0 230 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="82" y="22" width="66" height="54" fill="#47E24D"/>
+<rect x="58" y="106" width="114" height="237" fill="#47E24D"/>
+<ellipse rx="46" ry="46.5" transform="matrix(1 0 0 -1 115 112.5)" fill="#FF9A3D"/>
+<ellipse rx="39" ry="39.5" transform="matrix(1 0 0 -1 115 84.5)" fill="#222222"/>
+<circle r="11" transform="matrix(1 0 0 -1 172 172)" fill="#222222"/>
+<circle r="11" transform="matrix(1 0 0 -1 35 140)" fill="#222222"/>
+<path d="M200 155L217 172L200 189L183 172L200 155Z" fill="#47E24D"/>
+<path d="M35 95L52 112L35 129L18 112L35 95Z" fill="#47E24D"/>
+<rect x="58" y="343" width="114" height="21" fill="#222222"/>
+</svg>

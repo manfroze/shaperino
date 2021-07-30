@@ -686,6 +686,7 @@ display: none;
 /* FOOTER */
 
 #footer {
+	display: none;
 	position: absolute;
 	bottom: 20px;
 	text-align: center;
@@ -1080,7 +1081,7 @@ display: none;
 	background-image: none !important;
 }
 
-#playgroundPanel .primary {
+#playgroundPanel .primary.box {
 	height: 100px;
 }
 
@@ -1344,32 +1345,118 @@ display: none;
 
 /* ADVENTURE */
 
-#playgroundPanel .primary.small {
-	width: 100px;
+#playgroundPanel .game .data {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px 5px 0 0;
 	position: absolute;
-	background-color: #fff !important;
+	margin: 0;
+	background-color: rgba(255, 255, 255, 0.9);
+	text-align: left;
+}
+
+#playgroundPanel .game .data span {
+	display: inline;
+	font-size: 15px;
+}
+
+#playgroundPanel .game .data .amount {
+	
 }
 
 #playgroundPanel .game {
 	height: 100%;
 	padding: 0;
-	background-color: #ccc;
 	position: relative;
 }
 
-#playgroundPanel .gameCanvas {
+#playgroundPanel .backdrop {
 	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	background-color: #555;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+#playgroundPanel .character {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	margin: 0;
+	background-repeat: no-repeat;
+	background-position: center bottom;
 }
 
 #playgroundPanel .input {
-	height: 100px;
+	height: 130px;
 	width: 100%;
 	position: absolute;
 	bottom: 0;
-	background-color: #aaa;
-	padding: 0;
+	background-color: rgba(0,0,0,0.7);
+	padding: 20px;
 	margin: 0;
 	border-radius: 0 0 5px 5px;
+	color: #fff;
+	font-size: 15px;
+}
+
+#playgroundPanel .input .text {
+
+}
+
+#playgroundPanel .input .text span {
+	display: none;
+}
+
+#playgroundPanel .input .options {
+	font-weight: normal;
+	margin-top: 30px;
+}
+
+#playgroundPanel .input .options .option {
+	display: none;
+	margin-right: 20px;
+	cursor: url('svg/cursor-pointer.svg'), pointer;
+	border: 1px solid #fff;
+	padding: 5px 7px;
+	border-radius: 5px;
+	position: relative;
+}
+
+
+#playgroundPanel .input .options .option .price {
+	display: block;
+	position: absolute;
+	bottom: -20px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#playgroundPanel .input .options .option:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+#playgroundPanel .input .options .option.scene {
+	border: 3px double;
+}
+
+#playgroundPanel .input .options .option:last-child {
+	margin-right: 0;
+}
+
+#playgroundPanel .input .path {
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+	font-size: 12px;
+	font-weight: normal;
+	opacity: 0.2;
 }
 
 #gameScreen {
@@ -1412,7 +1499,7 @@ display: none;
 
 #enigmarium .tab {
 	display: inline-block;
-	border-radius: 10px 10px 0 0;
+	border-radius: 5px 5px 0 0;
 	height: 55px;
 	box-sizing: border-box;
 	transition: flex-grow .5s ease;

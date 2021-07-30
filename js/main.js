@@ -1022,6 +1022,13 @@ const price = {
 			desc: "work.",
 			amount: 100
 		},
+		pgboostlightred: {
+			name: "loving boost",
+			type: "pgboost",
+			data: ["all"],
+			desc: "<3 <3 <3",
+			amount: 100
+		},
 		pgboostblack: {
 			name: "obsidian boost",
 			type: "pgboost",
@@ -1136,7 +1143,11 @@ function start() {
 		select: "main",
 		playground: {
 			show: "hide",
-			tab: "black"
+			tab: "black",
+			scene: {
+				lightred: "start",
+				lightyellow: "start"
+			}
 		},
 		viewport: {
 			show: "hide",
@@ -1541,6 +1552,11 @@ function start() {
 				price: [500000000, "black"],
 			},
 		},
+		pgboostlightred: {
+			l0: {
+				price: [5000000000, "red"],
+			},
+		},
 		pgboostblack: {
 			l0: {
 				price: [10000000000000000000000000000, "black"],
@@ -1698,6 +1714,13 @@ $( document ).ready(function() {
 		update();
 	}
 
+	$.each(toggleNames, function(i, toggle){
+		if (current[toggle].show == "hide"){
+			$(`#${toggle}`).hide();
+			$('#shaperino').css('visibility','visible');	
+		}
+	});
+
 	if (current.playground.show == "show"){
 		drawPlayground();
 	}
@@ -1711,12 +1734,7 @@ $( document ).ready(function() {
 		viewport();
 	}
 
-	$.each(toggleNames, function(i, toggle){
-		if (current[toggle].show == "hide"){
-			$(`#${toggle}`).hide();
-			$('#shaperino').css('visibility','visible');	
-		}
-	});
+
 
 	selector("main");
 });

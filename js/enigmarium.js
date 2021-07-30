@@ -12,6 +12,16 @@ function drawEnigmarium(){
 	enigmariumTab(current.enigmarium.tab);
 }
 
+function nextShape(shapeName){
+	nextSha = shape[(shape.indexOf(shapeName)+1)]
+	return nextSha;
+}
+
+function prevShape(shapeName){
+	prevSha = shape[(shape.indexOf(shapeName)-1)]
+	return prevSha;
+}
+
 function enigmariumTab(sha){
 	current.enigmarium.tab = sha;
 	$.each(shape, function(key, s){
@@ -36,4 +46,16 @@ $(document).keydown(function(event) {
 $(document).on( "click", "#enigmariumToggle", function(e) {
 	toggleToggle('enigmarium');
 	style();
+});
+
+$(document).bind('keydown', function (event) {
+	if (current.enigmarium.show == "show"){
+		if ((event.key == "ArrowLeft" || event.key == "a") && current.enigmarium.tab != "circle") {
+			enigmariumTab(prevShape(current.enigmarium.tab))
+		}
+		if ((event.key == "ArrowRight" || event.key == "d") && current.enigmarium.tab != "octagon") {
+			enigmariumTab(nextShape(current.enigmarium.tab))
+		}
+
+	}
 });

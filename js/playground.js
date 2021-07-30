@@ -180,9 +180,24 @@ function playgroundPanel(colorName){
 	// ADVENTURE //
 
 	if(playground[colorName].type == "adventure"){
-		$('#playground #playgroundPanel').html('<div class="game box"><div class="gameCanvas box"></div><div class="primary small box"><span class="amount"></span><span class="name"></span><span class="power"></span></div><div class="input box"></div></div>');
+		$('#playground #playgroundPanel').html(`
+			<div class="game box">
+				<div class="backdrop box"></div>
+				<div class="data">
+					<div class="primary">
+						<span class="amount"></span> <span class="name"></span> (<span class="power"></span>)
+					</div>
+				</div>
+				<div class="character"></div>
+				<div class="input box">
+					<div class="text"></div>
+					<div class="options"></div>
+					<div class="path"></div>
+				</div>
+			</div>
+			`);
 		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
-		$('#playgroundPanel .box.primary').css( "background", "url('svg/" + colorName + "-primary.svg'), linear-gradient(to top, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.9) 100%)");		
+		drawScene(current.playground.scene[colorName]);
 	}
 
 	// FINAL //

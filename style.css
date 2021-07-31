@@ -1109,7 +1109,7 @@ display: none;
 	flex-grow: 1;
 }
 
-#playgroundPanel .actor {
+#playgroundPanel .actor.box {
 	background-position: bottom !important;
 	background-size: 100%;
 	flex: 50%;
@@ -1176,7 +1176,7 @@ display: none;
 	flex: 50%;
 }
 
-#playgroundPanel .secondary {
+#playgroundPanel .secondary.box {
 	flex: 50%;
 	text-align: left;
 }
@@ -1199,7 +1199,7 @@ display: none;
 
 }
 
-#playgroundPanel .tertiary {
+#playgroundPanel .tertiary.box {
 	flex: 50%;
 	display: flex;
 	flex-direction: column;
@@ -1343,26 +1343,7 @@ display: none;
 	transform: translateX(-50%);
 }
 
-/* ADVENTURE */
-
-#playgroundPanel .game .data {
-	width: 100%;
-	padding: 10px;
-	border-radius: 5px 5px 0 0;
-	position: absolute;
-	margin: 0;
-	background-color: rgba(255, 255, 255, 0.9);
-	text-align: left;
-}
-
-#playgroundPanel .game .data span {
-	display: inline;
-	font-size: 15px;
-}
-
-#playgroundPanel .game .data .amount {
-	
-}
+/* GLOBAL */
 
 #playgroundPanel .game {
 	height: 100%;
@@ -1370,26 +1351,43 @@ display: none;
 	position: relative;
 }
 
-#playgroundPanel .backdrop {
+#playgroundPanel .layer {
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
 	margin: 0;
-	background-color: #555;
 	background-size: 100%;
 	background-repeat: no-repeat;
 }
 
-#playgroundPanel .character {
-	position: absolute;
+/* ADVENTURE */
+
+#playgroundPanel.adventure .data {
 	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
+	height: 40px;
+	padding: 10px;
+	border-radius: 5px 5px 0 0;
+	position: relative;
 	margin: 0;
-	background-repeat: no-repeat;
+	background-color: rgba(255, 255, 255, 0.9);
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+}
+
+#playgroundPanel.adventure .data span {
+	display: inline;
+	font-size: 15px;
+}
+
+#playgroundPanel.adventure .layer {
+	display: none;
+}
+
+#playgroundPanel.adventure .character {
+	background-size: auto;
 	background-position: center bottom;
 }
 
@@ -1399,15 +1397,12 @@ display: none;
 	position: absolute;
 	bottom: 0;
 	background-color: rgba(0,0,0,0.7);
-	padding: 20px;
+	padding: 10px;
 	margin: 0;
 	border-radius: 0 0 5px 5px;
 	color: #fff;
 	font-size: 15px;
-}
-
-#playgroundPanel .input .text {
-
+	display: none;
 }
 
 #playgroundPanel .input .text span {
@@ -1416,7 +1411,7 @@ display: none;
 
 #playgroundPanel .input .options {
 	font-weight: normal;
-	margin-top: 30px;
+	margin-top: 15px;
 }
 
 #playgroundPanel .input .options .option {
@@ -1429,6 +1424,14 @@ display: none;
 	position: relative;
 }
 
+#playgroundPanel .input .options .option.disabled {
+	opacity: 0.5;
+	cursor: url('svg/cursor-default.svg'), default;
+}
+
+#playgroundPanel .input .options .option.disabled:hover {
+	background-color: transparent;
+}
 
 #playgroundPanel .input .options .option .price {
 	display: block;
@@ -1436,6 +1439,8 @@ display: none;
 	bottom: -20px;
 	left: 50%;
 	transform: translateX(-50%);
+	font-weight: bold;
+	white-space: nowrap;
 }
 
 #playgroundPanel .input .options .option:hover {
@@ -1458,6 +1463,91 @@ display: none;
 	font-weight: normal;
 	opacity: 0.2;
 }
+
+/* JOURNEY */
+
+#playgroundPanel.journey .data {
+	width: 100%;
+	height: 40px;
+	padding: 10px;
+	border-radius: 0 0 5px 5px;
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+	background-color: rgba(255, 255, 255, 0.9);
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+}
+
+#playgroundPanel.journey .data span {
+	display: inline;
+	font-size: 15px;
+}
+
+#playgroundPanel.journey .sky {
+	background-image: url('svg/clouds.svg');
+	background-position: 0px -460px;
+	animation: clouds 10s linear infinite;
+}
+
+#playgroundPanel.journey .sky.moving {
+	animation: clouds 5s linear infinite;
+}
+
+#playgroundPanel.journey .plane {
+	background-image: url('svg/plane.svg');
+}
+
+@keyframes clouds {
+	from {background-position: 0px -460px;}
+	to {background-position: 0px 0px;}
+}
+
+/* CATS */
+
+#playgroundPanel.cats {
+	padding: 10px;
+}
+
+#playgroundPanel.cats .data {
+	width: 470px;
+	height: 42px;
+	padding: 10px;
+	border-radius: 5px;
+	position: absolute;
+	bottom: 0;
+	margin: 5px;
+	background-color: rgba(255, 255, 255, 0.9);
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+}
+
+#playgroundPanel.cats .data span {
+	display: inline;
+	font-size: 15px;
+}
+
+#playgroundPanel.cats .game  {
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+#playgroundPanel.cats .catBox  {
+	background-color: rgba(255, 255, 255, 0.5);
+	width: 50px;
+	height: 44px;
+	border-radius: 5px;
+	margin: 5px;
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* CINEMA */
 
 #gameScreen {
 	display: none;

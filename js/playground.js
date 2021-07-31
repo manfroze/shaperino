@@ -94,9 +94,12 @@ function prevColors(colorName){
 function playgroundPanel(colorName){
 	$('#playground #playgroundPanel').empty();
 	$('#playgroundPanel').removeClass().addClass(colorName);
+	$('#playgroundPanel').addClass(playground[colorName].type);
 	$('#playgroundPanel').css( "background-color", colorCode[colorName]);
 	$('#playgroundPanel').css( "color", colorCode[colorName]);
+
 	// TRICT //
+
 	if(playground[colorName].type == "trict"){
 		$(`#playground #playgroundPanel`).html(`
 			<div class="primary box">
@@ -177,18 +180,32 @@ function playgroundPanel(colorName){
 		});
 	}
 
+	// DATABAR //
+
+	var databar = `<div class="data">
+					<div class="primary">
+						<span class="amount"></span> <span class="name"></span>
+					</div>
+					<div class="actor">
+						<span class="amount"></span> <span class="name"></span>
+					</div>
+					<div class="secondary">
+						<span class="amount"></span> <span class="name"></span>
+					</div>
+					<div class="tertiary">
+						<span class="amount"></span> <span class="name"></span>
+					</div>
+				</div>`
+
 	// ADVENTURE //
 
 	if(playground[colorName].type == "adventure"){
 		$('#playground #playgroundPanel').html(`
 			<div class="game box">
-				<div class="backdrop box"></div>
-				<div class="data">
-					<div class="primary">
-						<span class="amount"></span> <span class="name"></span> (<span class="power"></span>)
-					</div>
-				</div>
-				<div class="character"></div>
+				<div class="backdrop layer box"></div>
+				<div class="objects layer box"></div>
+				${databar}
+				<div class="character layer"></div>
 				<div class="input box">
 					<div class="text"></div>
 					<div class="options"></div>
@@ -197,8 +214,50 @@ function playgroundPanel(colorName){
 			</div>
 			`);
 		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
-		drawScene(current.playground.scene[colorName]);
+		$('#playgroundPanel.' + colorName + ' .actor .name').html(playground[colorName].actor);
+		$('#playgroundPanel.' + colorName + ' .secondary .name').html(playground[colorName].secondary);
+		$('#playgroundPanel.' + colorName + ' .tertiary .name').html(playground[colorName].tertiary);
+		drawScene(current.playground.scene[colorName], "begin");
 	}
+
+	// JOURNEY //
+
+	if(playground[colorName].type == "journey"){
+		$('#playground #playgroundPanel').html(`
+			<div class="game box">
+				<div class="sky layer"></div>
+				<div class="plane layer"></div>
+				${databar}
+			</div>
+			`);
+		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
+		$('#playgroundPanel.' + colorName + ' .actor .name').html(playground[colorName].actor);
+		$('#playgroundPanel.' + colorName + ' .secondary .name').html(playground[colorName].secondary);
+		$('#playgroundPanel.' + colorName + ' .tertiary .name').html(playground[colorName].tertiary);
+	}
+
+	// CATS //
+
+		if(playground[colorName].type == "cats"){
+		$('#playground #playgroundPanel').html(`
+			<div class="game box">
+				${databar}
+			</div>
+			`);
+		$('#playgroundPanel.' + colorName + ' .primary .name').html(playground[colorName].primary);
+		$('#playgroundPanel.' + colorName + ' .actor .name').html(playground[colorName].actor);
+		$('#playgroundPanel.' + colorName + ' .secondary .name').html(playground[colorName].secondary);
+		$('#playgroundPanel.' + colorName + ' .tertiary .name').html(playground[colorName].tertiary);
+
+		for (var i = 0; i <= 55; i++) {
+			$(`#playgroundPanel.${colorName} .game`).append(`<div class="catBox cat-${i}"></div>`)
+			$(`#playgroundPanel.${colorName} .game .cat-${i}`).css(`background-image`, `url(svg/cat-${rand(["orange", "black", "white", "grey"])}-${rand(["00", "01", "02"])}.svg)`)
+		}
+
+	}
+
+	//background-image: url('svg/cat-orange-01.svg');
+
 
 	// FINAL //
 

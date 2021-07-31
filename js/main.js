@@ -686,11 +686,18 @@ const playground = {
 	lightred: {
 		type: 'adventure',
 		primary: 'lust',
-		secondary: 'love'
-
+		actor: 'insight',
+		secondary: 'nerve',
+		tertiary: 'love',
+		rate: 0.2
 	},
 	lightblue: {
-		primary: 'sky'
+		type: 'journey',
+		primary: 'fuel',
+		actor: "speed",
+		secondary: "km",
+		rate: 0.5
+
 	},
 	lightyellow: {
 		type: 'adventure',
@@ -714,7 +721,9 @@ const playground = {
 		primary: 'luck'
 	},
 	lightorange: {
-		primary: 'salmon'
+		type: 'cats',
+		primary: 'salmon',
+		actor: 'cats',
 	},
 	lightviolet: {
 		primary: 'craze'
@@ -1145,7 +1154,7 @@ function start() {
 			show: "hide",
 			tab: "black",
 			scene: {
-				lightred: "start",
+				lightred: "girl",
 				lightyellow: "start"
 			}
 		},
@@ -1240,6 +1249,10 @@ function start() {
 		darkblue: {
 		},
 		lightred: {
+			friend_insight: "buyable",
+			upgrade: "buyable",
+			ruby: "buyable",
+			quartz: "buyable"
 		},
 		lightyellow: {
 		},

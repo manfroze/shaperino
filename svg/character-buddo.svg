@@ -1,0 +1,11 @@
+<svg width="230" height="364" viewBox="0 0 230 364" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M95.1307 24.9364L135.004 24.9364L163.198 53.1307L163.198 93.0036L135.004 121.198L95.1307 121.198L66.9364 93.0036L66.9364 53.1307L95.1307 24.9364Z" fill="#239727"/>
+<rect x="58" y="106" width="114" height="133" fill="#FFD600"/>
+<rect x="58" y="239" width="114" height="104" fill="#239727"/>
+<circle r="11" transform="matrix(1 0 0 -1 172 175)" fill="#222222"/>
+<circle r="11" transform="matrix(1 0 0 -1 53 175)" fill="#222222"/>
+<rect x="72" y="239" width="133" height="24" transform="rotate(-90 72 239)" fill="#239727"/>
+<rect x="134" y="239" width="133" height="24" transform="rotate(-90 134 239)" fill="#239727"/>
+<ellipse rx="39" ry="39.5" transform="matrix(1 0 0 -1 115 84.5)" fill="#222222"/>
+<rect x="58" y="343" width="114" height="21" fill="#FFD600"/>
+</svg>
